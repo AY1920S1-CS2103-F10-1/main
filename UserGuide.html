@@ -33,18 +33,19 @@
 <li><a href="#adding-a-medical-condition-to-a-patient-code-patient-add-medcon-code">3.1. Adding a Medical Condition to a Patient <code>patient add medcon</code></a></li>
 <li><a href="#removing-a-medical-condition-from-a-patient-code-patient-rm-medcon-code">3.2. Removing a Medical Condition from a Patient <code>patient rm medcon</code></a></li>
 <li><a href="#adding-a-prescription-to-a-patient-code-patient-add-presc-code">3.3. Adding a Prescription to a Patient <code>patient add presc</code></a></li>
-<li><a href="#removing-an-prescription-from-a-patient-code-patient-rm-presc-code">3.4. Removing an Prescription from a Patient <code>patient rm presc</code></a></li>
-<li><a href="#adding-an-appointment-to-a-patient-code-patient-add-appt-code-incomplete-ug">3.5. Adding an Appointment to a Patient <code>patient add appt</code> [INCOMPLETE UG]</a></li>
-<li><a href="#removing-an-appointment-from-a-patient-code-patient-rm-appt-code-incomplete-ug">3.6. Removing an Appointment from a Patient <code>patient rm appt</code> [INCOMPLETE UG]</a></li>
-<li><a href="#assigning-a-todo-template-to-a-patient-code-patient-set-todoform-code-incomplete-ug">3.7. Assigning a Todo Template to a Patient <code>patient set todoform</code> [INCOMPLETE UG]</a></li>
-<li><a href="#unassigning-a-todo-template-from-a-patient-code-patient-unset-todoform-code-incomplete-ug">3.8. Unassigning a Todo Template from a Patient <code>patient unset todoform</code> [INCOMPLETE UG]</a></li>
-<li><a href="#adding-an-extra-todo-to-a-patient-code-patient-add-todo-code">3.9. Adding an extra Todo to a Patient <code>patient add todo</code></a></li>
-<li><a href="#removing-an-extra-todo-from-a-patient-code-patient-rm-todo-code">3.10. Removing an extra Todo from a Patient <code>patient rm todo</code></a></li>
-<li><a href="#adding-a-note-to-a-patient-code-patient-add-note-code">3.11. Adding a note to a Patient <code>patient add note</code></a></li>
-<li><a href="#removing-a-note-from-a-patient-code-patient-rm-note-code">3.12. Removing a note from a Patient <code>patient rm note</code></a></li>
+<li><a href="#editing-a-patient-s-prescription-code-patient-edit-presc-code">3.4. Editing a Patient&#8217;s Prescription <code>patient edit presc</code></a></li>
+<li><a href="#removing-an-prescription-from-a-patient-code-patient-rm-presc-code">3.5. Removing an Prescription from a Patient <code>patient rm presc</code></a></li>
+<li><a href="#adding-an-appointment-to-a-patient-code-patient-add-appt-code-incomplete-ug">3.6. Adding an Appointment to a Patient <code>patient add appt</code> [INCOMPLETE UG]</a></li>
+<li><a href="#removing-an-appointment-from-a-patient-code-patient-rm-appt-code-incomplete-ug">3.7. Removing an Appointment from a Patient <code>patient rm appt</code> [INCOMPLETE UG]</a></li>
+<li><a href="#assigning-a-todo-template-to-a-patient-code-patient-set-todoform-code-incomplete-ug">3.8. Assigning a Todo Template to a Patient <code>patient set todoform</code> [INCOMPLETE UG]</a></li>
+<li><a href="#unassigning-a-todo-template-from-a-patient-code-patient-unset-todoform-code-incomplete-ug">3.9. Unassigning a Todo Template from a Patient <code>patient unset todoform</code> [INCOMPLETE UG]</a></li>
+<li><a href="#adding-an-extra-todo-to-a-patient-code-patient-add-todo-code">3.10. Adding an extra Todo to a Patient <code>patient add todo</code></a></li>
+<li><a href="#removing-an-extra-todo-from-a-patient-code-patient-rm-todo-code">3.11. Removing an extra Todo from a Patient <code>patient rm todo</code></a></li>
+<li><a href="#adding-a-note-to-a-patient-code-patient-add-note-code">3.12. Adding a note to a Patient <code>patient add note</code></a></li>
+<li><a href="#removing-a-note-from-a-patient-code-patient-rm-note-code">3.13. Removing a note from a Patient <code>patient rm note</code></a></li>
 </ul>
 </li>
-<li><a href="#medical-conditions-parameters-not-updated">4. Medical Conditions [Parameters not updated]</a>
+<li><a href="#medical-conditions">4. Medical Conditions</a>
 <ul class="sectlevel2">
 <li><a href="#listing-all-medical-conditions-code-medcon-list-code">4.1. Listing All Medical Conditions: <code>medcon list</code></a></li>
 <li><a href="#finding-medical-condition-s-code-medcon-find-code">4.2. Finding Medical Condition(s): <code>medcon find</code></a></li>
@@ -293,7 +294,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
 </li>
 <li>
-<p>Only the name is searched.</p>
+<p>Only patients that match <strong>all</strong> specified arguments will be displayed.</p>
 </li>
 <li>
 <p>If the parameter is text (e.g. <code>n/NAME</code>), partial words will be matched (e.g. <code>n/John</code> will return <code>John Smith</code> and <code>John Kim</code>.</p>
@@ -370,7 +371,7 @@ View the item with the index number 2.</p>
 <p>You can add a patient to the list of all patients by using <code>patient add</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>patient add pn/PATIENT_NAME pi/PATIENT_IC p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​ [kn/NOK_NAME] [kp/NOK_PHONE_NUMBER] [ka/NOK_ADDRESS] [ke/NOK_EMAIL] [imp/PRIORITY]</code></p>
+<p>Format: <code>patient add n/NAME ic/IC p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​ [kn/NOK_NAME] [kp/NOK_PHONE_NUMBER] [ka/NOK_ADDRESS] [ke/NOK_EMAIL] [imp/PRIORITY]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -381,9 +382,6 @@ View the item with the index number 2.</p>
 </li>
 <li>
 <p>A patient can have next-of-kin contact details.</p>
-</li>
-<li>
-<p>Every patient is uniquely identified by their IC.</p>
 </li>
 <li>
 <p>Priority can take values from 0 to 10.</p>
@@ -398,13 +396,13 @@ View the item with the index number 2.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>patient add n/John Doe pi/S7012255C p/98765432 a/John street, block 123, #01-01</code></p>
+<p><code>patient add n/John Doe ic/S7012255C p/98765432 a/John street, block 123, #01-01</code></p>
 </li>
 <li>
-<p><code>patient add n/Choong Siew Hwang pi/S7015376D p/91239876 a/22 College Avenue East; Singapore 138608 e/cho0ng@email.com t/Big kn/Choong Tee Ling kp/85639274 ka/10 Buangkok View, Singapore 534194 ke/ch1ng@email.com</code></p>
+<p><code>patient add n/Choong Siew Hwang ic/S7015376D p/91239876 a/22 College Avenue East; Singapore 138608 e/cho0ng@email.com t/Big kn/Choong Tee Ling kp/85639274 ka/10 Buangkok View, Singapore 534194 ke/ch1ng@email.com</code></p>
 </li>
 <li>
-<p><code>patient add n/Betsy Crowe pi/S0011239X t/friend e/betsycrowe@example.com a/Newgate Prison p/12345678 t/criminal imp/4</code></p>
+<p><code>patient add n/Betsy Crowe ic/S0011239X t/friend e/betsycrowe@example.com a/Newgate Prison p/12345678 t/criminal imp/4</code></p>
 </li>
 </ul>
 </div>
@@ -484,6 +482,10 @@ Edits the name of the 2nd person in the entire patient&#8217;s list with <code>B
 <li>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
+<li>
+<p>All patients with an index number higher than the deleted patient will have their indexes decremented by 1. E.g. after
+deleting index 3, index 4 will become 3, 5 will become 4 and so on.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -516,7 +518,7 @@ Deletes the patient which had been assigned the index 1.</p>
 <p><strong>Advanced Patient Features</strong></p>
 </div>
 <div class="paragraph">
-<p>On top of managing your patient data, you may need to assign patients to other items in the application e.g. medical conditions or medication. This section pertains to that.</p>
+<p>On top of managing your patient data, you may need to assign other items to patients e.g. medical conditions or medication prescriptions. This section pertains to that.</p>
 </div>
 </div>
 </div>
@@ -526,7 +528,7 @@ Deletes the patient which had been assigned the index 1.</p>
 <p>You can add a medical condition to a patient using <code>patient add medcon</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format <code>patient add medcon p/PATIENT_INDEX m/MEDCON_INDEX</code></p>
+<p>Format <code>patient add medcon i/PATIENT_INDEX m/MEDCON_INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -554,7 +556,7 @@ Deletes the patient which had been assigned the index 1.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>patient add medcon p/1 m/2</code><br>
+<p><code>patient add medcon i/1 m/2</code><br>
 Adds the medical condition at index no. 2 (in the list of medical conditions) to the patient that was assigned index no. 1 in the list of patients</p>
 </li>
 </ul>
@@ -566,7 +568,7 @@ Adds the medical condition at index no. 2 (in the list of medical conditions) to
 <p>You can remove a medical condition from a patient using <code>patient rm medcon</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>patient rm medcon p/PATIENT_INDEX m/MEDCON_INDEX</code></p>
+<p>Format: <code>patient rm medcon i/PATIENT_INDEX m/MEDCON_INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -594,8 +596,8 @@ Adds the medical condition at index no. 2 (in the list of medical conditions) to
 <div class="ulist">
 <ul>
 <li>
-<p><code>patient rm medcon p/1 m/2</code><br>
-Removes the medical condition at index no. 2 (in the list of medical conditions) from the patient that was assigned index no. 1 in the list of patients</p>
+<p><code>patient rm medcon i/1 m/2</code><br>
+Removes the medical condition at of index no. 2 (in the list of medical conditions) from the patient that was assigned index no. 1 in the list of patients</p>
 </li>
 </ul>
 </div>
@@ -606,10 +608,10 @@ Removes the medical condition at index no. 2 (in the list of medical conditions)
 <p>You can add a prescription to a patient using <code>patient add presc</code>.</p>
 </div>
 <div class="paragraph">
-<p>You can view the list of prescriptions you add to a patient using <code>patient view</code>.</p>
+<p>You can view the list of prescriptions you have added to a patient using <code>patient view</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format <code>patient add presc p/PATIENT_INDEX m/MED_INDEX d/DOSAGE</code></p>
+<p>Format <code>patient add presc i/PATIENT_INDEX m/MED_INDEX d/DOSAGE</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -637,14 +639,60 @@ Removes the medical condition at index no. 2 (in the list of medical conditions)
 <div class="ulist">
 <ul>
 <li>
-<p><code>patient add presc p/1 m/2 d/20mg 3 times a day</code><br>
+<p><code>patient add presc i/1 m/2 d/20mg 3 times a day</code><br>
 Adds prescription of the medicine of index 2 (in the list of medicines) with a dosage of 20mg 3 times a day to the patient at index 1 in list of patients.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="removing-an-prescription-from-a-patient-code-patient-rm-presc-code"><a class="link" href="#removing-an-prescription-from-a-patient-code-patient-rm-presc-code">3.4. Removing an Prescription from a Patient <code>patient rm presc</code></a></h3>
+<h3 id="editing-a-patient-s-prescription-code-patient-edit-presc-code"><a class="link" href="#editing-a-patient-s-prescription-code-patient-edit-presc-code">3.4. Editing a Patient&#8217;s Prescription <code>patient edit presc</code></a></h3>
+<div class="paragraph">
+<p>You can edit a patient&#8217;s prescription using <code>patient add presc</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can view a patient&#8217;s list of prescriptions using <code>patient view</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format <code>patient edit presc i/PATIENT_INDEX pr/PRESCRIPTION_INDEX [m/MED_INDEX] [d/DOSAGE]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>PATIENT_INDEX refers to the index of a patient (obtained using <code>patient list</code> or <code>patient find</code>).</p>
+</li>
+<li>
+<p>MED_INDEX refers to the index of a medicine (obtained using <code>med list</code> or <code>med find</code>).</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to input values.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>patient edit presc i/1 pr/3 d/10mg 2 times a day</code><br>
+Edits the prescription with index 3 of the patient at index 1 in list of patients, changing the dosage to "10mg 2 times a day"</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="removing-an-prescription-from-a-patient-code-patient-rm-presc-code"><a class="link" href="#removing-an-prescription-from-a-patient-code-patient-rm-presc-code">3.5. Removing an Prescription from a Patient <code>patient rm presc</code></a></h3>
 <div class="paragraph">
 <p>You can remove a prescription to a patient using <code>patient rm presc</code>.</p>
 </div>
@@ -652,7 +700,7 @@ Adds prescription of the medicine of index 2 (in the list of medicines) with a d
 <p>You can view the list of prescriptions of a patient using <code>patient view</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format <code>patient rm presc p/PATIENT_INDEX pr/PRESCRIPTION_INDEX</code></p>
+<p>Format <code>patient rm presc i/PATIENT_INDEX pr/PRESCRIPTION_INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -680,30 +728,30 @@ Adds prescription of the medicine of index 2 (in the list of medicines) with a d
 <div class="ulist">
 <ul>
 <li>
-<p><code>patient rm presc p/1 pr/2</code><br>
+<p><code>patient rm presc i/1 pr/2</code><br>
 Removes the 2nd prescription of the patient of index 1.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-an-appointment-to-a-patient-code-patient-add-appt-code-incomplete-ug"><a class="link" href="#adding-an-appointment-to-a-patient-code-patient-add-appt-code-incomplete-ug">3.5. Adding an Appointment to a Patient <code>patient add appt</code> [INCOMPLETE UG]</a></h3>
+<h3 id="adding-an-appointment-to-a-patient-code-patient-add-appt-code-incomplete-ug"><a class="link" href="#adding-an-appointment-to-a-patient-code-patient-add-appt-code-incomplete-ug">3.6. Adding an Appointment to a Patient <code>patient add appt</code> [INCOMPLETE UG]</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="removing-an-appointment-from-a-patient-code-patient-rm-appt-code-incomplete-ug"><a class="link" href="#removing-an-appointment-from-a-patient-code-patient-rm-appt-code-incomplete-ug">3.6. Removing an Appointment from a Patient <code>patient rm appt</code> [INCOMPLETE UG]</a></h3>
+<h3 id="removing-an-appointment-from-a-patient-code-patient-rm-appt-code-incomplete-ug"><a class="link" href="#removing-an-appointment-from-a-patient-code-patient-rm-appt-code-incomplete-ug">3.7. Removing an Appointment from a Patient <code>patient rm appt</code> [INCOMPLETE UG]</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="assigning-a-todo-template-to-a-patient-code-patient-set-todoform-code-incomplete-ug"><a class="link" href="#assigning-a-todo-template-to-a-patient-code-patient-set-todoform-code-incomplete-ug">3.7. Assigning a Todo Template to a Patient <code>patient set todoform</code> [INCOMPLETE UG]</a></h3>
+<h3 id="assigning-a-todo-template-to-a-patient-code-patient-set-todoform-code-incomplete-ug"><a class="link" href="#assigning-a-todo-template-to-a-patient-code-patient-set-todoform-code-incomplete-ug">3.8. Assigning a Todo Template to a Patient <code>patient set todoform</code> [INCOMPLETE UG]</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="unassigning-a-todo-template-from-a-patient-code-patient-unset-todoform-code-incomplete-ug"><a class="link" href="#unassigning-a-todo-template-from-a-patient-code-patient-unset-todoform-code-incomplete-ug">3.8. Unassigning a Todo Template from a Patient <code>patient unset todoform</code> [INCOMPLETE UG]</a></h3>
+<h3 id="unassigning-a-todo-template-from-a-patient-code-patient-unset-todoform-code-incomplete-ug"><a class="link" href="#unassigning-a-todo-template-from-a-patient-code-patient-unset-todoform-code-incomplete-ug">3.9. Unassigning a Todo Template from a Patient <code>patient unset todoform</code> [INCOMPLETE UG]</a></h3>
 
 </div>
 <div class="sect2">
-<h3 id="adding-an-extra-todo-to-a-patient-code-patient-add-todo-code"><a class="link" href="#adding-an-extra-todo-to-a-patient-code-patient-add-todo-code">3.9. Adding an extra Todo to a Patient <code>patient add todo</code></a></h3>
+<h3 id="adding-an-extra-todo-to-a-patient-code-patient-add-todo-code"><a class="link" href="#adding-an-extra-todo-to-a-patient-code-patient-add-todo-code">3.10. Adding an extra Todo to a Patient <code>patient add todo</code></a></h3>
 <div class="paragraph">
 <p>You can add an extra todo item to the patient&#8217;s visit todo list using <code>patient add todo</code>. This extra todo item will be added to the patient&#8217;s list of extra todos.</p>
 </div>
@@ -711,7 +759,7 @@ Removes the 2nd prescription of the patient of index 1.</p>
 <p>For more information on the differences between a patient&#8217;s todo list template and extra todos, Refer to <a href="#Visits">[Visits]</a> for more elaboration.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>patient add todo p/PATIENT_INDEX t/TODO</code></p>
+<p>Format: <code>patient add todo i/PATIENT_INDEX t/TODO</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -740,12 +788,12 @@ Adds a todo item "Check fridge for spoiled items" to the extra todo items list.<
 </div>
 </div>
 <div class="sect2">
-<h3 id="removing-an-extra-todo-from-a-patient-code-patient-rm-todo-code"><a class="link" href="#removing-an-extra-todo-from-a-patient-code-patient-rm-todo-code">3.10. Removing an extra Todo from a Patient <code>patient rm todo</code></a></h3>
+<h3 id="removing-an-extra-todo-from-a-patient-code-patient-rm-todo-code"><a class="link" href="#removing-an-extra-todo-from-a-patient-code-patient-rm-todo-code">3.11. Removing an extra Todo from a Patient <code>patient rm todo</code></a></h3>
 <div class="paragraph">
 <p>You can remove an extra todo item from the patient&#8217;s visit todo list using <code>patient rm todo</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>patient rm todo p/PATIENT_INDEX t/TODO_INDEX</code></p>
+<p>Format: <code>patient rm todo i/PATIENT_INDEX t/TODO_INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -773,14 +821,14 @@ Adds a todo item "Check fridge for spoiled items" to the extra todo items list.<
 <div class="ulist">
 <ul>
 <li>
-<p><code>patient rm todo p/1 t/2</code><br>
+<p><code>patient rm todo i/1 t/2</code><br>
 Removes the 2nd todo item of the patient of index 1.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="adding-a-note-to-a-patient-code-patient-add-note-code"><a class="link" href="#adding-a-note-to-a-patient-code-patient-add-note-code">3.11. Adding a note to a Patient <code>patient add note</code></a></h3>
+<h3 id="adding-a-note-to-a-patient-code-patient-add-note-code"><a class="link" href="#adding-a-note-to-a-patient-code-patient-add-note-code">3.12. Adding a note to a Patient <code>patient add note</code></a></h3>
 <div class="paragraph">
 <p>You can add a note to the patient&#8217;s list of notes using <code>patient add note</code>.</p>
 </div>
@@ -788,7 +836,7 @@ Removes the 2nd todo item of the patient of index 1.</p>
 <p>These notes are for you to take general notes on a patient. If you want to take notes on a specific visit / while you are visiting the patient, you will want to make an appointment with <code>patient add appt</code>, begin the appointment using <code>appt begin</code> and add details to the visit.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>patient add note p/PATIENT_INDEX t/NOTE</code></p>
+<p>Format: <code>patient add note i/PATIENT_INDEX t/NOTE</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -817,12 +865,12 @@ Adds a todo item "Check fridge for spoiled items" to the notes list.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="removing-a-note-from-a-patient-code-patient-rm-note-code"><a class="link" href="#removing-a-note-from-a-patient-code-patient-rm-note-code">3.12. Removing a note from a Patient <code>patient rm note</code></a></h3>
+<h3 id="removing-a-note-from-a-patient-code-patient-rm-note-code"><a class="link" href="#removing-a-note-from-a-patient-code-patient-rm-note-code">3.13. Removing a note from a Patient <code>patient rm note</code></a></h3>
 <div class="paragraph">
 <p>You can remove a note from the patient&#8217;s list of notes using <code>patient rm note</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>patient rm note p/PATIENT_INDEX t/NOTE_INDEX</code></p>
+<p>Format: <code>patient rm note i/PATIENT_INDEX t/NOTE_INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -850,7 +898,7 @@ Adds a todo item "Check fridge for spoiled items" to the notes list.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>patient rm note p/1 t/2</code><br>
+<p><code>patient rm note i/1 t/2</code><br>
 Removes the 2nd note of the patient of index 1.</p>
 </li>
 </ul>
@@ -859,7 +907,7 @@ Removes the 2nd note of the patient of index 1.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="medical-conditions-parameters-not-updated"><a class="link" href="#medical-conditions-parameters-not-updated">4. Medical Conditions [Parameters not updated]</a></h2>
+<h2 id="medical-conditions"><a class="link" href="#medical-conditions">4. Medical Conditions</a></h2>
 <div class="sectionbody">
 <div class="exampleblock">
 <div class="content">
@@ -892,23 +940,23 @@ Removes the 2nd note of the patient of index 1.</p>
 <p>In the list displayed, each medical condition will have an <strong>index</strong> number which can then be used for other features that require you to select a medical condition by <strong>index</strong> e.g. <code>medcon delete</code>. Take note that a medical condition will be given the same <strong>index</strong> regardless of other display commands such as <code>medcon list</code> or if different parameters are used.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>medcon find [KEYWORD] [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]</code></p>
+<p>Format: <code>medcon find [KEYWORD] [n/NAME] [s/SYMPTOMS] [d/DIAGNOSIS] [t/TREATMENT]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+<p>The search is case insensitive. e.g <code>asthma</code> will match <code>Asthma</code></p>
 </li>
 <li>
 <p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
 </li>
 <li>
-<p>Only the name is searched.</p>
+<p>If the parameter is text (e.g. <code>n/NAME</code>), partial words will be matched (e.g. <code>n/Diabetes</code> will return <code>Diabetes, Type 1</code> and <code>Diabetes, Type 2</code>.</p>
 </li>
 <li>
-<p>If the parameter is text (e.g. <code>n/NAME</code>), partial words will be matched (e.g. <code>n/John</code> will return <code>John Smith</code> and <code>John Kim</code>.</p>
+<p>If KEYWORD is specified, will attempt search all fields for a match for KEYWORD.</p>
 </li>
 </ul>
 </div>
@@ -924,8 +972,8 @@ Removes the 2nd note of the patient of index 1.</p>
 Returns all medical conditions with the keyword <code>asthma</code> in it</p>
 </li>
 <li>
-<p><code>medcon find n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code><br>
-Returns all medical conditions of this particular patient</p>
+<p><code>medcon find</code><br>
+Returns all medical conditions in the application database</p>
 </li>
 </ul>
 </div>
@@ -978,23 +1026,14 @@ View the item with the index number 2.</p>
 <p>You can add a medical condition to the list of all conditions by using <code>medcon add</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>medcon add pn/PRESCRIPTION_NAME pi/PRESCRIPTION_IC p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​ [kn/NOK_NAME] [kp/NOK_PHONE_NUMBER] [ka/NOK_ADDRESS] [ke/NOK_EMAIL] [imp/PRIORITY]</code></p>
+<p>Format: <code>medcon add n/NAME s/SYMPTOMS d/DIAGNOSIS t/TREATMENT</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>A medical condition can have any number of tags.</p>
-</li>
-<li>
-<p>A medical condition can have next-of-kin contact details.</p>
-</li>
-<li>
-<p>Every medical condition is uniquely identified by their IC.</p>
-</li>
-<li>
-<p>Priority can take values from 0 to 10.</p>
+<p>All fields must be specified.</p>
 </li>
 </ul>
 </div>
@@ -1006,13 +1045,9 @@ View the item with the index number 2.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>medcon add n/John Doe pi/S7012255C p/98765432 a/John street, block 123, #01-01</code></p>
-</li>
-<li>
-<p><code>medcon add n/Choong Siew Hwang pi/S7015376D p/91239876 a/22 College Avenue East; Singapore 138608 e/cho0ng@email.com t/Big kn/Choong Tee Ling kp/85639274 ka/10 Buangkok View, Singapore 534194 ke/ch1ng@email.com</code></p>
-</li>
-<li>
-<p><code>medcon add n/Betsy Crowe pi/S0011239X t/friend e/betsycrowe@example.com a/Newgate Prison p/12345678 t/criminal imp/4</code></p>
+<p><code>medcon add n/Diabetes, Type 1 s/Increased thirst, frequent urination, extreme hunger, unexplained weight loss
+d/A1C test, blood sugar test, oral glucose test t/Insulin injections, insulin pump, blood sugar monitoring,
+carbohydrate counting</code></p>
 </li>
 </ul>
 </div>
@@ -1023,14 +1058,14 @@ View the item with the index number 2.</p>
 <p>You can edit an existing medical condition in the app using <code>medcon edit</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>medcon edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
+<p>Format: <code>medcon edit INDEX [n/NAME] [s/SYMPTOMS] [d/DIAGNOSIS] [t/TREATMENT]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the person at the specified <code>INDEX</code>.</p>
+<p>Edits the medical condition at the specified <code>INDEX</code>.</p>
 </li>
 <li>
 <p>The index refers to the index number shown in the list of medical conditions displayed by <code>medcon list</code> or <code>medcon find</code>.</p>
@@ -1044,12 +1079,6 @@ View the item with the index number 2.</p>
 <li>
 <p>Existing values will be updated to the input values.</p>
 </li>
-<li>
-<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
-</li>
-<li>
-<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
-</li>
 </ul>
 </div>
 </div>
@@ -1061,12 +1090,8 @@ View the item with the index number 2.</p>
 <ul>
 <li>
 <p><code>medcon list</code><br>
- <code>edit 1 p/91234567 e/johndoe@example.com</code><br>
-Edits the phone number and email address of the 1st person in the entire medical condition&#8217;s list to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
-</li>
-<li>
-<p><code>edit 2 n/Betsy Crower t/</code><br>
-Edits the name of the 2nd person with the index 1.<code>Betsy Crower</code> and clears all existing tags.</p>
+ <code>medcon edit 3 s/increased hunger, increased thirst, weight loss, frequent urination, blurry vision, extreme fatigue, sores that don’t heal</code><br>
+Edits the symptoms of the medical condition with index 3.</p>
 </li>
 </ul>
 </div>
@@ -2773,4 +2798,4 @@ Format: <code>exit</code></p>
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-01 02:45:15 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-01 09:27:32 UTC</div></div></div></body></html>
