@@ -6,24 +6,20 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
-/**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
- */
-public class FindCommand extends Command {
+public class FindAppointment extends FindCommand {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_OBJECT = "appt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "-"
-            + FindPatient.COMMAND_OBJECT + "|" + FindAppointment.COMMAND_OBJECT
+    public static final String MESSAGE_USAGE = COMMAND_WORD + "-" + COMMAND_OBJECT
             + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + "-" + FindPatient.COMMAND_OBJECT + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + "-" + COMMAND_OBJECT + " alice bob charlie";
 
     private final NameContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindAppointment(NameContainsKeywordsPredicate predicate) {
+        super(predicate);
         this.predicate = predicate;
     }
 
@@ -38,7 +34,7 @@ public class FindCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                || (other instanceof FindAppointment // instanceof handles nulls
+                && predicate.equals(((FindAppointment) other).predicate)); // state check
     }
 }

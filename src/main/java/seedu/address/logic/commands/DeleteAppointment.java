@@ -10,24 +10,21 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-/**
- * Deletes a person identified using it's displayed index from the address book.
- */
-public class DeleteCommand extends Command {
+public class DeleteAppointment extends DeleteCommand {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_OBJECT = "appt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "-"
-            + DeletePatient.COMMAND_OBJECT + "|" + DeleteAppointment.COMMAND_OBJECT
+    public static final String MESSAGE_USAGE = COMMAND_WORD + "-" + COMMAND_OBJECT
             + ": Deletes the person identified by the index number used in the displayed person list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + "|" + DeletePatient.COMMAND_OBJECT + " 1";
+            + "Example: " + COMMAND_WORD + "-" + COMMAND_OBJECT + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public DeleteAppointment(Index targetIndex) {
+        super(targetIndex);
         this.targetIndex = targetIndex;
     }
 
@@ -48,7 +45,7 @@ public class DeleteCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof DeleteAppointment // instanceof handles nulls
+                && targetIndex.equals(((DeleteAppointment) other).targetIndex)); // state check
     }
 }

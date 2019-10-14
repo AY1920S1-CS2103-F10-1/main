@@ -11,15 +11,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
-/**
- * Adds a person to the address book.
- */
-public class AddCommand extends Command {
+public class AddAppointment extends AddCommand {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_OBJECT = "appt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "-"
-            + AddPatient.COMMAND_OBJECT + "|" + AddAppointment.COMMAND_OBJECT
+    public static final String MESSAGE_USAGE = COMMAND_WORD + "-" + COMMAND_OBJECT
             + ": Adds a person to the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
@@ -43,7 +39,8 @@ public class AddCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Person person) {
+    public AddAppointment(Person person) {
+        super(person);
         requireNonNull(person);
         toAdd = person;
     }
@@ -63,7 +60,7 @@ public class AddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                || (other instanceof AddAppointment // instanceof handles nulls
+                && toAdd.equals(((AddAppointment) other).toAdd));
     }
 }

@@ -5,17 +5,11 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.address.model.Model;
 
-/**
- * Lists all persons in the address book to the user.
- */
-public class ListCommand extends Command {
+public class ListPatients extends ListCommand {
 
-    public static final String COMMAND_WORD = "list";
+    public static final String COMMAND_OBJECT = "pat";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + "-"
-            + ListPatients.COMMAND_OBJECT + "|" + ListAppointments.COMMAND_OBJECT;
+    public static final String MESSAGE_SUCCESS = "Listed all patients";
 
     @Override
     public CommandResult execute(Model model) {
