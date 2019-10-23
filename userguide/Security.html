@@ -1,0 +1,119 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Login System &amp; Security [coming in v2.0]</title><link rel="stylesheet" href="./gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"></div><div id="content"><div class="sect1">
+<h2 id="login-system-security-code-coming-in-v2-0-code"><a class="link" href="#login-system-security-code-coming-in-v2-0-code">Login System &amp; Security <code>[coming in v2.0]</code></a></h2>
+<div class="sectionbody">
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Login System &amp; Security</strong></p>
+</div>
+<div class="paragraph">
+<p>As a community nurse, you will often be managing your patients' confidential data. A login system will be useful in helping you to ensure the confidentiality and security of your patients' information. This section describes the features that will allow you to manage this security system.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="enabling-the-login-system-code-login-enable-code-code-coming-in-v2-0-code"><a class="link" href="#enabling-the-login-system-code-login-enable-code-code-coming-in-v2-0-code">Enabling the Login System <code>login-enable</code> <code>[coming in v2.0]</code></a></h3>
+<div class="paragraph">
+<p>If you haven&#8217;t setup a login PIN, you can enable the login system by setting a login pin using <code>login-enable</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>login-enable PIN</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The PIN is a series of 6 alphanumeric characters (case sensitive).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="disabling-the-login-system-code-login-disable-code-code-coming-in-v2-0-code"><a class="link" href="#disabling-the-login-system-code-login-disable-code-code-coming-in-v2-0-code">Disabling the Login System <code>login-disable</code> <code>[coming in v2.0]</code></a></h3>
+<div class="paragraph">
+<p>If you have setup a login PIN, you can disable the login system using <code>login-disable</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>login-disable CURRENT_PIN</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>CURRENT_PIN refers to the PIN that you use to login.</p>
+</li>
+<li>
+<p>CURRENT_PIN is a series of 6 alphanumeric characters (case sensitive).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-the-login-pin-code-login-changepin-code-code-coming-in-v2-0-code"><a class="link" href="#changing-the-login-pin-code-login-changepin-code-code-coming-in-v2-0-code">Changing the Login Pin <code>login-changepin</code> <code>[coming in v2.0]</code></a></h3>
+<div class="paragraph">
+<p>If you have setup a login PIN, you can change the pin using <code>login-changepin</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>login-changepin o/OLD_PIN n/NEW_PIN</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>OLD_PIN refers to the PIN that you use to login.</p>
+</li>
+<li>
+<p>NEW_PIN refers to the new PIN that you want to use in the future.</p>
+</li>
+<li>
+<p>OLD_PIN and NEW_PIN are a series of 6 alphanumeric characters (case sensitive).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="locking-the-application-code-login-lock-code-code-coming-in-v2-0-code"><a class="link" href="#locking-the-application-code-login-lock-code-code-coming-in-v2-0-code">Locking the Application <code>login-lock</code> <code>[coming in v2.0]</code></a></h3>
+<div class="paragraph">
+<p>If you have setup a login PIN, you can lock the application using <code>login-lock</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>login-lock</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-login-lock-timeout-code-login-timeout-code-code-coming-in-v2-0-code"><a class="link" href="#changing-login-lock-timeout-code-login-timeout-code-code-coming-in-v2-0-code">Changing Login Lock Timeout <code>login-timeout</code> <code>[coming in v2.0]</code></a></h3>
+<div class="paragraph">
+<p>If you have setup a login PIN, you can change the amount of time (in minutes) before the system automatically locks the application using <code>login-timeout</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>login-timeout MINUTES</code></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>login-timeout 3</code> will configure the system to automatically lock the application after 3 minutes.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging-in-unlocking-the-application-code-coming-in-v2-0-code"><a class="link" href="#logging-in-unlocking-the-application-code-coming-in-v2-0-code">Logging in / Unlocking the Application <code>[coming in v2.0]</code></a></h3>
+<div class="paragraph">
+<p>On the lock screen you will be prompted to enter your PIN. Once you enter the correct and press <kbd>Enter</kbd>, the application will unlock.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="data-encryption-code-coming-in-v2-0-code"><a class="link" href="#data-encryption-code-coming-in-v2-0-code">Data Encryption <code>[coming in v2.0]</code></a></h3>
+<div class="paragraph">
+<p>The save files of the application will be automatically encrypted using your PIN.</p>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 04:43:29 UTC</div></div></div></body></html>

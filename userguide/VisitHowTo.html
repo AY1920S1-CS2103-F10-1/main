@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Visit Tutorials / How-To Guide(s)</title><link rel="stylesheet" href="./gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"></div><div id="content"><div class="sect1">
+<h2 id="VisitHowTo"><a class="link" href="#VisitHowTo">Visit Tutorials / How-To Guide(s)</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="what-are-visit-todos-and-visit-tasks"><a class="link" href="#what-are-visit-todos-and-visit-tasks">What are Visit Todos (and Visit Tasks)?</a></h3>
+<div class="paragraph">
+<p>Visit Todos are, as the name suggests, todo items. These are items that are attached to a patient and are todo items that you want to be reminded to do when you visit that patient. Each Visit Todo contains a description of that task.</p>
+</div>
+<div class="paragraph">
+<p>When you begin a visit using <code>visit-start</code>, the patient&#8217;s Visit Todos are copied into the visit checklist as Visit Tasks. Each visit task has a description (of the visit todo it was copied from), a field for you to add details to that task and a flag to indicate if that task is finished.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="how-to-view-the-ongoing-visit"><a class="link" href="#how-to-view-the-ongoing-visit">How to view the ongoing visit</a></h3>
+<div class="paragraph">
+<p>The ongoing visit can be viewed by clicking on the current visit tab. Note that you will have to change tabs manually and your commands will not affect which tab you are viewing.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="how-to-view-the-visit-todos-of-a-patient"><a class="link" href="#how-to-view-the-visit-todos-of-a-patient">How to view the visit todos of a patient</a></h3>
+<div class="paragraph">
+<p>You can view the visit todos of a patient using <code>pat-list</code> and <code>pat-find</code>. Visit Todos are displayed under their patient details.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="how-to-view-visits-of-a-patient-previous-and-ongoing"><a class="link" href="#how-to-view-visits-of-a-patient-previous-and-ongoing">How to view visits of a patient (previous and ongoing)</a></h3>
+<div class="paragraph">
+<p>You can view the visits of a patient using <code>pat-list</code> and <code>pat-find</code>. Visits are displayed under their patient details.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="how-to-manage-a-visit-an-example"><a class="link" href="#how-to-manage-a-visit-an-example">How to manage a visit (an example)</a></h3>
+<div class="paragraph">
+<p>To introduce how to manage a visit, let&#8217;s use an example where you have a patient named John Heng. Assume that John is a new patient (his data is not in NurseTraverse) and you have the following list of things (visit todos) you want to do when you visit him:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Take Blood Pressure</p>
+</li>
+<li>
+<p>Take Body Temperature</p>
+</li>
+<li>
+<p>Restock Medicine</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Adding a new patient with Visit Todos</strong><br>
+If you are adding a new patient, you can add these visit todos using <code>pat-add</code>. Example: <code>pat-add n/John Heng p/82221222 e/john@gmail.com a/John&#8217;s address t/Male vt/Take Blood Pressure vt/Take Body Temperature vt/Restock Medicine</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Editing the Visit Todos of a patient</strong><br>
+Alternatively, if John is an existing patient in NurseTraverse you can update John&#8217;s list of Visit Todos using <code>pat-edit</code>. In this scenario, John is the 2nd patient in <code>pat-list</code>, so you would use <code>pat-edit 2 vt/Take Body Temperature vt/Restock Medicine</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Starting a Visit</strong><br>
+Let&#8217;s assume that you decide to visit John&#8217;s house. When you are at John&#8217;s house during a house visit and you want to begin keeping track of your visit and recording visit details, you can use <code>visit-start</code>. In this scenario, John is the 2nd patient in <code>pat-list</code>, so you would use <code>visit-start 2</code>. Since you can only be visiting one patient at one time, you can only have one ongoing visit at any time; <code>visit-start</code> can only be performed if there is no ongoing visit.</p>
+</div>
+<div class="paragraph">
+<p><strong>Cancelling a Visit</strong><br>
+If you realized you started the visit for a wrong person, you can cancel it using <code>visit-cancel</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Updating a Visit&#8217;s details</strong><br>
+Once you have begun a visit using <code>visit-start</code>, you can begin updating the visit&#8217;s details using <code>visit-now-update</code>. Let&#8217;s assume that you&#8217;ve finished all the tasks in the checklist during your visit with John, so an example would be <code>visit-now-update f/1 f/2 f/3</code>.</p>
+</div>
+<div class="paragraph">
+<p>If you accidentally marked a task as finished, you can mark it as unfinished using <code>uf/TASK_INDEX</code> e.g. <code>visit-now-update uf/1</code>.</p>
+</div>
+<div class="paragraph">
+<p>If you also want to add details to the tasks (e.g. record the blood pressure as task 1, body temperature as task 2) you can do so like this: <code>visit-now-update d/1 140/90mmHg d/2 37.0</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can also set the visit&#8217;s remarks. An example would be <code>visit-now-update r/Remember to bring stretch band next session</code>.</p>
+</div>
+<div class="paragraph">
+<p>Finally, you can combine all of the above into one command: <code>visit-now-update f/1 f/2 f/3 d/1 140/90mmHg d/2 37.0 r/Remember to bring stretch band next session</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Finishing a Visit</strong><br>
+Finally, once you have concluded the visit, you can finish the visit using <code>visit-end</code>. This will tell the application that the ongoing visit has concluded. It will then save the visit under the patient (in this case, John).</p>
+</div>
+<div class="paragraph">
+<p><strong>Viewing previous Visits</strong><br>
+You can view the visits of a patient using <code>pat-list</code> and <code>pat-find</code>. Visits are displayed under their patient details. In this case, it may be better to use <code>pat-find</code> to find John&#8217;s records e.g. <code>pat-find John Heng</code>.</p>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 04:43:29 UTC</div></div></div></body></html>

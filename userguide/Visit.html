@@ -1,0 +1,182 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Visit Management</title><link rel="stylesheet" href="./gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"></div><div id="content"><div class="sect1">
+<h2 id="Visit"><a class="link" href="#Visit">Visit Management</a></h2>
+<div class="sectionbody">
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Visit Management</strong></p>
+</div>
+<div class="paragraph">
+<p>As a community nurse, you will often make home visits to your patients. When you are visiting a patient, there is often a todo list that you will have to do as well as information that you will have to record. This can now be done using the app. This section describes the features that will allow you to start a visit, keep track of your tasks during a visit, finish a visit and view information recorded during previous visits.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="starting-a-visit-code-visit-start-code"><a class="link" href="#starting-a-visit-code-visit-start-code">Starting a Visit <code>visit-start</code></a></h3>
+<div class="paragraph">
+<p>You can begin a visit by using <code>visit-start</code>. When you visit a patient and you want to record in the application that you are visiting said patient, you can use this feature to begin the visit for that patient (which will unlock the <code>visit-now-update</code> and <code>visit-now-finish</code> commands that will be applied to that visit). You can only have one ongoing visit at any point in time. This ongoing visit can be viewed in the "Current Visit" tab.</p>
+</div>
+<div class="paragraph">
+<p><code>visit-start</code> uses the patient&#8217;s Visit Todos to populate a checklist of Visit Tasks for you to use (these Visit Tasks are simply referred to as "tasks"). Visit Todos are described in further detail under <a href="#VisitHowTo">[VisitHowTo]</a>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>visit-start INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Begins a visit for the patient specified at <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of patients displayed by <code>pat-list</code> or <code>pat-find</code>.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>There can only be one ongoing visit at any point in time; if there is already an ongoing visit this command does nothing.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>visit-start 1</code><br>
+Starts a visit for the 1st patient in the patient list.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="updating-the-ongoing-visit-code-visit-now-update-code"><a class="link" href="#updating-the-ongoing-visit-code-visit-now-update-code">Updating the ongoing Visit <code>visit-now-update</code></a></h3>
+<div class="paragraph">
+<p>Once you have begun a visit using <code>visit-start</code>, the application will note that you have an ongoing visit. You can then update the details of this ongoing visit using <code>visit-now-update</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>visit-now-update [t/TASK_INDEX DETAIL]… [f/TASK_INDEX]… [uf/TASK_INDEX]… [r/REMARK]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Each argument (e.g. <code>t/</code>, <code>f/</code>, <code>uf/</code>, <code>r/</code>) triggers their own change to the visit:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>d/</code> Represents "detail". Each task in the visit checklist can be assigned some information if it is useful for you. For example, if task of index 1 is "Check Body Temp", you can use <code>t/1 37.0degc</code> to record that detail to that task (<code>TASK_INDEX</code> followed by a space followed by the details you want to store).</p>
+</li>
+<li>
+<p><code>f/</code> Represents "finish". Each task begins as unfinished and to mark a task as finished, you can use this prefix. For example, to mark task of index 1 as finished, you can use <code>f/1</code> (`TASK_INDEX of the task you want to mark as finished).</p>
+</li>
+<li>
+<p><code>uf/</code> Represents "un-finish". If you have marked a task as finished prior using <code>f/</code> and you want to undo that, you can use <code>uf/</code> (e.g. for task index 1 use <code>uf/1</code>).</p>
+</li>
+<li>
+<p><code>r/</code> Represents "remark". You can use this to update the remarks section of the visit.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>When you are on the "Current Visit" tab, you will see information of the patient you are currently visiting, a checklist of tasks and a remarks section. <code>TASK_INDEX</code> refers to the index number of the task (shown in the displayed checklist of tasks).</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p><code>TASK_INDEX</code> refers to the index number of the task (shown in the displayed checklist of tasks).</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>Each argument can target different <code>TASK_INDEX</code> es. This allows you to use this command to update multiple tasks at once.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>Other notes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>If you use both <code>f/</code> and <code>uf/</code> on the same task in a single <code>visit-now-update</code> command, <code>uf/</code> will take priority (i.e. the task will be marked as unfinished).</p>
+</li>
+<li>
+<p>A task does not need to be marked as finished in order to finish the visit. It is simply for your reference and to help you keep track of which tasks have / have not been finished.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="paragraph">
+<p>Assume that you have an ongoing visit and 2 tasks (task 1 is "Check Blood Pressure", task 2 is "Check for bed bugs") in your visit checklist. After you&#8217;re done, you can update the application using:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>visit-now-update d/1 140/90mmHg f/1 f/2 r/Patient is healthy</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This sets the details for task 1 in the checklist to "140/90mmHg" and marks tasks 1 and 2 as finished. It also sets the remarks to "Patient is healthy".</p>
+</div>
+<div class="paragraph">
+<p>Assuming then in the above scenario you discovered bed bugs after checking again before you leave. You decide to help the patient change the bedsheets and you want to update that information. You can run:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>visit-now-update uf/2 r/Patient must be reminded to wash bedsheets regularly</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This would set task 2 to unfinished and change the remarks. Once you have finished changing the bedsheets, you can then verify there are no bed bugs and use <code>visit-now-update f/2</code> to mark task 2 as finished.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cancelling-the-ongoing-visit-code-visit-cancel-code"><a class="link" href="#cancelling-the-ongoing-visit-code-visit-cancel-code">Cancelling the ongoing Visit <code>visit-cancel</code></a></h3>
+<div class="paragraph">
+<p>Once you have begun a visit using <code>visit-start</code>, the application will note that you have an ongoing visit. You can cancel that visit using <code>visit-cancel</code>, which will cancel the visit and remove it from the list of visits of the patient. The ongoing visit will also be removed from the Current Visit tab.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>visit-cancel</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finishing-the-ongoing-visit-code-visit-end-code"><a class="link" href="#finishing-the-ongoing-visit-code-visit-end-code">Finishing the ongoing Visit <code>visit-end</code></a></h3>
+<div class="paragraph">
+<p>Once you have begun a visit using <code>visit-start</code>, the application will note that you have an ongoing visit. You can then mark that visit as finished using <code>visit-end</code>, which will archive that visit. The ongoing visit will be removed from the Current Visit tab.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>visit-end</code></p>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 04:43:29 UTC</div></div></div></body></html>

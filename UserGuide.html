@@ -11,137 +11,85 @@
 <ul class="sectlevel0">
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#quick-start">Quick Start</a></li>
-<li><a href="#Features">Features</a>
+<li><a href="#Features">Features (as of v1.4)</a>
 <ul class="sectlevel1">
 <li><a href="#miscellaneous">1. Miscellaneous</a>
 <ul class="sectlevel2">
 <li><a href="#viewing-help-code-help-code">1.1. Viewing help : <code>help</code></a></li>
 </ul>
 </li>
-<li><a href="#basic-patient-features">2. Basic Patient Features</a>
+<li><a href="#patient-features">2. Patient Features</a>
 <ul class="sectlevel2">
-<li><a href="#listing-all-patients-code-patient-list-code">2.1. Listing All Patients: <code>patient list</code></a></li>
-<li><a href="#finding-patient-s-code-patient-find-code">2.2. Finding Patient(s): <code>patient find</code></a></li>
-<li><a href="#viewing-a-patient-code-patient-view-code">2.3. Viewing a Patient: <code>patient view</code></a></li>
-<li><a href="#adding-a-patient-code-patient-add-code">2.4. Adding a Patient: <code>patient add</code></a></li>
-<li><a href="#editing-a-patient-code-patient-edit-code">2.5. Editing a Patient: <code>patient edit</code></a></li>
-<li><a href="#deleting-a-patient-code-patient-delete-code">2.6. Deleting a Patient: <code>patient delete</code></a></li>
+<li><a href="#listing-all-patients-code-pat-list-code">2.1. Listing All Patients: <code>pat-list</code></a></li>
+<li><a href="#finding-patients-by-name-code-find-code">2.2. Finding patients by name: <code>find</code></a></li>
+<li><a href="#adding-a-patient-code-pat-add-code">2.3. Adding a Patient: <code>pat-add</code></a></li>
+<li><a href="#editing-a-patient-code-pat-edit-code">2.4. Editing a Patient: <code>pat-edit</code></a></li>
+<li><a href="#deleting-a-patient-code-pat-delete-code">2.5. Deleting a Patient: <code>pat-delete</code></a></li>
 </ul>
 </li>
-<li><a href="#advanced-patient-features">3. Advanced Patient Features</a>
+<li><a href="#appointments-parameters-not-updated">3. Appointments [Parameters not updated]</a>
 <ul class="sectlevel2">
-<li><a href="#adding-a-medical-condition-to-a-patient-code-patient-add-medcon-code">3.1. Adding a Medical Condition to a Patient <code>patient add medcon</code></a></li>
-<li><a href="#removing-a-medical-condition-from-a-patient-code-patient-rm-medcon-code">3.2. Removing a Medical Condition from a Patient <code>patient rm medcon</code></a></li>
-<li><a href="#adding-a-prescription-to-a-patient-code-patient-add-presc-code">3.3. Adding a Prescription to a Patient <code>patient add presc</code></a></li>
-<li><a href="#editing-a-patient-s-prescription-code-patient-edit-presc-code">3.4. Editing a Patient&#8217;s Prescription <code>patient edit presc</code></a></li>
-<li><a href="#removing-an-prescription-from-a-patient-code-patient-rm-presc-code">3.5. Removing an Prescription from a Patient <code>patient rm presc</code></a></li>
-<li><a href="#adding-an-appointment-to-a-patient-code-patient-add-appt-code-incomplete-ug">3.6. Adding an Appointment to a Patient <code>patient add appt</code> [INCOMPLETE UG]</a></li>
-<li><a href="#removing-an-appointment-from-a-patient-code-patient-rm-appt-code-incomplete-ug">3.7. Removing an Appointment from a Patient <code>patient rm appt</code> [INCOMPLETE UG]</a></li>
-<li><a href="#assigning-a-todo-template-to-a-patient-code-patient-set-todoform-code-incomplete-ug">3.8. Assigning a Todo Template to a Patient <code>patient set todoform</code> [INCOMPLETE UG]</a></li>
-<li><a href="#unassigning-a-todo-template-from-a-patient-code-patient-unset-todoform-code-incomplete-ug">3.9. Unassigning a Todo Template from a Patient <code>patient unset todoform</code> [INCOMPLETE UG]</a></li>
-<li><a href="#adding-an-extra-todo-to-a-patient-code-patient-add-todo-code">3.10. Adding an extra Todo to a Patient <code>patient add todo</code></a></li>
-<li><a href="#removing-an-extra-todo-from-a-patient-code-patient-rm-todo-code">3.11. Removing an extra Todo from a Patient <code>patient rm todo</code></a></li>
-<li><a href="#adding-a-note-to-a-patient-code-patient-add-note-code">3.12. Adding a note to a Patient <code>patient add note</code></a></li>
-<li><a href="#removing-a-note-from-a-patient-code-patient-rm-note-code">3.13. Removing a note from a Patient <code>patient rm note</code></a></li>
+<li><a href="#listing-all-appointments-code-appt-list-code">3.1. Listing All Appointments: <code>appt list</code></a></li>
+<li><a href="#finding-appointment-s-code-appt-find-code">3.2. Finding Appointment(s): <code>appt find</code></a></li>
+<li><a href="#viewing-an-appointment-code-appt-view-code">3.3. Viewing an Appointment: <code>appt view</code></a></li>
+<li><a href="#listing-the-next-earliest-appointments-code-appt-next-code">3.4. Listing the next earliest Appointments: <code>appt next</code></a></li>
+<li><a href="#editing-an-appointment-code-appt-edit-code">3.5. Editing an Appointment: <code>appt edit</code></a></li>
+<li><a href="#deleting-an-appointment-code-appt-delete-code">3.6. Deleting an Appointment: <code>appt delete</code></a></li>
+<li><a href="#beginning-an-appointment-code-appt-begin-code">3.7. Beginning an Appointment: <code>appt begin</code></a></li>
+<li><a href="#deleting-multiple-appointments-code-appt-delete-code-code-coming-in-v2-0-code">3.8. Deleting multiple Appointments: <code>appt delete</code> <code>[coming in V2.0]</code></a></li>
 </ul>
 </li>
-<li><a href="#medical-conditions">4. Medical Conditions</a>
+<li><a href="#Visit">4. Visit Management</a>
 <ul class="sectlevel2">
-<li><a href="#listing-all-medical-conditions-code-medcon-list-code">4.1. Listing All Medical Conditions: <code>medcon list</code></a></li>
-<li><a href="#finding-medical-condition-s-code-medcon-find-code">4.2. Finding Medical Condition(s): <code>medcon find</code></a></li>
-<li><a href="#viewing-a-medical-condition-code-medcon-view-code">4.3. Viewing a Medical Condition: <code>medcon view</code></a></li>
-<li><a href="#adding-a-medical-condition-code-medcon-add-code">4.4. Adding a Medical Condition: <code>medcon add</code></a></li>
-<li><a href="#editing-a-medical-condition-code-medcon-edit-code">4.5. Editing a Medical Condition: <code>medcon edit</code></a></li>
-<li><a href="#deleting-a-medical-condition-code-medcon-delete-code">4.6. Deleting a Medical Condition: <code>medcon delete</code></a></li>
-<li><a href="#deleting-multiple-medical-conditions-code-medcon-delete-code-code-coming-in-v2-0-code">4.7. Deleting multiple Medical Conditions: <code>medcon delete</code> <code>[coming in V2.0]</code></a></li>
+<li><a href="#starting-a-visit-code-visit-start-code">4.1. Starting a Visit <code>visit-start</code></a></li>
+<li><a href="#updating-the-ongoing-visit-code-visit-now-update-code">4.2. Updating the ongoing Visit <code>visit-now-update</code></a></li>
+<li><a href="#cancelling-the-ongoing-visit-code-visit-cancel-code">4.3. Cancelling the ongoing Visit <code>visit-cancel</code></a></li>
+<li><a href="#finishing-the-ongoing-visit-code-visit-end-code">4.4. Finishing the ongoing Visit <code>visit-end</code></a></li>
 </ul>
 </li>
-<li><a href="#medicines-parameters-not-updated">5. Medicines [Parameters not updated]</a>
+<li><a href="#autocomplete">5. Autocomplete</a></li>
+<li><a href="#data-saving-undo-redo">6. Data Saving, Undo, Redo</a>
 <ul class="sectlevel2">
-<li><a href="#listing-all-medicines-code-med-list-code">5.1. Listing All Medicines: <code>med list</code></a></li>
-<li><a href="#finding-medicine-s-code-med-find-code">5.2. Finding Medicine(s): <code>med find</code></a></li>
-<li><a href="#viewing-a-medicine-code-med-view-code">5.3. Viewing a Medicine: <code>med view</code></a></li>
-<li><a href="#adding-a-medicine-code-med-add-code">5.4. Adding a Medicine: <code>med add</code></a></li>
-<li><a href="#editing-a-medicine-code-med-edit-code">5.5. Editing a Medicine: <code>med edit</code></a></li>
-<li><a href="#deleting-a-medicine-code-med-delete-code">5.6. Deleting a Medicine: <code>med delete</code></a></li>
-<li><a href="#deleting-multiple-medicines-code-med-delete-code-code-coming-in-v2-0-code">5.7. Deleting multiple Medicines: <code>med delete</code> <code>[coming in V2.0]</code></a></li>
+<li><a href="#saving-your-data">6.1. Saving your data</a></li>
+<li><a href="#undoing-a-command-code-undo-code">6.2. Undoing a command: <code>undo</code></a></li>
+<li><a href="#redoing-an-undone-command-code-redo-code">6.3. Redoing an undone command: <code>redo</code></a></li>
 </ul>
 </li>
-<li><a href="#appointments-parameters-not-updated">6. Appointments [Parameters not updated]</a>
+<li><a href="#importing-and-exporting-of-patient-data">7. Importing and Exporting of Patient Data</a>
 <ul class="sectlevel2">
-<li><a href="#listing-all-appointments-code-appt-list-code">6.1. Listing All Appointments: <code>appt list</code></a></li>
-<li><a href="#finding-appointment-s-code-appt-find-code">6.2. Finding Appointment(s): <code>appt find</code></a></li>
-<li><a href="#viewing-an-appointment-code-appt-view-code">6.3. Viewing an Appointment: <code>appt view</code></a></li>
-<li><a href="#listing-the-next-earliest-appointments-code-appt-next-code">6.4. Listing the next earliest Appointments: <code>appt next</code></a></li>
-<li><a href="#editing-an-appointment-code-appt-edit-code">6.5. Editing an Appointment: <code>appt edit</code></a></li>
-<li><a href="#deleting-an-appointment-code-appt-delete-code">6.6. Deleting an Appointment: <code>appt delete</code></a></li>
-<li><a href="#beginning-an-appointment-code-appt-begin-code">6.7. Beginning an Appointment: <code>appt begin</code></a></li>
-<li><a href="#deleting-multiple-appointments-code-appt-delete-code-code-coming-in-v2-0-code">6.8. Deleting multiple Appointments: <code>appt delete</code> <code>[coming in V2.0]</code></a></li>
+<li><a href="#importing-patient-data-from-a-csv-file-code-import-code">7.1. Importing patient data from a CSV file: <code>import</code></a></li>
+<li><a href="#exporting-data-into-csv-code-export-code">7.2. Exporting data into .csv: <code>export</code></a></li>
 </ul>
 </li>
-<li><a href="#visits-parameters-not-updated">7. Visits [Parameters not updated]</a>
-<ul class="sectlevel2">
-<li><a href="#listing-all-visits-code-visit-list-code">7.1. Listing All Visits: <code>visit list</code></a></li>
-<li><a href="#finding-visit-s-code-visit-find-code">7.2. Finding Visit(s): <code>visit find</code></a></li>
-<li><a href="#viewing-a-visit-code-visit-view-code">7.3. Viewing a Visit: <code>visit view</code></a></li>
-<li><a href="#viewing-the-current-visit-code-visit-now-code">7.4. Viewing the current Visit: <code>visit now</code></a></li>
-<li><a href="#set-details-of-a-todo-item-of-current-visit-code-visit-now-todo-note-code">7.5. Set details of a Todo Item of current Visit: <code>visit now todo note</code></a></li>
-<li><a href="#mark-a-todo-item-of-current-visit-as-done-code-visit-now-todo-done-code-incomplete-ug">7.6. Mark a Todo Item of current Visit as done: <code>visit now todo done</code>[INCOMPLETE UG]</a></li>
-<li><a href="#add-a-note-to-the-current-visit-code-visit-now-add-note-code-incomplete-ug">7.7. Add a note to the current Visit: <code>visit now add note</code>[INCOMPLETE UG]</a></li>
-<li><a href="#remove-a-note-from-the-current-visit-code-visit-now-rm-note-code-incomplete-ug">7.8. Remove a note from the current Visit: <code>visit now rm note</code>[INCOMPLETE UG]</a></li>
-<li><a href="#finishing-a-visit-code-visit-finish-code">7.9. Finishing a Visit: <code>visit finish</code></a></li>
-<li><a href="#deleting-a-visit-code-visit-delete-code">7.10. Deleting a Visit: <code>visit delete</code></a></li>
-<li><a href="#deleting-multiple-visits-code-visit-delete-code-code-coming-in-v2-0-code">7.11. Deleting multiple Visits: <code>visit delete</code> <code>[coming in V2.0]</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">8. Exiting the program : <code>exit</code></a></li>
 </ul>
 </li>
-<li><a href="#todo-templates-parameters-not-updated">8. Todo Templates [Parameters not updated]</a>
+<li><a href="#tutorials-how-to-guide-s-as-of-v1-4">Tutorials / How-To Guide(s) (as of v1.4)</a>
+<ul class="sectlevel1">
+<li><a href="#VisitHowTo">1. Visit Tutorials / How-To Guide(s)</a>
 <ul class="sectlevel2">
-<li><a href="#listing-all-todo-templates-code-todoform-list-code">8.1. Listing All Todo Templates: <code>todoform list</code></a></li>
-<li><a href="#finding-todo-template-s-code-todoform-find-code">8.2. Finding Todo Template(s): <code>todoform find</code></a></li>
-<li><a href="#viewing-a-todo-template-code-todoform-view-code">8.3. Viewing a Todo Template: <code>todoform view</code></a></li>
-<li><a href="#adding-a-todo-template-code-todoform-add-code">8.4. Adding a Todo Template: <code>todoform add</code></a></li>
-<li><a href="#editing-a-todo-template-code-todoform-edit-code">8.5. Editing a Todo Template: <code>todoform edit</code></a></li>
-<li><a href="#deleting-a-todo-template-code-todoform-delete-code">8.6. Deleting a Todo Template: <code>todoform delete</code></a></li>
-<li><a href="#deleting-multiple-todo-templates-code-todoform-delete-code-code-coming-in-v2-0-code">8.7. Deleting multiple Todo Templates: <code>todoform delete</code> <code>[coming in V2.0]</code></a></li>
+<li><a href="#what-are-visit-todos-and-visit-tasks">1.1. What are Visit Todos (and Visit Tasks)?</a></li>
+<li><a href="#how-to-view-the-ongoing-visit">1.2. How to view the ongoing visit</a></li>
+<li><a href="#how-to-view-the-visit-todos-of-a-patient">1.3. How to view the visit todos of a patient</a></li>
+<li><a href="#how-to-view-visits-of-a-patient-previous-and-ongoing">1.4. How to view visits of a patient (previous and ongoing)</a></li>
+<li><a href="#how-to-manage-a-visit-an-example">1.5. How to manage a visit (an example)</a></li>
 </ul>
 </li>
-<li><a href="#autocomplete">9. Autocomplete</a></li>
-<li><a href="#data-saving-undo-redo">10. Data Saving, Undo, Redo</a>
-<ul class="sectlevel2">
-<li><a href="#saving-your-data">10.1. Saving your data</a></li>
-<li><a href="#undoing-a-command-code-undo-code">10.2. Undoing a command: <code>undo</code></a></li>
-<li><a href="#redoing-an-undone-command-code-redo-code">10.3. Redoing an undone command: <code>redo</code></a></li>
 </ul>
 </li>
-<li><a href="#importing-and-exporting-of-patient-data">11. Importing and Exporting of Patient Data</a>
+<li><a href="#planned-feature-s-coming-in-v2-0">Planned Feature(s) (coming in v2.0)</a>
+<ul class="sectlevel1">
+<li><a href="#login-system-security-code-coming-in-v2-0-code">1. Login System &amp; Security <code>[coming in v2.0]</code></a>
 <ul class="sectlevel2">
-<li><a href="#importing-patient-data-from-a-csv-file-code-import-code">11.1. Importing patient data from a CSV file: <code>import</code></a></li>
-<li><a href="#exporting-data-into-csv-code-export-code">11.2. Exporting data into .csv: <code>export</code></a></li>
+<li><a href="#enabling-the-login-system-code-login-enable-code-code-coming-in-v2-0-code">1.1. Enabling the Login System <code>login-enable</code> <code>[coming in v2.0]</code></a></li>
+<li><a href="#disabling-the-login-system-code-login-disable-code-code-coming-in-v2-0-code">1.2. Disabling the Login System <code>login-disable</code> <code>[coming in v2.0]</code></a></li>
+<li><a href="#changing-the-login-pin-code-login-changepin-code-code-coming-in-v2-0-code">1.3. Changing the Login Pin <code>login-changepin</code> <code>[coming in v2.0]</code></a></li>
+<li><a href="#locking-the-application-code-login-lock-code-code-coming-in-v2-0-code">1.4. Locking the Application <code>login-lock</code> <code>[coming in v2.0]</code></a></li>
+<li><a href="#changing-login-lock-timeout-code-login-timeout-code-code-coming-in-v2-0-code">1.5. Changing Login Lock Timeout <code>login-timeout</code> <code>[coming in v2.0]</code></a></li>
+<li><a href="#logging-in-unlocking-the-application-code-coming-in-v2-0-code">1.6. Logging in / Unlocking the Application <code>[coming in v2.0]</code></a></li>
+<li><a href="#data-encryption-code-coming-in-v2-0-code">1.7. Data Encryption <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
-<li><a href="#notifications">12. Notifications</a>
-<ul class="sectlevel2">
-<li><a href="#enabling-the-notifications-code-notif-enable-code">12.1. Enabling the Notifications <code>notif enable</code></a></li>
-<li><a href="#disabling-the-notifications-code-notif-disable-code">12.2. Disabling the Notifications <code>notif disable</code></a></li>
-<li><a href="#setting-the-notification-time-ahead-of-appointments-code-notif-apptalert-code">12.3. Setting the Notification Time ahead of Appointments: <code>notif apptalert</code></a></li>
-<li><a href="#listing-all-notifications-code-notif-list-code">12.4. Listing all Notifications: <code>notif list</code></a></li>
-<li><a href="#finding-notification-s-code-notif-find-code">12.5. Finding Notification(s): <code>notif find</code></a></li>
-<li><a href="#adding-a-notification-code-notif-add-code">12.6. Adding a Notification: <code>notif add</code></a></li>
-<li><a href="#deleting-a-notification-code-notif-delete-code">12.7. Deleting a Notification: <code>notif delete</code></a></li>
-</ul>
-</li>
-<li><a href="#login-system-security">13. Login System &amp; Security</a>
-<ul class="sectlevel2">
-<li><a href="#enabling-the-login-system-code-login-enable-code">13.1. Enabling the Login System <code>login enable</code></a></li>
-<li><a href="#disabling-the-login-system-code-login-disable-code">13.2. Disabling the Login System <code>login disable</code></a></li>
-<li><a href="#changing-the-login-pin-code-login-changepin-code">13.3. Changing the Login Pin <code>login changepin</code></a></li>
-<li><a href="#locking-the-application-code-login-lock-code">13.4. Locking the Application <code>login lock</code></a></li>
-<li><a href="#changing-login-lock-timeout-code-login-timeout-code">13.5. Changing Login Lock Timeout <code>login timeout</code></a></li>
-<li><a href="#logging-in-unlocking-the-application">13.6. Logging in / Unlocking the Application</a></li>
-<li><a href="#data-encryption-code-coming-in-v2-0-code">13.7. Data Encryption <code>[coming in v2.0]</code></a></li>
-</ul>
-</li>
-<li><a href="#exiting-the-program-code-exit-code">14. Exiting the program : <code>exit</code></a></li>
 </ul>
 </li>
 <li><a href="#faq">FAQ</a></li>
@@ -162,7 +110,7 @@
 <p>Download the latest <code>comnurse.jar</code> <a href="https://github.com/AY1920S1-CS2103-F10-1/main/releases">here</a>.</p>
 </li>
 <li>
-<p>Copy the file to the folder you want to use as the home folder for your Address Book.</p>
+<p>Copy the file to the folder you want to use as the home folder for your NurseTraverse app.</p>
 </li>
 <li>
 <p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
@@ -181,13 +129,13 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>patient list</code></strong> : lists all contacts</p>
+<p><strong><code>pat-list</code></strong> : lists all patients</p>
 </li>
 <li>
-<p><strong><code>patient add</code></strong><code>n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code> : adds a contact named <code>John Doe</code> to the Address Book.</p>
+<p><strong><code>pat-add</code></strong><code>n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code> : adds a contact named <code>John Doe</code> to NurseTraverse.</p>
 </li>
 <li>
-<p><strong><code>patient delete</code></strong><code>3</code> : deletes the 3rd contact shown in the current list</p>
+<p><strong><code>pat-delete</code></strong><code>3</code> : deletes the 3rd contact shown in the current list</p>
 </li>
 <li>
 <p><strong><code>exit</code></strong> : exits the app</p>
@@ -196,11 +144,11 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </li>
 <li>
-<p>Refer to <a href="#Features">Features</a> for details of each command.</p>
+<p>Refer to <a href="#Features">Features (as of v1.4)</a> for details of each command.</p>
 </li>
 </ol>
 </div>
-<h1 id="Features" class="sect0"><a class="link" href="#Features">Features</a></h1>
+<h1 id="Features" class="sect0"><a class="link" href="#Features">Features (as of v1.4)</a></h1>
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
@@ -218,7 +166,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p>Items in square brackets are <strong>optional</strong> e.g <code>n/NAME [t/TAG]</code> can be used as <code>n/John Doe t/friend</code> or as <code>n/John Doe</code>.</p>
 </li>
 <li>
-<p>Items that are not in square brackets are required e.g. <code>n/NAME</code> from the <code>patient add</code> command.</p>
+<p>Items that are not in square brackets are required e.g. <code>n/NAME</code> from the <code>pat-add</code> command.</p>
 </li>
 <li>
 <p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>t/friend</code>, <code>t/friend t/family</code> etc.</p>
@@ -227,7 +175,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p>Parameters can be in any order e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>, <code>p/PHONE_NUMBER n/NAME</code> is also acceptable.</p>
 </li>
 <li>
-<p>Due to the number of commands, each command will follow the syntax of <code><strong>ENTITY ACTION [PARAMETERS]</strong></code>. For example, if you wanted to delete a patient, you would do something like <code>patient delete 3</code>.</p>
+<p>Due to the number of commands, each command will follow the syntax of <code><strong>ENTITY ACTION [PARAMETERS]</strong></code>. For example, if you wanted to delete a patient, you would do something like <code>pat-delete 3</code>.</p>
 </li>
 </ul>
 </div>
@@ -248,12 +196,12 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect1">
-<h2 id="basic-patient-features"><a class="link" href="#basic-patient-features">2. Basic Patient Features</a></h2>
+<h2 id="patient-features"><a class="link" href="#patient-features">2. Patient Features</a></h2>
 <div class="sectionbody">
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
-<p><strong>Basic Patient Features</strong></p>
+<p><strong>Patient Features</strong></p>
 </div>
 <div class="paragraph">
 <p>As a community nurse, you will often need to visit various patients at their homes. This section describes the features that will allow you to manage the list of patients and their information in the application. This section covers the management of patients and their data.</p>
@@ -261,27 +209,24 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-all-patients-code-patient-list-code"><a class="link" href="#listing-all-patients-code-patient-list-code">2.1. Listing All Patients: <code>patient list</code></a></h3>
+<h3 id="listing-all-patients-code-pat-list-code"><a class="link" href="#listing-all-patients-code-pat-list-code">2.1. Listing All Patients: <code>pat-list</code></a></h3>
 <div class="paragraph">
-<p>You can see a list of all patients in the app by typing <code>patient list</code>.</p>
+<p>You can see a list of all patients in the app by typing <code>pat-list</code>.</p>
 </div>
 <div class="paragraph">
-<p>In the list displayed, each patient will have an <strong>index</strong> number which can then be used for other features that require you to select a patient by <strong>index</strong> e.g. <code>patient delete</code>. Take note that a patient will be given the same <strong>index</strong> regardless of other display commands such as <code>patient find</code>.</p>
+<p>In the list displayed, each patient will have an <strong>index</strong> number which can then be used for other features that require you to select a patient by <strong>index</strong> e.g. <code>pat-delete</code>. Take note that a patient will be given the same <strong>index</strong> regardless of other display commands such as <code>pat-find</code>. However, this index may change if the <code>pat-delete</code> command is executed.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>patient list</code></p>
+<p>Format: <code>pat-list</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="finding-patient-s-code-patient-find-code"><a class="link" href="#finding-patient-s-code-patient-find-code">2.2. Finding Patient(s): <code>patient find</code></a></h3>
+<h3 id="finding-patients-by-name-code-find-code"><a class="link" href="#finding-patients-by-name-code-find-code">2.2. Finding patients by name: <code>find</code></a></h3>
 <div class="paragraph">
-<p>You can find patients that fit the parameters given using <code>patient find</code>.</p>
+<p>You can find patients whose names contain any keyword of your choice using <code>find</code>.</p>
 </div>
 <div class="paragraph">
-<p>In the list displayed, each patient will have an <strong>index</strong> number which can then be used for other features that require you to select a patient by <strong>index</strong> e.g. <code>patient delete</code>. Take note that a patient will be given the same <strong>index</strong> regardless of other display commands such as <code>patient list</code> or if different parameters are used.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>patient find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]</code></p>
+<p>Format: <code>find KEYWORD [MORE_KEYWORDS]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -294,10 +239,13 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
 </li>
 <li>
-<p>Only patients that match <strong>all</strong> specified arguments will be displayed.</p>
+<p>Only the name of patients is searched.</p>
 </li>
 <li>
-<p>If the parameter is text (e.g. <code>n/NAME</code>), partial words will be matched (e.g. <code>n/John</code> will return <code>John Smith</code> and <code>John Kim</code>.</p>
+<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
+</li>
+<li>
+<p>Patients matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
 </li>
 </ul>
 </div>
@@ -309,69 +257,23 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <div class="ulist">
 <ul>
 <li>
-<p><code>patient find</code><br>
-Returns all patients (since no search parameters were specified)</p>
+<p><code>find John</code><br>
+Returns patients <code>john</code> and <code>John Doe</code></p>
 </li>
 <li>
-<p><code>patient find n/john</code><br>
-Returns patients whose names are <code>john</code> and <code>John Doe</code></p>
-</li>
-<li>
-<p><code>patient find n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code><br>
-Returns patient, if found, with exact details as specified in the search, i.e. with name James Ho, phone number 22224444, etc.</p>
+<p><code>find Betsy Tim John</code><br>
+Returns any patient(s) having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="viewing-a-patient-code-patient-view-code"><a class="link" href="#viewing-a-patient-code-patient-view-code">2.3. Viewing a Patient: <code>patient view</code></a></h3>
+<h3 id="adding-a-patient-code-pat-add-code"><a class="link" href="#adding-a-patient-code-pat-add-code">2.3. Adding a Patient: <code>pat-add</code></a></h3>
 <div class="paragraph">
-<p>You can see a patient&#8217;s full details using <code>patient view</code>. The patient is selected by their <strong>index</strong>. This full details include everything from their todo list, medical conditions, prescriptions, notes, appointments etc.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>patient view INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>View the patient at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the list of patients displayed by <code>patient list</code> or <code>patient find</code>.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
+<p>You can add a patient to the list of all patients by using <code>pat-add</code>.</p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>patient list</code><br>
-<code>patient view 1</code>
-View the item with index number 1. This index can be found from the full list of patients.</p>
-</li>
-<li>
-<p><code>patient view 2</code>
-View the item with the index number 2.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="adding-a-patient-code-patient-add-code"><a class="link" href="#adding-a-patient-code-patient-add-code">2.4. Adding a Patient: <code>patient add</code></a></h3>
-<div class="paragraph">
-<p>You can add a patient to the list of all patients by using <code>patient add</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>patient add n/NAME ic/IC p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​ [kn/NOK_NAME] [kp/NOK_PHONE_NUMBER] [ka/NOK_ADDRESS] [ke/NOK_EMAIL] [imp/PRIORITY]</code></p>
+<p>Format: <code>pat-add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [vt/VISIT_TODO]…​</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -381,14 +283,14 @@ View the item with the index number 2.</p>
 <p>A patient can have any number of tags.</p>
 </li>
 <li>
-<p>A patient can have next-of-kin contact details.</p>
-</li>
-<li>
-<p>Priority can take values from 0 to 10.</p>
+<p>A patient can have any number of visit todos.</p>
 </li>
 </ul>
 </div>
 </div>
+</div>
+<div class="paragraph">
+<p>Note: Visit Todos are described in further detail under <a href="#VisitHowTo">Section 1, &#8220;Visit Tutorials / How-To Guide(s)&#8221;</a>.</p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -396,24 +298,24 @@ View the item with the index number 2.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>patient add n/John Doe ic/S7012255C p/98765432 a/John street, block 123, #01-01</code></p>
+<p><code>pat-add n/John Doe p/98765432 e/john@email.com a/John street, block 123, #01-01</code></p>
 </li>
 <li>
-<p><code>patient add n/Choong Siew Hwang ic/S7015376D p/91239876 a/22 College Avenue East; Singapore 138608 e/cho0ng@email.com t/Big kn/Choong Tee Ling kp/85639274 ka/10 Buangkok View, Singapore 534194 ke/ch1ng@email.com</code></p>
+<p><code>pat-add n/Choong Siew Hwang p/91239876 a/22 College Avenue East; Singapore 138608 e/cho0ng@email.com t/Male vt/Check Blood Pressure</code></p>
 </li>
 <li>
-<p><code>patient add n/Betsy Crowe ic/S0011239X t/friend e/betsycrowe@example.com a/Newgate Prison p/12345678 t/criminal imp/4</code></p>
+<p><code>pat-add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Street p/12345678 t/Female vt/Check fridge for expired food vt/Check for bed sores</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-a-patient-code-patient-edit-code"><a class="link" href="#editing-a-patient-code-patient-edit-code">2.5. Editing a Patient: <code>patient edit</code></a></h3>
+<h3 id="editing-a-patient-code-pat-edit-code"><a class="link" href="#editing-a-patient-code-pat-edit-code">2.4. Editing a Patient: <code>pat-edit</code></a></h3>
 <div class="paragraph">
-<p>You can edit an existing patient in the app using <code>patient edit</code>.</p>
+<p>You can edit an existing patient in the app using <code>pat-edit</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>patient edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
+<p>Format: <code>pat-edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [vt/VISIT_TODO]…</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -423,7 +325,7 @@ View the item with the index number 2.</p>
 <p>Edits the person at the specified <code>INDEX</code>.</p>
 </li>
 <li>
-<p>The index refers to the index number shown in the list of patients displayed by <code>patient list</code> or <code>patient find</code>.</p>
+<p>The index refers to the index number shown in the list of patients displayed by <code>pat-list</code> or <code>pat-find</code>.</p>
 </li>
 <li>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
@@ -440,9 +342,18 @@ View the item with the index number 2.</p>
 <li>
 <p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
 </li>
+<li>
+<p>When editing visit todos, the existing visit todos of the person will be removed i.e adding of visit todos is not cumulative.</p>
+</li>
+<li>
+<p>You can remove all the person&#8217;s visit todos by typing <code>vt/</code> without specifying any visit todos after it.</p>
+</li>
 </ul>
 </div>
 </div>
+</div>
+<div class="paragraph">
+<p>Note: Visit Todos are described in further detail under <a href="#VisitHowTo">Section 1, &#8220;Visit Tutorials / How-To Guide(s)&#8221;</a>.</p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -450,24 +361,24 @@ View the item with the index number 2.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>patient list</code><br>
- <code>patient edit 1 p/91234567 e/johndoe@example.com</code><br>
+<p><code>pat-list</code><br>
+ <code>pat-edit 1 p/91234567 e/johndoe@example.com</code><br>
 Edits the phone number and email address of the 1st person in the entire patient&#8217;s list to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
 </li>
 <li>
-<p><code>patient edit 2 n/Betsy Crower t/</code><br>
+<p><code>pat-edit 2 n/Betsy Crower t/</code><br>
 Edits the name of the 2nd person in the entire patient&#8217;s list with <code>Betsy Crower</code> and clears all existing tags.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-patient-code-patient-delete-code"><a class="link" href="#deleting-a-patient-code-patient-delete-code">2.6. Deleting a Patient: <code>patient delete</code></a></h3>
+<h3 id="deleting-a-patient-code-pat-delete-code"><a class="link" href="#deleting-a-patient-code-pat-delete-code">2.5. Deleting a Patient: <code>pat-delete</code></a></h3>
 <div class="paragraph">
-<p>You can delete a patient by <strong>index</strong> using <code>patient delete</code>.</p>
+<p>You can delete a patient by <strong>index</strong> using <code>pat-delete</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>patient delete INDEX</code></p>
+<p>Format: <code>pat-delete INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -477,7 +388,7 @@ Edits the name of the 2nd person in the entire patient&#8217;s list with <code>B
 <p>Deletes the patient at the specified <code>INDEX</code>.</p>
 </li>
 <li>
-<p>The index refers to the index number shown in the list of patients displayed by <code>patient list</code> or <code>patient find</code>.</p>
+<p>The index refers to the index number shown in the list of patients displayed by <code>pat-list</code> or <code>pat-find</code>.</p>
 </li>
 <li>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
@@ -496,989 +407,25 @@ deleting index 3, index 4 will become 3, 5 will become 4 and so on.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>patient list</code><br>
-<code>patient delete 2</code><br>
+<p><code>pat-list</code><br>
+<code>pat-delete 2</code><br>
 Deletes the 2nd patient in the patient list.</p>
 </li>
 <li>
-<p><code>patient delete 1</code><br>
+<p><code>pat-delete 1</code><br>
 Deletes the patient which had been assigned the index 1.</p>
 </li>
 </ul>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="advanced-patient-features"><a class="link" href="#advanced-patient-features">3. Advanced Patient Features</a></h2>
-<div class="sectionbody">
-<div class="exampleblock">
-<div class="content">
 <div class="paragraph">
-<p><strong>Advanced Patient Features</strong></p>
-</div>
-<div class="paragraph">
-<p>On top of managing your patient data, you may need to assign other items to patients e.g. medical conditions or medication prescriptions. This section pertains to that.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="adding-a-medical-condition-to-a-patient-code-patient-add-medcon-code"><a class="link" href="#adding-a-medical-condition-to-a-patient-code-patient-add-medcon-code">3.1. Adding a Medical Condition to a Patient <code>patient add medcon</code></a></h3>
-<div class="paragraph">
-<p>You can add a medical condition to a patient using <code>patient add medcon</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format <code>patient add medcon i/PATIENT_INDEX m/MEDCON_INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>PATIENT_INDEX refers to the index of a patient (obtained using <code>patient list</code> or <code>patient find</code>).</p>
-</li>
-<li>
-<p>MEDCON_INDEX refers to the index of a medical condition (obtained using <code>medcon list</code> or <code>medcon find</code>).</p>
-</li>
-<li>
-<p>If the medical condition can be found in the patient&#8217;s list of medical conditions, then it will not be added.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>patient add medcon i/1 m/2</code><br>
-Adds the medical condition at index no. 2 (in the list of medical conditions) to the patient that was assigned index no. 1 in the list of patients</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="removing-a-medical-condition-from-a-patient-code-patient-rm-medcon-code"><a class="link" href="#removing-a-medical-condition-from-a-patient-code-patient-rm-medcon-code">3.2. Removing a Medical Condition from a Patient <code>patient rm medcon</code></a></h3>
-<div class="paragraph">
-<p>You can remove a medical condition from a patient using <code>patient rm medcon</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>patient rm medcon i/PATIENT_INDEX m/MEDCON_INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>PATIENT_INDEX refers to the index of a patient (obtained using <code>patient list</code> or <code>patient find</code>).</p>
-</li>
-<li>
-<p>MEDCON_INDEX refers to the index of a medical condition (obtained using <code>medcon list</code> or <code>medcon find</code>).</p>
-</li>
-<li>
-<p>If the medical condition can be found in the patient&#8217;s list of medical conditions, then it will be removed.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>patient rm medcon i/1 m/2</code><br>
-Removes the medical condition at of index no. 2 (in the list of medical conditions) from the patient that was assigned index no. 1 in the list of patients</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="adding-a-prescription-to-a-patient-code-patient-add-presc-code"><a class="link" href="#adding-a-prescription-to-a-patient-code-patient-add-presc-code">3.3. Adding a Prescription to a Patient <code>patient add presc</code></a></h3>
-<div class="paragraph">
-<p>You can add a prescription to a patient using <code>patient add presc</code>.</p>
-</div>
-<div class="paragraph">
-<p>You can view the list of prescriptions you have added to a patient using <code>patient view</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format <code>patient add presc i/PATIENT_INDEX m/MED_INDEX d/DOSAGE</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>PATIENT_INDEX refers to the index of a patient (obtained using <code>patient list</code> or <code>patient find</code>).</p>
-</li>
-<li>
-<p>MED_INDEX refers to the index of a medicine (obtained using <code>med list</code> or <code>med find</code>).</p>
-</li>
-<li>
-<p>If the prescription can be found in the patient&#8217;s list of prescriptions, then it will not be added.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>patient add presc i/1 m/2 d/20mg 3 times a day</code><br>
-Adds prescription of the medicine of index 2 (in the list of medicines) with a dosage of 20mg 3 times a day to the patient at index 1 in list of patients.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="editing-a-patient-s-prescription-code-patient-edit-presc-code"><a class="link" href="#editing-a-patient-s-prescription-code-patient-edit-presc-code">3.4. Editing a Patient&#8217;s Prescription <code>patient edit presc</code></a></h3>
-<div class="paragraph">
-<p>You can edit a patient&#8217;s prescription using <code>patient add presc</code>.</p>
-</div>
-<div class="paragraph">
-<p>You can view a patient&#8217;s list of prescriptions using <code>patient view</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format <code>patient edit presc i/PATIENT_INDEX pr/PRESCRIPTION_INDEX [m/MED_INDEX] [d/DOSAGE]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>PATIENT_INDEX refers to the index of a patient (obtained using <code>patient list</code> or <code>patient find</code>).</p>
-</li>
-<li>
-<p>MED_INDEX refers to the index of a medicine (obtained using <code>med list</code> or <code>med find</code>).</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-<li>
-<p>At least one of the optional fields must be provided.</p>
-</li>
-<li>
-<p>Existing values will be updated to input values.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>patient edit presc i/1 pr/3 d/10mg 2 times a day</code><br>
-Edits the prescription with index 3 of the patient at index 1 in list of patients, changing the dosage to "10mg 2 times a day"</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="removing-an-prescription-from-a-patient-code-patient-rm-presc-code"><a class="link" href="#removing-an-prescription-from-a-patient-code-patient-rm-presc-code">3.5. Removing an Prescription from a Patient <code>patient rm presc</code></a></h3>
-<div class="paragraph">
-<p>You can remove a prescription to a patient using <code>patient rm presc</code>.</p>
-</div>
-<div class="paragraph">
-<p>You can view the list of prescriptions of a patient using <code>patient view</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format <code>patient rm presc i/PATIENT_INDEX pr/PRESCRIPTION_INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>PATIENT_INDEX refers to the index of a patient (obtained using <code>patient list</code> or <code>patient find</code>).</p>
-</li>
-<li>
-<p>PRESCRIPTION_INDEX refers to the index of a prescription (obtained using <code>patient view</code>).</p>
-</li>
-<li>
-<p>If the prescription can be found in the patient&#8217;s list of prescriptions, then it will be removed.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>patient rm presc i/1 pr/2</code><br>
-Removes the 2nd prescription of the patient of index 1.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="adding-an-appointment-to-a-patient-code-patient-add-appt-code-incomplete-ug"><a class="link" href="#adding-an-appointment-to-a-patient-code-patient-add-appt-code-incomplete-ug">3.6. Adding an Appointment to a Patient <code>patient add appt</code> [INCOMPLETE UG]</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="removing-an-appointment-from-a-patient-code-patient-rm-appt-code-incomplete-ug"><a class="link" href="#removing-an-appointment-from-a-patient-code-patient-rm-appt-code-incomplete-ug">3.7. Removing an Appointment from a Patient <code>patient rm appt</code> [INCOMPLETE UG]</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="assigning-a-todo-template-to-a-patient-code-patient-set-todoform-code-incomplete-ug"><a class="link" href="#assigning-a-todo-template-to-a-patient-code-patient-set-todoform-code-incomplete-ug">3.8. Assigning a Todo Template to a Patient <code>patient set todoform</code> [INCOMPLETE UG]</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="unassigning-a-todo-template-from-a-patient-code-patient-unset-todoform-code-incomplete-ug"><a class="link" href="#unassigning-a-todo-template-from-a-patient-code-patient-unset-todoform-code-incomplete-ug">3.9. Unassigning a Todo Template from a Patient <code>patient unset todoform</code> [INCOMPLETE UG]</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="adding-an-extra-todo-to-a-patient-code-patient-add-todo-code"><a class="link" href="#adding-an-extra-todo-to-a-patient-code-patient-add-todo-code">3.10. Adding an extra Todo to a Patient <code>patient add todo</code></a></h3>
-<div class="paragraph">
-<p>You can add an extra todo item to the patient&#8217;s visit todo list using <code>patient add todo</code>. This extra todo item will be added to the patient&#8217;s list of extra todos.</p>
-</div>
-<div class="paragraph">
-<p>For more information on the differences between a patient&#8217;s todo list template and extra todos, Refer to <a href="#Visits">[Visits]</a> for more elaboration.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>patient add todo i/PATIENT_INDEX t/TODO</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>PATIENT_INDEX refers to the index of a patient (obtained using <code>patient list</code> or <code>patient find</code>).</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>patient add todo t/Check fridge for spoiled items</code><br>
-Adds a todo item "Check fridge for spoiled items" to the extra todo items list.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="removing-an-extra-todo-from-a-patient-code-patient-rm-todo-code"><a class="link" href="#removing-an-extra-todo-from-a-patient-code-patient-rm-todo-code">3.11. Removing an extra Todo from a Patient <code>patient rm todo</code></a></h3>
-<div class="paragraph">
-<p>You can remove an extra todo item from the patient&#8217;s visit todo list using <code>patient rm todo</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>patient rm todo i/PATIENT_INDEX t/TODO_INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>PATIENT_INDEX refers to the index of a patient (obtained using <code>patient list</code> or <code>patient find</code>).</p>
-</li>
-<li>
-<p>TODO_INDEX refers to the index of a todo item (obtained using <code>patient view</code>).</p>
-</li>
-<li>
-<p>If the todo item can be found in the patient&#8217;s list of todo items, then it will be removed.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>patient rm todo i/1 t/2</code><br>
-Removes the 2nd todo item of the patient of index 1.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="adding-a-note-to-a-patient-code-patient-add-note-code"><a class="link" href="#adding-a-note-to-a-patient-code-patient-add-note-code">3.12. Adding a note to a Patient <code>patient add note</code></a></h3>
-<div class="paragraph">
-<p>You can add a note to the patient&#8217;s list of notes using <code>patient add note</code>.</p>
-</div>
-<div class="paragraph">
-<p>These notes are for you to take general notes on a patient. If you want to take notes on a specific visit / while you are visiting the patient, you will want to make an appointment with <code>patient add appt</code>, begin the appointment using <code>appt begin</code> and add details to the visit.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>patient add note i/PATIENT_INDEX t/NOTE</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>PATIENT_INDEX refers to the index of a patient (obtained using <code>patient list</code> or <code>patient find</code>).</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>patient add note t/Check fridge for spoiled items</code><br>
-Adds a todo item "Check fridge for spoiled items" to the notes list.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="removing-a-note-from-a-patient-code-patient-rm-note-code"><a class="link" href="#removing-a-note-from-a-patient-code-patient-rm-note-code">3.13. Removing a note from a Patient <code>patient rm note</code></a></h3>
-<div class="paragraph">
-<p>You can remove a note from the patient&#8217;s list of notes using <code>patient rm note</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>patient rm note i/PATIENT_INDEX t/NOTE_INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>PATIENT_INDEX refers to the index of a patient (obtained using <code>patient list</code> or <code>patient find</code>).</p>
-</li>
-<li>
-<p>NOTE_INDEX refers to the index of a note (obtained using <code>patient view</code>).</p>
-</li>
-<li>
-<p>If the note can be found in the patient&#8217;s list of notes, then it will be removed.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>patient rm note i/1 t/2</code><br>
-Removes the 2nd note of the patient of index 1.</p>
-</li>
-</ul>
+<p>Warning:
+If <code>pat-delete</code> is successfully executed, the indexes of remaining patients may change. Please verify the index of the patient you are referencing after executing this command.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="medical-conditions"><a class="link" href="#medical-conditions">4. Medical Conditions</a></h2>
-<div class="sectionbody">
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p><strong>Medical Conditions</strong></p>
-</div>
-<div class="paragraph">
-<p>As a community nurse, you will often have to keep track of your patients' medical conditions. This section describes the features that will allow you to manage the full list of medical conditions, as well as the list of medical conditions of a patient.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="listing-all-medical-conditions-code-medcon-list-code"><a class="link" href="#listing-all-medical-conditions-code-medcon-list-code">4.1. Listing All Medical Conditions: <code>medcon list</code></a></h3>
-<div class="paragraph">
-<p>You can see a list of all medical conditions in the app by typing <code>medcon list</code>.</p>
-</div>
-<div class="paragraph">
-<p>In the list displayed, each medical condition will have an <strong>index</strong> number which can then be used for other features that require you to select a medical condition by <strong>index</strong> e.g. <code>medcon delete</code>. Take note that a medical condition will be given the same <strong>index</strong> regardless of other display commands such as <code>medcon find</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>medcon list</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="finding-medical-condition-s-code-medcon-find-code"><a class="link" href="#finding-medical-condition-s-code-medcon-find-code">4.2. Finding Medical Condition(s): <code>medcon find</code></a></h3>
-<div class="paragraph">
-<p>You can find medical conditions that fit the parameters given using <code>medcon find</code>.</p>
-</div>
-<div class="paragraph">
-<p>In the list displayed, each medical condition will have an <strong>index</strong> number which can then be used for other features that require you to select a medical condition by <strong>index</strong> e.g. <code>medcon delete</code>. Take note that a medical condition will be given the same <strong>index</strong> regardless of other display commands such as <code>medcon list</code> or if different parameters are used.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>medcon find [KEYWORD] [n/NAME] [s/SYMPTOMS] [d/DIAGNOSIS] [t/TREATMENT]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The search is case insensitive. e.g <code>asthma</code> will match <code>Asthma</code></p>
-</li>
-<li>
-<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
-</li>
-<li>
-<p>If the parameter is text (e.g. <code>n/NAME</code>), partial words will be matched (e.g. <code>n/Diabetes</code> will return <code>Diabetes, Type 1</code> and <code>Diabetes, Type 2</code>.</p>
-</li>
-<li>
-<p>If KEYWORD is specified, will attempt search all fields for a match for KEYWORD.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>medcon find asthma</code><br>
-Returns all medical conditions with the keyword <code>asthma</code> in it</p>
-</li>
-<li>
-<p><code>medcon find</code><br>
-Returns all medical conditions in the application database</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="viewing-a-medical-condition-code-medcon-view-code"><a class="link" href="#viewing-a-medical-condition-code-medcon-view-code">4.3. Viewing a Medical Condition: <code>medcon view</code></a></h3>
-<div class="paragraph">
-<p>You can see a medical condition&#8217;s full details using <code>medcon view</code>. The medical condition is selected by their <strong>index</strong>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>medcon view INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>View the medical condition at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the list of medical conditions displayed by <code>medcon list</code> or <code>medcon find</code>.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>medcon list</code><br>
-<code>medcon view 1</code>
-View the item with index number 1. This index can be found from the full list of medical conditions.</p>
-</li>
-<li>
-<p><code>medcon view 2</code>
-View the item with the index number 2.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="adding-a-medical-condition-code-medcon-add-code"><a class="link" href="#adding-a-medical-condition-code-medcon-add-code">4.4. Adding a Medical Condition: <code>medcon add</code></a></h3>
-<div class="paragraph">
-<p>You can add a medical condition to the list of all conditions by using <code>medcon add</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>medcon add n/NAME s/SYMPTOMS d/DIAGNOSIS t/TREATMENT</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>All fields must be specified.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>medcon add n/Diabetes, Type 1 s/Increased thirst, frequent urination, extreme hunger, unexplained weight loss
-d/A1C test, blood sugar test, oral glucose test t/Insulin injections, insulin pump, blood sugar monitoring,
-carbohydrate counting</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="editing-a-medical-condition-code-medcon-edit-code"><a class="link" href="#editing-a-medical-condition-code-medcon-edit-code">4.5. Editing a Medical Condition: <code>medcon edit</code></a></h3>
-<div class="paragraph">
-<p>You can edit an existing medical condition in the app using <code>medcon edit</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>medcon edit INDEX [n/NAME] [s/SYMPTOMS] [d/DIAGNOSIS] [t/TREATMENT]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Edits the medical condition at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the list of medical conditions displayed by <code>medcon list</code> or <code>medcon find</code>.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-<li>
-<p>At least one of the optional fields must be provided.</p>
-</li>
-<li>
-<p>Existing values will be updated to the input values.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>medcon list</code><br>
- <code>medcon edit 3 s/increased hunger, increased thirst, weight loss, frequent urination, blurry vision, extreme fatigue, sores that don’t heal</code><br>
-Edits the symptoms of the medical condition with index 3.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="deleting-a-medical-condition-code-medcon-delete-code"><a class="link" href="#deleting-a-medical-condition-code-medcon-delete-code">4.6. Deleting a Medical Condition: <code>medcon delete</code></a></h3>
-<div class="paragraph">
-<p>You can delete a medical condition by <strong>index</strong> using <code>medcon delete</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>medcon delete INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Deletes the medical condition at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the list of medical conditions displayed by <code>medcon list</code> or <code>medcon find</code>.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>medcon list</code><br>
-<code>medcon delete 2</code><br>
-Deletes the 2nd medical condition in the medical condition list.</p>
-</li>
-<li>
-<p><code>medcon delete 1</code><br>
-Deletes the medical condition which had been assigned the index 1.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="deleting-multiple-medical-conditions-code-medcon-delete-code-code-coming-in-v2-0-code"><a class="link" href="#deleting-multiple-medical-conditions-code-medcon-delete-code-code-coming-in-v2-0-code">4.7. Deleting multiple Medical Conditions: <code>medcon delete</code> <code>[coming in V2.0]</code></a></h3>
-<div class="paragraph">
-<p>You can delete a medical condition by <strong>indexes</strong> using <code>medcon delete</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>medcon delete INDEX_1 [INDEX_2] [INDEX_3]&#8230;&#8203;</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Deletes the medical condition at the specified <code>INDEX</code> es. You can put in as many indexes to delete as many medical conditions as you wish.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the list of medical conditions displayed by <code>medcon list</code> or <code>medcon find</code>.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>medcon list</code><br>
-<code>medcon delete 2</code><br>
-Deletes the 2nd medical condition in the medical condition list.</p>
-</li>
-<li>
-<p><code>medcon delete 1 2</code><br>
-Deletes the and 2nd medical conditions with which had been assigned the 1.command.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="medicines-parameters-not-updated"><a class="link" href="#medicines-parameters-not-updated">5. Medicines [Parameters not updated]</a></h2>
-<div class="sectionbody">
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p><strong>Medicines</strong></p>
-</div>
-<div class="paragraph">
-<p>As a community nurse, you will often come across and use various medicines. This section describes the features that will allow you to manage the list of medicines and their information in the application.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="listing-all-medicines-code-med-list-code"><a class="link" href="#listing-all-medicines-code-med-list-code">5.1. Listing All Medicines: <code>med list</code></a></h3>
-<div class="paragraph">
-<p>You can see a list of all medicines in the app by typing <code>med list</code>.</p>
-</div>
-<div class="paragraph">
-<p>In the list displayed, each medicine will have an <strong>index</strong> number which can then be used for other features that require you to select a medicine by <strong>index</strong> e.g. <code>med delete</code>. Take note that a medicine will be given the same <strong>index</strong> regardless of other display commands such as <code>med find</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>med list</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="finding-medicine-s-code-med-find-code"><a class="link" href="#finding-medicine-s-code-med-find-code">5.2. Finding Medicine(s): <code>med find</code></a></h3>
-<div class="paragraph">
-<p>You can find medicines that fit the parameters given using <code>med find</code>.</p>
-</div>
-<div class="paragraph">
-<p>In the list displayed, each medicine will have an <strong>index</strong> number which can then be used for other features that require you to select a medicine by <strong>index</strong> e.g. <code>med delete</code>. Take note that a medicine will be given the same <strong>index</strong> regardless of other display commands such as <code>med list</code> or if different parameters are used.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>med find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
-</li>
-<li>
-<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
-</li>
-<li>
-<p>Only the name is searched.</p>
-</li>
-<li>
-<p>If the parameter is text (e.g. <code>n/NAME</code>), partial words will be matched (e.g. <code>n/John</code> will return <code>John Smith</code> and <code>John Kim</code>.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>med find panadol</code><br>
-Returns all medicines with the keyword <code>panadol</code> in it</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="viewing-a-medicine-code-med-view-code"><a class="link" href="#viewing-a-medicine-code-med-view-code">5.3. Viewing a Medicine: <code>med view</code></a></h3>
-<div class="paragraph">
-<p>You can see a medicine&#8217;s full details using <code>med view</code>. The medicine is selected by their <strong>index</strong>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>med view INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>View the medicine at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the list of medicines displayed by <code>med list</code> or <code>med find</code>.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>med list</code><br>
-<code>med view 1</code>
-View the item with index number 1. This index can be found from the full list of medicines.</p>
-</li>
-<li>
-<p><code>med view 2</code>
-View the item with the index number 2.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="adding-a-medicine-code-med-add-code"><a class="link" href="#adding-a-medicine-code-med-add-code">5.4. Adding a Medicine: <code>med add</code></a></h3>
-<div class="paragraph">
-<p>You can add a medicine to the list of all medicines by using <code>med add</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>med add pn/MEDICINE_NAME pi/MEDICINE_IC p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​ [kn/NOK_NAME] [kp/NOK_PHONE_NUMBER] [ka/NOK_ADDRESS] [ke/NOK_EMAIL] [imp/PRIORITY]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>A medicine can have any number of tags.</p>
-</li>
-<li>
-<p>A medicine can have next-of-kin contact details.</p>
-</li>
-<li>
-<p>Every medicine is uniquely identified by their IC.</p>
-</li>
-<li>
-<p>Priority can take values from 0 to 10.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>med add n/John Doe pi/S7012255C p/98765432 a/John street, block 123, #01-01</code></p>
-</li>
-<li>
-<p><code>med add n/Choong Siew Hwang pi/S7015376D p/91239876 a/22 College Avenue East; Singapore 138608 e/cho0ng@email.com t/Big kn/Choong Tee Ling kp/85639274 ka/10 Buangkok View, Singapore 534194 ke/ch1ng@email.com</code></p>
-</li>
-<li>
-<p><code>med add n/Betsy Crowe pi/S0011239X t/friend e/betsycrowe@example.com a/Newgate Prison p/12345678 t/criminal imp/4</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="editing-a-medicine-code-med-edit-code"><a class="link" href="#editing-a-medicine-code-med-edit-code">5.5. Editing a Medicine: <code>med edit</code></a></h3>
-<div class="paragraph">
-<p>You can edit an existing medicine in the app using <code>med edit</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>med edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Edits the person at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the list of medicines displayed by <code>med list</code> or <code>med find</code>.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-<li>
-<p>At least one of the optional fields must be provided.</p>
-</li>
-<li>
-<p>Existing values will be updated to the input values.</p>
-</li>
-<li>
-<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
-</li>
-<li>
-<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>med list</code><br>
- <code>edit 1 p/91234567 e/johndoe@example.com</code><br>
-Edits the phone number and email address of the 1st person in the entire medicine&#8217;s list to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
-</li>
-<li>
-<p><code>edit 2 n/Betsy Crower t/</code><br>
-Edits the name of the 2nd person with the index 1.Crower` and clears all existing tags.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="deleting-a-medicine-code-med-delete-code"><a class="link" href="#deleting-a-medicine-code-med-delete-code">5.6. Deleting a Medicine: <code>med delete</code></a></h3>
-<div class="paragraph">
-<p>You can delete a medicine by <strong>index</strong> using <code>med delete</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>med delete INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Deletes the medicine at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the list of medicines displayed by <code>med list</code> or <code>med find</code>.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>med list</code><br>
-<code>med delete 2</code><br>
-Deletes the 2nd medicine in the medicine list.</p>
-</li>
-<li>
-<p><code>med delete 1</code><br>
-Deletes the medicine which had been assigned the index 1.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="deleting-multiple-medicines-code-med-delete-code-code-coming-in-v2-0-code"><a class="link" href="#deleting-multiple-medicines-code-med-delete-code-code-coming-in-v2-0-code">5.7. Deleting multiple Medicines: <code>med delete</code> <code>[coming in V2.0]</code></a></h3>
-<div class="paragraph">
-<p>You can delete a medicine by <strong>indexes</strong> using <code>med delete</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>med delete INDEX_1 [INDEX_2] [INDEX_3]&#8230;&#8203;</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Deletes the medicine at the specified <code>INDEX</code> es. You can put in as many indexes to delete as many medicines as you wish.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the list of medicines displayed by <code>med list</code> or <code>med find</code>.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>med list</code><br>
-<code>med delete 2</code><br>
-Deletes the 2nd medicine in the medicine list.</p>
-</li>
-<li>
-<p><code>med delete 1 2</code><br>
-Deletes the and 2nd medicines which had been assigned the index 1.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="appointments-parameters-not-updated"><a class="link" href="#appointments-parameters-not-updated">6. Appointments [Parameters not updated]</a></h2>
+<h2 id="appointments-parameters-not-updated"><a class="link" href="#appointments-parameters-not-updated">3. Appointments [Parameters not updated]</a></h2>
 <div class="sectionbody">
 <div class="exampleblock">
 <div class="content">
@@ -1491,7 +438,7 @@ Deletes the and 2nd medicines which had been assigned the index 1.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-all-appointments-code-appt-list-code"><a class="link" href="#listing-all-appointments-code-appt-list-code">6.1. Listing All Appointments: <code>appt list</code></a></h3>
+<h3 id="listing-all-appointments-code-appt-list-code"><a class="link" href="#listing-all-appointments-code-appt-list-code">3.1. Listing All Appointments: <code>appt list</code></a></h3>
 <div class="paragraph">
 <p>You can see a list of all appointments in the app by typing <code>appt list</code>.</p>
 </div>
@@ -1503,7 +450,7 @@ Deletes the and 2nd medicines which had been assigned the index 1.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="finding-appointment-s-code-appt-find-code"><a class="link" href="#finding-appointment-s-code-appt-find-code">6.2. Finding Appointment(s): <code>appt find</code></a></h3>
+<h3 id="finding-appointment-s-code-appt-find-code"><a class="link" href="#finding-appointment-s-code-appt-find-code">3.2. Finding Appointment(s): <code>appt find</code></a></h3>
 <div class="paragraph">
 <p>You can find appointments that fit the parameters given using <code>appt find</code>.</p>
 </div>
@@ -1546,7 +493,7 @@ Lists all appointments of that particular patient</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="viewing-an-appointment-code-appt-view-code"><a class="link" href="#viewing-an-appointment-code-appt-view-code">6.3. Viewing an Appointment: <code>appt view</code></a></h3>
+<h3 id="viewing-an-appointment-code-appt-view-code"><a class="link" href="#viewing-an-appointment-code-appt-view-code">3.3. Viewing an Appointment: <code>appt view</code></a></h3>
 <div class="paragraph">
 <p>You can see an appointment&#8217;s full details using <code>appt view</code>. The appointment is selected by their <strong>index</strong>.</p>
 </div>
@@ -1588,7 +535,7 @@ View the item with the index number 2.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-the-next-earliest-appointments-code-appt-next-code"><a class="link" href="#listing-the-next-earliest-appointments-code-appt-next-code">6.4. Listing the next earliest Appointments: <code>appt next</code></a></h3>
+<h3 id="listing-the-next-earliest-appointments-code-appt-next-code"><a class="link" href="#listing-the-next-earliest-appointments-code-appt-next-code">3.4. Listing the next earliest Appointments: <code>appt next</code></a></h3>
 <div class="paragraph">
 <p>You can list the next earliest appointments using <code>appt next</code>.</p>
 </div>
@@ -1604,7 +551,7 @@ Displays the next 3 earliest appointments sorted by time.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="editing-an-appointment-code-appt-edit-code"><a class="link" href="#editing-an-appointment-code-appt-edit-code">6.5. Editing an Appointment: <code>appt edit</code></a></h3>
+<h3 id="editing-an-appointment-code-appt-edit-code"><a class="link" href="#editing-an-appointment-code-appt-edit-code">3.5. Editing an Appointment: <code>appt edit</code></a></h3>
 <div class="paragraph">
 <p>You can edit an existing appointment in the app using <code>appt edit</code>.</p>
 </div>
@@ -1658,7 +605,7 @@ Edits the name of the 2nd person with the index 1.<code>Betsy Crower</code> and 
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-an-appointment-code-appt-delete-code"><a class="link" href="#deleting-an-appointment-code-appt-delete-code">6.6. Deleting an Appointment: <code>appt delete</code></a></h3>
+<h3 id="deleting-an-appointment-code-appt-delete-code"><a class="link" href="#deleting-an-appointment-code-appt-delete-code">3.6. Deleting an Appointment: <code>appt delete</code></a></h3>
 <div class="paragraph">
 <p>You can delete an appointment by <strong>index</strong> using <code>appt delete</code>.</p>
 </div>
@@ -1700,7 +647,7 @@ Deletes the appointment which had been assigned the index 1.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="beginning-an-appointment-code-appt-begin-code"><a class="link" href="#beginning-an-appointment-code-appt-begin-code">6.7. Beginning an Appointment: <code>appt begin</code></a></h3>
+<h3 id="beginning-an-appointment-code-appt-begin-code"><a class="link" href="#beginning-an-appointment-code-appt-begin-code">3.7. Beginning an Appointment: <code>appt begin</code></a></h3>
 <div class="paragraph">
 <p>You can begin an appointment (i.e. begin a house visit) by <strong>index</strong> using <code>appt begin</code>.</p>
 </div>
@@ -1757,7 +704,7 @@ Begins the next earliest appointment.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-multiple-appointments-code-appt-delete-code-code-coming-in-v2-0-code"><a class="link" href="#deleting-multiple-appointments-code-appt-delete-code-code-coming-in-v2-0-code">6.8. Deleting multiple Appointments: <code>appt delete</code> <code>[coming in V2.0]</code></a></h3>
+<h3 id="deleting-multiple-appointments-code-appt-delete-code-code-coming-in-v2-0-code"><a class="link" href="#deleting-multiple-appointments-code-appt-delete-code-code-coming-in-v2-0-code">3.8. Deleting multiple Appointments: <code>appt delete</code> <code>[coming in V2.0]</code></a></h3>
 <div class="paragraph">
 <p>You can delete an appointment by <strong>indexes</strong> using <code>appt delete</code>.</p>
 </div>
@@ -1801,188 +748,44 @@ Deletes the and 2nd appointments which had been assigned the index 1.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="visits-parameters-not-updated"><a class="link" href="#visits-parameters-not-updated">7. Visits [Parameters not updated]</a></h2>
+<h2 id="Visit"><a class="link" href="#Visit">4. Visit Management</a></h2>
 <div class="sectionbody">
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
-<p><strong>Visits</strong></p>
+<p><strong>Visit Management</strong></p>
 </div>
 <div class="paragraph">
-<p>As a community nurse, you will often make home visits to your patients. When you are visiting a patient, there is often a todo list that you will have to do as well as information that you will have to record. You can use the application to mark the items you have done in a visit and add further details and notes about a visit (e.g. about a patient&#8217;s symptoms). This section describes the features that will allow you to keep track of what you have to do during a visit and manage previous visits.</p>
+<p>As a community nurse, you will often make home visits to your patients. When you are visiting a patient, there is often a todo list that you will have to do as well as information that you will have to record. This can now be done using the app. This section describes the features that will allow you to start a visit, keep track of your tasks during a visit, finish a visit and view information recorded during previous visits.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="starting-a-visit-code-visit-start-code"><a class="link" href="#starting-a-visit-code-visit-start-code">4.1. Starting a Visit <code>visit-start</code></a></h3>
+<div class="paragraph">
+<p>You can begin a visit by using <code>visit-start</code>. When you visit a patient and you want to record in the application that you are visiting said patient, you can use this feature to begin the visit for that patient (which will unlock the <code>visit-now-update</code> and <code>visit-now-finish</code> commands that will be applied to that visit). You can only have one ongoing visit at any point in time. This ongoing visit can be viewed in the "Current Visit" tab.</p>
+</div>
+<div class="paragraph">
+<p><code>visit-start</code> uses the patient&#8217;s Visit Todos to populate a checklist of Visit Tasks for you to use (these Visit Tasks are simply referred to as "tasks"). Visit Todos are described in further detail under <a href="#VisitHowTo">Section 1, &#8220;Visit Tutorials / How-To Guide(s)&#8221;</a>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>visit-start INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Adding of Visits is unallowed in the app because a community nurse should make an appointment with the patient before making a visit.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="listing-all-visits-code-visit-list-code"><a class="link" href="#listing-all-visits-code-visit-list-code">7.1. Listing All Visits: <code>visit list</code></a></h3>
-<div class="paragraph">
-<p>You can see a list of all visits in the app by typing <code>visit list</code>.</p>
-</div>
-<div class="paragraph">
-<p>In the list displayed, each visit will have an <strong>index</strong> number which can then be used for other features that require you to select a visit by <strong>index</strong> e.g. <code>visit delete</code>. Take note that a visit will be given the same <strong>index</strong> regardless of other display commands such as <code>visit find</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>visit list</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="finding-visit-s-code-visit-find-code"><a class="link" href="#finding-visit-s-code-visit-find-code">7.2. Finding Visit(s): <code>visit find</code></a></h3>
-<div class="paragraph">
-<p>You can find visits that fit the parameters given using <code>visit find</code>.</p>
-</div>
-<div class="paragraph">
-<p>In the list displayed, each visit will have an <strong>index</strong> number which can then be used for other features that require you to select a visit by <strong>index</strong> e.g. <code>visit delete</code>. Take note that a visit will be given the same <strong>index</strong> regardless of other display commands such as <code>visit list</code> or if different parameters are used.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>visit find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+<p>Begins a visit for the patient specified at <code>INDEX</code>.</p>
 </li>
 <li>
-<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
-</li>
-<li>
-<p>Only the name is searched.</p>
-</li>
-<li>
-<p>If the parameter is text (e.g. <code>n/NAME</code>), partial words will be matched (e.g. <code>n/John</code> will return <code>John Smith</code> and <code>John Kim</code>.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>visit find n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code><br>
-Finds all visits with this patient</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="viewing-a-visit-code-visit-view-code"><a class="link" href="#viewing-a-visit-code-visit-view-code">7.3. Viewing a Visit: <code>visit view</code></a></h3>
-<div class="paragraph">
-<p>You can see a visit&#8217;s full details using <code>visit view</code>. The visit is selected by their <strong>index</strong>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>visit view INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>View the visit at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the list of visits displayed by <code>visit list</code> or <code>visit find</code>.</p>
+<p>The index refers to the index number shown in the list of patients displayed by <code>pat-list</code> or <code>pat-find</code>.</p>
 </li>
 <li>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
 <li>
-<p><code>visit list</code><br>
-<code>visit view 1</code>
-View the item with index number 1. This index can be found from the full list of visits.</p>
-</li>
-<li>
-<p><code>visit view 2</code>
-View the item with the index number 2.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="viewing-the-current-visit-code-visit-now-code"><a class="link" href="#viewing-the-current-visit-code-visit-now-code">7.4. Viewing the current Visit: <code>visit now</code></a></h3>
-<div class="paragraph">
-<p>If you are currently visiting a patient, you can see the current visit&#8217;s full details using <code>visit now</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>visit now</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="set-details-of-a-todo-item-of-current-visit-code-visit-now-todo-note-code"><a class="link" href="#set-details-of-a-todo-item-of-current-visit-code-visit-now-todo-note-code">7.5. Set details of a Todo Item of current Visit: <code>visit now todo note</code></a></h3>
-<div class="paragraph">
-<p>You can set the details of a todo item of a current visit using <code>visit now todo note</code>.</p>
-</div>
-<div class="paragraph">
-<p>As a community nurse, some todo items require you to record some details (e.g. a todo item of "take blood pressure" would require you to record the blood pressure). If the index of the todo note is 2, you can do something like <code>visit now todo note t/2 n/120 over 80 mm HG</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>visit now todo note t/INDEX n/NOTE</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="mark-a-todo-item-of-current-visit-as-done-code-visit-now-todo-done-code-incomplete-ug"><a class="link" href="#mark-a-todo-item-of-current-visit-as-done-code-visit-now-todo-done-code-incomplete-ug">7.6. Mark a Todo Item of current Visit as done: <code>visit now todo done</code>[INCOMPLETE UG]</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="add-a-note-to-the-current-visit-code-visit-now-add-note-code-incomplete-ug"><a class="link" href="#add-a-note-to-the-current-visit-code-visit-now-add-note-code-incomplete-ug">7.7. Add a note to the current Visit: <code>visit now add note</code>[INCOMPLETE UG]</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="remove-a-note-from-the-current-visit-code-visit-now-rm-note-code-incomplete-ug"><a class="link" href="#remove-a-note-from-the-current-visit-code-visit-now-rm-note-code-incomplete-ug">7.8. Remove a note from the current Visit: <code>visit now rm note</code>[INCOMPLETE UG]</a></h3>
-
-</div>
-<div class="sect2">
-<h3 id="finishing-a-visit-code-visit-finish-code"><a class="link" href="#finishing-a-visit-code-visit-finish-code">7.9. Finishing a Visit: <code>visit finish</code></a></h3>
-<div class="paragraph">
-<p>If you have just finished your home visit to a patient, you can mark the visit as finished using <code>visit finish</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>visit finish</code>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="deleting-a-visit-code-visit-delete-code"><a class="link" href="#deleting-a-visit-code-visit-delete-code">7.10. Deleting a Visit: <code>visit delete</code></a></h3>
-<div class="paragraph">
-<p>You can delete a visit by <strong>index</strong> using <code>visit delete</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>visit delete INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Deletes the visit at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the list of visits displayed by <code>visit list</code> or <code>visit find</code>.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>There can only be one ongoing visit at any point in time; if there is already an ongoing visit this command does nothing.</p>
 </li>
 </ul>
 </div>
@@ -1994,239 +797,50 @@ View the item with the index number 2.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>visit list</code><br>
-<code>visit delete 2</code><br>
-Deletes the 2nd visit in the visit list.</p>
-</li>
-<li>
-<p><code>visit delete 1</code><br>
-Deletes the visit which had been assigned the index 1.</p>
+<p><code>visit-start 1</code><br>
+Starts a visit for the 1st patient in the patient list.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-multiple-visits-code-visit-delete-code-code-coming-in-v2-0-code"><a class="link" href="#deleting-multiple-visits-code-visit-delete-code-code-coming-in-v2-0-code">7.11. Deleting multiple Visits: <code>visit delete</code> <code>[coming in V2.0]</code></a></h3>
+<h3 id="updating-the-ongoing-visit-code-visit-now-update-code"><a class="link" href="#updating-the-ongoing-visit-code-visit-now-update-code">4.2. Updating the ongoing Visit <code>visit-now-update</code></a></h3>
 <div class="paragraph">
-<p>You can delete a visit by <strong>indexes</strong> using <code>visit delete</code>.</p>
+<p>Once you have begun a visit using <code>visit-start</code>, the application will note that you have an ongoing visit. You can then update the details of this ongoing visit using <code>visit-now-update</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>visit delete INDEX_1 [INDEX_2] [INDEX_3]&#8230;&#8203;</code></p>
+<p>Format: <code>visit-now-update [t/TASK_INDEX DETAIL]… [f/TASK_INDEX]… [uf/TASK_INDEX]… [r/REMARK]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Deletes the visit at the specified <code>INDEX</code> es. You can put in as many indexes to delete as many visits as you wish.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the list of visits displayed by <code>visit list</code> or <code>visit find</code>.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Each argument (e.g. <code>t/</code>, <code>f/</code>, <code>uf/</code>, <code>r/</code>) triggers their own change to the visit:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>visit list</code><br>
-<code>visit delete 2</code><br>
-Deletes the 2nd visit in the visit list.</p>
+<p><code>d/</code> Represents "detail". Each task in the visit checklist can be assigned some information if it is useful for you. For example, if task of index 1 is "Check Body Temp", you can use <code>t/1 37.0degc</code> to record that detail to that task (<code>TASK_INDEX</code> followed by a space followed by the details you want to store).</p>
 </li>
 <li>
-<p><code>visit delete 1 2</code><br>
-Deletes the and 2nd visits which had been assigned the index 1.</p>
+<p><code>f/</code> Represents "finish". Each task begins as unfinished and to mark a task as finished, you can use this prefix. For example, to mark task of index 1 as finished, you can use <code>f/1</code> (`TASK_INDEX of the task you want to mark as finished).</p>
+</li>
+<li>
+<p><code>uf/</code> Represents "un-finish". If you have marked a task as finished prior using <code>f/</code> and you want to undo that, you can use <code>uf/</code> (e.g. for task index 1 use <code>uf/1</code>).</p>
+</li>
+<li>
+<p><code>r/</code> Represents "remark". You can use this to update the remarks section of the visit.</p>
 </li>
 </ul>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="todo-templates-parameters-not-updated"><a class="link" href="#todo-templates-parameters-not-updated">8. Todo Templates [Parameters not updated]</a></h2>
-<div class="sectionbody">
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p><strong>Todo Templates</strong></p>
-</div>
-<div class="paragraph">
-<p>As a community nurse, you will often use a todo list to keep track of things that you have (and have not) done during a visit. It is tedious, however, to add multiple things to do / take note of for every patient; in fact, there may be many duplicated items.</p>
-</div>
-<div class="paragraph">
-<p>To simplify the process, you can create a reusable checklist that you can then assign to your patients. We call this reusable checklist a "todo template" This section describes the features that will allow you to streamline the management of todo templates of your patients.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="listing-all-todo-templates-code-todoform-list-code"><a class="link" href="#listing-all-todo-templates-code-todoform-list-code">8.1. Listing All Todo Templates: <code>todoform list</code></a></h3>
-<div class="paragraph">
-<p>You can see a list of all todo templates in the app by typing <code>todoform list</code>.</p>
-</div>
-<div class="paragraph">
-<p>In the list displayed, each todo template will have an <strong>index</strong> number which can then be used for other features that require you to select a todo template by <strong>index</strong> e.g. <code>todoform delete</code>. Take note that a todo template will be given the same <strong>index</strong> regardless of other display commands such as <code>todoform find</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>todoform list</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="finding-todo-template-s-code-todoform-find-code"><a class="link" href="#finding-todo-template-s-code-todoform-find-code">8.2. Finding Todo Template(s): <code>todoform find</code></a></h3>
-<div class="paragraph">
-<p>You can find todo templates that fit the parameters given using <code>todoform find</code>.</p>
-</div>
-<div class="paragraph">
-<p>In the list displayed, each todo template will have an <strong>index</strong> number which can then be used for other features that require you to select a todo template by <strong>index</strong> e.g. <code>todoform delete</code>. Take note that a todo template will be given the same <strong>index</strong> regardless of other display commands such as <code>todoform list</code> or if different parameters are used.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>todoform find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]</code> e.g. <code>todoform find n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
-</li>
-<li>
-<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
-</li>
-<li>
-<p>Only the name is searched.</p>
-</li>
-<li>
-<p>If the parameter is text (e.g. <code>n/NAME</code>), partial words will be matched (e.g. <code>n/John</code> will return <code>John Smith</code> and <code>John Kim</code>.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>When you are on the "Current Visit" tab, you will see information of the patient you are currently visiting, a checklist of tasks and a remarks section. <code>TASK_INDEX</code> refers to the index number of the task (shown in the displayed checklist of tasks).</p>
 </div>
 <div class="ulist">
 <ul>
-<li>
-<p>Returns <code>john</code> and <code>John Doe</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="viewing-a-todo-template-code-todoform-view-code"><a class="link" href="#viewing-a-todo-template-code-todoform-view-code">8.3. Viewing a Todo Template: <code>todoform view</code></a></h3>
-<div class="paragraph">
-<p>You can see a todo template&#8217;s full details using <code>todoform view</code>. The todo template is selected by their <strong>index</strong>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>todoform view INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>View the todo template at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the list of todo templates displayed by <code>todoform list</code> or <code>todoform find</code>.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>todoform list</code><br>
-<code>todoform view 1</code>
-View the item with index number 1. This index can be found from the full list of todo templates.</p>
-</li>
-<li>
-<p><code>todoform view 2</code>
-View the item with the index number 2.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="adding-a-todo-template-code-todoform-add-code"><a class="link" href="#adding-a-todo-template-code-todoform-add-code">8.4. Adding a Todo Template: <code>todoform add</code></a></h3>
-<div class="paragraph">
-<p>You can add a todo template to the list of all templates by using <code>todoform add</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>todoform add pn/PRESCRIPTION_NAME pi/PRESCRIPTION_IC p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​ [kn/NOK_NAME] [kp/NOK_PHONE_NUMBER] [ka/NOK_ADDRESS] [ke/NOK_EMAIL] [imp/PRIORITY]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>a todo template can have any number of tags.</p>
-</li>
-<li>
-<p>a todo template can have next-of-kin contact details.</p>
-</li>
-<li>
-<p>Every todo template is uniquely identified by their IC.</p>
-</li>
-<li>
-<p>Priority can take values from 0 to 10.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>todoform add n/John Doe pi/S7012255C p/98765432 a/John street, block 123, #01-01</code></p>
-</li>
-<li>
-<p><code>todoform add n/Choong Siew Hwang pi/S7015376D p/91239876 a/22 College Avenue East; Singapore 138608 e/cho0ng@email.com t/Big kn/Choong Tee Ling kp/85639274 ka/10 Buangkok View, Singapore 534194 ke/ch1ng@email.com</code></p>
-</li>
-<li>
-<p><code>todoform add n/Betsy Crowe pi/S0011239X t/friend e/betsycrowe@example.com a/Newgate Prison p/12345678 t/criminal imp/4</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="editing-a-todo-template-code-todoform-edit-code"><a class="link" href="#editing-a-todo-template-code-todoform-edit-code">8.5. Editing a Todo Template: <code>todoform edit</code></a></h3>
-<div class="paragraph">
-<p>You can edit an existing todo template in the app using <code>todoform edit</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>todoform edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Edits the person at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the list of todo templates displayed by <code>todoform list</code> or <code>todoform find</code>.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
 <li>
 <p>At least one of the optional fields must be provided.</p>
 </li>
@@ -2234,120 +848,87 @@ View the item with the index number 2.</p>
 <p>Existing values will be updated to the input values.</p>
 </li>
 <li>
-<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
-</li>
-<li>
-<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>todoform list</code><br>
- <code>edit 1 p/91234567 e/johndoe@example.com</code><br>
-Edits the phone number and email address of the 1st person in the entire todo template&#8217;s list to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
-</li>
-<li>
-<p><code>edit 2 n/Betsy Crower t/</code><br>
-Edits the name of the 2nd person with the index 1.<code>Betsy Crower</code> and clears all existing tags.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="deleting-a-todo-template-code-todoform-delete-code"><a class="link" href="#deleting-a-todo-template-code-todoform-delete-code">8.6. Deleting a Todo Template: <code>todoform delete</code></a></h3>
-<div class="paragraph">
-<p>You can delete a todo template by <strong>index</strong> using <code>todoform delete</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>todoform delete INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Deletes the todo template at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the list of todo templates displayed by <code>todoform list</code> or <code>todoform find</code>.</p>
+<p><code>TASK_INDEX</code> refers to the index number of the task (shown in the displayed checklist of tasks).</p>
 </li>
 <li>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
 <li>
-<p><code>todoform list</code><br>
-<code>todoform delete 2</code><br>
-Deletes the 2nd todo template in the todo template list.</p>
-</li>
-<li>
-<p><code>todoform delete 1</code><br>
-Deletes the todo template which had been assigned the index 1.</p>
+<p>Each argument can target different <code>TASK_INDEX</code> es. This allows you to use this command to update multiple tasks at once.</p>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="deleting-multiple-todo-templates-code-todoform-delete-code-code-coming-in-v2-0-code"><a class="link" href="#deleting-multiple-todo-templates-code-todoform-delete-code-code-coming-in-v2-0-code">8.7. Deleting multiple Todo Templates: <code>todoform delete</code> <code>[coming in V2.0]</code></a></h3>
-<div class="paragraph">
-<p>You can delete a todo template by <strong>indexes</strong> using <code>todoform delete</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>todoform delete INDEX_1 [INDEX_2] [INDEX_3]&#8230;&#8203;</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
+<div class="paragraph">
+<p>Other notes:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Deletes the todo template at the specified <code>INDEX</code> es. You can put in as many indexes to delete as many todo templates as you wish.</p>
+<p>If you use both <code>f/</code> and <code>uf/</code> on the same task in a single <code>visit-now-update</code> command, <code>uf/</code> will take priority (i.e. the task will be marked as unfinished).</p>
 </li>
 <li>
-<p>The index refers to the index number shown in the list of todo templates displayed by <code>todoform list</code> or <code>todoform find</code>.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>A task does not need to be marked as finished in order to finish the visit. It is simply for your reference and to help you keep track of which tasks have / have not been finished.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p>Example:</p>
+</div>
+<div class="paragraph">
+<p>Assume that you have an ongoing visit and 2 tasks (task 1 is "Check Blood Pressure", task 2 is "Check for bed bugs") in your visit checklist. After you&#8217;re done, you can update the application using:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>todoform list</code><br>
-<code>todoform delete 2</code><br>
-Deletes the 2nd todo template in the todo template list.</p>
-</li>
-<li>
-<p><code>todoform delete 1 2</code><br>
-Deletes the and 2nd todo templates with which had been assigned the 1.command.</p>
+<p><code>visit-now-update d/1 140/90mmHg f/1 f/2 r/Patient is healthy</code></p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>This sets the details for task 1 in the checklist to "140/90mmHg" and marks tasks 1 and 2 as finished. It also sets the remarks to "Patient is healthy".</p>
+</div>
+<div class="paragraph">
+<p>Assuming then in the above scenario you discovered bed bugs after checking again before you leave. You decide to help the patient change the bedsheets and you want to update that information. You can run:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>visit-now-update uf/2 r/Patient must be reminded to wash bedsheets regularly</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This would set task 2 to unfinished and change the remarks. Once you have finished changing the bedsheets, you can then verify there are no bed bugs and use <code>visit-now-update f/2</code> to mark task 2 as finished.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cancelling-the-ongoing-visit-code-visit-cancel-code"><a class="link" href="#cancelling-the-ongoing-visit-code-visit-cancel-code">4.3. Cancelling the ongoing Visit <code>visit-cancel</code></a></h3>
+<div class="paragraph">
+<p>Once you have begun a visit using <code>visit-start</code>, the application will note that you have an ongoing visit. You can cancel that visit using <code>visit-cancel</code>, which will cancel the visit and remove it from the list of visits of the patient. The ongoing visit will also be removed from the Current Visit tab.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>visit-cancel</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finishing-the-ongoing-visit-code-visit-end-code"><a class="link" href="#finishing-the-ongoing-visit-code-visit-end-code">4.4. Finishing the ongoing Visit <code>visit-end</code></a></h3>
+<div class="paragraph">
+<p>Once you have begun a visit using <code>visit-start</code>, the application will note that you have an ongoing visit. You can then mark that visit as finished using <code>visit-end</code>, which will archive that visit. The ongoing visit will be removed from the Current Visit tab.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>visit-end</code></p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="autocomplete"><a class="link" href="#autocomplete">9. Autocomplete</a></h2>
+<h2 id="autocomplete"><a class="link" href="#autocomplete">5. Autocomplete</a></h2>
 <div class="sectionbody">
 <div class="exampleblock">
 <div class="content">
@@ -2362,7 +943,7 @@ Deletes the and 2nd todo templates with which had been assigned the 1.command.</
 </div>
 </div>
 <div class="sect1">
-<h2 id="data-saving-undo-redo"><a class="link" href="#data-saving-undo-redo">10. Data Saving, Undo, Redo</a></h2>
+<h2 id="data-saving-undo-redo"><a class="link" href="#data-saving-undo-redo">6. Data Saving, Undo, Redo</a></h2>
 <div class="sectionbody">
 <div class="exampleblock">
 <div class="content">
@@ -2375,7 +956,7 @@ Deletes the and 2nd todo templates with which had been assigned the 1.command.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-your-data"><a class="link" href="#saving-your-data">10.1. Saving your data</a></h3>
+<h3 id="saving-your-data"><a class="link" href="#saving-your-data">6.1. Saving your data</a></h3>
 <div class="paragraph">
 <p>Your data are saved in the hard disk automatically after any command that changes the data.</p>
 </div>
@@ -2384,7 +965,7 @@ Deletes the and 2nd todo templates with which had been assigned the 1.command.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-a-command-code-undo-code"><a class="link" href="#undoing-a-command-code-undo-code">10.2. Undoing a command: <code>undo</code></a></h3>
+<h3 id="undoing-a-command-code-undo-code"><a class="link" href="#undoing-a-command-code-undo-code">6.2. Undoing a command: <code>undo</code></a></h3>
 <div class="paragraph">
 <p>You can undo the changes of the last executed command that alters data using <code>undo</code>.</p>
 </div>
@@ -2399,7 +980,7 @@ Deletes the and 2nd todo templates with which had been assigned the 1.command.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-an-undone-command-code-redo-code"><a class="link" href="#redoing-an-undone-command-code-redo-code">10.3. Redoing an undone command: <code>redo</code></a></h3>
+<h3 id="redoing-an-undone-command-code-redo-code"><a class="link" href="#redoing-an-undone-command-code-redo-code">6.3. Redoing an undone command: <code>redo</code></a></h3>
 <div class="paragraph">
 <p>You can redo and reapply the changes of the last undone command using <code>redo</code>.</p>
 </div>
@@ -2414,7 +995,7 @@ Up to the last 3(?) undone commands can be redone.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="importing-and-exporting-of-patient-data"><a class="link" href="#importing-and-exporting-of-patient-data">11. Importing and Exporting of Patient Data</a></h2>
+<h2 id="importing-and-exporting-of-patient-data"><a class="link" href="#importing-and-exporting-of-patient-data">7. Importing and Exporting of Patient Data</a></h2>
 <div class="sectionbody">
 <div class="exampleblock">
 <div class="content">
@@ -2427,7 +1008,7 @@ Up to the last 3(?) undone commands can be redone.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="importing-patient-data-from-a-csv-file-code-import-code"><a class="link" href="#importing-patient-data-from-a-csv-file-code-import-code">11.1. Importing patient data from a CSV file: <code>import</code></a></h3>
+<h3 id="importing-patient-data-from-a-csv-file-code-import-code"><a class="link" href="#importing-patient-data-from-a-csv-file-code-import-code">7.1. Importing patient data from a CSV file: <code>import</code></a></h3>
 <div class="paragraph">
 <p>You can import patient data from a .csv file into the application using <code>import</code>.</p>
 </div>
@@ -2470,7 +1051,7 @@ Up to the last 3(?) undone commands can be redone.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-data-into-csv-code-export-code"><a class="link" href="#exporting-data-into-csv-code-export-code">11.2. Exporting data into .csv: <code>export</code></a></h3>
+<h3 id="exporting-data-into-csv-code-export-code"><a class="link" href="#exporting-data-into-csv-code-export-code">7.2. Exporting data into .csv: <code>export</code></a></h3>
 <div class="paragraph">
 <p>You can export patient data from the application into a .csv file using <code>export</code>.</p>
 </div>
@@ -2518,158 +1099,109 @@ Up to the last 3(?) undone commands can be redone.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="notifications"><a class="link" href="#notifications">12. Notifications</a></h2>
+<h2 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">8. Exiting the program : <code>exit</code></a></h2>
 <div class="sectionbody">
-<div class="exampleblock">
-<div class="content">
 <div class="paragraph">
-<p><strong>Notifications</strong></p>
-</div>
-<div class="paragraph">
-<p>As a community nurse, you will often have deadlines to meet or appointments for home visits. You can schedule the application to notify you for these deadlines/events. This section describes the features that will allow you to manage such notifications.</p>
+<p>You can exit the program using <code>exit</code>.<br>
+Format: <code>exit</code></p>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="enabling-the-notifications-code-notif-enable-code"><a class="link" href="#enabling-the-notifications-code-notif-enable-code">12.1. Enabling the Notifications <code>notif enable</code></a></h3>
-<div class="paragraph">
-<p>You can enable notifications for upcoming appointments using <code>notif enable</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>notif enable</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="disabling-the-notifications-code-notif-disable-code"><a class="link" href="#disabling-the-notifications-code-notif-disable-code">12.2. Disabling the Notifications <code>notif disable</code></a></h3>
-<div class="paragraph">
-<p>You can disable notifications for upcoming appointments using <code>notif disable</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>notif disable</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="setting-the-notification-time-ahead-of-appointments-code-notif-apptalert-code"><a class="link" href="#setting-the-notification-time-ahead-of-appointments-code-notif-apptalert-code">12.3. Setting the Notification Time ahead of Appointments: <code>notif apptalert</code></a></h3>
-<div class="paragraph">
-<p>By default, the application will prompt a notification 30 minutes before any of your appointments. You can change that using <code>notif apptalert</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>notif apptalert m/MINUTES_BEFORE_APPOINTMENT</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The application will prompt a notification <code>MINUTES_BEFORE_APPOINTMENT</code> minutes before any of your appointments.</p>
-</li>
-<li>
-<p><code>MINUTES_BEFORE_APPOINTMENT</code> is 30 minutes by default.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="listing-all-notifications-code-notif-list-code"><a class="link" href="#listing-all-notifications-code-notif-list-code">12.4. Listing all Notifications: <code>notif list</code></a></h3>
-<div class="paragraph">
-<p>You can see the list of your notifications using <code>notif list</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>notif list</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="finding-notification-s-code-notif-find-code"><a class="link" href="#finding-notification-s-code-notif-find-code">12.5. Finding Notification(s): <code>notif find</code></a></h3>
-<div class="paragraph">
-<p>You can find notifications that fit the parameters given using <code>notif find</code>.</p>
-</div>
-<div class="paragraph">
-<p>In the list displayed, each notification will have an <strong>index</strong> number which can then be used for other features that require you to select a notification by <strong>index</strong> e.g. <code>notif delete</code>. Take note that a notification will be given the same <strong>index</strong> regardless of other display commands such as <code>notif find</code> or if different parameters are used.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>notif find [n/NAME] [b/BODY] [d/DATE(DD-MM-YYYY)] [t/TIME(HH:mm)]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
-</li>
-<li>
-<p>If the parameter is text (e.g. <code>n/NAME</code>), partial words will be matched (e.g. <code>n/John</code> will return <code>John Smith</code> and <code>John Kim</code>.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="adding-a-notification-code-notif-add-code"><a class="link" href="#adding-a-notification-code-notif-add-code">12.6. Adding a Notification: <code>notif add</code></a></h3>
-<div class="paragraph">
-<p>You can add your own notifications (that are not attached to any appointments) using <code>notif add</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>notif add n/NAME b/BODY d/DATE(DD-MM-YYYY) t/TIME(HH:mm)</code></p>
-</div>
-<div class="paragraph">
-<p>Example: <code>notif add n/Call Terry b/Remind Terry to take his medicine d/23-03-2019 t/13:00</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="deleting-a-notification-code-notif-delete-code"><a class="link" href="#deleting-a-notification-code-notif-delete-code">12.7. Deleting a Notification: <code>notif delete</code></a></h3>
-<div class="paragraph">
-<p>You can delete a notification by <strong>index</strong> using <code>notif delete</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>notif delete INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Deletes the notification at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the list of notifications displayed by <code>notif list</code> or <code>notif find</code>.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-<li>
-<p>Notifications that were added because of an appointment can be deleted.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>notif list</code><br>
-<code>notif delete 2</code><br>
-Deletes the 2nd notification in the notification list.</p>
-</li>
-<li>
-<p><code>notif delete 1</code><br>
-Deletes the notification which had been assigned the index 1.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
+<h1 id="tutorials-how-to-guide-s-as-of-v1-4" class="sect0"><a class="link" href="#tutorials-how-to-guide-s-as-of-v1-4">Tutorials / How-To Guide(s) (as of v1.4)</a></h1>
 <div class="sect1">
-<h2 id="login-system-security"><a class="link" href="#login-system-security">13. Login System &amp; Security</a></h2>
+<h2 id="VisitHowTo"><a class="link" href="#VisitHowTo">1. Visit Tutorials / How-To Guide(s)</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="what-are-visit-todos-and-visit-tasks"><a class="link" href="#what-are-visit-todos-and-visit-tasks">1.1. What are Visit Todos (and Visit Tasks)?</a></h3>
+<div class="paragraph">
+<p>Visit Todos are, as the name suggests, todo items. These are items that are attached to a patient and are todo items that you want to be reminded to do when you visit that patient. Each Visit Todo contains a description of that task.</p>
+</div>
+<div class="paragraph">
+<p>When you begin a visit using <code>visit-start</code>, the patient&#8217;s Visit Todos are copied into the visit checklist as Visit Tasks. Each visit task has a description (of the visit todo it was copied from), a field for you to add details to that task and a flag to indicate if that task is finished.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="how-to-view-the-ongoing-visit"><a class="link" href="#how-to-view-the-ongoing-visit">1.2. How to view the ongoing visit</a></h3>
+<div class="paragraph">
+<p>The ongoing visit can be viewed by clicking on the current visit tab. Note that you will have to change tabs manually and your commands will not affect which tab you are viewing.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="how-to-view-the-visit-todos-of-a-patient"><a class="link" href="#how-to-view-the-visit-todos-of-a-patient">1.3. How to view the visit todos of a patient</a></h3>
+<div class="paragraph">
+<p>You can view the visit todos of a patient using <code>pat-list</code> and <code>pat-find</code>. Visit Todos are displayed under their patient details.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="how-to-view-visits-of-a-patient-previous-and-ongoing"><a class="link" href="#how-to-view-visits-of-a-patient-previous-and-ongoing">1.4. How to view visits of a patient (previous and ongoing)</a></h3>
+<div class="paragraph">
+<p>You can view the visits of a patient using <code>pat-list</code> and <code>pat-find</code>. Visits are displayed under their patient details.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="how-to-manage-a-visit-an-example"><a class="link" href="#how-to-manage-a-visit-an-example">1.5. How to manage a visit (an example)</a></h3>
+<div class="paragraph">
+<p>To introduce how to manage a visit, let&#8217;s use an example where you have a patient named John Heng. Assume that John is a new patient (his data is not in NurseTraverse) and you have the following list of things (visit todos) you want to do when you visit him:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Take Blood Pressure</p>
+</li>
+<li>
+<p>Take Body Temperature</p>
+</li>
+<li>
+<p>Restock Medicine</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Adding a new patient with Visit Todos</strong><br>
+If you are adding a new patient, you can add these visit todos using <code>pat-add</code>. Example: <code>pat-add n/John Heng p/82221222 e/john@gmail.com a/John&#8217;s address t/Male vt/Take Blood Pressure vt/Take Body Temperature vt/Restock Medicine</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Editing the Visit Todos of a patient</strong><br>
+Alternatively, if John is an existing patient in NurseTraverse you can update John&#8217;s list of Visit Todos using <code>pat-edit</code>. In this scenario, John is the 2nd patient in <code>pat-list</code>, so you would use <code>pat-edit 2 vt/Take Body Temperature vt/Restock Medicine</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Starting a Visit</strong><br>
+Let&#8217;s assume that you decide to visit John&#8217;s house. When you are at John&#8217;s house during a house visit and you want to begin keeping track of your visit and recording visit details, you can use <code>visit-start</code>. In this scenario, John is the 2nd patient in <code>pat-list</code>, so you would use <code>visit-start 2</code>. Since you can only be visiting one patient at one time, you can only have one ongoing visit at any time; <code>visit-start</code> can only be performed if there is no ongoing visit.</p>
+</div>
+<div class="paragraph">
+<p><strong>Cancelling a Visit</strong><br>
+If you realized you started the visit for a wrong person, you can cancel it using <code>visit-cancel</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Updating a Visit&#8217;s details</strong><br>
+Once you have begun a visit using <code>visit-start</code>, you can begin updating the visit&#8217;s details using <code>visit-now-update</code>. Let&#8217;s assume that you&#8217;ve finished all the tasks in the checklist during your visit with John, so an example would be <code>visit-now-update f/1 f/2 f/3</code>.</p>
+</div>
+<div class="paragraph">
+<p>If you accidentally marked a task as finished, you can mark it as unfinished using <code>uf/TASK_INDEX</code> e.g. <code>visit-now-update uf/1</code>.</p>
+</div>
+<div class="paragraph">
+<p>If you also want to add details to the tasks (e.g. record the blood pressure as task 1, body temperature as task 2) you can do so like this: <code>visit-now-update d/1 140/90mmHg d/2 37.0</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can also set the visit&#8217;s remarks. An example would be <code>visit-now-update r/Remember to bring stretch band next session</code>.</p>
+</div>
+<div class="paragraph">
+<p>Finally, you can combine all of the above into one command: <code>visit-now-update f/1 f/2 f/3 d/1 140/90mmHg d/2 37.0 r/Remember to bring stretch band next session</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Finishing a Visit</strong><br>
+Finally, once you have concluded the visit, you can finish the visit using <code>visit-end</code>. This will tell the application that the ongoing visit has concluded. It will then save the visit under the patient (in this case, John).</p>
+</div>
+<div class="paragraph">
+<p><strong>Viewing previous Visits</strong><br>
+You can view the visits of a patient using <code>pat-list</code> and <code>pat-find</code>. Visits are displayed under their patient details. In this case, it may be better to use <code>pat-find</code> to find John&#8217;s records e.g. <code>pat-find John Heng</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<h1 id="planned-feature-s-coming-in-v2-0" class="sect0"><a class="link" href="#planned-feature-s-coming-in-v2-0">Planned Feature(s) (coming in v2.0)</a></h1>
+<div class="sect1">
+<h2 id="login-system-security-code-coming-in-v2-0-code"><a class="link" href="#login-system-security-code-coming-in-v2-0-code">1. Login System &amp; Security <code>[coming in v2.0]</code></a></h2>
 <div class="sectionbody">
 <div class="exampleblock">
 <div class="content">
@@ -2682,12 +1214,12 @@ Deletes the notification which had been assigned the index 1.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="enabling-the-login-system-code-login-enable-code"><a class="link" href="#enabling-the-login-system-code-login-enable-code">13.1. Enabling the Login System <code>login enable</code></a></h3>
+<h3 id="enabling-the-login-system-code-login-enable-code-code-coming-in-v2-0-code"><a class="link" href="#enabling-the-login-system-code-login-enable-code-code-coming-in-v2-0-code">1.1. Enabling the Login System <code>login-enable</code> <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
-<p>If you haven&#8217;t setup a login PIN, you can enable the login system by setting a login pin using <code>login enable</code>.</p>
+<p>If you haven&#8217;t setup a login PIN, you can enable the login system by setting a login pin using <code>login-enable</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>login enable PIN</code></p>
+<p>Format: <code>login-enable PIN</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -2702,12 +1234,12 @@ Deletes the notification which had been assigned the index 1.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="disabling-the-login-system-code-login-disable-code"><a class="link" href="#disabling-the-login-system-code-login-disable-code">13.2. Disabling the Login System <code>login disable</code></a></h3>
+<h3 id="disabling-the-login-system-code-login-disable-code-code-coming-in-v2-0-code"><a class="link" href="#disabling-the-login-system-code-login-disable-code-code-coming-in-v2-0-code">1.2. Disabling the Login System <code>login-disable</code> <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
-<p>If you have setup a login PIN, you can disable the login system using <code>login disable</code>.</p>
+<p>If you have setup a login PIN, you can disable the login system using <code>login-disable</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>login disable CURRENT_PIN</code></p>
+<p>Format: <code>login-disable CURRENT_PIN</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -2725,12 +1257,12 @@ Deletes the notification which had been assigned the index 1.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="changing-the-login-pin-code-login-changepin-code"><a class="link" href="#changing-the-login-pin-code-login-changepin-code">13.3. Changing the Login Pin <code>login changepin</code></a></h3>
+<h3 id="changing-the-login-pin-code-login-changepin-code-code-coming-in-v2-0-code"><a class="link" href="#changing-the-login-pin-code-login-changepin-code-code-coming-in-v2-0-code">1.3. Changing the Login Pin <code>login-changepin</code> <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
-<p>If you have setup a login PIN, you can change the pin using <code>login changepin</code>.</p>
+<p>If you have setup a login PIN, you can change the pin using <code>login-changepin</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>login changepin o/OLD_PIN n/NEW_PIN</code></p>
+<p>Format: <code>login-changepin o/OLD_PIN n/NEW_PIN</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -2751,51 +1283,42 @@ Deletes the notification which had been assigned the index 1.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="locking-the-application-code-login-lock-code"><a class="link" href="#locking-the-application-code-login-lock-code">13.4. Locking the Application <code>login lock</code></a></h3>
+<h3 id="locking-the-application-code-login-lock-code-code-coming-in-v2-0-code"><a class="link" href="#locking-the-application-code-login-lock-code-code-coming-in-v2-0-code">1.4. Locking the Application <code>login-lock</code> <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
-<p>If you have setup a login PIN, you can lock the application using <code>login lock</code>.</p>
+<p>If you have setup a login PIN, you can lock the application using <code>login-lock</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>login lock</code></p>
+<p>Format: <code>login-lock</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="changing-login-lock-timeout-code-login-timeout-code"><a class="link" href="#changing-login-lock-timeout-code-login-timeout-code">13.5. Changing Login Lock Timeout <code>login timeout</code></a></h3>
+<h3 id="changing-login-lock-timeout-code-login-timeout-code-code-coming-in-v2-0-code"><a class="link" href="#changing-login-lock-timeout-code-login-timeout-code-code-coming-in-v2-0-code">1.5. Changing Login Lock Timeout <code>login-timeout</code> <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
-<p>If you have setup a login PIN, you can change the amount of time (in minutes) before the system automatically locks the application using <code>login timeout</code>.</p>
+<p>If you have setup a login PIN, you can change the amount of time (in minutes) before the system automatically locks the application using <code>login-timeout</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>login timeout MINUTES</code></p>
+<p>Format: <code>login-timeout MINUTES</code></p>
 </div>
 <div class="paragraph">
-<p>Example: <code>login timeout 3</code> will configure the system to automatically lock the application after 3 minutes.</p>
+<p>Example: <code>login-timeout 3</code> will configure the system to automatically lock the application after 3 minutes.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging-in-unlocking-the-application"><a class="link" href="#logging-in-unlocking-the-application">13.6. Logging in / Unlocking the Application</a></h3>
+<h3 id="logging-in-unlocking-the-application-code-coming-in-v2-0-code"><a class="link" href="#logging-in-unlocking-the-application-code-coming-in-v2-0-code">1.6. Logging in / Unlocking the Application <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p>On the lock screen you will be prompted to enter your PIN. Once you enter the correct and press <kbd>Enter</kbd>, the application will unlock.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="data-encryption-code-coming-in-v2-0-code"><a class="link" href="#data-encryption-code-coming-in-v2-0-code">13.7. Data Encryption <code>[coming in v2.0]</code></a></h3>
+<h3 id="data-encryption-code-coming-in-v2-0-code"><a class="link" href="#data-encryption-code-coming-in-v2-0-code">1.7. Data Encryption <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p>The save files of the application will be automatically encrypted using your PIN.</p>
 </div>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">14. Exiting the program : <code>exit</code></a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can exit the program using <code>exit</code>.<br>
-Format: <code>exit</code></p>
-</div>
-</div>
-</div>
 <h1 id="faq" class="sect0"><a class="link" href="#faq">FAQ</a></h1>
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
-<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.</p>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-22 05:55:11 UTC</div></div></div></body></html>
+<strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NurseTraverse folder.</p>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 04:43:29 UTC</div></div></div></body></html>

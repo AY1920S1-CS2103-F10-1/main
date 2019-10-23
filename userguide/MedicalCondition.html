@@ -1,0 +1,278 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Medical Conditions</title><link rel="stylesheet" href="./gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"></div><div id="content"><div class="sect1">
+<h2 id="medical-conditions"><a class="link" href="#medical-conditions">Medical Conditions</a></h2>
+<div class="sectionbody">
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Medical Conditions</strong></p>
+</div>
+<div class="paragraph">
+<p>As a community nurse, you will often have to keep track of your patients' medical conditions. This section describes the features that will allow you to manage the full list of medical conditions, as well as the list of medical conditions of a patient.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-all-medical-conditions-code-medcon-list-code"><a class="link" href="#listing-all-medical-conditions-code-medcon-list-code">Listing All Medical Conditions: <code>medcon list</code></a></h3>
+<div class="paragraph">
+<p>You can see a list of all medical conditions in the app by typing <code>medcon list</code>.</p>
+</div>
+<div class="paragraph">
+<p>In the list displayed, each medical condition will have an <strong>index</strong> number which can then be used for other features that require you to select a medical condition by <strong>index</strong> e.g. <code>medcon delete</code>. Take note that a medical condition will be given the same <strong>index</strong> regardless of other display commands such as <code>medcon find</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>medcon list</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finding-medical-condition-s-code-medcon-find-code"><a class="link" href="#finding-medical-condition-s-code-medcon-find-code">Finding Medical Condition(s): <code>medcon find</code></a></h3>
+<div class="paragraph">
+<p>You can find medical conditions that fit the parameters given using <code>medcon find</code>.</p>
+</div>
+<div class="paragraph">
+<p>In the list displayed, each medical condition will have an <strong>index</strong> number which can then be used for other features that require you to select a medical condition by <strong>index</strong> e.g. <code>medcon delete</code>. Take note that a medical condition will be given the same <strong>index</strong> regardless of other display commands such as <code>medcon list</code> or if different parameters are used.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>medcon find [KEYWORD] [n/NAME] [s/SYMPTOMS] [d/DIAGNOSIS] [t/TREATMENT]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>asthma</code> will match <code>Asthma</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
+</li>
+<li>
+<p>If the parameter is text (e.g. <code>n/NAME</code>), partial words will be matched (e.g. <code>n/Diabetes</code> will return <code>Diabetes, Type 1</code> and <code>Diabetes, Type 2</code>.</p>
+</li>
+<li>
+<p>If KEYWORD is specified, will attempt search all fields for a match for KEYWORD.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>medcon find asthma</code><br>
+Returns all medical conditions with the keyword <code>asthma</code> in it</p>
+</li>
+<li>
+<p><code>medcon find</code><br>
+Returns all medical conditions in the application database</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="viewing-a-medical-condition-code-medcon-view-code"><a class="link" href="#viewing-a-medical-condition-code-medcon-view-code">Viewing a Medical Condition: <code>medcon view</code></a></h3>
+<div class="paragraph">
+<p>You can see a medical condition&#8217;s full details using <code>medcon view</code>. The medical condition is selected by their <strong>index</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>medcon view INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>View the medical condition at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of medical conditions displayed by <code>medcon list</code> or <code>medcon find</code>.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>medcon list</code><br>
+<code>medcon view 1</code>
+View the item with index number 1. This index can be found from the full list of medical conditions.</p>
+</li>
+<li>
+<p><code>medcon view 2</code>
+View the item with the index number 2.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-a-medical-condition-code-medcon-add-code"><a class="link" href="#adding-a-medical-condition-code-medcon-add-code">Adding a Medical Condition: <code>medcon add</code></a></h3>
+<div class="paragraph">
+<p>You can add a medical condition to the list of all conditions by using <code>medcon add</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>medcon add n/NAME s/SYMPTOMS d/DIAGNOSIS t/TREATMENT</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>All fields must be specified.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>medcon add n/Diabetes, Type 1 s/Increased thirst, frequent urination, extreme hunger, unexplained weight loss
+d/A1C test, blood sugar test, oral glucose test t/Insulin injections, insulin pump, blood sugar monitoring,
+carbohydrate counting</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-a-medical-condition-code-medcon-edit-code"><a class="link" href="#editing-a-medical-condition-code-medcon-edit-code">Editing a Medical Condition: <code>medcon edit</code></a></h3>
+<div class="paragraph">
+<p>You can edit an existing medical condition in the app using <code>medcon edit</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>medcon edit INDEX [n/NAME] [s/SYMPTOMS] [d/DIAGNOSIS] [t/TREATMENT]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the medical condition at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of medical conditions displayed by <code>medcon list</code> or <code>medcon find</code>.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>medcon list</code><br>
+ <code>medcon edit 3 s/increased hunger, increased thirst, weight loss, frequent urination, blurry vision, extreme fatigue, sores that don’t heal</code><br>
+Edits the symptoms of the medical condition with index 3.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-medical-condition-code-medcon-delete-code"><a class="link" href="#deleting-a-medical-condition-code-medcon-delete-code">Deleting a Medical Condition: <code>medcon delete</code></a></h3>
+<div class="paragraph">
+<p>You can delete a medical condition by <strong>index</strong> using <code>medcon delete</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>medcon delete INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the medical condition at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of medical conditions displayed by <code>medcon list</code> or <code>medcon find</code>.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>medcon list</code><br>
+<code>medcon delete 2</code><br>
+Deletes the 2nd medical condition in the medical condition list.</p>
+</li>
+<li>
+<p><code>medcon delete 1</code><br>
+Deletes the medical condition which had been assigned the index 1.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-multiple-medical-conditions-code-medcon-delete-code-code-coming-in-v2-0-code"><a class="link" href="#deleting-multiple-medical-conditions-code-medcon-delete-code-code-coming-in-v2-0-code">Deleting multiple Medical Conditions: <code>medcon delete</code> <code>[coming in V2.0]</code></a></h3>
+<div class="paragraph">
+<p>You can delete a medical condition by <strong>indexes</strong> using <code>medcon delete</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>medcon delete INDEX_1 [INDEX_2] [INDEX_3]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the medical condition at the specified <code>INDEX</code> es. You can put in as many indexes to delete as many medical conditions as you wish.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of medical conditions displayed by <code>medcon list</code> or <code>medcon find</code>.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>medcon list</code><br>
+<code>medcon delete 2</code><br>
+Deletes the 2nd medical condition in the medical condition list.</p>
+</li>
+<li>
+<p><code>medcon delete 1 2</code><br>
+Deletes the and 2nd medical conditions with which had been assigned the 1.command.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 04:43:29 UTC</div></div></div></body></html>

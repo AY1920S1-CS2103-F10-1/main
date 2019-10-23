@@ -1,0 +1,325 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Appointments [Parameters not updated]</title><link rel="stylesheet" href="./gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css"></head><body class="article"><div id="seedu-header"><nav class="navbar navbar-lg navbar-light bg-lighter"><div class="container"><a class="navbar-brand" href="https://se-edu.github.io/"><img src="../images/SeEduLogo.png" alt="SE-EDU"></a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level1">AB-1</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level2">AB-2</a></li><li class="nav-item"><a class="nav-link active" href="../index.html">AB-3</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/addressbook-level4">AB-4</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/collate">Collate</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/se-book">Book</a></li><li class="nav-item"><a class="nav-link" href="https://se-edu.github.io/learningresources">Resources</a></li></ul></div></nav></div><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">AddressBook-Level3</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/se-edu/addressbook-level3"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"></div><div id="content"><div class="sect1">
+<h2 id="appointments-parameters-not-updated"><a class="link" href="#appointments-parameters-not-updated">Appointments [Parameters not updated]</a></h2>
+<div class="sectionbody">
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Appointments</strong></p>
+</div>
+<div class="paragraph">
+<p>As a community nurse, you will often make home visits to your patients. and keep track of these appointments you make with your patients. You can use the application to manage and keep track of these appointments. This section describes the features that will allow you to manage your appointments.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-all-appointments-code-appt-list-code"><a class="link" href="#listing-all-appointments-code-appt-list-code">Listing All Appointments: <code>appt list</code></a></h3>
+<div class="paragraph">
+<p>You can see a list of all appointments in the app by typing <code>appt list</code>.</p>
+</div>
+<div class="paragraph">
+<p>In the list displayed, each appointment will have an <strong>index</strong> number which can then be used for other features that require you to select an appointment by <strong>index</strong> e.g. <code>appt delete</code>. Take note that an appointment will be given the same <strong>index</strong> regardless of other display commands such as <code>appt find</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt list</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finding-appointment-s-code-appt-find-code"><a class="link" href="#finding-appointment-s-code-appt-find-code">Finding Appointment(s): <code>appt find</code></a></h3>
+<div class="paragraph">
+<p>You can find appointments that fit the parameters given using <code>appt find</code>.</p>
+</div>
+<div class="paragraph">
+<p>In the list displayed, each appointment will have an <strong>index</strong> number which can then be used for other features that require you to select an appointment by <strong>index</strong> e.g. <code>appt delete</code>. Take note that an appointment will be given the same <strong>index</strong> regardless of other display commands such as <code>appt list</code> or if different parameters are used.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
+</li>
+<li>
+<p>Only the name is searched.</p>
+</li>
+<li>
+<p>If the parameter is text (e.g. <code>n/NAME</code>), partial words will be matched (e.g. <code>n/John</code> will return <code>John Smith</code> and <code>John Kim</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>appt find n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code><br>
+Lists all appointments of that particular patient</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="viewing-an-appointment-code-appt-view-code"><a class="link" href="#viewing-an-appointment-code-appt-view-code">Viewing an Appointment: <code>appt view</code></a></h3>
+<div class="paragraph">
+<p>You can see an appointment&#8217;s full details using <code>appt view</code>. The appointment is selected by their <strong>index</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt view INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>View the appointment at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of appointments displayed by <code>appt list</code> or <code>appt find</code>.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>appt list</code><br>
+<code>appt view 1</code>
+View the item with index number 1. This index can be found from the full list of appointments.</p>
+</li>
+<li>
+<p><code>appt view 2</code>
+View the item with the index number 2.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-the-next-earliest-appointments-code-appt-next-code"><a class="link" href="#listing-the-next-earliest-appointments-code-appt-next-code">Listing the next earliest Appointments: <code>appt next</code></a></h3>
+<div class="paragraph">
+<p>You can list the next earliest appointments using <code>appt next</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt next NUMBER</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="paragraph">
+<p><code>appt next 3</code><br>
+Displays the next 3 earliest appointments sorted by time.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-an-appointment-code-appt-edit-code"><a class="link" href="#editing-an-appointment-code-appt-edit-code">Editing an Appointment: <code>appt edit</code></a></h3>
+<div class="paragraph">
+<p>You can edit an existing appointment in the app using <code>appt edit</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the person at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of appointments displayed by <code>appt list</code> or <code>appt find</code>.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
+</li>
+<li>
+<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>appt list</code><br>
+ <code>edit 1 p/91234567 e/johndoe@example.com</code><br>
+Edits the phone number and email address of the 1st person in the entire appointment&#8217;s list to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
+</li>
+<li>
+<p><code>edit 2 n/Betsy Crower t/</code><br>
+Edits the name of the 2nd person with the index 1.<code>Betsy Crower</code> and clears all existing tags.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-an-appointment-code-appt-delete-code"><a class="link" href="#deleting-an-appointment-code-appt-delete-code">Deleting an Appointment: <code>appt delete</code></a></h3>
+<div class="paragraph">
+<p>You can delete an appointment by <strong>index</strong> using <code>appt delete</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt delete INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the appointment at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of appointments displayed by <code>appt list</code> or <code>appt find</code>.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>appt list</code><br>
+<code>appt delete 2</code><br>
+Deletes the 2nd appointment in the appointment list.</p>
+</li>
+<li>
+<p><code>appt delete 1</code><br>
+Deletes the appointment which had been assigned the index 1.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="beginning-an-appointment-code-appt-begin-code"><a class="link" href="#beginning-an-appointment-code-appt-begin-code">Beginning an Appointment: <code>appt begin</code></a></h3>
+<div class="paragraph">
+<p>You can begin an appointment (i.e. begin a house visit) by <strong>index</strong> using <code>appt begin</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt begin INDEX</code></p>
+</div>
+<div class="paragraph">
+<p>OR</p>
+</div>
+<div class="paragraph">
+<p>If you want to begin the next appointment that you will have, you can begin the next appointment using <code>appt begin next</code>.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Begins the appointment at the specified <code>INDEX</code> if using <code>INDEX</code>. If using <code>appt begin next</code>, begins the next appointment (the appointment that will happen the soonest).</p>
+</li>
+<li>
+<p>Beginning an appointment converts it into a visit. This allows you to use the visit&#8217;s todo list as well as add details to the visit, before finally archiving the visit by marking it as finished using <code>visit finish</code>.</p>
+</li>
+<li>
+<p>The appointment you are beginning must start within the next 3 hours (you cannot begin an appointment too early in advance).</p>
+</li>
+<li>
+<p>When you begin an appointment, the visit time will be updated using your system clock to reflect the actual start of the visit.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of appointments displayed by <code>appt list</code> or <code>appt find</code>.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>appt next 2</code><br>
+<code>appt begin 2</code><br>
+Begins the 2nd earliest appointment (as shown by <code>appt next 2</code>).</p>
+</li>
+<li>
+<p><code>appt begin next</code><br>
+Begins the next earliest appointment.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-multiple-appointments-code-appt-delete-code-code-coming-in-v2-0-code"><a class="link" href="#deleting-multiple-appointments-code-appt-delete-code-code-coming-in-v2-0-code">Deleting multiple Appointments: <code>appt delete</code> <code>[coming in V2.0]</code></a></h3>
+<div class="paragraph">
+<p>You can delete an appointment by <strong>indexes</strong> using <code>appt delete</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt delete INDEX_1 [INDEX_2] [INDEX_3]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the appointment at the specified <code>INDEX</code> es. You can put in as many indexes to delete as many appointments as you wish.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of appointments displayed by <code>appt list</code> or <code>appt find</code>.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>appt list</code><br>
+<code>appt delete 2</code><br>
+Deletes the 2nd appointment in the appointment list.</p>
+</li>
+<li>
+<p><code>appt delete 1 2</code><br>
+Deletes the and 2nd appointments which had been assigned the index 1.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 04:43:29 UTC</div></div></div></body></html>
