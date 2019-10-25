@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Jackson Library</title><link rel="stylesheet" href="./gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">NurseTraverse</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S1-CS2103-F10-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"></div><div id="content"><div class="paragraph">
+<p>Import and export functionality are split into three commands:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>export</code></p>
+</li>
+<li>
+<p><code>import-replace</code></p>
+</li>
+<li>
+<p><code>import-merge</code></p>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="jackson-library"><a class="link" href="#jackson-library">Jackson Library</a></h4>
+<div class="paragraph">
+<p>The current import and export features are built upon the the existing <code>Jackson</code> libraries,
+in particular the <code>dataformat</code>, <code>databind</code> and <code>datatype</code> modules. Technical knowledge of the
+<code>Jackson</code> library will be helpful for maintenance of feature, but is not necessary.</p>
+</div>
+<div class="paragraph">
+<p>However, understanding <code>Jackson</code> 's <code>annotations</code> will be needed in order to extend export and import
+functionality to cover new data fields or classes implemented in the future. They are explained
+<a href="https://github.com/FasterXML/jackson-annotations/wiki">here</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="csv-processing"><a class="link" href="#csv-processing">Csv Processing</a></h4>
+<div class="paragraph">
+<p>All of the data processing needed for this feature can be found in the <code>CsvUtil</code> file;
+it is responsible for converting the data of <code>Person</code> objects into a .csv friendly <code>String</code> format
+and vice versa. The actual reading and writing of .csv files is then done with existing
+<code>FileUtil</code> functionality.</p>
+</div>
+<div class="paragraph">
+<p>The conversion of <code>Person</code> objects to and from .csv formatted <code>Strings</code> are handled by
+the <code>CsvMapper</code> and <code>CsvSchema</code> classes implemented in <code>dataformat</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>CsvMapper</code> is responsible for managing custom configurations for the conversions.
+For instance, it can toggle headers with <code>withHeader()</code> and skip unknown fields with the
+<code>IGNORE_UNKNOWN</code> feature, both of which are used in the feature implementation.</p>
+</li>
+<li>
+<p>The <code>CsvSchema</code> object is created by a configured <code>CsvMapper</code> object and an <code>Object.class</code>,
+in this case, <code>Person.class</code>. It dictates the scheme for how data in each column of the .csv
+corresponds with the fields in the Object class. This schema can then be used to instantiate
+a reader or a writer object.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following functions are implemented:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Write a list of <code>Person</code> objects into a .csv file with specified <code>exportFileName</code>.
+If successful, return the path of the written file.</p>
+</li>
+<li>
+<p>Read a .csv file with specified <code>importFileName</code> and return a corresponding list of
+<code>Person</code> objects.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="command-implementation"><a class="link" href="#command-implementation">Command Implementation</a></h4>
+<div class="sect4">
+<h5 id="export"><a class="link" href="#export">Export</a></h5>
+<div class="paragraph">
+<p>The <code>export</code> command works by retrieving a list of <code>Person</code> objects from the <code>Model</code> and passing
+it to <code>CsvUtil</code> to process and write into a .csv file. If provided with indexes, the <code>export</code>
+feature can selectively export the <code>Person</code> objects that correspond to the specified indexes.
+To facilitate the selective export functionality, the following methods were implemented in
+<code>Model</code> and <code>AddressBook</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#GetPersonsByIndexes(Set&lt;Indexes&gt;)</code>&#8201;&#8212;&#8201;Retrieves and returns a list of <code>Person</code> objects
+corresponding to the provided indexes from the <code>AddressBook</code> , if the indexes are valid.</p>
+</li>
+<li>
+<p><code>AddressBook#GetPersonByIndex(Index)</code>&#8201;&#8212;&#8201;Returns the <code>Person</code> object corresponding
+to the specified index, if the index is valid.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If indexes are not specified in the command arguments, a list of all currently existing <code>Person</code>
+objects will be retrieved with <code>Model#getStagedPersonList()</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>export</code> command MUST be provided with a desired file name for the .csv file. The .csv
+file will be written to <code>/exports/filename.csv</code>. Existing files will NOT be overridden and
+thus the provided file name cannot already exist in <code>/exports</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following diagram shows how an export command works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="ExportSequenceDiagram.png" alt="ExportSequenceDiagram">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="exportcommand-design-considerations"><a class="link" href="#exportcommand-design-considerations">ExportCommand Design Considerations</a></h5>
+<div class="sect5">
+<h6 id="aspect-file-overriding"><a class="link" href="#aspect-file-overriding">Aspect: File Overriding</a></h6>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Disallow overriding, file name provided must be new</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Existing .csv files will not be accidentally overridden. Prevents potential loss of data.</p>
+</li>
+<li>
+<p>Cons: Additional hassle for the user to delete files that they want to replace.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Allow overriding</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Conveniently replace existing, unused files.</p>
+</li>
+<li>
+<p>Cons: May accidentally override and lose important data.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-illegal-characters-in-data-fields"><a class="link" href="#aspect-illegal-characters-in-data-fields">Aspect: Illegal Characters in Data Fields</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Disallow forbidden characters</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Exported .csv files are guaranteed to be in the correct format.</p>
+</li>
+<li>
+<p>Cons: Data fields cannot have commas, semi-colons, etc.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Allow forbidden characters</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Certain fields may be more accurately represented, i.e. addresses.</p>
+</li>
+<li>
+<p>Cons: The exported csv file may be bugged, i.e. have data in the wrong columns.
+More developer work to code around detecting and escaping forbidden characters.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="import"><a class="link" href="#import">Import</a></h5>
+<div class="paragraph">
+<p>The import commands work by reading a .csv file and converting it into a list of <code>Person</code>
+objects by using <code>CsvUtil</code>. The list is then passed to <code>Model</code>. What happens next depends
+on which variant of import is called.</p>
+</div>
+<div class="sect5">
+<h6 id="code-import-replace-code"><a class="link" href="#code-import-replace-code"><code>import-replace</code></a></h6>
+<div class="paragraph">
+<p>The <code>Model</code> will replace all existing <code>Person</code> data in the <code>AddressBook</code> with the data
+of the new list of <code>Person</code> objects. To do this, the following was implemented:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#replaceStagedAddressBook(List&lt;Person&gt;)</code>&#8201;&#8212;&#8201;Creates a new <code>AddressBook</code> object
+containing the <code>Person</code> objects in the provided list. The old <code>AddressBook</code> stored in the
+<code>Model</code> is then replaced with the new <code>AddressBook</code> by calling
+<code>Model#setStagedAddressBook(AddressBook)</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect5">
+<h6 id="code-import-merge-code"><a class="link" href="#code-import-merge-code"><code>import-merge</code></a></h6>
+<div class="paragraph">
+<p>WIP</p>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="import-design-considerations"><a class="link" href="#import-design-considerations">Import Design Considerations</a></h5>
+<div class="paragraph">
+<p>WIP</p>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-25 01:49:16 UTC</div></div></div></body></html>

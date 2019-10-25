@@ -25,8 +25,9 @@
 <li><a href="#proposed-undo-redo-feature">3.1. [Proposed] Undo/Redo feature</a></li>
 <li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
 <li><a href="#visits-management">3.3. Visits Management</a></li>
-<li><a href="#logging">3.4. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.5. Configuration</a></li>
+<li><a href="#import-and-export">3.4. Import and Export</a></li>
+<li><a href="#logging">3.5. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -723,14 +724,238 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.4. Logging</a></h3>
+<h3 id="import-and-export"><a class="link" href="#import-and-export">3.4. Import and Export</a></h3>
+<div class="paragraph">
+<p>Import and export functionality are split into three commands:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>export</code></p>
+</li>
+<li>
+<p><code>import-replace</code></p>
+</li>
+<li>
+<p><code>import-merge</code></p>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="jackson-library"><a class="link" href="#jackson-library">3.4.1. Jackson Library</a></h4>
+<div class="paragraph">
+<p>The current import and export features are built upon the the existing <code>Jackson</code> libraries,
+in particular the <code>dataformat</code>, <code>databind</code> and <code>datatype</code> modules. Technical knowledge of the
+<code>Jackson</code> library will be helpful for maintenance of feature, but is not necessary.</p>
+</div>
+<div class="paragraph">
+<p>However, understanding <code>Jackson</code> 's <code>annotations</code> will be needed in order to extend export and import
+functionality to cover new data fields or classes implemented in the future. They are explained
+<a href="https://github.com/FasterXML/jackson-annotations/wiki">here</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="csv-processing"><a class="link" href="#csv-processing">3.4.2. Csv Processing</a></h4>
+<div class="paragraph">
+<p>All of the data processing needed for this feature can be found in the <code>CsvUtil</code> file;
+it is responsible for converting the data of <code>Person</code> objects into a .csv friendly <code>String</code> format
+and vice versa. The actual reading and writing of .csv files is then done with existing
+<code>FileUtil</code> functionality.</p>
+</div>
+<div class="paragraph">
+<p>The conversion of <code>Person</code> objects to and from .csv formatted <code>Strings</code> are handled by
+the <code>CsvMapper</code> and <code>CsvSchema</code> classes implemented in <code>dataformat</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>CsvMapper</code> is responsible for managing custom configurations for the conversions.
+For instance, it can toggle headers with <code>withHeader()</code> and skip unknown fields with the
+<code>IGNORE_UNKNOWN</code> feature, both of which are used in the feature implementation.</p>
+</li>
+<li>
+<p>The <code>CsvSchema</code> object is created by a configured <code>CsvMapper</code> object and an <code>Object.class</code>,
+in this case, <code>Person.class</code>. It dictates the scheme for how data in each column of the .csv
+corresponds with the fields in the Object class. This schema can then be used to instantiate
+a reader or a writer object.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following functions are implemented:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Write a list of <code>Person</code> objects into a .csv file with specified <code>exportFileName</code>.
+If successful, return the path of the written file.</p>
+</li>
+<li>
+<p>Read a .csv file with specified <code>importFileName</code> and return a corresponding list of
+<code>Person</code> objects.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="command-implementation"><a class="link" href="#command-implementation">3.4.3. Command Implementation</a></h4>
+<div class="sect4">
+<h5 id="export"><a class="link" href="#export">Export</a></h5>
+<div class="paragraph">
+<p>The <code>export</code> command works by retrieving a list of <code>Person</code> objects from the <code>Model</code> and passing
+it to <code>CsvUtil</code> to process and write into a .csv file. If provided with indexes, the <code>export</code>
+feature can selectively export the <code>Person</code> objects that correspond to the specified indexes.
+To facilitate the selective export functionality, the following methods were implemented in
+<code>Model</code> and <code>AddressBook</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#GetPersonsByIndexes(Set&lt;Indexes&gt;)</code>&#8201;&#8212;&#8201;Retrieves and returns a list of <code>Person</code> objects
+corresponding to the provided indexes from the <code>AddressBook</code> , if the indexes are valid.</p>
+</li>
+<li>
+<p><code>AddressBook#GetPersonByIndex(Index)</code>&#8201;&#8212;&#8201;Returns the <code>Person</code> object corresponding
+to the specified index, if the index is valid.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If indexes are not specified in the command arguments, a list of all currently existing <code>Person</code>
+objects will be retrieved with <code>Model#getStagedPersonList()</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>export</code> command MUST be provided with a desired file name for the .csv file. The .csv
+file will be written to <code>/exports/filename.csv</code>. Existing files will NOT be overridden and
+thus the provided file name cannot already exist in <code>/exports</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following diagram shows how an export command works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ExportSequenceDiagram.png" alt="ExportSequenceDiagram">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="exportcommand-design-considerations"><a class="link" href="#exportcommand-design-considerations">ExportCommand Design Considerations</a></h5>
+<div class="sect5">
+<h6 id="aspect-file-overriding"><a class="link" href="#aspect-file-overriding">Aspect: File Overriding</a></h6>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Disallow overriding, file name provided must be new</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Existing .csv files will not be accidentally overridden. Prevents potential loss of data.</p>
+</li>
+<li>
+<p>Cons: Additional hassle for the user to delete files that they want to replace.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Allow overriding</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Conveniently replace existing, unused files.</p>
+</li>
+<li>
+<p>Cons: May accidentally override and lose important data.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-illegal-characters-in-data-fields"><a class="link" href="#aspect-illegal-characters-in-data-fields">Aspect: Illegal Characters in Data Fields</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Disallow forbidden characters</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Exported .csv files are guaranteed to be in the correct format.</p>
+</li>
+<li>
+<p>Cons: Data fields cannot have commas, semi-colons, etc.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Allow forbidden characters</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Certain fields may be more accurately represented, i.e. addresses.</p>
+</li>
+<li>
+<p>Cons: The exported csv file may be bugged, i.e. have data in the wrong columns.
+More developer work to code around detecting and escaping forbidden characters.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="import"><a class="link" href="#import">Import</a></h5>
+<div class="paragraph">
+<p>The import commands work by reading a .csv file and converting it into a list of <code>Person</code>
+objects by using <code>CsvUtil</code>. The list is then passed to <code>Model</code>. What happens next depends
+on which variant of import is called.</p>
+</div>
+<div class="sect5">
+<h6 id="code-import-replace-code"><a class="link" href="#code-import-replace-code"><code>import-replace</code></a></h6>
+<div class="paragraph">
+<p>The <code>Model</code> will replace all existing <code>Person</code> data in the <code>AddressBook</code> with the data
+of the new list of <code>Person</code> objects. To do this, the following was implemented:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#replaceStagedAddressBook(List&lt;Person&gt;)</code>&#8201;&#8212;&#8201;Creates a new <code>AddressBook</code> object
+containing the <code>Person</code> objects in the provided list. The old <code>AddressBook</code> stored in the
+<code>Model</code> is then replaced with the new <code>AddressBook</code> by calling
+<code>Model#setStagedAddressBook(AddressBook)</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect5">
+<h6 id="code-import-merge-code"><a class="link" href="#code-import-merge-code"><code>import-merge</code></a></h6>
+<div class="paragraph">
+<p>WIP</p>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="import-design-considerations"><a class="link" href="#import-design-considerations">Import Design Considerations</a></h5>
+<div class="paragraph">
+<p>WIP</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.5, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -761,7 +986,7 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.5. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1475,4 +1700,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-24 09:02:41 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-25 01:49:16 UTC</div></div></div></body></html>
