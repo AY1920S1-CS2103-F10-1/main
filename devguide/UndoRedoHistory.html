@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Implementation Overview</title><link rel="stylesheet" href="./gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">NurseTraverse</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S1-CS2103-F10-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"></div><div id="content"><div class="paragraph">
+<p>This set of functionality consists of three commands, each of which rely on
+the same core components:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>history</code> - Displays a numbered list of previous data-modifying commands
+that can be reverted by <code>undo</code>.</p>
+</li>
+<li>
+<p><code>undo</code> - Reverts until a specified data-modifying command in the <code>history</code>,
+or the previous data-modifying command if no argument is specified.</p>
+</li>
+<li>
+<p><code>redo</code> - Reverts the previous command if and only if it was an <code>undo</code>.</p>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="implementation-overview"><a class="link" href="#implementation-overview">Implementation Overview</a></h4>
+<div class="paragraph">
+<p>For undo/redo/history to function, there must be the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A way to mark which `Command`s are data-modifying commands.</p>
+</li>
+<li>
+<p>A mechanism to clearly demarcate the model state before and after the execution
+of each data-modifying command.</p>
+</li>
+<li>
+<p>A way to record the state of the model before (or after) each command, together
+with the <code>Command</code> object responsible.</p>
+</li>
+<li>
+<p>Methods to switch the state of the model back and forth from the states stored
+in the history.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To achieve this, the following classes are introduced:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>MutatorCommand</code> - An empty marker interface to indicate that a <code>Command</code> is a
+data-modifying command and should be considered for undo/redo/history.</p>
+</li>
+<li>
+<p><code>HistoryRecord</code> - Record of the command and data of one atomic commit in the command history. It consists of the
+<code>MutatorCommand</code> responsible for the commit and the state of the model before (or after) the commit. All recorded
+states are deep copies decoupled from their original references.</p>
+</li>
+<li>
+<p><code>HistoryManager</code> - Represents the history of the application. Maintains data structures containing <code>HistoryRecord</code> s
+of each data state change.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Additionally, <code>LogicManager</code> and <code>Model</code> are modified to accommodate this functionality.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="model"><a class="link" href="#model">Model</a></h4>
+<div class="paragraph">
+<p>The following methods are added to the <code>Model</code> interface:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#commit(MutatorCommand)</code> - Commits the changes made to the address book since the last call to this method,
+making them permanent and updating the UI data. The committing <code>MutatorCommand</code> is stored for history record purposes.</p>
+</li>
+<li>
+<p><code>Model#getHistory()</code> - Returns an unmodifiable view of the history.</p>
+</li>
+<li>
+<p><code>Model#undoTo(HistoryRecord)</code> - Reverts current model state to the that contained in the specified <code>HistoryRecord</code>
+(i.e. the state before the command was executed).</p>
+</li>
+<li>
+<p><code>Model#redo()</code> - Redoes the previous <code>MutatorCommand</code> if it was an undo.</p>
+</li>
+</ul>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-25 03:16:36 UTC</div></div></div></body></html>
