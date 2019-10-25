@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Model</title><link rel="stylesheet" href="./gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">NurseTraverse</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S1-CS2103-F10-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"></div><div id="content"><div class="paragraph">
+<p>The appointment class extends NurseTraverse with the following functionalities:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Lists all appointments nurses have scheduled, including reference to patient details, appointment time, date, and duration, medication to be carried for each appointment, and additional details associated with the appointment.</p>
+</li>
+<li>
+<p>Displays appointments in the side screen with a calendar and also a list of the next earliest appointments for the day/week.</p>
+</li>
+<li>
+<p>Supports finding specific appointments by patient name or other parameters</p>
+</li>
+<li>
+<p>Supports recurring tasks (e.g. weekly appointments)</p>
+</li>
+<li>
+<p>Allows adding, deleting, and editing of appointments</p>
+</li>
+<li>
+<p>Sends notifications/reminders to nurses on upcoming appointments</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="model"><a class="link" href="#model">Model</a></h4>
+<div class="paragraph">
+<p>All appointments are stored and managed in the <code>AppointmentBook</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>Model</code> implements the following operations to accommodate for the <code>AppointmentBook</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#setStagedAppointmentBook(ReadOnlyAppointmentBook appointmentBook)</code>&#8201;&#8212;&#8201;Replace appointment book in the Model with data from the <code>ReadOnlyAppointmentBook appointmentBook</code> passed in as argument.</p>
+</li>
+<li>
+<p><code>Model#replaceStagedAppointmentBook(List&lt;Appointment&gt; appointments)</code>&#8201;&#8212;&#8201;Replace all appointments in appointment book with new appointments from the list.</p>
+</li>
+<li>
+<p><code>Model#getStagedAppointmentBook()</code>&#8201;&#8212;&#8201;Return the current AppointmentBook.</p>
+</li>
+<li>
+<p><code>Model#hasAppointment(Appointment appointment)</code>&#8201;&#8212;&#8201;Return true if an appointment with the same identity as the appointment passed in as argument exists in the appointment list.</p>
+</li>
+<li>
+<p><code>Model#deleteAppointment(Appointment target)</code>&#8201;&#8212;&#8201;Delete the given appointment. The appointment must exist in the appointment list.</p>
+</li>
+<li>
+<p><code>Model#addAppointment(Appointment appointment)</code>&#8201;&#8212;&#8201;Add the given appointment. The appointment passed in as argument must not already exist in the appointment list.</p>
+</li>
+<li>
+<p><code>Model#setAppointment(Appointment target, Appointment editedAppointment)</code>&#8201;&#8212;&#8201;Replace the given appointment <code>target</code> with <code>editedAppointment</code>. <code>target</code> must exist in the appointment list. The appointment identity of <code>editedAppointment</code> must not be the same as another existing appointment in the appointment list.</p>
+</li>
+<li>
+<p><code>Model#ObservableList&lt;Appointment&gt; getStagedAppointmentList()</code>&#8201;&#8212;&#8201;Return an unmodifiable view of the entire appointment list.</p>
+</li>
+<li>
+<p><code>Model#FilteredList&lt;Appointment&gt; getFilteredAppointmentList()</code>&#8201;&#8212;&#8201;Return an unmodifiable view of the filtered appointment list.</p>
+</li>
+<li>
+<p><code>Model#void updateFilteredAppointmentList(Predicate&lt;Appointment&gt; predicate)</code>&#8201;&#8212;&#8201;Update the filter of the filtered appointment list to filter by the given <code>predicate</code>. Throws <code>NullPointerException</code> if <code>predicate</code> is <code>null</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="model-design-considerations"><a class="link" href="#model-design-considerations">Model Design Considerations</a></h4>
+
+</div>
+<div class="sect3">
+<h4 id="logic"><a class="link" href="#logic">Logic</a></h4>
+
+</div>
+<div class="sect3">
+<h4 id="logic-design-considerations"><a class="link" href="#logic-design-considerations">Logic Design Considerations</a></h4>
+
+</div>
+<div class="sect3">
+<h4 id="ui"><a class="link" href="#ui">UI</a></h4>
+<div class="paragraph">
+<p>A list of <code>Appointment</code> s are displayed on a side pane with <code>appt-list</code> and <code>appt-find</code>.</p>
+</div>
+<div class="paragraph">
+<p>A side pane is split into two parts, the top consisting of a calendar of the current month with the appointments marked for that month, and the bottom pane has the upcoming list of appointments for the week.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ui-design-considerations"><a class="link" href="#ui-design-considerations">UI Design Considerations</a></h4>
+
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-25 03:11:40 UTC</div></div></div></body></html>
