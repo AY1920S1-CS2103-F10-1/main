@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import cs.f10.t1.nursetraverse.commons.core.index.Index;
 import cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil;
 import cs.f10.t1.nursetraverse.logic.commands.EditCommand;
-import cs.f10.t1.nursetraverse.logic.parser.exceptions.ParseException;
 import cs.f10.t1.nursetraverse.model.medicalcondition.MedicalCondition;
 import cs.f10.t1.nursetraverse.model.patient.Address;
 import cs.f10.t1.nursetraverse.model.patient.Email;
