@@ -10,8 +10,8 @@ import cs.f10.t1.nursetraverse.commons.util.AppUtil;
  */
 public class MedicalCondition {
 
-    public static final String MESSAGE_CONSTRAINTS = "Condition names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Condition names should be alphanumeric with spaces.";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     public final String conditionName;
 
