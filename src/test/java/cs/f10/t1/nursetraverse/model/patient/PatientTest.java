@@ -2,15 +2,16 @@ package cs.f10.t1.nursetraverse.model.patient;
 
 import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.VALID_MED_CON_HUSBAND;
 import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static cs.f10.t1.nursetraverse.model.datetime.EndDateTimeTest.VALID_END_DATE_TIME;
 import static cs.f10.t1.nursetraverse.testutil.Assert.assertThrows;
 import static cs.f10.t1.nursetraverse.testutil.TypicalIndexes.INDEX_FIRST_PATIENT;
 import static cs.f10.t1.nursetraverse.testutil.TypicalPatients.ALICE;
 import static cs.f10.t1.nursetraverse.testutil.TypicalPatients.BOB;
 import static cs.f10.t1.nursetraverse.testutil.TypicalPatients.getTypicalPatientBook;
+
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -34,7 +35,7 @@ public class PatientTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Patient patient = new PatientBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> patient.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> patient.getMedicalConditions().remove(0));
     }
 
     @Test
@@ -55,16 +56,17 @@ public class PatientTest {
 
         // same name, same phone, different attributes -> returns true
         editedAlice = new PatientBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withMedicalConditions(VALID_MED_CON_HUSBAND).build();
         assertTrue(ALICE.isSamePatient(editedAlice));
 
         // same name, same email, different attributes -> returns true
         editedAlice = new PatientBuilder(ALICE).withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withMedicalConditions(VALID_MED_CON_HUSBAND).build();
         assertTrue(ALICE.isSamePatient(editedAlice));
 
         // same name, same phone, same email, different attributes -> returns true
-        editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withMedicalConditions(VALID_MED_CON_HUSBAND).build();
         assertTrue(ALICE.isSamePatient(editedAlice));
     }
 
@@ -103,7 +105,7 @@ public class PatientTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new PatientBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new PatientBuilder(ALICE).withMedicalConditions(VALID_MED_CON_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 

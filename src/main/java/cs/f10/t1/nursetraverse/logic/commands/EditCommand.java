@@ -3,10 +3,10 @@ package cs.f10.t1.nursetraverse.logic.commands;
 import static cs.f10.t1.nursetraverse.commons.core.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
 import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_MED_CON;
 import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_NAME;
 import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_PATIENT_VISIT_TODO;
 import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_PHONE;
-import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -21,12 +21,12 @@ import cs.f10.t1.nursetraverse.commons.core.index.Index;
 import cs.f10.t1.nursetraverse.commons.util.CollectionUtil;
 import cs.f10.t1.nursetraverse.logic.commands.exceptions.CommandException;
 import cs.f10.t1.nursetraverse.model.Model;
+import cs.f10.t1.nursetraverse.model.medicalcondition.MedicalCondition;
 import cs.f10.t1.nursetraverse.model.patient.Address;
 import cs.f10.t1.nursetraverse.model.patient.Email;
 import cs.f10.t1.nursetraverse.model.patient.Name;
 import cs.f10.t1.nursetraverse.model.patient.Patient;
 import cs.f10.t1.nursetraverse.model.patient.Phone;
-import cs.f10.t1.nursetraverse.model.tag.Tag;
 import cs.f10.t1.nursetraverse.model.visit.Visit;
 import cs.f10.t1.nursetraverse.model.visittodo.VisitTodo;
 
@@ -46,7 +46,7 @@ public class EditCommand extends Command implements MutatorCommand {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_MED_CON + "MED_CON]...\n"
             + "[" + PREFIX_PATIENT_VISIT_TODO + "VISIT_TODO]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -103,13 +103,14 @@ public class EditCommand extends Command implements MutatorCommand {
         Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
         Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
         Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
-        Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
+        Set<MedicalCondition> updatedMedicalConditions =
+                editPatientDescriptor.getMedicalConditions().orElse(patientToEdit.getMedicalConditions());
         Collection<VisitTodo> updatedVisitTodos = editPatientDescriptor.getVisitTodos()
                 .orElse(patientToEdit.getVisitTodos());
         //Editing visits with this command is not supported
         List<Visit> updatedVisits = patientToEdit.getVisits();
 
-        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedMedicalConditions,
                 updatedVisitTodos, updatedVisits);
     }
 
@@ -140,21 +141,21 @@ public class EditCommand extends Command implements MutatorCommand {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Tag> tags;
+        private Set<MedicalCondition> medicalConditions;
         private Collection<VisitTodo> visitTodos;
 
         public EditPatientDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code medicalConditions} is used internally.
          */
         public EditPatientDescriptor(EditPatientDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
+            setMedicalConditions(toCopy.medicalConditions);
             setVisitTodos(toCopy.visitTodos);
         }
 
@@ -162,7 +163,7 @@ public class EditCommand extends Command implements MutatorCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, visitTodos);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, medicalConditions, visitTodos);
         }
 
         public void setName(Name name) {
@@ -198,20 +199,21 @@ public class EditCommand extends Command implements MutatorCommand {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code medicalConditions} to this object's {@code medicalConditions}.
+         * A defensive copy of {@code medicalConditions} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setMedicalConditions(Set<MedicalCondition> medicalConditions) {
+            this.medicalConditions = (medicalConditions != null) ? new HashSet<>(medicalConditions) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable medical conditions set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code medicalConditions} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<MedicalCondition>> getMedicalConditions() {
+            return (medicalConditions != null)
+                    ? Optional.of(Collections.unmodifiableSet(medicalConditions)) : Optional.empty();
         }
 
         /**
@@ -264,7 +266,7 @@ public class EditCommand extends Command implements MutatorCommand {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getMedicalConditions().equals(e.getMedicalConditions());
         }
     }
 }

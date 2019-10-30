@@ -39,7 +39,7 @@ public class OngoingVisitCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private FlowPane medicalConditions;
     @FXML
     private Label startDateTime;
     @FXML
@@ -61,9 +61,10 @@ public class OngoingVisitCard extends UiPart<Region> {
         address.setText(patient.getAddress().value);
         email.setText(patient.getEmail().value);
 
-        patient.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        patient.getMedicalConditions().stream()
+                .sorted(Comparator.comparing(medicalCondition -> medicalCondition.conditionName))
+                .forEach(medicalCondition -> medicalConditions.getChildren()
+                        .add(new Label(medicalCondition.conditionName)));
 
         startDateTime.setText(visit.getStartDateTime().toString());
         if (visit.getEndDateTime().isPresent()) {

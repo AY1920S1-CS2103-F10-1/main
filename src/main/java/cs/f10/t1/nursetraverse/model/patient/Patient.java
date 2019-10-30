@@ -14,7 +14,7 @@ import java.util.Set;
 
 import cs.f10.t1.nursetraverse.commons.util.CollectionUtil;
 import cs.f10.t1.nursetraverse.model.Model;
-import cs.f10.t1.nursetraverse.model.tag.Tag;
+import cs.f10.t1.nursetraverse.model.medicalcondition.MedicalCondition;
 import cs.f10.t1.nursetraverse.model.visit.Visit;
 import cs.f10.t1.nursetraverse.model.visit.exceptions.VisitNotFoundException;
 import cs.f10.t1.nursetraverse.model.visittodo.VisitTodo;
@@ -34,21 +34,21 @@ public class Patient {
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<MedicalCondition> conditions = new HashSet<>();
     private final Collection<VisitTodo> visitTodos = new LinkedHashSet<>();
     private final List<Visit> visits = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+    public Patient(Name name, Phone phone, Email email, Address address, Set<MedicalCondition> conditions,
                   Collection<VisitTodo> visitTodos, List<Visit> visits) {
-        CollectionUtil.requireAllNonNull(name, phone, email, address, tags, visitTodos);
+        CollectionUtil.requireAllNonNull(name, phone, email, address, conditions, visitTodos);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.conditions.addAll(conditions);
         this.visitTodos.addAll(visitTodos);
         this.visits.addAll(visits);
     }
@@ -70,11 +70,11 @@ public class Patient {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable medical condition set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<MedicalCondition> getMedicalConditions() {
+        return Collections.unmodifiableSet(conditions);
     }
 
     /**
@@ -127,7 +127,7 @@ public class Patient {
                 && otherPatient.getPhone().equals(getPhone())
                 && otherPatient.getEmail().equals(getEmail())
                 && otherPatient.getAddress().equals(getAddress())
-                && otherPatient.getTags().equals(getTags())
+                && otherPatient.getMedicalConditions().equals(getMedicalConditions())
                 && CollectionUtil.checkEqual(getVisitTodos(), otherPatient.getVisitTodos())
                 && CollectionUtil.checkEqual(getVisits(), otherPatient.getVisits());
     }
@@ -135,7 +135,7 @@ public class Patient {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, visitTodos, visits);
+        return Objects.hash(name, phone, email, address, conditions, visitTodos, visits);
     }
 
     @Override
@@ -148,8 +148,8 @@ public class Patient {
                 .append(getEmail())
                 .append(" Address: ")
                 .append(getAddress())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(" Medical Conditions: ");
+        getMedicalConditions().forEach(builder::append);
         builder.append(" Visit Todos: ");
         getVisitTodos().forEach(builder::append);
         builder.append(" Visits: ");

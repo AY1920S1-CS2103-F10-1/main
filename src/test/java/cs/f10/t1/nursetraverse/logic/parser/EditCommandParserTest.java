@@ -7,17 +7,17 @@ import org.junit.jupiter.api.Test;
 import cs.f10.t1.nursetraverse.commons.core.index.Index;
 import cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil;
 import cs.f10.t1.nursetraverse.logic.commands.EditCommand;
+import cs.f10.t1.nursetraverse.model.medicalcondition.MedicalCondition;
 import cs.f10.t1.nursetraverse.model.patient.Address;
 import cs.f10.t1.nursetraverse.model.patient.Email;
 import cs.f10.t1.nursetraverse.model.patient.Name;
 import cs.f10.t1.nursetraverse.model.patient.Phone;
-import cs.f10.t1.nursetraverse.model.tag.Tag;
 import cs.f10.t1.nursetraverse.testutil.EditPatientDescriptorBuilder;
 import cs.f10.t1.nursetraverse.testutil.TypicalIndexes;
 
 public class EditCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + CliSyntax.PREFIX_TAG;
+    private static final String MED_CON_EMPTY = " " + CliSyntax.PREFIX_MED_CON;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -65,7 +65,8 @@ public class EditCommandParserTest {
         CommandParserTestUtil.assertParseFailure(parser, "1"
                 + CommandTestUtil.INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         CommandParserTestUtil.assertParseFailure(parser, "1"
-                + CommandTestUtil.INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+                + CommandTestUtil.INVALID_MED_CON_DESC,
+                MedicalCondition.MESSAGE_CONSTRAINTS); // invalid medicalCondition
 
         // invalid phone followed by valid email
         CommandParserTestUtil.assertParseFailure(parser, "1"
@@ -78,17 +79,18 @@ public class EditCommandParserTest {
                 + CommandTestUtil.PHONE_DESC_BOB
                 + CommandTestUtil.INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Patient} being edited,
-        // parsing it together with a valid tag results in error
+        // while parsing {@code PREFIX_MED_CON} alone will reset the
+        // medicalConditions of the {@code Patient} being edited,
+        // parsing it together with a valid medicalCondition results in error
         CommandParserTestUtil.assertParseFailure(parser, "1"
-                + CommandTestUtil.TAG_DESC_FRIEND
-                + CommandTestUtil.TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.MED_CON_DESC_FRIEND
+                + CommandTestUtil.MED_CON_DESC_HUSBAND + MED_CON_EMPTY, MedicalCondition.MESSAGE_CONSTRAINTS);
         CommandParserTestUtil.assertParseFailure(parser, "1"
-                + CommandTestUtil.TAG_DESC_FRIEND + TAG_EMPTY
-                + CommandTestUtil.TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        CommandParserTestUtil.assertParseFailure(parser, "1" + TAG_EMPTY
-                + CommandTestUtil.TAG_DESC_FRIEND
-                + CommandTestUtil.TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.MED_CON_DESC_FRIEND + MED_CON_EMPTY
+                + CommandTestUtil.MED_CON_DESC_HUSBAND, MedicalCondition.MESSAGE_CONSTRAINTS);
+        CommandParserTestUtil.assertParseFailure(parser, "1" + MED_CON_EMPTY
+                + CommandTestUtil.MED_CON_DESC_FRIEND
+                + CommandTestUtil.MED_CON_DESC_HUSBAND, MedicalCondition.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         CommandParserTestUtil.assertParseFailure(parser, "1"
@@ -104,18 +106,19 @@ public class EditCommandParserTest {
         Index targetIndex = TypicalIndexes.INDEX_SECOND_PATIENT;
         String userInput = targetIndex.getOneBased()
                 + CommandTestUtil.PHONE_DESC_BOB
-                + CommandTestUtil.TAG_DESC_HUSBAND
+                + CommandTestUtil.MED_CON_DESC_HUSBAND
 
                 + CommandTestUtil.EMAIL_DESC_AMY
                 + CommandTestUtil.ADDRESS_DESC_AMY
                 + CommandTestUtil.NAME_DESC_AMY
-                + CommandTestUtil.TAG_DESC_FRIEND;
+                + CommandTestUtil.MED_CON_DESC_FRIEND;
 
         EditCommand.EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder()
                 .withName(CommandTestUtil.VALID_NAME_AMY)
                 .withPhone(CommandTestUtil.VALID_PHONE_BOB)
                 .withEmail(CommandTestUtil.VALID_EMAIL_AMY).withAddress(CommandTestUtil.VALID_ADDRESS_AMY)
-                .withTags(CommandTestUtil.VALID_TAG_HUSBAND, CommandTestUtil.VALID_TAG_FRIEND).build();
+                .withMedicalConditions(CommandTestUtil.VALID_MED_CON_HUSBAND,
+                        CommandTestUtil.VALID_MED_CON_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
@@ -170,10 +173,11 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
 
-        // tags
+        // medicalConditions
         userInput = targetIndex.getOneBased()
-                + CommandTestUtil.TAG_DESC_FRIEND;
-        descriptor = new EditPatientDescriptorBuilder().withTags(CommandTestUtil.VALID_TAG_FRIEND).build();
+                + CommandTestUtil.MED_CON_DESC_FRIEND;
+        descriptor = new EditPatientDescriptorBuilder()
+                .withMedicalConditions(CommandTestUtil.VALID_MED_CON_FRIEND).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -186,22 +190,22 @@ public class EditCommandParserTest {
                 + CommandTestUtil.ADDRESS_DESC_AMY
                 + CommandTestUtil.EMAIL_DESC_AMY
 
-                + CommandTestUtil.TAG_DESC_FRIEND
+                + CommandTestUtil.MED_CON_DESC_FRIEND
                 + CommandTestUtil.PHONE_DESC_AMY
                 + CommandTestUtil.ADDRESS_DESC_AMY
                 + CommandTestUtil.EMAIL_DESC_AMY
-                + CommandTestUtil.TAG_DESC_FRIEND
+                + CommandTestUtil.MED_CON_DESC_FRIEND
 
                 + CommandTestUtil.PHONE_DESC_BOB
                 + CommandTestUtil.ADDRESS_DESC_BOB
                 + CommandTestUtil.EMAIL_DESC_BOB
-                + CommandTestUtil.TAG_DESC_HUSBAND;
+                + CommandTestUtil.MED_CON_DESC_HUSBAND;
 
         EditCommand.EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder()
                 .withPhone(CommandTestUtil.VALID_PHONE_BOB)
 
                 .withEmail(CommandTestUtil.VALID_EMAIL_BOB).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
-                .withTags(CommandTestUtil.VALID_TAG_FRIEND, CommandTestUtil.VALID_TAG_HUSBAND)
+                .withMedicalConditions(CommandTestUtil.VALID_MED_CON_FRIEND, CommandTestUtil.VALID_MED_CON_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -235,11 +239,12 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_resetTags_success() {
+    public void parse_resetMedicalConditions_success() {
         Index targetIndex = TypicalIndexes.INDEX_THIRD_PATIENT;
-        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
+        String userInput = targetIndex.getOneBased() + MED_CON_EMPTY;
 
-        EditCommand.EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withTags().build();
+        EditCommand.EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder()
+                .withMedicalConditions().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         CommandParserTestUtil.assertParseSuccess(parser, userInput, expectedCommand);

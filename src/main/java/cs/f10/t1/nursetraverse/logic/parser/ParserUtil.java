@@ -13,11 +13,11 @@ import cs.f10.t1.nursetraverse.logic.parser.exceptions.ParseException;
 import cs.f10.t1.nursetraverse.model.datetime.EndDateTime;
 import cs.f10.t1.nursetraverse.model.datetime.RecurringDateTime;
 import cs.f10.t1.nursetraverse.model.datetime.StartDateTime;
+import cs.f10.t1.nursetraverse.model.medicalcondition.MedicalCondition;
 import cs.f10.t1.nursetraverse.model.patient.Address;
 import cs.f10.t1.nursetraverse.model.patient.Email;
 import cs.f10.t1.nursetraverse.model.patient.Name;
 import cs.f10.t1.nursetraverse.model.patient.Phone;
-import cs.f10.t1.nursetraverse.model.tag.Tag;
 import cs.f10.t1.nursetraverse.model.visit.Remark;
 import cs.f10.t1.nursetraverse.model.visittodo.VisitTodo;
 
@@ -114,18 +114,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String medicalCondition} into a {@code MedicalCondition}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code medicalCondition} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static MedicalCondition parseMedicalCondition(String medicalCondition) throws ParseException {
+        requireNonNull(medicalCondition);
+        String trimmedMedicalCondition = medicalCondition.trim();
+        if (!MedicalCondition.isValidConditionName(trimmedMedicalCondition)) {
+            throw new ParseException(MedicalCondition.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new MedicalCondition(trimmedMedicalCondition);
     }
 
     /**
@@ -154,15 +154,16 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> medicalConditions} into a {@code Set<MedicalCondition>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Set<MedicalCondition> parseMedicalConditions(Collection<String> medicalConditions)
+            throws ParseException {
+        requireNonNull(medicalConditions);
+        final Set<MedicalCondition> medicalConditionSet = new HashSet<>();
+        for (String medicalConditionName : medicalConditions) {
+            medicalConditionSet.add(parseMedicalCondition(medicalConditionName));
         }
-        return tagSet;
+        return medicalConditionSet;
     }
 
     /**

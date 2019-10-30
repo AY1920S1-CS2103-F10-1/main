@@ -1,7 +1,7 @@
 package cs.f10.t1.nursetraverse.model.patient;
 
 import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.VALID_MED_CON_HUSBAND;
 import static cs.f10.t1.nursetraverse.testutil.Assert.assertThrows;
 import static cs.f10.t1.nursetraverse.testutil.TypicalPatients.ALICE;
 import static cs.f10.t1.nursetraverse.testutil.TypicalPatients.BOB;
@@ -48,7 +48,7 @@ public class UniquePatientListTest {
     public void contains_patientWithSameIdentityFieldsInList_returnsTrue() {
         uniquePatientList.add(ALICE);
         Patient editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND).withPreviousVisits()
+                .withMedicalConditions(VALID_MED_CON_HUSBAND).withPreviousVisits()
                 .build();
         assertTrue(uniquePatientList.contains(editedAlice));
     }
@@ -91,7 +91,8 @@ public class UniquePatientListTest {
     @Test
     public void setPatient_editedPatientHasSameIdentity_success() {
         uniquePatientList.add(ALICE);
-        Patient editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Patient editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withMedicalConditions(VALID_MED_CON_HUSBAND)
                 .build();
         uniquePatientList.setPatient(ALICE, editedAlice);
         UniquePatientList expectedUniquePatientList = new UniquePatientList();

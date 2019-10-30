@@ -13,19 +13,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import cs.f10.t1.nursetraverse.commons.exceptions.IllegalValueException;
+import cs.f10.t1.nursetraverse.model.medicalcondition.MedicalCondition;
 import cs.f10.t1.nursetraverse.model.patient.Address;
 import cs.f10.t1.nursetraverse.model.patient.Email;
 import cs.f10.t1.nursetraverse.model.patient.Name;
 import cs.f10.t1.nursetraverse.model.patient.Patient;
 import cs.f10.t1.nursetraverse.model.patient.Phone;
-import cs.f10.t1.nursetraverse.model.tag.Tag;
 import cs.f10.t1.nursetraverse.model.visit.Visit;
 import cs.f10.t1.nursetraverse.model.visittodo.VisitTodo;
 
 /**
  * Jackson-friendly version of {@link Patient}.
  */
-@JsonPropertyOrder({"name", "phone", "email", "address", "tagged", "visitTodos", "visits"})
+@JsonPropertyOrder({"name", "phone", "email", "address", "conditions", "visitTodos", "visits"})
 public class JsonAdaptedPatient {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Patient's %s field is missing!";
@@ -38,8 +38,8 @@ public class JsonAdaptedPatient {
     private final String email;
     @JsonProperty("address")
     private final String address;
-    @JsonProperty("tagged")
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    @JsonProperty("conditions")
+    private final List<JsonAdaptedMedicalCondition> conditions = new ArrayList<>();
     @JsonProperty("visitTodos")
     private final List<JsonAdaptedVisitTodo> visitTodos = new ArrayList<>();
     @JsonProperty("visits")
@@ -53,15 +53,15 @@ public class JsonAdaptedPatient {
                              @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email,
                              @JsonProperty("address") String address,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("conditions") List<JsonAdaptedMedicalCondition> conditions,
                              @JsonProperty("visitTodos") List<JsonAdaptedVisitTodo> visitTodos,
                              @JsonProperty("visits") List<JsonAdaptedVisit> visits) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
+        if (conditions != null) {
+            this.conditions.addAll(conditions);
         }
         if (visitTodos != null) {
             this.visitTodos.addAll(visitTodos);
@@ -79,8 +79,8 @@ public class JsonAdaptedPatient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        conditions.addAll(source.getMedicalConditions().stream()
+                .map(JsonAdaptedMedicalCondition::new)
                 .collect(Collectors.toList()));
         visitTodos.addAll(source.getVisitTodos().stream()
                 .map(JsonAdaptedVisitTodo::new)
@@ -128,11 +128,11 @@ public class JsonAdaptedPatient {
         }
         final Address modelAddress = new Address(address);
 
-        final List<Tag> patientTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            patientTags.add(tag.toModelType());
+        final List<MedicalCondition> patientMedicalConditions = new ArrayList<>();
+        for (JsonAdaptedMedicalCondition medicalCondition : conditions) {
+            patientMedicalConditions.add(medicalCondition.toModelType());
         }
-        final Set<Tag> modelTags = new HashSet<>(patientTags);
+        final Set<MedicalCondition> modelMedicalConditions = new HashSet<>(patientMedicalConditions);
 
         final List<VisitTodo> visitTodoList = new ArrayList<>();
         for (JsonAdaptedVisitTodo visitTodo : visitTodos) {
@@ -142,7 +142,7 @@ public class JsonAdaptedPatient {
 
         final List<Visit> modelVisits = new ArrayList<>();
         Patient result = new Patient(modelName, modelPhone, modelEmail, modelAddress,
-                modelTags, modelVisitTodos, modelVisits);
+                modelMedicalConditions, modelVisitTodos, modelVisits);
         for (JsonAdaptedVisit visit : visits) {
             result.addVisit(visit.toModelType(result));
         }

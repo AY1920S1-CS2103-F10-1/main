@@ -47,7 +47,7 @@ public class PatientCard extends UiPart<Region> {
     @FXML
     private Label noVisitsLabel;
     @FXML
-    private FlowPane tags;
+    private FlowPane medicalConditions;
     @FXML
     private VBox visitTodos;
     @FXML
@@ -68,9 +68,10 @@ public class PatientCard extends UiPart<Region> {
         phone.setText(patient.getPhone().value);
         address.setText(patient.getAddress().value);
         email.setText(patient.getEmail().value);
-        patient.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        patient.getMedicalConditions().stream()
+                .sorted(Comparator.comparing(medicalCondition -> medicalCondition.conditionName))
+                .forEach(medicalCondition -> medicalConditions.getChildren()
+                        .add(new Label(medicalCondition.conditionName)));
         // TODO: Make this more beautiful or extend list/find with a prefix
         // that optionally shows these fields
         int visitTodoIndex = 1;

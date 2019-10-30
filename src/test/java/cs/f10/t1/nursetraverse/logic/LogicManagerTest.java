@@ -80,7 +80,8 @@ public class LogicManagerTest {
         String addCommand = AddCommand.COMMAND_WORD + CommandTestUtil.NAME_DESC_AMY + CommandTestUtil.PHONE_DESC_AMY
                 + CommandTestUtil.EMAIL_DESC_AMY
                 + CommandTestUtil.ADDRESS_DESC_AMY;
-        Patient expectedPatient = new PatientBuilder(TypicalPatients.AMY).withTags().withVisitTodos().build();
+        Patient expectedPatient = new PatientBuilder(TypicalPatients.AMY)
+                .withMedicalConditions().withVisitTodos().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addPatient(expectedPatient);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

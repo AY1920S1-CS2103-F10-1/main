@@ -3,13 +3,14 @@ package cs.f10.t1.nursetraverse.logic.commands;
 import static cs.f10.t1.nursetraverse.commons.core.Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX;
 import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.DESC_AMY;
 import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.DESC_BOB;
+import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.VALID_MED_CON_HUSBAND;
 import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.VALID_VISIT_TODO;
 import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.showPatientAtIndex;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -58,10 +59,12 @@ public class EditCommandTest {
 
         PatientBuilder patientInList = new PatientBuilder(lastPatient);
         Patient editedPatient = patientInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).withVisitTodos(VALID_VISIT_TODO).build();
+                .withMedicalConditions(VALID_MED_CON_HUSBAND).withVisitTodos(VALID_VISIT_TODO).build();
 
         EditCommand.EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).withVisitTodos(VALID_VISIT_TODO).build();
+                .withPhone(VALID_PHONE_BOB)
+                .withMedicalConditions(VALID_MED_CON_HUSBAND)
+                .withVisitTodos(VALID_VISIT_TODO).build();
         EditCommand editCommand = new EditCommand(indexLastPatient, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);

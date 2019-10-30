@@ -6,12 +6,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import cs.f10.t1.nursetraverse.logic.commands.EditCommand;
+import cs.f10.t1.nursetraverse.model.medicalcondition.MedicalCondition;
 import cs.f10.t1.nursetraverse.model.patient.Address;
 import cs.f10.t1.nursetraverse.model.patient.Email;
 import cs.f10.t1.nursetraverse.model.patient.Name;
 import cs.f10.t1.nursetraverse.model.patient.Patient;
 import cs.f10.t1.nursetraverse.model.patient.Phone;
-import cs.f10.t1.nursetraverse.model.tag.Tag;
 import cs.f10.t1.nursetraverse.model.visittodo.VisitTodo;
 
 /**
@@ -38,7 +38,7 @@ public class EditPatientDescriptorBuilder {
         descriptor.setPhone(patient.getPhone());
         descriptor.setEmail(patient.getEmail());
         descriptor.setAddress(patient.getAddress());
-        descriptor.setTags(patient.getTags());
+        descriptor.setMedicalConditions(patient.getMedicalConditions());
     }
 
     /**
@@ -74,12 +74,14 @@ public class EditPatientDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPatientDescriptor}
+     * Parses the {@code medicalConditions} into a {@code Set<MedicalCondition>}
+     * and set it to the {@code EditPatientDescriptor}
      * that we are building.
      */
-    public EditPatientDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditPatientDescriptorBuilder withMedicalConditions(String... medicalConditions) {
+        Set<MedicalCondition> medicalConditionSet =
+                Stream.of(medicalConditions).map(MedicalCondition::new).collect(Collectors.toSet());
+        descriptor.setMedicalConditions(medicalConditionSet);
         return this;
     }
 

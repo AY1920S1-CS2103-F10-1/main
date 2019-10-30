@@ -50,7 +50,7 @@ public class PatientBookTest {
     public void resetData_withDuplicatePatients_throwsDuplicatePatientException() {
         // Two patients with the same identity fields
         Patient editedAlice = new PatientBuilder(TypicalPatients.ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
-                .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
+                .withMedicalConditions(CommandTestUtil.VALID_MED_CON_HUSBAND)
                 .build();
         List<Patient> newPatients = Arrays.asList(TypicalPatients.ALICE, editedAlice);
         PatientBookStub newData = new PatientBookStub(newPatients);
@@ -78,7 +78,7 @@ public class PatientBookTest {
     public void hasPatient_patientWithSameIdentityFieldsInPatientBook_returnsTrue() {
         patientBook.addPatient(TypicalPatients.ALICE);
         Patient editedAlice = new PatientBuilder(TypicalPatients.ALICE).withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
-                .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
+                .withMedicalConditions(CommandTestUtil.VALID_MED_CON_HUSBAND)
                 .build();
         assertTrue(patientBook.hasPatient(editedAlice));
     }

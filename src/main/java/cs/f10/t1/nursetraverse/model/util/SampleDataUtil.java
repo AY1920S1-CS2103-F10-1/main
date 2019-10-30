@@ -10,12 +10,12 @@ import cs.f10.t1.nursetraverse.model.PatientBook;
 import cs.f10.t1.nursetraverse.model.ReadOnlyPatientBook;
 import cs.f10.t1.nursetraverse.model.datetime.EndDateTime;
 import cs.f10.t1.nursetraverse.model.datetime.StartDateTime;
+import cs.f10.t1.nursetraverse.model.medicalcondition.MedicalCondition;
 import cs.f10.t1.nursetraverse.model.patient.Address;
 import cs.f10.t1.nursetraverse.model.patient.Email;
 import cs.f10.t1.nursetraverse.model.patient.Name;
 import cs.f10.t1.nursetraverse.model.patient.Patient;
 import cs.f10.t1.nursetraverse.model.patient.Phone;
-import cs.f10.t1.nursetraverse.model.tag.Tag;
 import cs.f10.t1.nursetraverse.model.visit.Remark;
 import cs.f10.t1.nursetraverse.model.visit.Visit;
 import cs.f10.t1.nursetraverse.model.visittask.Detail;
@@ -32,41 +32,41 @@ public class SampleDataUtil {
                     new Phone("87438807"),
                     new Email("alexyeoh@example.com"),
                     new Address("Blk 30 Geylang Street 29, #06-40"),
-                    getTagSet("friends"), getVisitTodos(),
+                    getMedicalConditionSet("friends"), getVisitTodos(),
                     collateVisits()),
             new Patient(new Name("Bernice Yu"),
                     new Phone("99272758"),
                     new Email("berniceyu@example.com"),
                     new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                    getTagSet("colleagues", "friends"),
+                    getMedicalConditionSet("colleagues", "friends"),
                     getVisitTodos("Blood Pressure"),
                     collateVisits()),
             new Patient(new Name("Charlotte Oliveiro"),
                     new Phone("93210283"),
                     new Email("charlotte@example.com"),
                     new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                    getTagSet("neighbours"),
+                    getMedicalConditionSet("neighbours"),
                     getVisitTodos("Body Temperature"),
                     collateVisits()),
             new Patient(new Name("David Li"),
                     new Phone("91031282"),
                     new Email("lidavid@example.com"),
                     new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                    getTagSet("family"),
+                    getMedicalConditionSet("family"),
                     getVisitTodos("Pain Level", "Check if patient has been exercising"),
                     collateVisits()),
             new Patient(new Name("Irfan Ibrahim"),
                     new Phone("92492021"),
                     new Email("irfan@example.com"),
                     new Address("Blk 47 Tampines Street 20, #17-35"),
-                    getTagSet("classmates"),
+                    getMedicalConditionSet("classmates"),
                     getVisitTodos("Check cognitive abilities"),
                     collateVisits()),
             new Patient(new Name("Roy Balakrishnan"),
                     new Phone("92624417"),
                     new Email("royb@example.com"),
                     new Address("Blk 45 Aljunied Street 85, #11-31"),
-                    getTagSet("colleagues"),
+                    getMedicalConditionSet("colleagues"),
                     getVisitTodos("Check wounds"),
                     collateVisits())
         };
@@ -119,11 +119,11 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a tag set containing the list of strings given.
+     * Returns a medicalCondition set containing the list of strings given.
      */
-    public static Set<Tag> getTagSet(String... strings) {
+    public static Set<MedicalCondition> getMedicalConditionSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
+                .map(MedicalCondition::new)
                 .collect(Collectors.toSet());
     }
 

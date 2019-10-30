@@ -49,7 +49,7 @@ public class JsonAdaptedAppointment {
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code MedicalCondition} into this class for Jackson use.
      */
     public JsonAdaptedAppointment(Appointment source) {
         startDateTime = source.getStartDateTime().toJacksonJsonString();

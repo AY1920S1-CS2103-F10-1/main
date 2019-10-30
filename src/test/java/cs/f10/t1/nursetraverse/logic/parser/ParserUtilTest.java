@@ -12,11 +12,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import cs.f10.t1.nursetraverse.logic.parser.exceptions.ParseException;
+import cs.f10.t1.nursetraverse.model.medicalcondition.MedicalCondition;
 import cs.f10.t1.nursetraverse.model.patient.Address;
 import cs.f10.t1.nursetraverse.model.patient.Email;
 import cs.f10.t1.nursetraverse.model.patient.Name;
 import cs.f10.t1.nursetraverse.model.patient.Phone;
-import cs.f10.t1.nursetraverse.model.tag.Tag;
 import cs.f10.t1.nursetraverse.testutil.Assert;
 import cs.f10.t1.nursetraverse.testutil.TypicalIndexes;
 
@@ -25,14 +25,14 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_MED_CON = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_MED_CON_1 = "friend";
+    private static final String VALID_MED_CON_2 = "neighbour";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -149,48 +149,53 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTag_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
+    public void parseMedicalCondition_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseMedicalCondition(null));
     }
 
     @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseTag(INVALID_TAG));
+    public void parseMedicalCondition_invalidValue_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseMedicalCondition(INVALID_MED_CON));
     }
 
     @Test
-    public void parseTag_validValueWithoutWhitespace_returnsTag() throws Exception {
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        Assertions.assertEquals(expectedTag, ParserUtil.parseTag(VALID_TAG_1));
+    public void parseMedicalCondition_validValueWithoutWhitespace_returnsMedicalCondition() throws Exception {
+        MedicalCondition expectedMedicalCondition = new MedicalCondition(VALID_MED_CON_1);
+        Assertions.assertEquals(expectedMedicalCondition, ParserUtil.parseMedicalCondition(VALID_MED_CON_1));
     }
 
     @Test
-    public void parseTag_validValueWithWhitespace_returnsTrimmedTag() throws Exception {
-        String tagWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Tag expectedTag = new Tag(VALID_TAG_1);
-        Assertions.assertEquals(expectedTag, ParserUtil.parseTag(tagWithWhitespace));
+    public void parseMedicalCondition_validValueWithWhitespace_returnsTrimmedMedicalCondition() throws Exception {
+        String medicalConditionWithWhitespace = WHITESPACE + VALID_MED_CON_1 + WHITESPACE;
+        MedicalCondition expectedMedicalCondition = new MedicalCondition(VALID_MED_CON_1);
+        Assertions.assertEquals(expectedMedicalCondition,
+                ParserUtil.parseMedicalCondition(medicalConditionWithWhitespace));
     }
 
     @Test
-    public void parseTags_null_throwsNullPointerException() {
-        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
+    public void parseMedicalConditions_null_throwsNullPointerException() {
+        Assert.assertThrows(NullPointerException.class, () -> ParserUtil.parseMedicalConditions(null));
     }
 
     @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        Assert.assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+    public void parseMedicalConditions_collectionWithInvalidMedicalConditions_throwsParseException() {
+        Assert.assertThrows(ParseException.class, () -> ParserUtil
+                .parseMedicalConditions(Arrays.asList(VALID_MED_CON_1, INVALID_MED_CON)));
     }
 
     @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
+    public void parseMedicalConditions_emptyCollection_returnsEmptySet() throws Exception {
+        assertTrue(ParserUtil.parseMedicalConditions(Collections.emptyList()).isEmpty());
     }
 
     @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+    public void parseMedicalConditions_collectionWithValidMedicalConditions_returnsMedicalConditionSet()
+            throws Exception {
+        Set<MedicalCondition> actualMedicalConditionSet = ParserUtil
+                .parseMedicalConditions(Arrays.asList(VALID_MED_CON_1, VALID_MED_CON_2));
+        Set<MedicalCondition> expectedMedicalConditionSet = new HashSet<MedicalCondition>(
+                Arrays.asList(new MedicalCondition(VALID_MED_CON_1), new MedicalCondition(VALID_MED_CON_2)));
 
-        assertEquals(expectedTagSet, actualTagSet);
+        assertEquals(expectedMedicalConditionSet, actualMedicalConditionSet);
     }
 }

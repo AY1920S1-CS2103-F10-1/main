@@ -2,10 +2,11 @@ package cs.f10.t1.nursetraverse.logic.commands;
 
 import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_MED_CON;
 import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_NAME;
 import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_PATIENT_VISIT_TODO;
 import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_PHONE;
-import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_TAG;
+
 import static java.util.Objects.requireNonNull;
 
 import cs.f10.t1.nursetraverse.logic.commands.exceptions.CommandException;
@@ -25,15 +26,15 @@ public class AddCommand extends Command implements MutatorCommand {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_MED_CON + "MED_CON]...\n"
             + "[" + PREFIX_PATIENT_VISIT_TODO + "VISIT_TODO]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney"
+            + PREFIX_MED_CON + "friends "
+            + PREFIX_MED_CON + "owesMoney"
             + PREFIX_PATIENT_VISIT_TODO + "Check blood pressure "
             + PREFIX_PATIENT_VISIT_TODO + "Check if patient has been drinking";
 

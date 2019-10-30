@@ -2,16 +2,16 @@ package cs.f10.t1.nursetraverse.testutil;
 
 import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_MED_CON;
 import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_NAME;
 import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_PHONE;
-import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
 import cs.f10.t1.nursetraverse.logic.commands.AddCommand;
 import cs.f10.t1.nursetraverse.logic.commands.EditCommand;
+import cs.f10.t1.nursetraverse.model.medicalcondition.MedicalCondition;
 import cs.f10.t1.nursetraverse.model.patient.Patient;
-import cs.f10.t1.nursetraverse.model.tag.Tag;
 
 /**
  * A utility class for Patient.
@@ -34,8 +34,8 @@ public class PatientUtil {
         sb.append(PREFIX_PHONE + patient.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + patient.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + patient.getAddress().value + " ");
-        patient.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        patient.getMedicalConditions().stream().forEach(
+            s -> sb.append(PREFIX_MED_CON + s.conditionName + " ")
         );
         return sb.toString();
     }
@@ -50,12 +50,12 @@ public class PatientUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value)
                 .append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+        if (descriptor.getMedicalConditions().isPresent()) {
+            Set<MedicalCondition> medicalConditions = descriptor.getMedicalConditions().get();
+            if (medicalConditions.isEmpty()) {
+                sb.append(PREFIX_MED_CON);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                medicalConditions.forEach(s -> sb.append(PREFIX_MED_CON).append(s.conditionName).append(" "));
             }
         }
         return sb.toString();

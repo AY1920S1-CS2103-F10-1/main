@@ -8,12 +8,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
 
+import cs.f10.t1.nursetraverse.model.medicalcondition.MedicalCondition;
 import cs.f10.t1.nursetraverse.model.patient.Address;
 import cs.f10.t1.nursetraverse.model.patient.Email;
 import cs.f10.t1.nursetraverse.model.patient.Name;
 import cs.f10.t1.nursetraverse.model.patient.Patient;
 import cs.f10.t1.nursetraverse.model.patient.Phone;
-import cs.f10.t1.nursetraverse.model.tag.Tag;
 import cs.f10.t1.nursetraverse.model.util.SampleDataUtil;
 import cs.f10.t1.nursetraverse.model.visit.Visit;
 import cs.f10.t1.nursetraverse.model.visittodo.VisitTodo;
@@ -32,7 +32,7 @@ public class PatientBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private Set<Tag> tags;
+    private Set<MedicalCondition> medicalConditions;
     private Collection<VisitTodo> visitTodos;
     private List<Visit> visits;
 
@@ -45,7 +45,7 @@ public class PatientBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        medicalConditions = new HashSet<>();
         visitTodos = new LinkedHashSet<>();
         visits = new ArrayList<>();
         visitsConsumerList = new ArrayList<>();
@@ -59,7 +59,7 @@ public class PatientBuilder {
         phone = patientToCopy.getPhone();
         email = patientToCopy.getEmail();
         address = patientToCopy.getAddress();
-        tags = new HashSet<>(patientToCopy.getTags());
+        medicalConditions = new HashSet<>(patientToCopy.getMedicalConditions());
         visitTodos = new LinkedHashSet<>(patientToCopy.getVisitTodos());
         visits = new ArrayList<>(patientToCopy.getVisits());
         visitsConsumerList = new ArrayList<>();
@@ -74,10 +74,11 @@ public class PatientBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Patient} that we are building.
+     * Parses the {@code medicalConditions} into a {@code Set<MedicalCondition>}
+     * and set it to the {@code Patient} that we are building.
      */
-    public PatientBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PatientBuilder withMedicalConditions(String ... medicalConditions) {
+        this.medicalConditions = SampleDataUtil.getMedicalConditionSet(medicalConditions);
         return this;
     }
 
@@ -168,7 +169,7 @@ public class PatientBuilder {
      * Builds and returns a Patient based on the functions called on this PatientBuilder object prior.
      */
     public Patient build() {
-        Patient patient = new Patient(name, phone, email, address, tags, visitTodos, visits);
+        Patient patient = new Patient(name, phone, email, address, medicalConditions, visitTodos, visits);
         //populate with visits
         for (Consumer<Patient> consumer : visitsConsumerList) {
             consumer.accept(patient);

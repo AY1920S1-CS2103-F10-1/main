@@ -3,10 +3,10 @@ package cs.f10.t1.nursetraverse.logic.parser;
 import static cs.f10.t1.nursetraverse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_MED_CON;
 import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_NAME;
 import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_PATIENT_VISIT_TODO;
 import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_PHONE;
-import static cs.f10.t1.nursetraverse.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -17,7 +17,7 @@ import java.util.Set;
 import cs.f10.t1.nursetraverse.commons.core.index.Index;
 import cs.f10.t1.nursetraverse.logic.commands.EditCommand;
 import cs.f10.t1.nursetraverse.logic.parser.exceptions.ParseException;
-import cs.f10.t1.nursetraverse.model.tag.Tag;
+import cs.f10.t1.nursetraverse.model.medicalcondition.MedicalCondition;
 import cs.f10.t1.nursetraverse.model.visittodo.VisitTodo;
 
 /**
@@ -34,7 +34,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_PATIENT_VISIT_TODO);
+                        PREFIX_ADDRESS, PREFIX_MED_CON, PREFIX_PATIENT_VISIT_TODO);
 
         Index index;
 
@@ -58,7 +58,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPatientDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPatientDescriptor::setTags);
+        parseMedicalConditionsForEdit(argMultimap.getAllValues(PREFIX_MED_CON))
+                .ifPresent(editPatientDescriptor::setMedicalConditions);
         parseVisitTodosForEdit(argMultimap.getAllValues(PREFIX_PATIENT_VISIT_TODO))
                 .ifPresent(editPatientDescriptor::setVisitTodos);
 
@@ -70,18 +71,22 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * Parses {@code Collection<String> medicalConditions} into a {@code Set<MedicalCondition>},
+     * if {@code medicalConditions} is non-empty.
+     * If {@code medicalConditions} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<MedicalCondition>} containing zero medicalConditions.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
+    private Optional<Set<MedicalCondition>> parseMedicalConditionsForEdit(Collection<String> medicalConditions)
+            throws ParseException {
+        assert medicalConditions != null;
 
-        if (tags.isEmpty()) {
+        if (medicalConditions.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        Collection<String> medicalConditionSet =
+                medicalConditions.size() == 1 && medicalConditions.contains("")
+                        ? Collections.emptySet() : medicalConditions;
+        return Optional.of(ParserUtil.parseMedicalConditions(medicalConditionSet));
     }
 
     /**

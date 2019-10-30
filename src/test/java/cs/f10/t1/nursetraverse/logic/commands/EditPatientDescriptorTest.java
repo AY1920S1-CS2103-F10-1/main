@@ -4,9 +4,9 @@ import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.DESC_AMY;
 import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.DESC_BOB;
 import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.VALID_MED_CON_HUSBAND;
 import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -51,8 +51,8 @@ public class EditPatientDescriptorTest {
         editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different tags -> returns false
-        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        // different medicalConditions -> returns false
+        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withMedicalConditions(VALID_MED_CON_HUSBAND).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

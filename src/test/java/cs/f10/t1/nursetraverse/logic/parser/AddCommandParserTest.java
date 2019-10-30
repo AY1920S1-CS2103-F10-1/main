@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 
 import cs.f10.t1.nursetraverse.logic.commands.AddCommand;
 import cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil;
+import cs.f10.t1.nursetraverse.model.medicalcondition.MedicalCondition;
 import cs.f10.t1.nursetraverse.model.patient.Address;
 import cs.f10.t1.nursetraverse.model.patient.Email;
 import cs.f10.t1.nursetraverse.model.patient.Name;
 import cs.f10.t1.nursetraverse.model.patient.Patient;
 import cs.f10.t1.nursetraverse.model.patient.Phone;
-import cs.f10.t1.nursetraverse.model.tag.Tag;
 import cs.f10.t1.nursetraverse.testutil.PatientBuilder;
 import cs.f10.t1.nursetraverse.testutil.TypicalPatients;
 
@@ -20,7 +20,8 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Patient expectedPatient = new PatientBuilder(TypicalPatients.BOB).withTags(CommandTestUtil.VALID_TAG_FRIEND)
+        Patient expectedPatient = new PatientBuilder(TypicalPatients.BOB)
+                .withMedicalConditions(CommandTestUtil.VALID_MED_CON_FRIEND)
                 .withVisitTodos(CommandTestUtil.VALID_VISIT_TODO).build();
 
         // whitespace only preamble
@@ -30,7 +31,7 @@ public class AddCommandParserTest {
                 + CommandTestUtil.EMAIL_DESC_BOB
 
                 + CommandTestUtil.ADDRESS_DESC_BOB
-                + CommandTestUtil.TAG_DESC_FRIEND
+                + CommandTestUtil.MED_CON_DESC_FRIEND
                 + CommandTestUtil.VISIT_TODO, new AddCommand(expectedPatient));
 
         // multiple names - last name accepted
@@ -40,7 +41,7 @@ public class AddCommandParserTest {
                 + CommandTestUtil.EMAIL_DESC_BOB
 
                 + CommandTestUtil.ADDRESS_DESC_BOB
-                + CommandTestUtil.TAG_DESC_FRIEND
+                + CommandTestUtil.MED_CON_DESC_FRIEND
                 + CommandTestUtil.VISIT_TODO, new AddCommand(expectedPatient));
 
         // multiple phones - last phone accepted
@@ -50,7 +51,7 @@ public class AddCommandParserTest {
                 + CommandTestUtil.EMAIL_DESC_BOB
 
                 + CommandTestUtil.ADDRESS_DESC_BOB
-                + CommandTestUtil.TAG_DESC_FRIEND
+                + CommandTestUtil.MED_CON_DESC_FRIEND
                 + CommandTestUtil.VISIT_TODO, new AddCommand(expectedPatient));
 
         // multiple emails - last email accepted
@@ -60,7 +61,7 @@ public class AddCommandParserTest {
                 + CommandTestUtil.EMAIL_DESC_BOB
 
                 + CommandTestUtil.ADDRESS_DESC_BOB
-                + CommandTestUtil.TAG_DESC_FRIEND
+                + CommandTestUtil.MED_CON_DESC_FRIEND
                 + CommandTestUtil.VISIT_TODO, new AddCommand(expectedPatient));
 
         // multiple addresses - last address accepted
@@ -70,32 +71,32 @@ public class AddCommandParserTest {
                 + CommandTestUtil.ADDRESS_DESC_AMY
 
                 + CommandTestUtil.ADDRESS_DESC_BOB
-                + CommandTestUtil.TAG_DESC_FRIEND
+                + CommandTestUtil.MED_CON_DESC_FRIEND
                 + CommandTestUtil.VISIT_TODO, new AddCommand(expectedPatient));
 
         // multiple tags - all accepted
-        Patient expectedPatientMultipleTags = new PatientBuilder(TypicalPatients.BOB)
-                .withTags(CommandTestUtil.VALID_TAG_FRIEND, CommandTestUtil.VALID_TAG_HUSBAND)
+        Patient expectedPatientMultipleMedicalConditions = new PatientBuilder(TypicalPatients.BOB)
+                .withMedicalConditions(CommandTestUtil.VALID_MED_CON_FRIEND, CommandTestUtil.VALID_MED_CON_HUSBAND)
                 .build();
         CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BOB
                 + CommandTestUtil.PHONE_DESC_BOB
                 + CommandTestUtil.EMAIL_DESC_BOB
                 + CommandTestUtil.ADDRESS_DESC_BOB
 
-                + CommandTestUtil.TAG_DESC_HUSBAND
-                + CommandTestUtil.TAG_DESC_FRIEND
-                + CommandTestUtil.VISIT_TODO, new AddCommand(expectedPatientMultipleTags));
+                + CommandTestUtil.MED_CON_DESC_HUSBAND
+                + CommandTestUtil.MED_CON_DESC_FRIEND
+                + CommandTestUtil.VISIT_TODO, new AddCommand(expectedPatientMultipleMedicalConditions));
 
         // multiple todos - all accepted
         Patient expectedPatientMultipleTodos = new PatientBuilder(TypicalPatients.BOB)
-                .withTags(CommandTestUtil.VALID_TAG_FRIEND)
+                .withMedicalConditions(CommandTestUtil.VALID_MED_CON_FRIEND)
                 .withVisitTodos(CommandTestUtil.VALID_VISIT_TODO, CommandTestUtil.VALID_VISIT_TODO2).build();
         CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.NAME_DESC_BOB
                 + CommandTestUtil.PHONE_DESC_BOB
                 + CommandTestUtil.EMAIL_DESC_BOB
                 + CommandTestUtil.ADDRESS_DESC_BOB
 
-                + CommandTestUtil.TAG_DESC_FRIEND
+                + CommandTestUtil.MED_CON_DESC_FRIEND
                 + CommandTestUtil.VISIT_TODO
                 + CommandTestUtil.VISIT_TODO2, new AddCommand(expectedPatientMultipleTodos));
     }
@@ -103,7 +104,8 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags or visit todos
-        Patient expectedPatient = new PatientBuilder(TypicalPatients.AMY).withTags().withVisitTodos().build();
+        Patient expectedPatient = new PatientBuilder(TypicalPatients.AMY)
+                .withMedicalConditions().withVisitTodos().build();
         CommandParserTestUtil.assertParseSuccess(parser, CommandTestUtil.NAME_DESC_AMY
                         + CommandTestUtil.PHONE_DESC_AMY
                         + CommandTestUtil.EMAIL_DESC_AMY
@@ -159,8 +161,8 @@ public class AddCommandParserTest {
                 + CommandTestUtil.EMAIL_DESC_BOB
                 + CommandTestUtil.ADDRESS_DESC_BOB
 
-                + CommandTestUtil.TAG_DESC_HUSBAND
-                + CommandTestUtil.TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.MED_CON_DESC_HUSBAND
+                + CommandTestUtil.MED_CON_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.NAME_DESC_BOB
@@ -168,8 +170,8 @@ public class AddCommandParserTest {
                 + CommandTestUtil.EMAIL_DESC_BOB
                 + CommandTestUtil.ADDRESS_DESC_BOB
 
-                + CommandTestUtil.TAG_DESC_HUSBAND
-                + CommandTestUtil.TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.MED_CON_DESC_HUSBAND
+                + CommandTestUtil.MED_CON_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.NAME_DESC_BOB
@@ -177,8 +179,8 @@ public class AddCommandParserTest {
                 + CommandTestUtil.INVALID_EMAIL_DESC
                 + CommandTestUtil.ADDRESS_DESC_BOB
 
-                + CommandTestUtil.TAG_DESC_HUSBAND
-                + CommandTestUtil.TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.MED_CON_DESC_HUSBAND
+                + CommandTestUtil.MED_CON_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
         CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.NAME_DESC_BOB
@@ -186,8 +188,8 @@ public class AddCommandParserTest {
                 + CommandTestUtil.EMAIL_DESC_BOB
                 + CommandTestUtil.INVALID_ADDRESS_DESC
 
-                + CommandTestUtil.TAG_DESC_HUSBAND
-                + CommandTestUtil.TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.MED_CON_DESC_HUSBAND
+                + CommandTestUtil.MED_CON_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.NAME_DESC_BOB
@@ -195,8 +197,8 @@ public class AddCommandParserTest {
                 + CommandTestUtil.EMAIL_DESC_BOB
                 + CommandTestUtil.ADDRESS_DESC_BOB
 
-                + CommandTestUtil.INVALID_TAG_DESC
-                + CommandTestUtil.VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.INVALID_MED_CON_DESC
+                + CommandTestUtil.VALID_MED_CON_FRIEND, MedicalCondition.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         CommandParserTestUtil.assertParseFailure(parser, CommandTestUtil.INVALID_NAME_DESC
@@ -212,8 +214,8 @@ public class AddCommandParserTest {
                         + CommandTestUtil.EMAIL_DESC_BOB
 
                         + CommandTestUtil.ADDRESS_DESC_BOB
-                        + CommandTestUtil.TAG_DESC_HUSBAND
-                        + CommandTestUtil.TAG_DESC_FRIEND,
+                        + CommandTestUtil.MED_CON_DESC_HUSBAND
+                        + CommandTestUtil.MED_CON_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }
