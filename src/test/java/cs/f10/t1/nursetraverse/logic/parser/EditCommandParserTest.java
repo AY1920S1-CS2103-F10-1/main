@@ -2,11 +2,13 @@ package cs.f10.t1.nursetraverse.logic.parser;
 
 import static cs.f10.t1.nursetraverse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import cs.f10.t1.nursetraverse.commons.core.index.Index;
 import cs.f10.t1.nursetraverse.logic.commands.CommandTestUtil;
 import cs.f10.t1.nursetraverse.logic.commands.EditCommand;
+import cs.f10.t1.nursetraverse.logic.parser.exceptions.ParseException;
 import cs.f10.t1.nursetraverse.model.medicalcondition.MedicalCondition;
 import cs.f10.t1.nursetraverse.model.patient.Address;
 import cs.f10.t1.nursetraverse.model.patient.Email;
@@ -240,6 +242,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_resetMedicalConditions_success() {
+        Assertions.assertNotNull(parser);
         Index targetIndex = TypicalIndexes.INDEX_THIRD_PATIENT;
         String userInput = targetIndex.getOneBased() + MED_CON_EMPTY;
 
