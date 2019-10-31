@@ -6,13 +6,13 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>export</code></p>
+<p><code>app-export</code></p>
 </li>
 <li>
-<p><code>import-replace</code></p>
+<p><code>app-import-replace</code></p>
 </li>
 <li>
-<p><code>import-merge</code></p>
+<p><code>app-import-merge</code></p>
 </li>
 </ol>
 </div>
@@ -33,12 +33,12 @@ functionality to cover new data fields or classes implemented in the future. The
 <h4 id="csv-processing"><a class="link" href="#csv-processing">Csv Processing</a></h4>
 <div class="paragraph">
 <p>All of the data processing needed for this feature can be found in the <code>CsvUtil</code> file;
-it is responsible for converting the data of <code>Person</code> objects into a .csv friendly <code>String</code> format
+it is responsible for converting the data of <code>Patient</code> objects into a .csv friendly <code>String</code> format
 and vice versa. The actual reading and writing of .csv files is then done with existing
 <code>FileUtil</code> functionality.</p>
 </div>
 <div class="paragraph">
-<p>The conversion of <code>Person</code> objects to and from .csv formatted <code>Strings</code> are handled by
+<p>The conversion of <code>Patient</code> objects to and from .csv formatted <code>Strings</code> are handled by
 the <code>CsvMapper</code> and <code>CsvSchema</code> classes implemented in <code>dataformat</code>.</p>
 </div>
 <div class="ulist">
@@ -50,7 +50,7 @@ For instance, it can toggle headers with <code>withHeader()</code> and skip unkn
 </li>
 <li>
 <p>The <code>CsvSchema</code> object is created by a configured <code>CsvMapper</code> object and an <code>Object.class</code>,
-in this case, <code>Person.class</code>. It dictates the scheme for how data in each column of the .csv
+in this case, <code>Patient.class</code>. It dictates the scheme for how data in each column of the .csv
 corresponds with the fields in the Object class. This schema can then be used to instantiate
 a reader or a writer object.</p>
 </li>
@@ -62,12 +62,17 @@ a reader or a writer object.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Write a list of <code>Person</code> objects into a .csv file with specified <code>exportFileName</code>.
+<p><code>CsvUtil#writePatientsToCsv(List&lt;Patient&gt;, String)</code>&#8201;&#8212;&#8201;Write
+a list of <code>Patient</code> objects into a .csv file with specified <code>exportFileName</code>.
 If successful, return the path of the written file.</p>
 </li>
 <li>
-<p>Read a .csv file with specified <code>importFileName</code> and return a corresponding list of
-<code>Person</code> objects.</p>
+<p><code>CstUtil#readPatientsFromCsv(String)</code>&#8201;&#8212;&#8201;Read a .csv file with specified
+<code>importFileName</code> and return a corresponding list of <code>Patient</code> objects.</p>
+</li>
+<li>
+<p><code>importsAreUnique(List&lt;Patient&gt;)</code>&#8201;&#8212;&#8201;Check if the patients in a given list are unique, i.e. the list
+contains no duplicate patients.</p>
 </li>
 </ol>
 </div>
@@ -75,32 +80,33 @@ If successful, return the path of the written file.</p>
 <div class="sect3">
 <h4 id="command-implementation"><a class="link" href="#command-implementation">Command Implementation</a></h4>
 <div class="sect4">
-<h5 id="export"><a class="link" href="#export">Export</a></h5>
+<h5 id="command-code-app-export-code"><a class="link" href="#command-code-app-export-code">Command: <code>app-export</code></a></h5>
 <div class="paragraph">
-<p>The <code>export</code> command works by retrieving a list of <code>Person</code> objects from the <code>Model</code> and passing
-it to <code>CsvUtil</code> to process and write into a .csv file. If provided with indexes, the <code>export</code>
-feature can selectively export the <code>Person</code> objects that correspond to the specified indexes.
+<p>The <code>app-export</code> command works by retrieving a list of <code>Patient</code> objects from the <code>Model</code> and
+passing it to <code>CsvUtil</code> to process and write into a .csv file. If provided with indexes, the
+<code>app-export</code> feature can selectively export the <code>Patient</code> objects that correspond to the
+specified indexes.
 To facilitate the selective export functionality, the following methods were implemented in
-<code>Model</code> and <code>AddressBook</code>.</p>
+<code>Model</code> and <code>PatientBook</code>.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Model#GetPersonsByIndexes(Set&lt;Indexes&gt;)</code>&#8201;&#8212;&#8201;Retrieves and returns a list of <code>Person</code> objects
-corresponding to the provided indexes from the <code>AddressBook</code> , if the indexes are valid.</p>
+<p><code>Model#GetPatientsByIndexes(Set&lt;Indexes&gt;)</code>&#8201;&#8212;&#8201;Retrieves and returns a list of <code>Patient</code> objects
+corresponding to the provided indexes from the <code>PatientBook</code> , if the indexes are valid.</p>
 </li>
 <li>
-<p><code>AddressBook#GetPersonByIndex(Index)</code>&#8201;&#8212;&#8201;Returns the <code>Person</code> object corresponding
+<p><code>PatientBook#GetPatientByIndex(Index)</code>&#8201;&#8212;&#8201;Returns the <code>Patient</code> object corresponding
 to the specified index, if the index is valid.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>If indexes are not specified in the command arguments, a list of all currently existing <code>Person</code>
-objects will be retrieved with <code>Model#getStagedPersonList()</code>.</p>
+<p>If indexes are not specified in the command arguments, a list of all currently existing <code>Patient</code>
+objects will be retrieved with <code>Model#getStagedPatientList()</code>.</p>
 </div>
 <div class="paragraph">
-<p>The <code>export</code> command MUST be provided with a desired file name for the .csv file. The .csv
+<p>The <code>app-export</code> command MUST be provided with a desired file name for the .csv file. The .csv
 file will be written to <code>/exports/filename.csv</code>. Existing files will NOT be overridden and
 thus the provided file name cannot already exist in <code>/exports</code>.</p>
 </div>
@@ -186,38 +192,105 @@ More developer work to code around detecting and escaping forbidden characters.<
 <div class="sect4">
 <h5 id="import"><a class="link" href="#import">Import</a></h5>
 <div class="paragraph">
-<p>The import commands work by reading a .csv file and converting it into a list of <code>Person</code>
+<p>The import commands work by reading a .csv file and converting it into a list of <code>Patient</code>
 objects by using <code>CsvUtil</code>. The list is then passed to <code>Model</code>. What happens next depends
 on which variant of import is called.</p>
 </div>
-<div class="sect5">
-<h6 id="code-import-replace-code"><a class="link" href="#code-import-replace-code"><code>import-replace</code></a></h6>
 <div class="paragraph">
-<p>The <code>Model</code> will replace all existing <code>Person</code> data in the <code>AddressBook</code> with the data
-of the new list of <code>Person</code> objects. To do this, the following was implemented:</p>
+<p>For both variants of the command, the imported list of patients CANNOT have any duplicates.
+This is ensured with <code>CsvUtil#importsAreUnique(List&lt;Patient&gt;)</code>.</p>
+</div>
+<div class="sect5">
+<h6 id="command-code-app-import-replace-code"><a class="link" href="#command-code-app-import-replace-code">Command: <code>app-import-replace</code></a></h6>
+<div class="paragraph">
+<p>The <code>Model</code> will replace all existing <code>Patient</code> data in the <code>PatientBook</code> with the data
+of the new list of <code>Patient</code> objects. To do this, the following was implemented:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Model#replaceStagedAddressBook(List&lt;Person&gt;)</code>&#8201;&#8212;&#8201;Creates a new <code>AddressBook</code> object
-containing the <code>Person</code> objects in the provided list. The old <code>AddressBook</code> stored in the
-<code>Model</code> is then replaced with the new <code>AddressBook</code> by calling
-<code>Model#setStagedAddressBook(AddressBook)</code>.</p>
+<p><code>Model#replaceStagedPatientBook(List&lt;Patient&gt;)</code>&#8201;&#8212;&#8201;Creates a new <code>PatientBook</code> object
+containing the <code>Patient</code> objects in the provided list. The old <code>PatientBook</code> stored in the
+<code>Model</code> is then replaced with the new <code>PatientBook</code> by calling
+<code>Model#setStagedPatientBook(PatientBook)</code>.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect5">
-<h6 id="code-import-merge-code"><a class="link" href="#code-import-merge-code"><code>import-merge</code></a></h6>
+<h6 id="command-code-app-import-merge-code"><a class="link" href="#command-code-app-import-merge-code">Command <code>app-import-merge</code></a></h6>
 <div class="paragraph">
-<p>WIP</p>
+<p>The <code>Model</code> will add all <code>Patient</code> data in the new list of <code>Patient</code> objects into the
+<code>PatientBook</code>. To do this, the following was implemented:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#hasAnyPatientInGivenList(List&lt;Patient&gt;)</code>&#8201;&#8212;&#8201;Checks if the model contains
+any <code>Patient</code> in the given list of <code>Patient</code> objects.</p>
+</li>
+<li>
+<p><code>Model#addPatients(List&lt;Patient&gt;)</code>&#8201;&#8212;&#8201;Adds all <code>Patient</code> objects in the given list
+into the <code>Model</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If the operation will result in duplicate <code>Patient</code> objects in the <code>PatientBook</code>,
+it will not be executed. This is checked by the function stated above,
+<code>Model#hasAnyPatientInGivenList(List&lt;Patient&gt;)</code>.</p>
 </div>
 </div>
 </div>
 <div class="sect4">
 <h5 id="import-design-considerations"><a class="link" href="#import-design-considerations">Import Design Considerations</a></h5>
-<div class="paragraph">
-<p>WIP</p>
+<div class="sect5">
+<h6 id="aspect-allowing-patient-overriding-for-code-app-import-merge-code"><a class="link" href="#aspect-allowing-patient-overriding-for-code-app-import-merge-code">Aspect: Allowing Patient Overriding for <code>app-import-merge</code></a></h6>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Disallow overriding.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Existing <code>Patient</code> data will not be accidentally overridden.</p>
+</li>
+<li>
+<p>Cons: User may have intended to use <code>app-import-merge</code> to update old data.
+More hassle for the user to delete old <code>Patient</code> data that they want to replace.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: In case of duplicates, replace old <code>Patient</code> data.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Conveniently update old <code>Patient</code> data.</p>
+</li>
+<li>
+<p>Cons: May accidentally override and lose important data, though not a big deal
+with <code>app-undo</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 3</strong>: Implement a flag to toggle overriding.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Best of both worlds.</p>
+</li>
+<li>
+<p>Cons: More coding and debugging work.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 08:42:57 UTC</div></div></div></body></html>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 14:37:19 UTC</div></div></div></body></html>

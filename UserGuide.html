@@ -57,8 +57,8 @@
 </li>
 <li><a href="#importing-and-exporting-of-patient-data">7. Importing and Exporting of Patient Data</a>
 <ul class="sectlevel2">
-<li><a href="#importing-patient-data-from-a-csv-file-code-import-code">7.1. Importing patient data from a CSV file: <code>import</code></a></li>
-<li><a href="#exporting-data-into-csv-code-export-code">7.2. Exporting data into .csv: <code>export</code></a></li>
+<li><a href="#importing-patient-data-from-a-csv-file-code-app-import-replace-code-code-app-import-merge-code">7.1. Importing patient data from a CSV file: <code>app-import-replace</code>, <code>app-import-merge</code></a></li>
+<li><a href="#exporting-data-into-a-csv-file-code-app-export-code">7.2. Exporting data into a CSV file: <code>app-export</code></a></li>
 </ul>
 </li>
 <li><a href="#exiting-the-program-code-exit-code">8. Exiting the program : <code>exit</code></a></li>
@@ -1008,9 +1008,10 @@ Up to the last 3(?) undone commands can be redone.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="importing-patient-data-from-a-csv-file-code-import-code"><a class="link" href="#importing-patient-data-from-a-csv-file-code-import-code">7.1. Importing patient data from a CSV file: <code>import</code></a></h3>
+<h3 id="importing-patient-data-from-a-csv-file-code-app-import-replace-code-code-app-import-merge-code"><a class="link" href="#importing-patient-data-from-a-csv-file-code-app-import-replace-code-code-app-import-merge-code">7.1. Importing patient data from a CSV file: <code>app-import-replace</code>, <code>app-import-merge</code></a></h3>
 <div class="paragraph">
-<p>You can import patient data from a .csv file into the application using <code>import</code>.</p>
+<p>You can import patient data from a .csv file into the application using
+<code>app-import-replace</code> or <code>app-import-merge</code>.</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1020,21 +1021,28 @@ Up to the last 3(?) undone commands can be redone.</p>
 <p>Only the file format .csv is supported.</p>
 </li>
 <li>
-<p>The application will look for filename.csv in the ./import folder.</p>
+<p>The application will look for the specified .csv file in the <code>./imports</code> folder.</p>
 </li>
 <li>
-<p>Imported data can either replace or be combined with existing data.</p>
-</li>
-<li>
-<p>The .csv file must adhere to the following format: <code>example.csv</code>.</p>
+<p>Both import commands are undoable.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="import-and-replace-code-app-import-replace-code"><a class="link" href="#import-and-replace-code-app-import-replace-code">7.1.1. Import and Replace: <code>app-import-replace</code></a></h4>
 <div class="paragraph">
-<p>Format: <code>import [flag]/filename.csv</code><br>
-	 <code>flag: r/ (replace) or c/ (combine)</code></p>
+<p>Reads patient data from a specified .csv file.</p>
+</div>
+<div class="paragraph">
+<p>All existing patient data will be deleted and replaced with this new data.</p>
+</div>
+<div class="paragraph">
+<p><strong>Cannot be executed when there is an ongoing visit.</strong></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>app-import-replace [n/FILENAME]</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -1042,18 +1050,120 @@ Up to the last 3(?) undone commands can be redone.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>import r/my_patients.csv</code></p>
-</li>
+<p><code>app-import-replace n/my_assigned_patients</code></p>
+<div class="ulist">
+<ul>
 <li>
-<p><code>import c/my_new_patients.csv</code></p>
+<p>Patient data will be entirely replaced with new data from <code>./imports/my_assigned_patients.csv</code>.</p>
 </li>
 </ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="import-and-merge-code-app-import-merge-code"><a class="link" href="#import-and-merge-code-app-import-merge-code">7.1.2. Import and Merge: <code>app-import-merge</code></a></h4>
+<div class="paragraph">
+<p>Patient data will be read from a specified .csv file and merged without
+affecting existing data.</p>
+</div>
+<div class="paragraph">
+<p><strong>The .csv file cannot contain a patient that already exists in the app.</strong></p>
+</div>
+<div class="paragraph">
+<p>Can be executed when there is an ongoing visit.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>app-import-merge [n/FILENAME]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>app-import-replace n/my_new_patients</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Patient data from <code>./imports/my_new_patients.csv</code> will be added into the app.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>CSV files used for importing must adhere to the following format requirements.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The top row of the file must be exactly the following headers in the order:</p>
+<div class="literalblock">
+<div class="content">
+<pre>name, phone, email, address, conditions, visitTodos</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Each row in the .csv corresponds to one patient.</p>
+</li>
+<li>
+<p>The data in each cell must adhere to the format of the field it belongs in.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Cells under <code>phone</code> must contain 8 digit numbers, cells under <code>name</code> must contain only alphanumerics and spaces, etc.</p>
+</li>
+<li>
+<p>For the fields <code>conditions</code> and <code>visitTodos</code> with multiple elements per cell,
+each element is to be separated with a newline.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The data row for any patient cannot have empty cells in the following fields:</p>
+<div class="literalblock">
+<div class="content">
+<pre>`name`, `phone`, `address`, `email`</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Do not have any of the following special characters in the .csv:</p>
+<div class="literalblock">
+<div class="content">
+<pre>`,` and `;`</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>An example of a valid .csv can be seen <a href="ExampleCsv.png">here</a></p>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-data-into-csv-code-export-code"><a class="link" href="#exporting-data-into-csv-code-export-code">7.2. Exporting data into .csv: <code>export</code></a></h3>
+<h3 id="exporting-data-into-a-csv-file-code-app-export-code"><a class="link" href="#exporting-data-into-a-csv-file-code-app-export-code">7.2. Exporting data into a CSV file: <code>app-export</code></a></h3>
 <div class="paragraph">
-<p>You can export patient data from the application into a .csv file using <code>export</code>.</p>
+<p>You can export patient data from the application into a .csv file using <code>app-export</code>.
+A new .csv file will be created and data will be written into it.
+Indexes can be provided to selectively export data of specific persons.</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -1063,21 +1173,17 @@ Up to the last 3(?) undone commands can be redone.</p>
 <p>Only the file format .csv is supported.</p>
 </li>
 <li>
-<p>Creates filename.csv in the ./export folder</p>
+<p>Creates <code>FILENAME.csv</code> in the <code>./exports</code> folder</p>
 </li>
 <li>
-<p>Exported data will be in the following format: example.csv</p>
-</li>
-<li>
-<p>Patient data can be selectively exported (?)</p>
+<p><strong>The provided file name must not be already in use.</strong></p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>Format: <code>export filename.csv [flag?] [num&#8230;&#8203;]</code><br>
-	 <code>flag: r/(range) or i/(indexes)</code></p>
+<p>Format: <code>app-export [n/FILENAME] [i/INDEX&#8230;&#8203;]</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -1085,15 +1191,69 @@ Up to the last 3(?) undone commands can be redone.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>export patients.csv</code></p>
-</li>
+<p><code>app-export n/patients.csv</code></p>
+<div class="ulist">
+<ul>
 <li>
-<p><code>export patients.csv r/5 10</code></p>
-</li>
-<li>
-<p><code>export patients.csv i/2 4 6 7 10</code></p>
+<p>All patient data will be exported to <code>./exports/patients.csv</code>.</p>
 </li>
 </ul>
+</div>
+</li>
+<li>
+<p><code>app-export n/alex.csv i/1</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>The data of the patient at index 1 will be exported to <code>./exports/alex.csv</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>app-export n/tomorrow.csv i/2 i/4 i/6</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>The data of the patients at indexes 2, 4 and 6 will be exported to <code>./exports/tomorrow.csv</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>As of version 1.4, the export feature does not support Visits and Appointments.</strong></p>
+</li>
+<li>
+<p><strong>Patients' visit data will not be exported.</strong></p>
+</li>
+<li>
+<p>Ensure the provided file name does not contain any illegal characters shown below:</p>
+<div class="literalblock">
+<div class="content">
+<pre>&lt; &gt;  : " / \ | ? *</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>They are also system specific restrictions, such as for
+<a href="https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file?redirectedfrom=MSDN">Windows</a></p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -1321,4 +1481,4 @@ You can view the visits of a patient using <code>pat-list</code> and <code>pat-f
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NurseTraverse folder.</p>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 08:42:57 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 14:37:19 UTC</div></div></div></body></html>
