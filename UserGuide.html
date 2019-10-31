@@ -48,11 +48,12 @@
 </ul>
 </li>
 <li><a href="#autocomplete">5. Autocomplete</a></li>
-<li><a href="#data-saving-undo-redo">6. Data Saving, Undo, Redo</a>
+<li><a href="#data-saving-history-undo-redo">6. Data Saving, History, Undo, Redo</a>
 <ul class="sectlevel2">
 <li><a href="#saving-your-data">6.1. Saving your data</a></li>
-<li><a href="#undoing-a-command-code-undo-code">6.2. Undoing a command: <code>undo</code></a></li>
-<li><a href="#redoing-an-undone-command-code-redo-code">6.3. Redoing an undone command: <code>redo</code></a></li>
+<li><a href="#viewing-the-command-history">6.2. Viewing the command history</a></li>
+<li><a href="#undoing-a-command-code-app-undo-code">6.3. Undoing a command: <code>app-undo</code></a></li>
+<li><a href="#redoing-an-undone-command-code-app-redo-code">6.4. Redoing an undone command: <code>app-redo</code></a></li>
 </ul>
 </li>
 <li><a href="#importing-and-exporting-of-patient-data">7. Importing and Exporting of Patient Data</a>
@@ -943,15 +944,18 @@ Starts a visit for the 1st patient in the patient list.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="data-saving-undo-redo"><a class="link" href="#data-saving-undo-redo">6. Data Saving, Undo, Redo</a></h2>
+<h2 id="data-saving-history-undo-redo"><a class="link" href="#data-saving-history-undo-redo">6. Data Saving, History, Undo, Redo</a></h2>
 <div class="sectionbody">
 <div class="exampleblock">
 <div class="content">
 <div class="paragraph">
-<p><strong>Data Saving, Undo, Redo</strong></p>
+<p><strong>Data Saving, History, Undo, Redo</strong></p>
 </div>
 <div class="paragraph">
-<p>As a community nurse, you will often perform commands that modify information managed by the application (e.g. patient data). This section describes the features involving the storage of this data and features involving undo-ing / redo-ing commands.</p>
+<p>As a community nurse, you will often perform commands that modify information
+managed by the application (e.g. patient data). This section describes the
+features involving the storage of this data, viewing command history, and
+undo-ing / redo-ing commands.</p>
 </div>
 </div>
 </div>
@@ -965,31 +969,143 @@ Starts a visit for the 1st patient in the patient list.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-a-command-code-undo-code"><a class="link" href="#undoing-a-command-code-undo-code">6.2. Undoing a command: <code>undo</code></a></h3>
+<h3 id="viewing-the-command-history"><a class="link" href="#viewing-the-command-history">6.2. Viewing the command history</a></h3>
 <div class="paragraph">
-<p>You can undo the changes of the last executed command that alters data using <code>undo</code>.</p>
+<p>The rightmost panel of the app shows a history of the previous data-modifying commands executed
+since the app was started. Examples of data-modifying commands are <code>pat-edit</code> or <code>visit-start</code>.
+Commands that do not affect the app data, such as <code>pat-list</code>, are not shown.</p>
 </div>
 <div class="paragraph">
-<p>Up to the last 3(?) commands can be undone.</p>
+<p>Each command is displayed with an index number. The most recent command is
+shown at the bottom of the history and has the greatest index number. The
+latest command in the history is shown at the top with an index of 1.</p>
 </div>
 <div class="paragraph">
-<p>The command <code>undo</code> itself cannot be undone.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>undo</code></p>
+<p>The app keeps a record of the previous 20 data-modifying commands in the history.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="redoing-an-undone-command-code-redo-code"><a class="link" href="#redoing-an-undone-command-code-redo-code">6.3. Redoing an undone command: <code>redo</code></a></h3>
+<h3 id="undoing-a-command-code-app-undo-code"><a class="link" href="#undoing-a-command-code-app-undo-code">6.3. Undoing a command: <code>app-undo</code></a></h3>
 <div class="paragraph">
-<p>You can redo and reapply the changes of the last undone command using <code>redo</code>.</p>
+<p>You can undo the changes of the data-modifying commands in the history
+with <code>app-undo</code>. All app data will be reverted to how they were before the
+undone command was executed.</p>
 </div>
 <div class="paragraph">
-<p>Can only be used if the last data altering command is <code>undo</code>.
-Up to the last 3(?) undone commands can be redone.</p>
+<p><code>app-undo</code> can be used in two ways. The first way is to provide no arguments
+to the command. This simply undoes the latest command. The second way is to
+specify the index of a command in the history. This would cause all commands
+after and including that command to be undone.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>redo</code></p>
+<p>The command <code>app-undo</code> itself is not affected by <code>app-undo</code> and is not recorded in
+the history. To revert an <code>app-undo</code>, use <code>app-redo</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>app-undo [INDEX]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>If the index is provided, undoes all commands after and including the
+indicated command.</p>
+</li>
+<li>
+<p>If the index is <strong>not</strong> provided, undoes the previous data-modifying command.</p>
+</li>
+<li>
+<p>The index, if provided, <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>Can only undo commands in the history.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>pat-clear</code><br>
+<code>pat-list</code><br>
+<code>app-undo</code> (reverts the <code>pat-clear</code> command)</p>
+</li>
+<li>
+<p>Suppose the history looks like this:</p>
+<div class="openblock">
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>pat-edit 1 n/Ivan Yeoh</code></p>
+</li>
+<li>
+<p><code>pat-delete 3</code></p>
+</li>
+<li>
+<p><code>pat-clear</code></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Now <code>app-undo 2</code> is executed. <code>pat-clear</code> and <code>pat-delete 3</code> are undone in
+that order. The app data is now as it was before <code>pat-delete 3</code> was executed.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="redoing-an-undone-command-code-app-redo-code"><a class="link" href="#redoing-an-undone-command-code-app-redo-code">6.4. Redoing an undone command: <code>app-redo</code></a></h3>
+<div class="paragraph">
+<p>You can redo and reapply the changes of the last undone command using <code>app-redo</code>.
+This is only possible when the latest data-modifying command (other than
+<code>app-redo</code> itself) was an <code>app-undo</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>app-redo</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Redoes the latest undone command.</p>
+</li>
+<li>
+<p>The previous data-modifying command must have been an <code>app-undo</code> (excluding
+<code>app-redo</code> itself).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>pat-edit 1 n/Ivan Yeoh</code><br>
+<code>app-undo</code><br>
+<code>app-redo</code> (reverts data to after <code>pat-edit</code> was executed)</p>
+</li>
+<li>
+<p><code>pat-edit 1 n/Ivan Yeoh</code><br>
+<code>pat-clear</code><br>
+<code>app-undo</code><br>
+<code>app-undo</code><br>
+<code>app-redo</code> (redoes <code>pat-edit</code>)<br>
+<code>app-redo</code> (redoes <code>pat-clear</code>)</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1491,4 +1607,4 @@ You can view the visits of a patient using <code>pat-list</code> and <code>pat-f
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NurseTraverse folder.</p>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 16:04:20 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 18:17:36 UTC</div></div></div></body></html>

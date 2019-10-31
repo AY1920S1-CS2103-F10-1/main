@@ -784,21 +784,21 @@ You can view the visits of a patient using <code>pat-list</code> and <code>pat-f
 <div class="sect2">
 <h3 id="undo-redo-history"><a class="link" href="#undo-redo-history">Undo/Redo/History</a></h3>
 <div class="paragraph">
-<p>This set of functionality consists of three commands, each of which rely on
-the same core components:</p>
+<p>This set of functionality consists of one GUI component and two commands,
+each of which rely on the same core components:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>history</code> - Displays a numbered list of previous data-modifying commands
-that can be reverted by <code>undo</code>.</p>
+<p><code>HistoryPane</code> - GUI component that displays a numbered list of previous
+data-modifying commands that can be reverted by <code>undo</code>.</p>
 </li>
 <li>
-<p><code>undo</code> - Reverts until a specified data-modifying command in the <code>history</code>,
-or the previous data-modifying command if no argument is specified.</p>
+<p><code>app-undo</code> - Command that reverts until a specified data-modifying command
+in the <code>history</code>, or the previous data-modifying command if no argument is specified.</p>
 </li>
 <li>
-<p><code>redo</code> - Reverts the previous command if and only if it was an <code>undo</code>.</p>
+<p><code>app-redo</code> - Command that Reverts the previous command if and only if it was an <code>undo</code>.</p>
 </li>
 </ol>
 </div>
@@ -810,7 +810,7 @@ or the previous data-modifying command if no argument is specified.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>A way to mark which `Command`s are data-modifying commands.</p>
+<p>A way to mark which <code>Command</code> s are data-modifying commands.</p>
 </li>
 <li>
 <p>A mechanism to clearly demarcate the model state before and after the execution
@@ -832,7 +832,7 @@ in the history.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>MutatorCommand</code> - An empty marker interface to indicate that a <code>Command</code> is a
+<p><code>MutatorCommand</code> - An empty subclass of <code>Command</code> to indicate that a <code>Command</code> is a
 data-modifying command and should be considered for undo/redo/history.</p>
 </li>
 <li>
@@ -882,4 +882,4 @@ making them permanent and updating the UI data. The committing <code>MutatorComm
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 16:04:20 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 18:17:36 UTC</div></div></div></body></html>
