@@ -978,7 +978,7 @@ Commands that do not affect the app data, such as <code>pat-list</code>, are not
 <div class="paragraph">
 <p>Each command is displayed with an index number. The most recent command is
 shown at the bottom of the history and has the greatest index number. The
-latest command in the history is shown at the top with an index of 1.</p>
+earliest command in the history is shown at the top with an index of 1.</p>
 </div>
 <div class="paragraph">
 <p>The app keeps a record of the previous 20 data-modifying commands in the history.</p>
@@ -1104,6 +1104,32 @@ This is only possible when the latest data-modifying command (other than
 <code>app-undo</code><br>
 <code>app-redo</code> (redoes <code>pat-edit</code>)<br>
 <code>app-redo</code> (redoes <code>pat-clear</code>)</p>
+</li>
+<li>
+<p>Suppose the history looks like this:</p>
+<div class="openblock">
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>pat-edit 1 n/Ivan Yeoh</code></p>
+</li>
+<li>
+<p><code>pat-delete 3</code></p>
+</li>
+<li>
+<p><code>pat-clear</code></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Now the following commands are executed:<br>
+<code>app-undo 2</code> (reverts <code>pat-clear</code> and <code>pat-delete</code>)<br>
+<code>app-redo</code> (redoes <code>pat-delete</code>)<br>
+<code>app-redo</code> (redoes <code>pat-clear</code>)</p>
+</div>
 </li>
 </ul>
 </div>
@@ -1607,4 +1633,4 @@ You can view the visits of a patient using <code>pat-list</code> and <code>pat-f
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NurseTraverse folder.</p>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 18:38:27 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-31 19:09:35 UTC</div></div></div></body></html>
