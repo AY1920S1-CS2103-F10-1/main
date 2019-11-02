@@ -11,12 +11,14 @@ import cs.f10.t1.nursetraverse.commons.util.CollectionUtil;
 import cs.f10.t1.nursetraverse.logic.commands.MutatorCommand;
 import cs.f10.t1.nursetraverse.logic.commands.RedoCommand;
 import cs.f10.t1.nursetraverse.logic.commands.UndoCommand;
+import cs.f10.t1.nursetraverse.model.appointment.Appointment;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
  * Represents the history of the application. Each data state change is stored as a record containing the
- * {@link MutatorCommand} that caused the change and the {@link PatientBook} state before the command execution.
+ * {@link MutatorCommand} that caused the change and the {@link PatientBook} and {@link AppointmentBook} states
+ * before the command execution.
  * All recorded states are deep copies decoupled from their original references.
  */
 public class HistoryManager {
@@ -45,24 +47,25 @@ public class HistoryManager {
      * @param command the command that caused the change in state
      * @param patientBook the state before the command was executed
      */
-    public void pushRecord(MutatorCommand command, PatientBook patientBook) {
+    public void pushRecord(MutatorCommand command, PatientBook patientBook, AppointmentBook appointmentBook) {
         if (command instanceof UndoCommand || command instanceof RedoCommand) {
             return;
         }
-        pushToHistory(command, patientBook);
+        pushToHistory(command, patientBook, appointmentBook);
         redoStack.clear(); // Invalidate redo stack to avoid branching
     }
 
     /**
      * Records the specified command and state in the history. This is different from
-     * {@link #pushRecord(MutatorCommand, PatientBook)} in that the {@code redoStack} is not cleared to facilitate
-     * pushing {@link #popRedo(PatientBook)}ed records back into the history while maintaining the redo stack.
+     * {@link #pushRecord(MutatorCommand, PatientBook, AppointmentBook)} in that the {@code redoStack} is not cleared to
+     * facilitate pushing {@link #popRedo(PatientBook, AppointmentBook)}ed records back into the history while
+     * maintaining the redo stack.
      */
-    private void pushToHistory(MutatorCommand command, PatientBook patientBook) {
+    private void pushToHistory(MutatorCommand command, PatientBook patientBook, AppointmentBook appointmentBook) {
         if (history.size() == maxSize) {
             history.remove(0);
         }
-        history.add(new HistoryRecord(command, patientBook));
+        history.add(new HistoryRecord(command, patientBook, appointmentBook));
     }
 
     /**
@@ -71,14 +74,16 @@ public class HistoryManager {
      * {@code} currentPatientBook so it can be undone.
      *
      * @param currentPatientBook the current state of the {@code PatientBook} model, stored for redo purposes
+     * @param currentAppointmentBook the current state of the {@code AppointmentBook} model, stored for redo purposes
      * @return an {@code Optional} describing the most recent record in the history, or an empty {@code Optional} if
      *         the history is empty
      */
-    public Optional<HistoryRecord> popRecord(PatientBook currentPatientBook) {
+    public Optional<HistoryRecord> popRecord(PatientBook currentPatientBook, AppointmentBook currentAppointmentBook) {
         if (history.isEmpty()) {
             return Optional.empty();
         } else {
-            redoStack.push(new HistoryRecord(getLastRecord().get().getCommand(), currentPatientBook));
+            redoStack.push(new HistoryRecord(getLastRecord().get().getCommand(), currentPatientBook,
+                                            currentAppointmentBook));
             return Optional.of(history.remove(history.size() - 1));
         }
     }
@@ -88,10 +93,12 @@ public class HistoryManager {
      *
      * @param record the record to revert to
      * @param currentPatientBook the current state of the {@code PatientBook} model, stored for redo purposes
+     * @param currentAppointmentBook the current state of the {@code AppointmentBook} model, stored for redo purposes
      * @return list of records popped with the first popped record at index 0
      * @throws NoSuchElementException if the specified record does not exist in the history
      */
-    public List<HistoryRecord> popRecordsTo(HistoryRecord record, PatientBook currentPatientBook)
+    public List<HistoryRecord> popRecordsTo(HistoryRecord record, PatientBook currentPatientBook,
+                                            AppointmentBook currentAppointmentBook)
             throws NoSuchElementException {
         int index = history.indexOf(record);
         if (index == -1) { // record not found in history
@@ -101,11 +108,13 @@ public class HistoryManager {
         List<HistoryRecord> poppedRecords = new ArrayList<>();
         HistoryRecord curRecord = null;
         PatientBook undonePatientBook = currentPatientBook;
+        AppointmentBook undoneAppointmentBook = currentAppointmentBook;
         while (curRecord != record) {
-            curRecord = popRecord(undonePatientBook).get();
+            curRecord = popRecord(undonePatientBook, undoneAppointmentBook).get();
             poppedRecords.add(curRecord);
             if (!history.isEmpty()) {
                 undonePatientBook = (PatientBook) getLastRecord().get().getReadOnlyPatientBook();
+                undoneAppointmentBook = (AppointmentBook) getLastRecord().get().getReadOnlyAppointmentBook();
             }
         }
         return poppedRecords;
@@ -116,15 +125,18 @@ public class HistoryManager {
      * {@code PatientBook} state after the undone command was executed. Otherwise, returns an empty {@code Optional}.
      *
      * @param currentPatientBook the current state of the {@code PatientBook} model, stored for undo purposes
+     * @param currentAppointmentBook the current state of the {@code AppointmentBook} model, stored for undo purposes
      * @return an {@code Optional} describing the redone record, or an empty {@code Optional} if there are no undos to
      *         redo
      */
-    public Optional<HistoryRecord> popRedo(PatientBook currentPatientBook) {
+    public Optional<HistoryRecord> popRedo(PatientBook currentPatientBook, AppointmentBook currentAppointmentBook) {
         if (redoStack.isEmpty()) {
             return Optional.empty();
         }
         HistoryRecord redoRecord = redoStack.pop();
-        pushToHistory(redoRecord.getCommand(), currentPatientBook); // Save state before redone command
+        pushToHistory(redoRecord.getCommand(), currentPatientBook, currentAppointmentBook);
+        // Save state before redone command
+
         return Optional.of(redoRecord);
     }
 

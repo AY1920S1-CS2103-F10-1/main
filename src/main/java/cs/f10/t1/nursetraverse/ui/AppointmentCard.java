@@ -56,10 +56,11 @@ public class AppointmentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         startDateTime.setText(appointment.getStartDateTime().toJacksonJsonString());
         endDateTime.setText(appointment.getEndDateTime().toJacksonJsonString());
-        patientName.setText(appointment.getPatient().getName().fullName);
-        patientPhone.setText(appointment.getPatient().getPhone().value);
-        patientAddress.setText(appointment.getPatient().getAddress().value);
-        patientEmail.setText(appointment.getPatient().getEmail().value);
+        System.out.println(appointment); // Why is this null?
+//        patientName.setText(appointment.getPatient().getName().fullName);
+//        patientPhone.setText(appointment.getPatient().getPhone().value);
+//        patientAddress.setText(appointment.getPatient().getAddress().value);
+//        patientEmail.setText(appointment.getPatient().getEmail().value);
         if (appointment.getFrequency().isRecurringFrequency()) {
             recurDateTime.getChildren().add(new Label("recurring"));
             frequency.setText(appointment.getFrequency().toJacksonJsonString());

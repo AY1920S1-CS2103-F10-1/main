@@ -22,6 +22,8 @@ public class AppointmentListPanel extends UiPart<Region> {
         appointmentListView.setItems(appointmentList);
         appointmentListView.setCellFactory(listView -> new AppointmentListViewCell());
         appointmentListView.setPlaceholder(new Label("No appointments found."));
+        //Prevent user from selecting any rows which can mess up the CSS
+        appointmentListView.setSelectionModel(null);
     }
 
     /**
