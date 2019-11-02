@@ -7,7 +7,6 @@ import java.util.Optional;
 import cs.f10.t1.nursetraverse.commons.exceptions.DataConversionException;
 import cs.f10.t1.nursetraverse.model.AppointmentBook;
 import cs.f10.t1.nursetraverse.model.ReadOnlyAppointmentBook;
-import cs.f10.t1.nursetraverse.model.ReadOnlyPatientBook;
 
 /**
  * Represents a storage for {@link AppointmentBook}.

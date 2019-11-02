@@ -11,7 +11,6 @@ import cs.f10.t1.nursetraverse.commons.util.CollectionUtil;
 import cs.f10.t1.nursetraverse.logic.commands.MutatorCommand;
 import cs.f10.t1.nursetraverse.logic.commands.RedoCommand;
 import cs.f10.t1.nursetraverse.logic.commands.UndoCommand;
-import cs.f10.t1.nursetraverse.model.appointment.Appointment;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

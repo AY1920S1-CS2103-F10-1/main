@@ -322,6 +322,11 @@ public class ModelManager implements Model {
         return historyManager.asUnmodifiableObservableList();
     }
 
+    /**
+     * Changes basePatientBook and baseAppointmentBook to the stagedPatientBook and stagedAppointmentBook respectively.
+     * @param patientBook
+     * @param appointmentBook
+     */
     private void changeBaseTo(PatientBook patientBook, AppointmentBook appointmentBook) {
         basePatientBook = patientBook;
         baseAppointmentBook = appointmentBook;
