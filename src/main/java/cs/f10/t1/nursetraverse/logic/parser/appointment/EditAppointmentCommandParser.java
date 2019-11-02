@@ -18,13 +18,14 @@ import cs.f10.t1.nursetraverse.logic.commands.appointment.EditAppointmentCommand
 import cs.f10.t1.nursetraverse.logic.commands.appointment.EditAppointmentCommand.EditAppointmentDescriptor;
 import cs.f10.t1.nursetraverse.logic.parser.ArgumentMultimap;
 import cs.f10.t1.nursetraverse.logic.parser.ArgumentTokenizer;
+import cs.f10.t1.nursetraverse.logic.parser.Parser;
 import cs.f10.t1.nursetraverse.logic.parser.ParserUtil;
 import cs.f10.t1.nursetraverse.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new EditAppointmentCommand object
  */
-public class EditAppointmentCommandParser {
+public class EditAppointmentCommandParser implements Parser<EditAppointmentCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditAppointmentCommand
      * and returns an EditAppointmentCommand object for execution.

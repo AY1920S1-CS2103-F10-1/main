@@ -7,7 +7,6 @@ import cs.f10.t1.nursetraverse.commons.util.CollectionUtil;
 import cs.f10.t1.nursetraverse.model.datetime.EndDateTime;
 import cs.f10.t1.nursetraverse.model.datetime.RecurringDateTime;
 import cs.f10.t1.nursetraverse.model.datetime.StartDateTime;
-import cs.f10.t1.nursetraverse.model.patient.Address;
 import cs.f10.t1.nursetraverse.model.patient.Patient;
 
 /**
@@ -64,10 +63,6 @@ public class Appointment {
         return description;
     }
 
-    public Address getAddress() {
-        return patient.getAddress();
-    }
-
     /**
      * Returns true if both appointments of the same date and time have at least one other identity field that is the
      * same.
@@ -104,8 +99,7 @@ public class Appointment {
                 && otherAppointment.getEndDateTime().equals(getEndDateTime())
                 && otherAppointment.getFrequency().equals(getFrequency())
                 && otherAppointment.getPatient().equals(getPatient())
-                && otherAppointment.getDescription().equals(getDescription())
-                && otherAppointment.getAddress().equals(getAddress());
+                && otherAppointment.getDescription().equals(getDescription());
     }
 
     @Override
@@ -125,8 +119,6 @@ public class Appointment {
                 .append(getFrequency())
                 .append(" Patient: ")
                 .append(getPatient())
-                .append(" Location: ")
-                .append(getAddress())
                 .append(" Description: ")
                 .append(getDescription());
         return builder.toString();
