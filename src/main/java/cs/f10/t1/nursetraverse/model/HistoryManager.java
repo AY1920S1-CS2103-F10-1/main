@@ -40,11 +40,12 @@ public class HistoryManager {
     //// Setter methods
 
     /**
-     * Records the specified command and state in the history. The {@code patientBook} represents the state before the
-     * {@code command} was executed.
+     * Records the specified command and state in the history. The {@code patientBook} and {@code appointmentBook}
+     * represents the state before the {@code command} was executed.
      *
      * @param command the command that caused the change in state
      * @param patientBook the state before the command was executed
+     * @param appointmentBook the state before the command was executed
      */
     public void pushRecord(MutatorCommand command, PatientBook patientBook, AppointmentBook appointmentBook) {
         if (command instanceof UndoCommand || command instanceof RedoCommand) {
@@ -70,7 +71,7 @@ public class HistoryManager {
     /**
      * Removes the most recent record from the history and returns it as an {@code Optional}, or an empty
      * {@code Optional} if there are no records in the history. Records the undo with the specified
-     * {@code} currentPatientBook so it can be undone.
+     * {@code currentPatientBook} and {@code currentAppointmentBook} so it can be undone.
      *
      * @param currentPatientBook the current state of the {@code PatientBook} model, stored for redo purposes
      * @param currentAppointmentBook the current state of the {@code AppointmentBook} model, stored for redo purposes
@@ -121,7 +122,8 @@ public class HistoryManager {
 
     /**
      * If the previous command was an undo, reverts it and returns a {@code HistoryRecord} containing the
-     * {@code PatientBook} state after the undone command was executed. Otherwise, returns an empty {@code Optional}.
+     * {@code PatientBook} and {@code AppointmentBook} state after the undone command was executed. Otherwise, returns
+     * an empty {@code Optional}.
      *
      * @param currentPatientBook the current state of the {@code PatientBook} model, stored for undo purposes
      * @param currentAppointmentBook the current state of the {@code AppointmentBook} model, stored for undo purposes

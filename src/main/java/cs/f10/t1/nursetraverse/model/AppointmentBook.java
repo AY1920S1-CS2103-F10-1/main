@@ -70,14 +70,6 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
     }
 
     /**
-     * Returns index of appointment.
-     */
-    public int indexOfAppointment(Appointment appointment) {
-        requireNonNull(appointment);
-        return appointments.indexOf(appointment);
-    }
-
-    /**
      * Adds an appointment to the appointment book.
      * The patient must not already exist in the appointment book.
      */

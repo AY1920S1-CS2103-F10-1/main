@@ -4,7 +4,8 @@ import cs.f10.t1.nursetraverse.logic.commands.MutatorCommand;
 
 /**
  * Record of the command and data of one atomic commit in the command history. It consists of the
- * {@link MutatorCommand} responsible for the commit and the state of the {@link PatientBook} before the commit.
+ * {@link MutatorCommand} responsible for the commit and the state of the {@link PatientBook} and
+ * {@link AppointmentBook} before the commit.
  */
 public class HistoryRecord {
     private final MutatorCommand command;

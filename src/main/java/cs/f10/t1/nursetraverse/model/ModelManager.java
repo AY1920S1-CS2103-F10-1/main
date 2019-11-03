@@ -78,6 +78,7 @@ public class ModelManager implements Model {
         ongoingVisitList = FXCollections.observableArrayList();
         Optional<Visit> ongoingVisit = this.stagedPatientBook.getOngoingVisit();
         ongoingVisit.ifPresent(ongoingVisitList::add);
+        refreshStagedPatients();
 
         //Initializing appointment related book and appointments
         this.baseAppointmentBook = new AppointmentBook();
@@ -85,7 +86,7 @@ public class ModelManager implements Model {
 
         stagedAppointments = FXCollections.observableArrayList();
         filteredAppointments = new FilteredList<>(FXCollections.unmodifiableObservableList(stagedAppointments));
-        refreshStagedData();
+        refreshStagedAppointments();
     }
 
     public ModelManager() {
@@ -132,7 +133,7 @@ public class ModelManager implements Model {
     @Override
     public void setStagedPatientBook(ReadOnlyPatientBook patientBook) {
         this.stagedPatientBook.resetData(patientBook);
-        refreshStagedData();
+        refreshStagedPatients();
     }
 
     @Override
@@ -142,7 +143,7 @@ public class ModelManager implements Model {
             newBook.addPatient(patient);
         }
         setStagedPatientBook(newBook);
-        refreshStagedData();
+        refreshStagedPatients();
     }
 
     @Override
@@ -229,14 +230,14 @@ public class ModelManager implements Model {
     @Override
     public void deletePatient(Patient target) {
         stagedPatientBook.removePatient(target);
-        refreshStagedData();
+        refreshStagedPatients();
         refreshFilteredPatientList();
     }
 
     @Override
     public void addPatient(Patient patient) {
         stagedPatientBook.addPatient(patient);
-        refreshStagedData();
+        refreshStagedPatients();
         updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
     }
 
@@ -247,7 +248,7 @@ public class ModelManager implements Model {
         for (Patient patient : patients) {
             stagedPatientBook.addPatient(patient);
         }
-        refreshStagedData();
+        refreshStagedPatients();
         updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
     }
 
@@ -256,7 +257,7 @@ public class ModelManager implements Model {
         CollectionUtil.requireAllNonNull(target, editedPatient);
 
         stagedPatientBook.setPatient(target, editedPatient);
-        refreshStagedData();
+        refreshStagedPatients();
     }
 
     @Override
@@ -296,7 +297,10 @@ public class ModelManager implements Model {
     @Override
     public void discardStagedChanges() {
         stagedPatientBook = basePatientBook.deepCopy();
-        refreshStagedData();
+        refreshStagedPatients();
+
+        stagedAppointmentBook = baseAppointmentBook.deepCopy();
+        refreshStagedAppointments();
     }
 
     @Override
@@ -330,18 +334,25 @@ public class ModelManager implements Model {
     private void changeBaseTo(PatientBook patientBook, AppointmentBook appointmentBook) {
         basePatientBook = patientBook;
         baseAppointmentBook = appointmentBook;
+        refreshStagedPatients();
+
         stagedPatientBook = basePatientBook.deepCopy();
         stagedAppointmentBook = baseAppointmentBook.deepCopy();
-        refreshStagedData();
+        refreshStagedAppointments();
     }
 
     /**
-     * Refresh staged data on changing data or undo/redo. Affects stagedPatients, stagedAppointments and
-     * ongoingVisitList.
+     * Refresh staged data on changing data or undo/redo. Affects stagedPatients and ongoingVisitList.
      */
-    private void refreshStagedData() {
+    private void refreshStagedPatients() {
         stagedPatients.setAll(stagedPatientBook.getPatientList());
         updateOngoingVisitList();
+    }
+
+    /**
+     * Refresh staged data on changing data or undo/redo. Affects stagedAppointments
+     */
+    private void refreshStagedAppointments() {
         stagedAppointments.setAll(stagedAppointmentBook.getAppointmentList());
     }
 
@@ -389,7 +400,7 @@ public class ModelManager implements Model {
     @Override
     public void setStagedAppointmentBook(ReadOnlyAppointmentBook appointmentBook) {
         this.stagedAppointmentBook.resetData(appointmentBook);
-        refreshStagedData();
+        refreshStagedAppointments();
     }
 
     @Override
@@ -399,7 +410,7 @@ public class ModelManager implements Model {
             newBook.addAppointment(appointment);
         }
         setStagedAppointmentBook(newBook);
-        refreshStagedData();
+        refreshStagedAppointments();
     }
 
     @Override
@@ -416,14 +427,14 @@ public class ModelManager implements Model {
     @Override
     public void deleteAppointment(Appointment target) {
         stagedAppointmentBook.removeAppointment(target);
-        refreshStagedData();
+        refreshStagedAppointments();
         refreshFilteredAppointmentList();
     }
 
     @Override
     public void addAppointment(Appointment appointment) {
         stagedAppointmentBook.addAppointment(appointment);
-        refreshStagedData();
+        refreshStagedAppointments();
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
     }
 
@@ -484,7 +495,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return stagedPatientBook.equals(other.stagedPatientBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPatients.equals(other.filteredPatients);
+                && filteredPatients.equals(other.filteredPatients)
+                && filteredAppointments.equals(other.filteredAppointments);
     }
 
 }
