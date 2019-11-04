@@ -859,6 +859,45 @@ of each data state change.</p>
 <div class="paragraph">
 <p>Additionally, <code>LogicManager</code> and <code>Model</code> are modified to accommodate this functionality.</p>
 </div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Shallow Copy vs Deep copy</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Performing a <em>shallow copy</em> of an object simply copies the values of the
+references of each object the original object is pointing to. This results in the
+copied object pointing to the same objects as the original. In the figure below,
+<code>patientBook</code> and <code>copiedPatientBook</code> are separate <code>PatientBook</code> objects but actually
+share the same <code>patient</code> object. Changes to <code>patient</code> through <code>PatientBook</code> would thus
+affect <code>copiedPatientBook</code> as well.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/shallow_copy.png" alt="shallow copy">
+</div>
+<div class="title">Figure 1. Shallow copy</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Performing a <em>deep copy</em> creates duplicates of each object referenced by the original,
+the objects referenced by those duplicates, and so on. These duplicates are completely
+decoupled from their originals. In the figure below, <code>patient</code> is a different
+object from <code>copiedPatient</code>, thus changes to <code>patient</code> would not affect <code>copiedPatient</code>.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/deep_copy.png" alt="deep copy">
+</div>
+<div class="title">Figure 2. Deep copy</div>
+</div>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="model"><a class="link" href="#model">Model</a></h4>
@@ -895,13 +934,27 @@ making them permanent and updating the UI data. The committing <code>MutatorComm
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easier to implement.</p>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easier to implement.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p>Cons: Relies on the assumption that the objects in <code>PatientBook</code> and <code>AddressBook</code>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Relies on the assumption that the objects in <code>PatientBook</code> and <code>AddressBook</code>
 are immutable; if they are not truly immutable, changes to the current model&#8217;s
 <code>PatientBook</code> and <code>AddressBook</code> state may leak and affect the states stored in
 the history.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -911,17 +964,36 @@ the history.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Prevents improperly coded <code>Patient</code> or <code>Appointment</code> (or their
-associated classes) from breaking undo/redo/history functionality. Can reuse
-JSON serialization code for persistent storage of <code>PatientBook</code> and <code>AppointmentBook</code>
-to perform deep copies by serializing then immediately deserializing them.</p>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Prevents improperly coded <code>Patient</code> or <code>Appointment</code> (or their
+associated classes) from breaking undo/redo/history functionality.</p>
 </li>
 <li>
-<p>Cons: Consumes more memory and CPU time. More difficult to implement as
-MVC pattern between UI view and models is broken in two, due to the
-<code>ObservableList</code> observed by the UI being part of <code>ModelManager</code> as <code>ModelManager</code>
-has to modify the <code>ObservableList</code> each time the the current state is swapped with
-a state in the history.</p>
+<p>Can reuse JSON serialization code for persistent storage of <code>PatientBook</code> and <code>AppointmentBook</code>
+to create deep copies by serializing then immediately deserializing them.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Consumes more memory and CPU time.</p>
+</li>
+<li>
+<p>More difficult to implement - MVC pattern between UI view and models is broken in
+two. This is because each time the current state is swapped with a state in the
+history by <code>ModelManager</code>, the <code>ObservableList</code> viewed by the UI must also be
+updated by the <code>ModelManager</code> instead of the <code>PatientBook</code> as the current
+<code>PatientBook</code> is completely decoupled and placed into the history.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -938,16 +1010,32 @@ a state in the history.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Ensures atomicity of the records in the history as pushing a transaction
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Ensures atomicity of the records in the history as pushing a transaction
 to the <code>HistoryManager</code> can only be (and is always) done by <code>Model#commit()</code>
 itself - records in the history are guaranteed to be products of complete command
 execution rather than intermediate states.</p>
 </li>
+</ul>
+</div>
+</li>
 <li>
-<p>Cons: More difficult to test <code>ModelManager</code> as two <code>ModelManager</code> objects may have
-the same current state but differing <code>HistoryManager</code> objects. May violate Single
-Responsibility Principle as <code>ModelManager</code> now has to manage both its current
-state and its previous states.</p>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>More difficult to test <code>ModelManager</code> as two <code>ModelManager</code> objects may have
+the same current state but differing <code>HistoryManager</code> objects.</p>
+</li>
+<li>
+<p>May violate Single Responsibility Principle as <code>ModelManager</code> now has to manage
+both its current state and its previous states.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -957,15 +1045,33 @@ state and its previous states.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Higher cohesion as <code>ModelManager</code> only represents the model&#8217;s current state.
-Easier to test <code>ModelManager</code> as only its current state matters.</p>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Higher cohesion as <code>ModelManager</code> only represents the model&#8217;s current state.</p>
 </li>
 <li>
-<p>Cons: It is possible for intermediate model states to be pushed to the <code>HistoryManager</code> -
+<p>Easier to test <code>ModelManager</code> as only its current state matters.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>It is possible for intermediate model states to be pushed to the <code>HistoryManager</code> -
 trusts <code>LogicManager</code> to push the transaction to history after (and only
-after) calling <code>Model#commit()</code>. Requires <code>Command#execute()</code> to accept
-<code>HistoryManager</code> as a parameter just so <code>UndoCommand</code> and <code>RedoCommand</code> can
-work even though the vast majority of commands do not require it.</p>
+after) calling <code>Model#commit()</code>.</p>
+</li>
+<li>
+<p>Requires <code>Command#execute()</code> to accept <code>HistoryManager</code> as a parameter just so
+<code>UndoCommand</code> and <code>RedoCommand</code> can work even though the vast majority of commands do not require it.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -975,11 +1081,16 @@ work even though the vast majority of commands do not require it.</p>
 </div>
 </div>
 <div class="sect3">
+<h4 id="logic"><a class="link" href="#logic">Logic</a></h4>
+
+</div>
+<div class="sect3">
 <h4 id="ui"><a class="link" href="#ui">UI</a></h4>
 <div class="paragraph">
 <p>The command history is constantly displayed in a panel on the right side of
 the app. This <code>HistoryPanel</code> uses <code>HistoryRecordCard</code> s to display the
-user-input text that invoked each command.</p>
+user-input text that invoked each command. It is a view of the <code>ObservableList&lt;HistoryRecord&gt;</code>
+returned by <code>HistoryManager#asUnmodifiableObservableList()</code>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -993,11 +1104,25 @@ user-input text that invoked each command.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: User does not have to execute a 'history' command to view the history,
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>User does not have to execute a 'history' command to view the history,
 making it much easier to use the multiple undo function.</p>
 </li>
+</ul>
+</div>
+</li>
 <li>
-<p>Cons: Takes up more space in the UI.</p>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Takes up more space in the UI.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -1007,12 +1132,28 @@ making it much easier to use the multiple undo function.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Saves space in the UI.</p>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Saves space in the UI.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p>Cons: User has to switch to the history tab to view it. Less intuitive
-UX as the other tabs in the <code>TabPane</code> all display actual data such as
-<code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> info, whereas history is app metadata.</p>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>User has to switch to the history tab to view it.</p>
+</li>
+<li>
+<p>Less intuitive UX as the other tabs in the <code>TabPane</code> all display actual data
+such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> info, whereas history is app metadata.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -1029,4 +1170,4 @@ UX as the other tabs in the <code>TabPane</code> all display actual data such as
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-03 19:51:39 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-04 10:18:53 UTC</div></div></div></body></html>
