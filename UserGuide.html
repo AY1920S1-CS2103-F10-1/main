@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>NurseTraverse - User Guide</title><link rel="stylesheet" href="stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">NurseTraverse</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S1-CS2103-F10-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>NurseTraverse - User Guide</h1></div><div id="content"><div id="preamble">
+<link rel="stylesheet" href="stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="index.html">NurseTraverse</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link active" href="UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S1-CS2103-F10-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>NurseTraverse - User Guide</h1></div><div id="content"><div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>By: <code>Team AY1920S1-CS2103-F10-1</code>      Since: <code>Sep 2019</code>      Licence: <code>MIT</code></p>
@@ -66,6 +66,7 @@
 <ul class="sectlevel2">
 <li><a href="#importing-patient-data-from-a-csv-file-code-app-import-replace-code-code-app-import-merge-code">7.1. Importing patient data from a CSV file: <code>app-import-replace</code>, <code>app-import-merge</code></a></li>
 <li><a href="#exporting-data-into-a-csv-file-code-app-export-code">7.2. Exporting data into a CSV file: <code>app-export</code></a></li>
+<li><a href="#exporting-appointments-code-coming-in-v2-0-code">7.3. Exporting Appointments <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
 <li><a href="#exiting-the-program-code-exit-code">8. Exiting the program : <code>exit</code></a></li>
@@ -105,7 +106,7 @@
 </div>
 <h1 id="introduction" class="sect0"><a class="link" href="#introduction">Introduction</a></h1>
 <div class="paragraph">
-<p>NurseTraverse is designed for community nurses who make home visits to their patients. It is a laptop app that will allow nurses to keep track of their patients' data, appointments and visits. ComNurse is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). Interested? Jump to the <a href="#quick-start">Quick Start</a> to get started. Enjoy!</p>
+<p>NurseTraverse is designed for community nurses who make home visits to their patients. It is a computer app that will allow nurses to keep track of their patients' data, appointments and visits. NurseTraverse is <strong>optimized for those who prefer to work with a Command Line Interface</strong> (CLI) while still having the benefits of a Graphical User Interface (GUI). Interested? Jump to the <a href="#quick-start">Quick Start</a> to get started. Enjoy!</p>
 </div>
 <h1 id="quick-start" class="sect0"><a class="link" href="#quick-start">Quick Start</a></h1>
 <div class="olist arabic">
@@ -114,7 +115,7 @@
 <p>Ensure you have Java <code>11</code> or above installed in your Computer.</p>
 </li>
 <li>
-<p>Download the latest <code>comnurse.jar</code> <a href="https://github.com/AY1920S1-CS2103-F10-1/main/releases">here</a>.</p>
+<p>Download the latest <code>nurvetraverse.jar</code> <a href="https://github.com/AY1920S1-CS2103-F10-1/main/releases">here</a>.</p>
 </li>
 <li>
 <p>Copy the file to the folder you want to use as the home folder for your NurseTraverse app.</p>
@@ -123,7 +124,7 @@
 <p>Double-click the file to start the app. The GUI should appear in a few seconds.</p>
 <div class="imageblock">
 <div class="content">
-<img src="images/Ui.png" alt="Ui" width="790">
+<img src="images/NurseTraverse.png" alt="NurseTraverse" width="790">
 </div>
 </div>
 </li>
@@ -145,7 +146,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p><strong><code>pat-delete</code></strong><code>3</code> : deletes the 3rd contact shown in the current list</p>
 </li>
 <li>
-<p><strong><code>exit</code></strong> : exits the app</p>
+<p><strong><code>app-exit</code></strong> : exits the app</p>
 </li>
 </ul>
 </div>
@@ -170,13 +171,13 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p>Parameters are additional pieces of information required/used when running a command.</p>
 </li>
 <li>
-<p>Items in square brackets are <strong>optional</strong> e.g <code>n/NAME [t/TAG]</code> can be used as <code>n/John Doe t/friend</code> or as <code>n/John Doe</code>.</p>
+<p>Items in square brackets are <strong>optional</strong> e.g <code>n/NAME [t/TAG]</code> can be used as <code>n/John Doe t/Diabetic</code> or as <code>n/John Doe</code>.</p>
 </li>
 <li>
 <p>Items that are not in square brackets are required e.g. <code>n/NAME</code> from the <code>pat-add</code> command.</p>
 </li>
 <li>
-<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>t/friend</code>, <code>t/friend t/family</code> etc.</p>
+<p>Items with <code>…</code>​ after them can be used multiple times including zero times e.g. <code>[t/TAG]&#8230;&#8203;</code> can be used as <code>&#160;</code> (i.e. 0 times), <code>t/Diabetic</code>, <code>t/Diabetic t/Fever</code> etc.</p>
 </li>
 <li>
 <p>Parameters can be in any order e.g. if the command specifies <code>n/NAME p/PHONE_NUMBER</code>, <code>p/PHONE_NUMBER n/NAME</code> is also acceptable.</p>
@@ -1390,12 +1391,7 @@ each element is to be separated with a newline.</p>
 </div>
 </li>
 <li>
-<p>Do not have any of the following special characters in the .csv:</p>
-<div class="literalblock">
-<div class="content">
-<pre>, and ;</pre>
-</div>
-</div>
+<p>The .csv file should adhere to the <a href="https://tools.ietf.org/html/rfc4180">RFC 2048</a> standard.</p>
 </li>
 </ul>
 </div>
@@ -1404,7 +1400,8 @@ each element is to be separated with a newline.</p>
 </table>
 </div>
 <div class="paragraph">
-<p>An example of a valid .csv can be seen <a href="samplecsvs/importsample.csv">here</a></p>
+<p>An example of a valid .csv can be seen
+<a href="https://raw.githubusercontent.com/AY1920S1-CS2103-F10-1/main/master/docs/samplecsvs/importsample.csv">here</a></p>
 </div>
 </div>
 </div>
@@ -1445,7 +1442,7 @@ Indexes can be provided to selectively export data of specific persons.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>app-export n/patients.csv</code></p>
+<p><code>app-export n/patients</code></p>
 <div class="ulist">
 <ul>
 <li>
@@ -1455,7 +1452,7 @@ Indexes can be provided to selectively export data of specific persons.</p>
 </div>
 </li>
 <li>
-<p><code>app-export n/alex.csv i/1</code></p>
+<p><code>app-export n/alex i/1</code></p>
 <div class="ulist">
 <ul>
 <li>
@@ -1465,7 +1462,7 @@ Indexes can be provided to selectively export data of specific persons.</p>
 </div>
 </li>
 <li>
-<p><code>app-export n/tomorrow.csv i/2 i/4 i/6</code></p>
+<p><code>app-export n/tomorrow i/2 i/4 i/6</code></p>
 <div class="ulist">
 <ul>
 <li>
@@ -1489,7 +1486,7 @@ Indexes can be provided to selectively export data of specific persons.</p>
 <p><strong>As of version 1.4, the export feature does not support Visits and Appointments.</strong></p>
 </li>
 <li>
-<p><strong>Patients' visit data will not be exported.</strong></p>
+<p><strong>Patients' visit data will not be exported.</strong> This feature will be implemented in <code>v2.0</code>.</p>
 </li>
 <li>
 <p>The provided file name cannot be blank, and can contain only alphanumerics, hyphens and underscores.</p>
@@ -1499,6 +1496,33 @@ Indexes can be provided to selectively export data of specific persons.</p>
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exporting-appointments-code-coming-in-v2-0-code"><a class="link" href="#exporting-appointments-code-coming-in-v2-0-code">7.3. Exporting Appointments <code>[coming in v2.0]</code></a></h3>
+<div class="paragraph">
+<p>You can export your appointment data into a .csv file using <code>app-export-appt</code>.
+A new .csv file will be created and data will be written into it.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>app-export-appt n/FILENAME</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>app-export-appt n/appointments</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>All appointment data will be exported to <code>./exports/appointments.csv</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1736,4 +1760,4 @@ You can view the visits of a patient using <code>pat-list</code> and <code>pat-f
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NurseTraverse folder.</p>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 10:47:34 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 14:40:59 UTC</div></div></div></body></html>

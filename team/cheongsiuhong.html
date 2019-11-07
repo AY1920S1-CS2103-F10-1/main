@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Cheong Siu Hong - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">NurseTraverse</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../LearningOutcomes.html">LOs</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S1-CS2103-F10-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Cheong Siu Hong - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">NurseTraverse</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S1-CS2103-F10-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Cheong Siu Hong - Project Portfolio</h1></div><div id="content"><div class="sect1">
 <h2 id="project-nursetraverse"><a class="link" href="#project-nursetraverse">PROJECT: NurseTraverse</a></h2>
 <div class="sectionbody">
 <hr>
@@ -20,29 +20,52 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: added <strong>the ability to undo/redo previous commands</strong></p>
+<p><strong>Major enhancement</strong>: added <strong>the function to export and import patient data.</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.</p>
+<p>What it does:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Exporting features: allows the user to export patient data into a comma separated values (CSV) file. Patient data can be exported all at once, or selectively by index.</p>
 </li>
 <li>
-<p>Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.</p>
-</li>
-<li>
-<p>Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.</p>
-</li>
-<li>
-<p>Credits: <em>{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}</em></p>
+<p>Importing features: allows the user to import patient data from a CSV file. Imported patient data can either be used to replace all existing patient data or be merged with existing patient data.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: added a history command that allows the user to navigate to previous commands using up/down keys.</p>
+<p>Justification: This feature improves the functionality of the product by facilitating convenient data sharing.
+To add data for a few patients, there is no longer a need to use the add command multiple times, which can be a hassle. Example use cases:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A freshly trained nurse has been assigned her first set of patients. The patients' data can be passed to the nurse in the CSV format and imported in one go.</p>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+<p>A (few) patient(s) has been transferred from the care of one nurse to another. The relevant patient data can be exported, passed to the other nurse, and imported.</p>
+</li>
+<li>
+<p>An archive of patient data has to be kept for records purposes. The export feature allows for a "snapshot" of all patient data to be saved easily.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Highlights: This feature was implementation with Jackson&#8217;s <code>dataformat.csv</code> library. The library is full of functions but is not exactly well documented, and thus the implementation took significant research and experimentation.
+The final implementation with this library is such that the export and import functionality can easily be extended to include additional data fields in the future, using Jackson&#8217;s <code>Annotation</code> feature.
+Apart the CSV parsing aspect, coding the data interaction for reading and writing patients to the address book had its challenges as well, due to the potential (buggy) interactions with the data from other features.</p>
+</li>
+<li>
+<p>Credits: <a href="https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-csv">Jackson Dataformat CSV</a>, along with the existing Jackson annotations in AB3 used for JSON processing.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Code contributed</strong>: My contributed code can be found <a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#=undefined&amp;search=cheongsiuhong">here</a>. Use the filters to sort functional and test code as needed.</p>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
@@ -53,20 +76,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Managed releases <code>v1.3</code> - <code>v1.5rc</code> (3 releases) on GitHub</p>
-</li>
-</ul>
-</div>
+<p>Opened milestones and user stories issues.</p>
 </li>
 <li>
-<p>Enhancements to existing features:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
-</li>
-<li>
-<p>Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
+<p>Managed milestones <code>v1.0</code> and <code>v1.1</code>.</p>
 </li>
 </ul>
 </div>
@@ -76,7 +89,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Did cosmetic tweaks to existing contents of the User Guide: <a href="https://github.com">#14</a></p>
+<p>Created the product README</p>
+</li>
+<li>
+<p>Sanitized irrelevant aspects of the User Guide and Developer Guide : <a href="https://github.com">#200</a></p>
 </li>
 </ul>
 </div>
@@ -86,16 +102,19 @@
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com">#12</a>, <a href="https://github.com">#32</a>, <a href="https://github.com">#19</a>, <a href="https://github.com">#42</a></p>
+<p>PRs reviewed (with non-trivial review comments) or approved:
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/66">#66</a>,
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/74">#74</a>,
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/75">#75</a>,
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/76">#76</a>,
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/95">#95</a>,
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/108">#108</a>,
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/109">#109</a>,
+and everything else <a href="https://github.com/AY1920S1-CS2103-F10-1/main/pulls?q=is%3Apr+reviewed-by%3Acheongsiuhong+is%3Aclosed">here</a></p>
 </li>
 <li>
-<p>Contributed to forum discussions (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>, <a href="https://github.com">4</a>)</p>
-</li>
-<li>
-<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
-</li>
-<li>
-<p>Some parts of the history feature I added was adopted by several other class mates (<a href="https://github.com">1</a>, <a href="https://github.com">2</a>)</p>
+<p>Reported bugs (example: <a href="https://github.com/AY1920S1-CS2103-F10-1/main/issues/103">#103</a>)
+and another severe bug reported offline fixed in <a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/120">#120</a></p>
 </li>
 </ul>
 </div>
@@ -105,10 +124,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Integrated a third party library (Natty) to the project (<a href="https://github.com">#42</a>)</p>
-</li>
-<li>
-<p>Integrated a new Github plugin (CircleCI) to the team repo</p>
+<p>Integrated coveralls to the project.</p>
 </li>
 </ul>
 </div>
@@ -117,9 +133,6 @@
 </div>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p><em>{you can add/remove categories in the list above}</em></p>
 </div>
 </div>
 </div>
@@ -139,6 +152,332 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="importing-and-exporting-of-patient-data"><a class="link" href="#importing-and-exporting-of-patient-data">Importing and Exporting of Patient Data</a></h2>
+<div class="sectionbody">
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Importing and Exporting of Patient Data</strong></p>
+</div>
+<div class="paragraph">
+<p>As a community nurse, you may be assigned new patients, or some of your patients may be assigned to other community nurses. To facilitate the transferring of patient information from one device to another, you can import and export the data of your patients. This section describes the features that will allow you to import and export patient information.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="importing-patient-data-from-a-csv-file-code-app-import-replace-code-code-app-import-merge-code"><a class="link" href="#importing-patient-data-from-a-csv-file-code-app-import-replace-code-code-app-import-merge-code">Importing patient data from a CSV file: <code>app-import-replace</code>, <code>app-import-merge</code></a></h3>
+<div class="paragraph">
+<p>You can import patient data from a .csv file into the application using
+<code>app-import-replace</code> or <code>app-import-merge</code>.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Only the file format .csv is supported.</p>
+</li>
+<li>
+<p>The application will look for the specified .csv file in the <code>./imports</code> folder.</p>
+</li>
+<li>
+<p>Both import commands are undoable.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="import-and-replace-code-app-import-replace-code"><a class="link" href="#import-and-replace-code-app-import-replace-code">Import and Replace: <code>app-import-replace</code></a></h4>
+<div class="paragraph">
+<p>Reads patient data from a specified .csv file.</p>
+</div>
+<div class="paragraph">
+<p><code>".csv"</code> will be auto-appended to the specified <code>FILENAME</code>,
+<strong>so there is no need to type in the file extension</strong>.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>All existing patient data will be deleted and replaced with this new data.</p>
+</div>
+<div class="paragraph">
+<p>All existing appointment data will be deleted.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Provided file should not be empty.</p>
+</li>
+<li>
+<p>Cannot be executed when there is an ongoing visit.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>app-import-replace n/FILENAME</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>app-import-replace n/my_assigned_patients</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Patient data will be entirely replaced with new data from <code>./imports/my_assigned_patients.csv</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="import-and-merge-code-app-import-merge-code"><a class="link" href="#import-and-merge-code-app-import-merge-code">Import and Merge: <code>app-import-merge</code></a></h4>
+<div class="paragraph">
+<p>Patient data will be read from a specified .csv file and merged without
+affecting existing data. Provided file should not be empty.</p>
+</div>
+<div class="paragraph">
+<p><code>".csv"</code> will be auto-appended to the specified <code>FILENAME</code>,
+<strong>so there is no need to type in the file extension</strong>.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The .csv file cannot contain a patient that already exists in the app.</p>
+</li>
+<li>
+<p>Can be executed when there is an ongoing visit.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>app-import-merge n/FILENAME</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>app-import-replace n/my_new_patients</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Patient data from <code>./imports/my_new_patients.csv</code> will be added into the app.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>CSV files used for importing must adhere to the following format requirements.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Provided file name should not be blank, and can contain only alphanumerics, hyphens and underscores.</p>
+</li>
+<li>
+<p>The top row of the file must be exactly the following headers in the order:</p>
+<div class="literalblock">
+<div class="content">
+<pre>name, phone, email, address, tagged, visitTodos</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Each row in the .csv corresponds to one patient.</p>
+</li>
+<li>
+<p>The data in each cell must adhere to the format of the field it belongs in.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Cells under <code>phone</code> must contain 3 to 8 digit numbers, cells under <code>name</code> must contain only alphanumerics and spaces, etc.</p>
+</li>
+<li>
+<p>For the fields <code>tagged</code> and <code>visitTodos</code> with multiple elements per cell,
+each element is to be separated with a newline.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The data row for any patient cannot have empty cells in the following fields:</p>
+<div class="literalblock">
+<div class="content">
+<pre>`name`, `phone`, `address`, `email`</pre>
+</div>
+</div>
+</li>
+<li>
+<p>The .csv file should adhere to the <a href="https://tools.ietf.org/html/rfc4180">RFC 2048</a> standard.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>An example of a valid .csv can be seen
+<a href="https://raw.githubusercontent.com/AY1920S1-CS2103-F10-1/main/master/docs/samplecsvs/importsample.csv">here</a></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exporting-data-into-a-csv-file-code-app-export-code"><a class="link" href="#exporting-data-into-a-csv-file-code-app-export-code">Exporting data into a CSV file: <code>app-export</code></a></h3>
+<div class="paragraph">
+<p>You can export patient data from the application into a .csv file using <code>app-export</code>.
+A new .csv file will be created and data will be written into it.
+Indexes can be provided to selectively export data of specific persons.</p>
+</div>
+<div class="paragraph">
+<p><code>".csv"</code> will be auto-appended to the specified <code>FILENAME</code>,
+<strong>so there is no need to type in the file extension</strong>.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Only the file format .csv is supported.</p>
+</li>
+<li>
+<p>Creates <code>FILENAME.csv</code> in the <code>./exports</code> folder</p>
+</li>
+<li>
+<p><strong>The provided file name must not be already in use.</strong></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Format: <code>app-export n/FILENAME [i/INDEX&#8230;&#8203;]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>app-export n/patients</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>All patient data will be exported to <code>./exports/patients.csv</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>app-export n/alex i/1</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>The data of the patient at index 1 will be exported to <code>./exports/alex.csv</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>app-export n/tomorrow i/2 i/4 i/6</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>The data of the patients at indexes 2, 4 and 6 will be exported to <code>./exports/tomorrow.csv</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>As of version 1.4, the export feature does not support Visits and Appointments.</strong></p>
+</li>
+<li>
+<p><strong>Patients' visit data will not be exported.</strong> This feature will be implemented in <code>v2.0</code>.</p>
+</li>
+<li>
+<p>The provided file name cannot be blank, and can contain only alphanumerics, hyphens and underscores.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="exporting-appointments-code-coming-in-v2-0-code"><a class="link" href="#exporting-appointments-code-coming-in-v2-0-code">Exporting Appointments <code>[coming in v2.0]</code></a></h3>
+<div class="paragraph">
+<p>You can export your appointment data into a .csv file using <code>app-export-appt</code>.
+A new .csv file will be created and data will be written into it.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>app-export-appt n/FILENAME</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>app-export-appt n/appointments</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>All appointment data will be exported to <code>./exports/appointments.csv</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
@@ -151,426 +490,314 @@
 </tr>
 </tbody>
 </table>
-<div class="sect2">
-<h3 id="undo-redo-history"><a class="link" href="#undo-redo-history">Undo/Redo/History</a></h3>
 <div class="paragraph">
-<p>This set of functionality consists of one GUI component and two commands,
-each of which rely on the same core components:</p>
+<p>Import and export functionality are split into three commands:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>HistoryPane</code> - GUI component that displays a numbered list of previous
-data-modifying commands that can be reverted by <code>app-undo</code>.</p>
+<p><code>app-export</code></p>
 </li>
 <li>
-<p><code>app-undo</code> - Command that reverts until a specified data-modifying command
-in the history, or the previous data-modifying command if no argument is specified.</p>
+<p><code>app-import-replace</code></p>
 </li>
 <li>
-<p><code>app-redo</code> - Command that reverts the previous command if and only if it was an <code>app-undo</code>.</p>
+<p><code>app-import-merge</code></p>
 </li>
 </ol>
 </div>
 <div class="sect3">
-<h4 id="implementation-overview"><a class="link" href="#implementation-overview">Implementation Overview</a></h4>
+<h4 id="jackson-library"><a class="link" href="#jackson-library">Jackson Library</a></h4>
 <div class="paragraph">
-<p>For undo/redo/history to function, there must be the following:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>A way to mark which <code>Command</code> s are data-modifying commands so that
-non-data-modifying commands can be ignored.</p>
-</li>
-<li>
-<p>A mechanism to clearly demarcate the model state before and after the execution
-of each data-modifying command.</p>
-</li>
-<li>
-<p>A way to record the state of the model before (or after) each command, together
-with the <code>Command</code> object responsible.</p>
-</li>
-<li>
-<p>Methods to switch the state of the model back and forth from the states stored
-in the history.</p>
-</li>
-</ul>
+<p>The current import and export features are built upon the the existing <code>Jackson</code> libraries,
+in particular the <code>dataformat</code>, <code>databind</code> and <code>datatype</code> modules. Technical knowledge of the
+<code>Jackson</code> library will be helpful for maintenance of feature, but is not necessary.</p>
 </div>
 <div class="paragraph">
-<p>To achieve this, the following classes are introduced:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>MutatorCommand</code> - An empty subclass of <code>Command</code> to indicate that a <code>Command</code> is a
-data-modifying command and should be considered for undo/redo/history.</p>
-</li>
-<li>
-<p><code>HistoryRecord</code> - Record of the command and data of one atomic commit in the command history. It consists of the
-<code>MutatorCommand</code> responsible for the commit and the state of the model either before or after the commit. All recorded
-states are deep copies decoupled from their original references.</p>
-</li>
-<li>
-<p><code>HistoryManager</code> - Represents the history of the application. Maintains data structures containing <code>HistoryRecord</code> s
-of each data state change.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Additionally, <code>LogicManager</code> and <code>Model</code> are modified to accommodate this functionality.</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">Shallow Copy vs Deep copy</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Performing a <em>shallow copy</em> of an object simply copies the values of the
-references of each object the original object is pointing to. This results in the
-copied object pointing to the same objects as the original. In the figure below,
-<code>patientBook</code> and <code>copiedPatientBook</code> are separate <code>PatientBook</code> objects but actually
-share the same <code>patient</code> object. Changes to <code>patient</code> through <code>PatientBook</code> would thus
-affect <code>copiedPatientBook</code> as well.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/shallow_copy.png" alt="shallow copy">
-</div>
-<div class="title">Figure 1. Shallow copy</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Performing a <em>deep copy</em> creates duplicates of each object referenced by the original,
-the objects referenced by those duplicates, and so on. These duplicates are completely
-decoupled from their originals. In the figure below, <code>patient</code> is a different
-object from <code>copiedPatient</code>, thus changes to <code>patient</code> would not affect <code>copiedPatient</code>.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/deep_copy.png" alt="deep copy">
-</div>
-<div class="title">Figure 2. Deep copy</div>
-</div>
-</div>
+<p>However, understanding <code>Jackson</code> 's <code>annotations</code> will be needed in order to extend export and import
+functionality to cover new data fields or classes implemented in the future. They are explained
+<a href="http://fasterxml.github.io/jackson-annotations/javadoc/2.7/">here</a>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="model"><a class="link" href="#model">Model</a></h4>
+<h4 id="csv-processing"><a class="link" href="#csv-processing">Csv Processing</a></h4>
 <div class="paragraph">
-<p>The following methods are added to the <code>Model</code> interface:</p>
+<p>All of the data processing needed for this feature can be found in the <code>CsvUtil</code> file;
+it is responsible for converting the data of <code>Patient</code> objects into a .csv friendly <code>String</code> format
+and vice versa. The actual reading and writing of .csv files is then done with existing
+<code>FileUtil</code> functionality.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>Model#commit(MutatorCommand)</code> - Commits the changes made to the address book since the last call to this method,
-making them permanent and updating the UI data. The committing <code>MutatorCommand</code> is stored for history record purposes.</p>
-</li>
-<li>
-<p><code>Model#getHistory()</code> - Returns an unmodifiable view of the history.</p>
-</li>
-<li>
-<p><code>Model#undoTo(HistoryRecord)</code> - Reverts current model state to the that contained in the specified <code>HistoryRecord</code>
-(i.e. the state before the command was executed).</p>
-</li>
-<li>
-<p><code>Model#redo()</code> - Redoes the previous <code>MutatorCommand</code> if it was an undo.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="model-design-considerations"><a class="link" href="#model-design-considerations">Model Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-how-to-record-the-patientbook-and-appointmentbook-states-in-the-history"><a class="link" href="#aspect-how-to-record-the-patientbook-and-appointmentbook-states-in-the-history">Aspect: How to record the PatientBook and AppointmentBook states in the history</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p>Alternative 1: Simply store references to <code>PatientBook</code> and <code>AppointmentBook</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Easier to implement.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Cons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Relies on the assumption that the objects in <code>PatientBook</code> and <code>AddressBook</code>
-are immutable; if they are not truly immutable, changes to the current model&#8217;s
-<code>PatientBook</code> and <code>AddressBook</code> state may leak and affect the states stored in
-the history.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2 (current choice):</strong> Defensively store deep copies of the <code>PatientBook</code> and <code>AppointmentBook</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Prevents improperly coded <code>Patient</code> or <code>Appointment</code> (or their
-associated classes) from breaking undo/redo/history functionality.</p>
-</li>
-<li>
-<p>Can reuse JSON serialization code for persistent storage of <code>PatientBook</code> and <code>AppointmentBook</code>
-to create deep copies by serializing then immediately deserializing them.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Cons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Consumes more memory and CPU time.</p>
-</li>
-<li>
-<p>More difficult to implement - MVC pattern between UI view and models is broken in
-two. This is because each time the current state is swapped with a state in the
-history by <code>ModelManager</code>, the <code>ObservableList</code> viewed by the UI must also be
-updated by the <code>ModelManager</code> instead of the <code>PatientBook</code> as the current
-<code>PatientBook</code> is completely decoupled and placed into the history.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-which-class-to-place-the-historymanager-in"><a class="link" href="#aspect-which-class-to-place-the-historymanager-in">Aspect: Which class to place the HistoryManager in</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Make <code>HistoryManager</code> a field of <code>ModelManager</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Ensures atomicity of the records in the history as pushing a transaction
-to the <code>HistoryManager</code> can only be (and is always) done by <code>Model#commit()</code>
-itself - records in the history are guaranteed to be products of complete command
-execution rather than intermediate states.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Cons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>More difficult to test <code>ModelManager</code> as two <code>ModelManager</code> objects may have
-the same current state but differing <code>HistoryManager</code> objects.</p>
-</li>
-<li>
-<p>May violate Single Responsibility Principle as <code>ModelManager</code> now has to manage
-both its current state and its previous states.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Alternative 2: Make <code>HistoryManager</code> a field of <code>LogicManager</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Higher cohesion as <code>ModelManager</code> only represents the model&#8217;s current state.</p>
-</li>
-<li>
-<p>Easier to test <code>ModelManager</code> as only its current state matters.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Cons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>It is possible for intermediate model states to be pushed to the <code>HistoryManager</code> -
-trusts <code>LogicManager</code> to push the transaction to history after (and only
-after) calling <code>Model#commit()</code>.</p>
-</li>
-<li>
-<p>Requires <code>Command#execute()</code> to accept <code>HistoryManager</code> as a parameter just so
-<code>UndoCommand</code> and <code>RedoCommand</code> can work even though the vast majority of commands do not require it.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="logic"><a class="link" href="#logic">Logic</a></h4>
 <div class="paragraph">
-<p>In addition to <code>MutatorCommand</code> which was described earlier, the following logical classes are added:</p>
+<p>The conversion of <code>Patient</code> objects to and from .csv formatted <code>Strings</code> are handled by
+the <code>CsvMapper</code> and <code>CsvSchema</code> classes implemented in <code>dataformat</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>CsvMapper</code> is responsible for managing custom configurations for the conversions.
+For instance, it can toggle headers with <code>withHeader()</code> and skip unknown fields with the
+<code>IGNORE_UNKNOWN</code> feature, both of which are used in the feature implementation.</p>
+</li>
+<li>
+<p>The <code>CsvSchema</code> object is created by a configured <code>CsvMapper</code> object and an <code>Object.class</code>,
+in this case, <code>Patient.class</code>. It dictates the scheme for how data in each column of the .csv
+corresponds with the fields in the Object class. This schema can then be used to instantiate
+a reader or a writer object.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following functions are implemented:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>UndoCommand</code> - Undoes a designated command in the history, or the previous one if no argument is specified. The
-<code>COMMAND_WORD</code> for this command is <code>app-undo</code>.</p>
+<p><code>CsvUtil#writePatientsToCsv(List&lt;Patient&gt;, String)</code>&#8201;&#8212;&#8201;Write
+a list of <code>Patient</code> objects into a .csv file with specified <code>exportFileName</code>.
+If successful, return the path of the written file.</p>
 </li>
 <li>
-<p><code>UndoCommandParser</code> - Parses input arguments and creates a new UndoCommand object.</p>
+<p><code>CstUtil#readPatientsFromCsv(String)</code>&#8201;&#8212;&#8201;Read a .csv file with specified
+<code>importFileName</code> and return a corresponding list of <code>Patient</code> objects.</p>
 </li>
 <li>
-<p><code>RedoCommand</code> - Redoes the previous command if it was an undo. The <code>COMMAND_WORD</code> for this command is <code>app-redo</code>.</p>
+<p><code>importsAreUnique(List&lt;Patient&gt;)</code>&#8201;&#8212;&#8201;Check if the patients in a given list are unique, i.e. the list
+contains no duplicate patients.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><code>HistoryManager</code> checks the classes of commands pushed to the history and does not record
-them if they are instances of <code>UndoCommand</code> or <code>RedoCommand</code>. This ensures that successive <code>UndoCommand</code> s do
-not undo themselves instead of the desired data-modifying commands, requiring <code>RedoCommand</code> for
-the special case of undo reversion.</p>
-</div>
 </div>
 <div class="sect3">
-<h4 id="ui"><a class="link" href="#ui">UI</a></h4>
-<div class="paragraph">
-<p>The command history is constantly displayed in a panel on the right side of
-the app. This <code>HistoryPanel</code> uses <code>HistoryRecordCard</code> s to display the
-user-input text that invoked each command. It is a view of the <code>ObservableList&lt;HistoryRecord&gt;</code>
-returned by <code>HistoryManager#asUnmodifiableObservableList()</code>.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="ui-design-considerations"><a class="link" href="#ui-design-considerations">UI Design Considerations</a></h4>
+<h4 id="command-implementation"><a class="link" href="#command-implementation">Command Implementation</a></h4>
 <div class="sect4">
-<h5 id="aspect-where-to-display-the-history"><a class="link" href="#aspect-where-to-display-the-history">Aspect: Where to display the history</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Permanently display it in a dedicated panel.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>User does not have to execute a 'history' command to view the history,
-making it much easier to use the multiple undo function.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Cons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Takes up more space in the UI.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Alternative 2: Display it as a tab in the <code>TabPane</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Saves space in the UI.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Cons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>User has to switch to the history tab to view it.</p>
-</li>
-<li>
-<p>Less intuitive UX as the other tabs in the <code>TabPane</code> all display actual data
-such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> info, whereas history is app metadata.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="use-case"><a class="link" href="#use-case">Use case</a></h4>
+<h5 id="command-code-app-export-code"><a class="link" href="#command-code-app-export-code">Command: <code>app-export</code></a></h5>
 <div class="paragraph">
-<p>The following sequence diagram illustrates what happens when an <code>app-undo 3</code> command is executed:</p>
+<p>The <code>app-export</code> command works by retrieving a list of <code>Patient</code> objects from the <code>Model</code> and
+passing it to <code>CsvUtil</code> to process and write into a .csv file. If provided with indexes, the
+<code>app-export</code> feature can selectively export the <code>Patient</code> objects that correspond to the
+specified indexes.
+To facilitate the selective export functionality, the following methods were implemented in
+<code>Model</code> and <code>PatientBook</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#GetPatientsByIndexes(Set&lt;Indexes&gt;)</code>&#8201;&#8212;&#8201;Retrieves and returns a list of <code>Patient</code> objects
+corresponding to the provided indexes from the <code>PatientBook</code> , if the indexes are valid.</p>
+</li>
+<li>
+<p><code>PatientBook#GetPatientByIndex(Index)</code>&#8201;&#8212;&#8201;Returns the <code>Patient</code> object corresponding
+to the specified index, if the index is valid.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If indexes are not specified in the command arguments, a list of all currently existing <code>Patient</code>
+objects will be retrieved with <code>Model#getStagedPatientList()</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>app-export</code> command MUST be provided with a desired file name for the .csv file. The .csv
+file will be written to <code>/exports/filename.csv</code>. Existing files will NOT be overridden and
+thus the provided file name cannot already exist in <code>/exports</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following diagrams show how an export command works:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram">
+<img src="../images/ExportSequenceDiagram.png" alt="ExportSequenceDiagram" width="1100">
+</div>
+<div class="title">Figure 1. Export Sequence Diagram</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ExportSequenceDiagramRef.png" alt="ExportSequenceDiagramRef" width="700">
+</div>
+<div class="title">Figure 2. Reference: get patient list</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ExportSequenceDiagramRef2.png" alt="ExportSequenceDiagramRef2" width="700">
+</div>
+<div class="title">Figure 3. Reference: write patients to csv file</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="exportcommand-design-considerations"><a class="link" href="#exportcommand-design-considerations">ExportCommand Design Considerations</a></h5>
+<div class="sect5">
+<h6 id="aspect-file-overriding"><a class="link" href="#aspect-file-overriding">Aspect: File Overriding</a></h6>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Disallow overriding, file name provided must be new</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Existing .csv files will not be accidentally overridden. Prevents potential loss of data.</p>
+</li>
+<li>
+<p>Cons: Additional hassle for the user to delete files that they want to replace.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Allow overriding</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Conveniently replace existing, unused files.</p>
+</li>
+<li>
+<p>Cons: May accidentally override and lose important data.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
+<div class="sect4">
+<h5 id="aspect-illegal-characters-in-data-fields"><a class="link" href="#aspect-illegal-characters-in-data-fields">Aspect: Illegal Characters in Data Fields</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Allow forbidden characters</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Certain fields may be more accurately represented, i.e. addresses.</p>
+</li>
+<li>
+<p>Cons: The exported csv file may be bugged in edge cases, i.e. have data in the wrong columns.
+Exported fields with forbidden characters may not be properly handled and escaped all of the time.
+More developer work to test around edge cases.</p>
+</li>
+</ul>
 </div>
-<div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">[Proposed] Data Encryption</a></h3>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Disallow forbidden characters</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Exported .csv files are guaranteed to be in the correct format.</p>
+</li>
+<li>
+<p>Cons: Data fields are restricted and cannot have commas, semi-colons, etc.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="import"><a class="link" href="#import">Import</a></h5>
 <div class="paragraph">
-<p><em>{Explain here how the data encryption feature will be implemented}</em></p>
+<p>The import commands work by reading a .csv file and converting it into a list of <code>Patient</code>
+objects by using <code>CsvUtil</code>. The list is then passed to <code>Model</code>. What happens next depends
+on which variant of import is called.</p>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">PROJECT: PowerPointLabs</a></h2>
-<div class="sectionbody">
-<hr>
 <div class="paragraph">
-<p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
+<p>For both variants of the command, the imported list of patients CANNOT have any duplicates.
+This is ensured with <code>CsvUtil#importsAreUnique(List&lt;Patient&gt;)</code>.</p>
+</div>
+<div class="sect5">
+<h6 id="command-code-app-import-replace-code"><a class="link" href="#command-code-app-import-replace-code">Command: <code>app-import-replace</code></a></h6>
+<div class="paragraph">
+<p>The <code>Model</code> will replace all existing <code>Patient</code> data in the <code>PatientBook</code> with the data
+of the new list of <code>Patient</code> objects. To do this, the following was implemented:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#replaceStagedPatientBook(List&lt;Patient&gt;)</code>&#8201;&#8212;&#8201;Creates a new <code>PatientBook</code> object
+containing the <code>Patient</code> objects in the provided list. The old <code>PatientBook</code> stored in the
+<code>Model</code> is then replaced with the new <code>PatientBook</code> by calling
+<code>Model#setStagedPatientBook(PatientBook)</code>.</p>
+</li>
+</ul>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 10:47:34 UTC</div></div></div></body></html>
+<div class="sect5">
+<h6 id="command-code-app-import-merge-code"><a class="link" href="#command-code-app-import-merge-code">Command <code>app-import-merge</code></a></h6>
+<div class="paragraph">
+<p>The <code>Model</code> will add all <code>Patient</code> data in the new list of <code>Patient</code> objects into the
+<code>PatientBook</code>. To do this, the following was implemented:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Model#hasAnyPatientInGivenList(List&lt;Patient&gt;)</code>&#8201;&#8212;&#8201;Checks if the model contains
+any <code>Patient</code> in the given list of <code>Patient</code> objects.</p>
+</li>
+<li>
+<p><code>Model#addPatients(List&lt;Patient&gt;)</code>&#8201;&#8212;&#8201;Adds all <code>Patient</code> objects in the given list
+into the <code>Model</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If the operation will result in duplicate <code>Patient</code> objects in the <code>PatientBook</code>,
+it will not be executed. This is checked by the function stated above,
+<code>Model#hasAnyPatientInGivenList(List&lt;Patient&gt;)</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="import-design-considerations"><a class="link" href="#import-design-considerations">Import Design Considerations</a></h5>
+<div class="sect5">
+<h6 id="aspect-allowing-patient-overriding-for-code-app-import-merge-code"><a class="link" href="#aspect-allowing-patient-overriding-for-code-app-import-merge-code">Aspect: Allowing Patient Overriding for <code>app-import-merge</code></a></h6>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Disallow overriding.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Existing <code>Patient</code>  will not be accidentally overridden.
+No need to deal with potential merge conflicts.</p>
+</li>
+<li>
+<p>Cons: User may have intended to use <code>app-import-merge</code> to update old data.
+More hassle for the user to delete old <code>Patient</code> data that they want to replace.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: In case of duplicates, replace old <code>Patient</code> data.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Conveniently update old <code>Patient</code> data.</p>
+</li>
+<li>
+<p>Cons: May accidentally override and lose important data, though not a big deal
+with <code>app-undo</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 3</strong>: Implement a flag to toggle overriding.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Best of both worlds.</p>
+</li>
+<li>
+<p>Cons: More coding and debugging work.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 14:40:59 UTC</div></div></div></body></html>
