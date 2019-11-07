@@ -55,22 +55,14 @@
 <li><a href="#selecting-a-suggested-words">6.3. Selecting a suggested words</a></li>
 </ul>
 </li>
-<li><a href="#data-saving-history-undo-redo">7. Data Saving, History, Undo, Redo</a>
+<li><a href="#importing-and-exporting-of-patient-data">7. Importing and Exporting of Patient Data</a>
 <ul class="sectlevel2">
-<li><a href="#saving-your-data">7.1. Saving your data</a></li>
-<li><a href="#viewing-the-command-history">7.2. Viewing the command history</a></li>
-<li><a href="#undoing-a-command-code-app-undo-code">7.3. Undoing a command: <code>app-undo</code></a></li>
-<li><a href="#redoing-an-undone-command-code-app-redo-code">7.4. Redoing an undone command: <code>app-redo</code></a></li>
+<li><a href="#importing-patient-data-from-a-csv-file-code-app-import-replace-code-code-app-import-merge-code">7.1. Importing patient data from a CSV file: <code>app-import-replace</code>, <code>app-import-merge</code></a></li>
+<li><a href="#exporting-data-into-a-csv-file-code-app-export-code">7.2. Exporting data into a CSV file: <code>app-export</code></a></li>
+<li><a href="#exporting-appointments-code-coming-in-v2-0-code">7.3. Exporting Appointments <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
-<li><a href="#importing-and-exporting-of-patient-data">8. Importing and Exporting of Patient Data</a>
-<ul class="sectlevel2">
-<li><a href="#importing-patient-data-from-a-csv-file-code-app-import-replace-code-code-app-import-merge-code">8.1. Importing patient data from a CSV file: <code>app-import-replace</code>, <code>app-import-merge</code></a></li>
-<li><a href="#exporting-data-into-a-csv-file-code-app-export-code">8.2. Exporting data into a CSV file: <code>app-export</code></a></li>
-<li><a href="#exporting-appointments-code-coming-in-v2-0-code">8.3. Exporting Appointments <code>[coming in v2.0]</code></a></li>
-</ul>
-</li>
-<li><a href="#exiting-the-program-code-exit-code">9. Exiting the program : <code>exit</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">8. Exiting the program : <code>exit</code></a></li>
 </ul>
 </li>
 <li><a href="#tutorials-how-to-guide-s-as-of-v1-4">Tutorials / How-To Guide(s) (as of v1.4)</a>
@@ -317,7 +309,7 @@ Returns any patient(s) having names <code>Betsy</code>, <code>Tim</code>, or <co
 <p>A patient can have any number of visit todos.</p>
 </li>
 <li>
-<p>The patient cannot have the same <strong>identity</strong> an existing patient.</p>
+<p>The patient cannot have the same <strong>identity</strong> as an existing patient.</p>
 </li>
 </ul>
 </div>
@@ -1034,204 +1026,14 @@ Selecting the "now-update" in the autocomplete panel will concatenate with "now-
 <p><strong>Note:</strong><br>
 When pressing <code><strong>UP</strong></code>, <code><strong>DOWN</strong></code>, or <code><strong>SHIFT</strong></code> keys, make sure that the command box is selected.</p>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="data-saving-history-undo-redo"><a class="link" href="#data-saving-history-undo-redo">7. Data Saving, History, Undo, Redo</a></h2>
-<div class="sectionbody">
-<div class="exampleblock">
-<div class="content">
 <div class="paragraph">
-<p><strong>Data Saving, History, Undo, Redo</strong></p>
-</div>
-<div class="paragraph">
-<p>As a community nurse, you will often perform commands that modify information
-managed by the application (e.g. patient data). This section describes the
-features involving the storage of this data, viewing command history, and
-undo-ing / redo-ing commands.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="saving-your-data"><a class="link" href="#saving-your-data">7.1. Saving your data</a></h3>
-<div class="paragraph">
-<p>Your data are saved in the hard disk automatically after any command that changes the data.</p>
-</div>
-<div class="paragraph">
-<p>There is no need to save manually.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="viewing-the-command-history"><a class="link" href="#viewing-the-command-history">7.2. Viewing the command history</a></h3>
-<div class="paragraph">
-<p>The rightmost panel of the app shows a history of the previous data-modifying commands executed
-since the app was started. Examples of data-modifying commands are <code>pat-edit</code> or <code>visit-start</code>.
-Commands that do not affect the app data, such as <code>pat-list</code>, are not shown.</p>
-</div>
-<div class="paragraph">
-<p>Each command is displayed with an index number. The most recent command is
-shown at the bottom of the history and has the greatest index number. The
-earliest command in the history is shown at the top with an index of 1.</p>
-</div>
-<div class="paragraph">
-<p>The app keeps a record of the previous 20 data-modifying commands in the history.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="undoing-a-command-code-app-undo-code"><a class="link" href="#undoing-a-command-code-app-undo-code">7.3. Undoing a command: <code>app-undo</code></a></h3>
-<div class="paragraph">
-<p>You can undo the changes of the data-modifying commands in the history
-with <code>app-undo</code>. All app data will be reverted to how they were before the
-undone command was executed.</p>
-</div>
-<div class="paragraph">
-<p><code>app-undo</code> can be used in two ways. The first way is to provide no arguments
-to the command. This simply undoes the latest command. The second way is to
-specify the index of a command in the history. This would cause all commands
-after and including that command to be undone.</p>
-</div>
-<div class="paragraph">
-<p>The command <code>app-undo</code> itself is not affected by <code>app-undo</code> and is not recorded in
-the history. To revert an <code>app-undo</code>, use <code>app-redo</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>app-undo [INDEX]</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>If the index is provided, undoes all commands after and including the
-indicated command.</p>
-</li>
-<li>
-<p>If the index is <strong>not</strong> provided, undoes the previous data-modifying command.</p>
-</li>
-<li>
-<p>The index, if provided, <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-<li>
-<p>Can only undo commands in the history.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>pat-clear</code><br>
-<code>pat-list</code><br>
-<code>app-undo</code> (reverts the <code>pat-clear</code> command)</p>
-</li>
-<li>
-<p>Suppose the history looks like this:</p>
-<div class="openblock">
-<div class="content">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>pat-edit 1 n/Ivan Yeoh</code></p>
-</li>
-<li>
-<p><code>pat-delete 3</code></p>
-</li>
-<li>
-<p><code>pat-clear</code></p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Now <code>app-undo 2</code> is executed. <code>pat-clear</code> and <code>pat-delete 3</code> are undone in
-that order. The app data is now as it was before <code>pat-delete 3</code> was executed.</p>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="redoing-an-undone-command-code-app-redo-code"><a class="link" href="#redoing-an-undone-command-code-app-redo-code">7.4. Redoing an undone command: <code>app-redo</code></a></h3>
-<div class="paragraph">
-<p>You can redo and reapply the changes of the last undone command using <code>app-redo</code>.
-This is only possible when the latest data-modifying command (other than
-<code>app-redo</code> itself) was an <code>app-undo</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>app-redo</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Redoes the latest undone command.</p>
-</li>
-<li>
-<p>The previous data-modifying command must have been an <code>app-undo</code> (excluding
-<code>app-redo</code> itself).</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>pat-edit 1 n/Ivan Yeoh</code><br>
-<code>app-undo</code><br>
-<code>app-redo</code> (reverts data to after <code>pat-edit</code> was executed)</p>
-</li>
-<li>
-<p><code>pat-edit 1 n/Ivan Yeoh</code><br>
-<code>pat-clear</code><br>
-<code>app-undo</code><br>
-<code>app-undo</code><br>
-<code>app-redo</code> (redoes <code>pat-edit</code>)<br>
-<code>app-redo</code> (redoes <code>pat-clear</code>)</p>
-</li>
-<li>
-<p>Suppose the history looks like this:</p>
-<div class="openblock">
-<div class="content">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>pat-edit 1 n/Ivan Yeoh</code></p>
-</li>
-<li>
-<p><code>pat-delete 3</code></p>
-</li>
-<li>
-<p><code>pat-clear</code></p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Now the following commands are executed:<br>
-<code>app-undo 2</code> (reverts <code>pat-clear</code> and <code>pat-delete</code>)<br>
-<code>app-redo</code> (redoes <code>pat-delete</code>)<br>
-<code>app-redo</code> (redoes <code>pat-clear</code>)</p>
-</div>
-</li>
-</ul>
+<p>Unresolved directive in UserGuide.adoc - include::./userguide/DataSavingUndoRedo.adoc[]</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="importing-and-exporting-of-patient-data"><a class="link" href="#importing-and-exporting-of-patient-data">8. Importing and Exporting of Patient Data</a></h2>
+<h2 id="importing-and-exporting-of-patient-data"><a class="link" href="#importing-and-exporting-of-patient-data">7. Importing and Exporting of Patient Data</a></h2>
 <div class="sectionbody">
 <div class="exampleblock">
 <div class="content">
@@ -1244,7 +1046,7 @@ This is only possible when the latest data-modifying command (other than
 </div>
 </div>
 <div class="sect2">
-<h3 id="importing-patient-data-from-a-csv-file-code-app-import-replace-code-code-app-import-merge-code"><a class="link" href="#importing-patient-data-from-a-csv-file-code-app-import-replace-code-code-app-import-merge-code">8.1. Importing patient data from a CSV file: <code>app-import-replace</code>, <code>app-import-merge</code></a></h3>
+<h3 id="importing-patient-data-from-a-csv-file-code-app-import-replace-code-code-app-import-merge-code"><a class="link" href="#importing-patient-data-from-a-csv-file-code-app-import-replace-code-code-app-import-merge-code">7.1. Importing patient data from a CSV file: <code>app-import-replace</code>, <code>app-import-merge</code></a></h3>
 <div class="paragraph">
 <p>You can import patient data from a .csv file into the application using
 <code>app-import-replace</code> or <code>app-import-merge</code>.</p>
@@ -1267,7 +1069,7 @@ This is only possible when the latest data-modifying command (other than
 </div>
 </div>
 <div class="sect3">
-<h4 id="import-and-replace-code-app-import-replace-code"><a class="link" href="#import-and-replace-code-app-import-replace-code">8.1.1. Import and Replace: <code>app-import-replace</code></a></h4>
+<h4 id="import-and-replace-code-app-import-replace-code"><a class="link" href="#import-and-replace-code-app-import-replace-code">7.1.1. Import and Replace: <code>app-import-replace</code></a></h4>
 <div class="paragraph">
 <p>Reads patient data from a specified .csv file.</p>
 </div>
@@ -1328,7 +1130,7 @@ This is only possible when the latest data-modifying command (other than
 </div>
 </div>
 <div class="sect3">
-<h4 id="import-and-merge-code-app-import-merge-code"><a class="link" href="#import-and-merge-code-app-import-merge-code">8.1.2. Import and Merge: <code>app-import-merge</code></a></h4>
+<h4 id="import-and-merge-code-app-import-merge-code"><a class="link" href="#import-and-merge-code-app-import-merge-code">7.1.2. Import and Merge: <code>app-import-merge</code></a></h4>
 <div class="paragraph">
 <p>Patient data will be read from a specified .csv file and merged without
 affecting existing data. Provided file should not be empty.</p>
@@ -1435,7 +1237,7 @@ each element is to be separated with a newline.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-data-into-a-csv-file-code-app-export-code"><a class="link" href="#exporting-data-into-a-csv-file-code-app-export-code">8.2. Exporting data into a CSV file: <code>app-export</code></a></h3>
+<h3 id="exporting-data-into-a-csv-file-code-app-export-code"><a class="link" href="#exporting-data-into-a-csv-file-code-app-export-code">7.2. Exporting data into a CSV file: <code>app-export</code></a></h3>
 <div class="paragraph">
 <p>You can export patient data from the application into a .csv file using <code>app-export</code>.
 A new .csv file will be created and data will be written into it.
@@ -1528,7 +1330,7 @@ Indexes can be provided to selectively export data of specific persons.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-appointments-code-coming-in-v2-0-code"><a class="link" href="#exporting-appointments-code-coming-in-v2-0-code">8.3. Exporting Appointments <code>[coming in v2.0]</code></a></h3>
+<h3 id="exporting-appointments-code-coming-in-v2-0-code"><a class="link" href="#exporting-appointments-code-coming-in-v2-0-code">7.3. Exporting Appointments <code>[coming in v2.0]</code></a></h3>
 <div class="paragraph">
 <p>You can export your appointment data into a .csv file using <code>app-export-appt</code>.
 A new .csv file will be created and data will be written into it.</p>
@@ -1557,7 +1359,7 @@ A new .csv file will be created and data will be written into it.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">9. Exiting the program : <code>exit</code></a></h2>
+<h2 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">8. Exiting the program : <code>exit</code></a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>You can exit the program using <code>app-exit</code>.<br>
@@ -1789,4 +1591,4 @@ You can view the visits of a patient using <code>pat-list</code> and <code>pat-f
 <div class="paragraph">
 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
 <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous NurseTraverse folder.</p>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 18:57:15 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 20:28:11 UTC</div></div></div></body></html>

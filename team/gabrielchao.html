@@ -10,7 +10,8 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>NurseTraverse is a desktop application meant for community nurse to help manage all the data that a community nurse might need. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.</p>
+<p>NurseTraverse is a desktop application meant for community nurse to help manage all the data that a community nurse
+might need. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.</p>
 </div>
 </div>
 </div>
@@ -24,25 +25,52 @@
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.</p>
+<p>What it does: allows the user to undo all previous commands one or many at a time. Preceding undo commands can be
+reversed by using the redo command.</p>
 </li>
 <li>
-<p>Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.</p>
+<p>Justification: This feature improves the product significantly because a user can make mistakes in commands and the
+app should provide a convenient way to rectify them.</p>
 </li>
 <li>
-<p>Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.</p>
+<p>Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth
+analysis of design alternatives. The implementation too was challenging as it required detailed handling of the model
+state.</p>
 </li>
 <li>
-<p>Credits: <em>{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}</em></p>
+<p>Credits: No outside code or ideas were referenced in the development of these features (beyond code that already
+exists within <em>Address Book 3</em>).</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: added a history command that allows the user to navigate to previous commands using up/down keys.</p>
+<p><strong>Minor enhancement</strong>: added a history GUI panel that displays previous commands, making it much more convenient to
+use the multiple undo command.</p>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+<p><strong>Code contributed</strong>: An overview of contributed code can be found
+<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#=undefined&amp;search=gabrielchao">here</a>. There are filters for
+functional and test code. Otherwise, code contributed can be found via references in the following issues:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Main issue: <a href="https://github.com/AY1920S1-CS2103-F10-1/main/issues/59">#59</a></p>
+</li>
+<li>
+<p>Milestone v1.2: <a href="https://github.com/AY1920S1-CS2103-F10-1/main/issues/60">#60</a></p>
+</li>
+<li>
+<p>Milestone v1.3: <a href="https://github.com/AY1920S1-CS2103-F10-1/main/issues/83">#83</a></p>
+</li>
+<li>
+<p>Milestone v1.4: <a href="https://github.com/AY1920S1-CS2103-F10-1/main/issues/203">#203</a></p>
+</li>
+<li>
+<p>Bug hunting: <a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/197">#197</a></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
@@ -53,7 +81,11 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Managed releases <code>v1.3</code> - <code>v1.5rc</code> (3 releases) on GitHub</p>
+<p>Managed release <code>v1.3.1</code> on GitHub</p>
+</li>
+<li>
+<p>Helped pinpoint bugs in other code (Issues <a href="https://github.com/AY1920S1-CS2103-F10-1/main/issues/84">#84</a>,
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/issues/162">#162</a>)</p>
 </li>
 </ul>
 </div>
@@ -63,20 +95,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
-</li>
-<li>
-<p>Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Documentation:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Did cosmetic tweaks to existing contents of the User Guide: <a href="https://github.com">#14</a></p>
+<p>Make name comparison case insensitive (Pull request <a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/197">#197</a>)</p>
 </li>
 </ul>
 </div>
@@ -86,29 +105,18 @@
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com">#12</a>, <a href="https://github.com">#32</a>, <a href="https://github.com">#19</a>, <a href="https://github.com">#42</a></p>
-</li>
-<li>
-<p>Contributed to forum discussions (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>, <a href="https://github.com">4</a>)</p>
-</li>
-<li>
-<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
-</li>
-<li>
-<p>Some parts of the history feature I added was adopted by several other class mates (<a href="https://github.com">1</a>, <a href="https://github.com">2</a>)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Tools:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Integrated a third party library (Natty) to the project (<a href="https://github.com">#42</a>)</p>
-</li>
-<li>
-<p>Integrated a new Github plugin (CircleCI) to the team repo</p>
+<p>PRs reviewed with non-trivial review comments or reviewed to approve:
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/68">#68</a>,
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/69">#69</a>,
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/77">#77</a>,
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/79">#79</a>,
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/85">#85</a>,
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/91">#91</a>,
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/96">#96</a>,
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/105">#105</a>,
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/120">#120</a>,
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/188">#188</a>,
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/195">#195</a></p>
 </li>
 </ul>
 </div>
@@ -117,9 +125,6 @@
 </div>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p><em>{you can add/remove categories in the list above}</em></p>
 </div>
 </div>
 </div>
@@ -139,6 +144,199 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="data-saving-history-undo-redo"><a class="link" href="#data-saving-history-undo-redo">Data Saving, History, Undo, Redo</a></h2>
+<div class="sectionbody">
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Data Saving, History, Undo, Redo</strong></p>
+</div>
+<div class="paragraph">
+<p>As a community nurse, you will often perform commands that modify information
+managed by the application (e.g. patient data). This section describes the
+features involving the storage of this data, viewing command history, and
+undo-ing / redo-ing commands.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="saving-your-data"><a class="link" href="#saving-your-data">Saving your data</a></h3>
+<div class="paragraph">
+<p>Your data are saved in the hard disk automatically after any command that changes the data.</p>
+</div>
+<div class="paragraph">
+<p>There is no need to save manually.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="viewing-the-command-history"><a class="link" href="#viewing-the-command-history">Viewing the command history</a></h3>
+<div class="paragraph">
+<p>The rightmost panel of the app shows a history of the previous data-modifying commands executed
+since the app was started. Examples of data-modifying commands are <code>pat-edit</code> or <code>visit-start</code>.
+Commands that do not affect the app data, such as <code>pat-list</code>, are not shown.</p>
+</div>
+<div class="paragraph">
+<p>Each command is displayed with an index number. The most recent command is
+shown at the bottom of the history and has the greatest index number. The
+earliest command in the history is shown at the top with an index of 1.</p>
+</div>
+<div class="paragraph">
+<p>The app keeps a record of the previous 20 data-modifying commands in the history.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undoing-a-command-code-app-undo-code"><a class="link" href="#undoing-a-command-code-app-undo-code">Undoing a command: <code>app-undo</code></a></h3>
+<div class="paragraph">
+<p>You can undo the changes of the data-modifying commands in the history
+with <code>app-undo</code>. All app data will be reverted to how they were before the
+undone command was executed.</p>
+</div>
+<div class="paragraph">
+<p><code>app-undo</code> can be used in two ways. The first way is to provide no arguments
+to the command. This simply undoes the latest command. The second way is to
+specify the index of a command in the history. This would cause all commands
+after and including that command to be undone.</p>
+</div>
+<div class="paragraph">
+<p>The command <code>app-undo</code> itself is not affected by <code>app-undo</code> and is not recorded in
+the history. To revert an <code>app-undo</code>, use <code>app-redo</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>app-undo [INDEX]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>If the index is provided, undoes all commands after and including the
+indicated command.</p>
+</li>
+<li>
+<p>If the index is <strong>not</strong> provided, undoes the previous data-modifying command.</p>
+</li>
+<li>
+<p>The index, if provided, <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>Can only undo commands in the history.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>pat-clear</code><br>
+<code>pat-list</code><br>
+<code>app-undo</code> (reverts the <code>pat-clear</code> command)</p>
+</li>
+<li>
+<p>Suppose the history looks like this:</p>
+<div class="openblock">
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>pat-edit 1 n/Ivan Yeoh</code></p>
+</li>
+<li>
+<p><code>pat-delete 3</code></p>
+</li>
+<li>
+<p><code>pat-clear</code></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Now <code>app-undo 2</code> is executed. <code>pat-clear</code> and <code>pat-delete 3</code> are undone in
+that order. The app data is now as it was before <code>pat-delete 3</code> was executed.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="redoing-an-undone-command-code-app-redo-code"><a class="link" href="#redoing-an-undone-command-code-app-redo-code">Redoing an undone command: <code>app-redo</code></a></h3>
+<div class="paragraph">
+<p>You can redo and reapply the changes of the last undone command using <code>app-redo</code>.
+This is only possible when the latest data-modifying command (other than
+<code>app-redo</code> itself) was an <code>app-undo</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>app-redo</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Redoes the latest undone command.</p>
+</li>
+<li>
+<p>The previous data-modifying command must have been an <code>app-undo</code> (excluding
+<code>app-redo</code> itself).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>pat-edit 1 n/Ivan Yeoh</code><br>
+<code>app-undo</code><br>
+<code>app-redo</code> (reverts data to after <code>pat-edit</code> was executed)</p>
+</li>
+<li>
+<p><code>pat-edit 1 n/Ivan Yeoh</code><br>
+<code>pat-clear</code><br>
+<code>app-undo</code><br>
+<code>app-undo</code><br>
+<code>app-redo</code> (redoes <code>pat-edit</code>)<br>
+<code>app-redo</code> (redoes <code>pat-clear</code>)</p>
+</li>
+<li>
+<p>Suppose the history looks like this:</p>
+<div class="openblock">
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>pat-edit 1 n/Ivan Yeoh</code></p>
+</li>
+<li>
+<p><code>pat-delete 3</code></p>
+</li>
+<li>
+<p><code>pat-clear</code></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Now the following commands are executed:<br>
+<code>app-undo 2</code> (reverts <code>pat-clear</code> and <code>pat-delete</code>)<br>
+<code>app-redo</code> (redoes <code>pat-delete</code>)<br>
+<code>app-redo</code> (redoes <code>pat-clear</code>)</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
@@ -151,8 +349,6 @@
 </tr>
 </tbody>
 </table>
-<div class="sect2">
-<h3 id="undo-redo-history"><a class="link" href="#undo-redo-history">Undo/Redo/History</a></h3>
 <div class="paragraph">
 <p>This set of functionality consists of one GUI component and two commands,
 each of which rely on the same core components:</p>
@@ -557,20 +753,4 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">[Proposed] Data Encryption</a></h3>
-<div class="paragraph">
-<p><em>{Explain here how the data encryption feature will be implemented}</em></p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">PROJECT: PowerPointLabs</a></h2>
-<div class="sectionbody">
-<hr>
-<div class="paragraph">
-<p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
-</div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 18:57:15 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 20:28:11 UTC</div></div></div></body></html>
