@@ -22,14 +22,14 @@
 <p><code>visit-start</code> uses the patient&#8217;s Visit Todos to populate a checklist of Visit Tasks for you to use (these Visit Tasks are simply referred to as "tasks"). Visit Todos are described in further detail under <a href="#VisitHowTo">[VisitHowTo]</a>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>visit-start INDEX</code></p>
+<p>Format: <code>visit-start PATIENT_INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Begins a visit for the patient specified at <code>INDEX</code>.</p>
+<p>Begins a visit for the patient specified at <code>PATIENT_INDEX</code>.</p>
 </li>
 <li>
 <p>The index refers to the index number shown in the list of patients displayed by <code>pat-list</code> or <code>pat-find</code>.</p>
@@ -39,6 +39,9 @@
 </li>
 <li>
 <p>There can only be one ongoing visit at any point in time; if there is already an ongoing visit this command does nothing.</p>
+</li>
+<li>
+<p>This command does not bring up the "Current Visit" tab (Feature coming in v2.0)</p>
 </li>
 </ul>
 </div>
@@ -62,17 +65,17 @@ Starts a visit for the 1st patient in the patient list.</p>
 <p>Once you have begun a visit using <code>visit-start</code>, the application will note that you have an ongoing visit. You can then update the details of this ongoing visit using <code>visit-now-update</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>visit-now-update [t/TASK_INDEX DETAIL]… [f/TASK_INDEX]… [uf/TASK_INDEX]… [r/REMARK]</code></p>
+<p>Format: <code>visit-now-update [d/TASK_INDEX DETAIL]… [f/TASK_INDEX]… [uf/TASK_INDEX]… [r/REMARK]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p>Each argument (e.g. <code>t/</code>, <code>f/</code>, <code>uf/</code>, <code>r/</code>) triggers their own change to the visit:</p>
+<p>Each argument (e.g. <code>d/</code>, <code>f/</code>, <code>uf/</code>, <code>r/</code>) triggers their own change to the visit:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>d/</code> Represents "detail". Each task in the visit checklist can be assigned some information if it is useful for you. For example, if task of index 1 is "Check Body Temp", you can use <code>t/1 37.0degc</code> to record that detail to that task (<code>TASK_INDEX</code> followed by a space followed by the details you want to store).</p>
+<p><code>d/</code> Represents "detail". Each task in the visit checklist can be assigned some information if it is useful for you. For example, if task of index 1 is "Check Body Temp", you can use <code>d/1 37.0degc</code> to record that detail to that task (<code>TASK_INDEX</code> followed by a space followed by the details you want to store).</p>
 </li>
 <li>
 <p><code>f/</code> Represents "finish". Each task begins as unfinished and to mark a task as finished, you can use this prefix. For example, to mark task of index 1 as finished, you can use <code>f/1</code> (`TASK_INDEX of the task you want to mark as finished).</p>
@@ -108,6 +111,9 @@ Starts a visit for the 1st patient in the patient list.</p>
 </li>
 <li>
 <p>Each argument can target different <code>TASK_INDEX</code> es. This allows you to use this command to update multiple tasks at once.</p>
+</li>
+<li>
+<p>This command does not bring up the "Current Visit" tab (Feature coming in v2.0)</p>
 </li>
 </ul>
 </div>
@@ -179,4 +185,4 @@ Starts a visit for the 1st patient in the patient list.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 14:40:59 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 14:48:46 UTC</div></div></div></body></html>
