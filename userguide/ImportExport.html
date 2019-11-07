@@ -42,15 +42,39 @@
 <p>Reads patient data from a specified .csv file.</p>
 </div>
 <div class="paragraph">
-<p>All existing patient data will be deleted and replaced with this new data.
-Provided file should not be empty.</p>
-</div>
-<div class="paragraph">
-<p><strong>Cannot be executed when there is an ongoing visit.</strong></p>
-</div>
-<div class="paragraph">
 <p><code>".csv"</code> will be auto-appended to the specified <code>FILENAME</code>,
 <strong>so there is no need to type in the file extension</strong>.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>All existing patient data will be deleted and replaced with this new data.</p>
+</div>
+<div class="paragraph">
+<p>All existing appointment data will be deleted.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Provided file should not be empty.</p>
+</li>
+<li>
+<p>Cannot be executed when there is an ongoing visit.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Format: <code>app-import-replace n/FILENAME</code></p>
@@ -80,14 +104,22 @@ Provided file should not be empty.</p>
 affecting existing data. Provided file should not be empty.</p>
 </div>
 <div class="paragraph">
-<p><strong>The .csv file cannot contain a patient that already exists in the app.</strong></p>
-</div>
-<div class="paragraph">
-<p>Can be executed when there is an ongoing visit.</p>
-</div>
-<div class="paragraph">
 <p><code>".csv"</code> will be auto-appended to the specified <code>FILENAME</code>,
 <strong>so there is no need to type in the file extension</strong>.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The .csv file cannot contain a patient that already exists in the app.</p>
+</li>
+<li>
+<p>Can be executed when there is an ongoing visit.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Format: <code>app-import-merge n/FILENAME</code></p>
@@ -122,10 +154,13 @@ affecting existing data. Provided file should not be empty.</p>
 <div class="ulist">
 <ul>
 <li>
+<p>Provided file name should not be blank, and can contain only alphanumerics, hyphens and underscores.</p>
+</li>
+<li>
 <p>The top row of the file must be exactly the following headers in the order:</p>
 <div class="literalblock">
 <div class="content">
-<pre>name, phone, email, address, conditions, visitTodos</pre>
+<pre>name, phone, email, address, tagged, visitTodos</pre>
 </div>
 </div>
 </li>
@@ -137,10 +172,10 @@ affecting existing data. Provided file should not be empty.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Cells under <code>phone</code> must contain 8 digit numbers, cells under <code>name</code> must contain only alphanumerics and spaces, etc.</p>
+<p>Cells under <code>phone</code> must contain 3 to 8 digit numbers, cells under <code>name</code> must contain only alphanumerics and spaces, etc.</p>
 </li>
 <li>
-<p>For the fields <code>conditions</code> and <code>visitTodos</code> with multiple elements per cell,
+<p>For the fields <code>tagged</code> and <code>visitTodos</code> with multiple elements per cell,
 each element is to be separated with a newline.</p>
 </li>
 </ul>
@@ -158,7 +193,7 @@ each element is to be separated with a newline.</p>
 <p>Do not have any of the following special characters in the .csv:</p>
 <div class="literalblock">
 <div class="content">
-<pre>`,` and `;`</pre>
+<pre>, and ;</pre>
 </div>
 </div>
 </li>
@@ -169,7 +204,7 @@ each element is to be separated with a newline.</p>
 </table>
 </div>
 <div class="paragraph">
-<p>An example of a valid .csv can be seen <a href="ExampleCsv.png">here</a></p>
+<p>An example of a valid .csv can be seen <a href="samplecsvs/importsample.csv">here</a></p>
 </div>
 </div>
 </div>
@@ -257,18 +292,9 @@ Indexes can be provided to selectively export data of specific persons.</p>
 <p><strong>Patients' visit data will not be exported.</strong></p>
 </li>
 <li>
-<p>Ensure the provided file name does not contain any illegal characters shown below:</p>
-<div class="literalblock">
-<div class="content">
-<pre>&lt; &gt;  : " / \ | ? *</pre>
-</div>
-</div>
+<p>The provided file name cannot be blank, and can contain only alphanumerics, hyphens and underscores.</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>They are also system specific restrictions, such as for
-<a href="https://docs.microsoft.com/en-us/windows/win32/fileio/naming-a-file?redirectedfrom=MSDN">Windows</a></p>
 </div>
 </td>
 </tr>
@@ -276,4 +302,4 @@ Indexes can be provided to selectively export data of specific persons.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 09:37:09 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 02:57:35 UTC</div></div></div></body></html>
