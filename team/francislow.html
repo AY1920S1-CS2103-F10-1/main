@@ -20,29 +20,53 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: added <strong>the ability to undo/redo previous commands</strong></p>
+<p><strong>Major enhancement</strong>: added <strong>the ability to autocomplete any command words in application</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.</p>
+<p>What it does:<br></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Allows the user to easily complete a full command with or without typing.<br></p>
 </li>
 <li>
-<p>Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.</p>
-</li>
-<li>
-<p>Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.</p>
-</li>
-<li>
-<p>Credits: <em>{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}</em></p>
+<p>Guides user in selecting which command to enter next through commands classifications in suggestion panel and command explanations in result box<br></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: added a history command that allows the user to navigate to previous commands using up/down keys.</p>
+<p>Justification: Nurses and new users may not be familiar with command line input and the different types commands in the application. Thus, having a suggestion panel at the side will greatly enhance user experience, especially for slow typers. Having a guided system will aid nurses in familiarising with the application commands and understanding of the different functions in the system in general.</p>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+<p>Highlights: The implementation of word suggestion is rather tedious since many of the full commands have different formats. For example, "pat-list" do not require any patient index and prefixes but "pat-edit 1 n/ &#8230;&#8203;" requires both. Thus the implementation of list handliers were changed a few times to fit the objective of providing a better user experience. Logic for checking already matched words in order to change a new set of suggestion words is challenging as well, mainly due to many commands having different formats as mentioned earlier.</p>
+</li>
+<li>
+<p>Credits: No outside code or ideas were referenced in the development of these features (beyond code that already exists within Address Book 3).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Code contributed</strong>: An overview of contributed code can be found
+<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#=undefined&amp;search=francislow">here</a>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Milestone v1.2: <a href="https://github.com/AY1920S1-CS2103-F10-1/main/issues/55">#55</a></p>
+</li>
+<li>
+<p>Milestone v1.3: <a href="https://github.com/AY1920S1-CS2103-F10-1/main/issues/56">#56</a></p>
+</li>
+<li>
+<p>Milestone v1.4: <a href="https://github.com/AY1920S1-CS2103-F10-1/main/issues/61">#61</a></p>
+</li>
+<li>
+<p>Bug hunting: <a href="https://github.com/AY1920S1-CS2103-F10-1/main/issues/183">#183</a></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
@@ -53,20 +77,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Managed releases <code>v1.3</code> - <code>v1.5rc</code> (3 releases) on GitHub</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Enhancements to existing features:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
-</li>
-<li>
-<p>Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
+<p>Managed release <code>v1.3</code> on GitHub</p>
 </li>
 </ul>
 </div>
@@ -76,7 +87,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Did cosmetic tweaks to existing contents of the User Guide: <a href="https://github.com">#14</a></p>
+<p>Updated developers guide(appendix A-E) <a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/44">#44</a></p>
 </li>
 </ul>
 </div>
@@ -86,29 +97,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com">#12</a>, <a href="https://github.com">#32</a>, <a href="https://github.com">#19</a>, <a href="https://github.com">#42</a></p>
+<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/81">#81</a>, <a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/98">#98</a></p>
 </li>
 <li>
-<p>Contributed to forum discussions (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>, <a href="https://github.com">4</a>)</p>
-</li>
-<li>
-<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
-</li>
-<li>
-<p>Some parts of the history feature I added was adopted by several other class mates (<a href="https://github.com">1</a>, <a href="https://github.com">2</a>)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Tools:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Integrated a third party library (Natty) to the project (<a href="https://github.com">#42</a>)</p>
-</li>
-<li>
-<p>Integrated a new Github plugin (CircleCI) to the team repo</p>
+<p>Set up travis CI for the project</p>
 </li>
 </ul>
 </div>
@@ -117,9 +109,6 @@
 </div>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p><em>{you can add/remove categories in the list above}</em></p>
 </div>
 </div>
 </div>
@@ -139,6 +128,73 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="autocomplete"><a class="link" href="#autocomplete">Autocomplete</a></h2>
+<div class="sectionbody">
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Autocomplete</strong></p>
+</div>
+<div class="paragraph">
+<p>As a community nurse, you will be performing several commands through the Command Line Interface (CLI). In order to speed up the process, the application includes an autocomplete feature that allows you to more quickly and conveniently input your commands and parameters. This section describes the feature in further detail.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="viewing-list-of-suggested-words"><a class="link" href="#viewing-list-of-suggested-words">Viewing list of suggested words</a></h3>
+<div class="paragraph">
+<p>To the right of the command box, there is a panel that has a few suggestion words. The suggestion list will be constantly updated to fit your input.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="updating-list-of-suggested-words"><a class="link" href="#updating-list-of-suggested-words">Updating list of suggested words</a></h3>
+<div class="paragraph">
+<p>The suggested list of words in the autocomplete panel will be updated as you type in the command box. The panel will only suggest to you words that you need, in sequential order, based on your input and your previous word selection. Should your input be wrong or does not match any of the suggested word, no words will be suggested to you.<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Eg:</strong><br>
+If your "visit-" is your input in your commandbox, only words that are related to "visit" will be suggested such as "start" and "end".
+If your "abc" is your input in your commandbox, only words that starts with "abc" will be suggested.<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Note:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When prefixes are suggested you should select all prefixes that you need then type in respective sub-details<br>
+Eg: Select all prefixes "pat-add n/ p/ e/ a/ t/" before adding sub-details "pat-add n/John p/98762615 e/john@example.com a/exampleaddress t/exampletag vt/examplevisittodo"</p>
+</li>
+<li>
+<p>If no words appear in the autocomplete panel, this can only mean 2 things:<br>
+1) Your full command is finished, there are no more words to be suggested.<br>
+2) Your input is wrong and does not match any of the words to be suggested. (Try to change your input by backspacing)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="selecting-a-suggested-words"><a class="link" href="#selecting-a-suggested-words">Selecting a suggested words</a></h3>
+<div class="paragraph">
+<p><code><strong>UP</strong></code>, <code><strong>DOWN</strong></code> key<br>
+You can use the <code><strong>UP</strong></code> and <code><strong>DOWN</strong></code> keys in your keyboard to move from one selected word to another. Descriptions of the suggested words will be shown as you select them to guide you in choosing.</p>
+</div>
+<div class="paragraph">
+<p><code><strong>SHIFT</strong></code> key<br>
+Confirm your selection by pressing the <code><strong>SHIFT</strong></code> key in your keyboard. This will auto-fill the selected word to your current words in the command box text field. Doing this will also perform an auto correction of your input in order to fit the correct sequence of commands.<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Eg:</strong><br>
+Selecting the "now-update" in the autocomplete panel will concatenate with "now-update" with "visit-", the current text in your command box.</p>
+</div>
+<div class="paragraph">
+<p><strong>Note:</strong><br>
+When pressing <code><strong>UP</strong></code>, <code><strong>DOWN</strong></code>, or <code><strong>SHIFT</strong></code> keys, make sure that the command box is selected.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
@@ -151,288 +207,94 @@
 </tr>
 </tbody>
 </table>
-<div class="sect2">
-<h3 id="undo-redo-history"><a class="link" href="#undo-redo-history">Undo/Redo/History</a></h3>
-<div class="paragraph">
-<p>This set of functionality consists of one GUI component and two commands,
-each of which rely on the same core components:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>HistoryPane</code> - GUI component that displays a numbered list of previous
-data-modifying commands that can be reverted by <code>app-undo</code>.</p>
-</li>
-<li>
-<p><code>app-undo</code> - Command that reverts until a specified data-modifying command
-in the history, or the previous data-modifying command if no argument is specified.</p>
-</li>
-<li>
-<p><code>app-redo</code> - Command that reverts the previous command if and only if it was an <code>app-undo</code>.</p>
-</li>
-</ol>
-</div>
 <div class="sect3">
-<h4 id="implementation-overview"><a class="link" href="#implementation-overview">Implementation Overview</a></h4>
+<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">Proposed Implementation</a></h4>
 <div class="paragraph">
-<p>For undo/redo/history to function, there must be the following:</p>
+<p>The auto-complete mechanism extends NurseTraverse with 2 functionalities, word completion and word suggestions. To support word suggestions of only compatible words, several lists are created and the list in operation will be switched during runtime by <code>AutoCompletePanel#resetList()</code></p>
+</div>
+<div class="paragraph">
+<p>Given below is an example usage scenario and how the word suggestion and word completion function behaves at each step.</p>
+</div>
+<div class="paragraph">
+<p>Step 1:
+When the user launches the application, an instance of the object, command and prefix autocomplete word list will be initialised in <code>AutoCompleteStorage</code>(created in <code>AutoCompletePanel</code>), which implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>A way to mark which <code>Command</code> s are data-modifying commands so that
-non-data-modifying commands can be ignored.</p>
+<p><code>AutoCompleteWordStorage#getOListAllCommandWord()</code> — returns the observable list of command words stored</p>
 </li>
 <li>
-<p>A mechanism to clearly demarcate the model state before and after the execution
-of each data-modifying command.</p>
+<p><code>AutoCompleteWordStorage#getOListAllPrefixWord()</code> — returns the observable list of prefix words stored</p>
 </li>
 <li>
-<p>A way to record the state of the model before (or after) each command, together
-with the <code>Command</code> object responsible.</p>
+<p><code>AutoCompleteWordStorage#getOListAllObjectWord()</code> — returns the observable list of object words stored</p>
 </li>
 <li>
-<p>Methods to switch the state of the model back and forth from the states stored
-in the history.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>To achieve this, the following classes are introduced:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>MutatorCommand</code> - An empty subclass of <code>Command</code> to indicate that a <code>Command</code> is a
-data-modifying command and should be considered for undo/redo/history.</p>
-</li>
-<li>
-<p><code>HistoryRecord</code> - Record of the command and data of one atomic commit in the command history. It consists of the
-<code>MutatorCommand</code> responsible for the commit and the state of the model either before or after the commit. All recorded
-states are deep copies decoupled from their original references.</p>
-</li>
-<li>
-<p><code>HistoryManager</code> - Represents the history of the application. Maintains data structures containing <code>HistoryRecord</code> s
-of each data state change.</p>
+<p><code>AutoCompleteWordStorage#generateOListAllIndexWord(String objectName)</code> — generate an observable list of index words corresponding to object when called</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Additionally, <code>LogicManager</code> and <code>Model</code> are modified to accommodate this functionality.</p>
+<p>The auto-complete panel will be set to object list by default.</p>
 </div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">Shallow Copy vs Deep copy</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Performing a <em>shallow copy</em> of an object simply copies the values of the
-references of each object the original object is pointing to. This results in the
-copied object pointing to the same objects as the original. In the figure below,
-<code>patientBook</code> and <code>copiedPatientBook</code> are separate <code>PatientBook</code> objects but actually
-share the same <code>patient</code> object. Changes to <code>patient</code> through <code>PatientBook</code> would thus
-affect <code>copiedPatientBook</code> as well.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Step 2: Whenever user types a key in the command line, <code>CommandBox</code> will call <code>AutoCompletePanel#updateListView(String currentPhraseInCommandBox)</code>.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/shallow_copy.png" alt="shallow copy">
+<div class="paragraph">
+<p>This will update the number of matched words with the current list and runs 3 sets of algorithms, through word list handler classes.</p>
 </div>
-<div class="title">Figure 1. Shallow copy</div>
+<div class="paragraph">
+<p>First, <code>AutoCompletePanel#resetList()</code> will switch the current list based on what is typed.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Performing a <em>deep copy</em> creates duplicates of each object referenced by the original,
-the objects referenced by those duplicates, and so on. These duplicates are completely
-decoupled from their originals. In the figure below, <code>patient</code> is a different
-object from <code>copiedPatient</code>, thus changes to <code>patient</code> would not affect <code>copiedPatient</code>.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Second, <code>AutoCompleteListFilter#filterList()</code> will filter the chosen list to only words that are compatible with previous correctly typed full words. Eg: prefix list will be filtered to only be compatible with “pat-add” user command, the words that come before prefix.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/deep_copy.png" alt="deep copy">
-</div>
-<div class="title">Figure 2. Deep copy</div>
-</div>
-</div>
+<div class="paragraph">
+<p>Lastly, <code>AutoCompleteListUpdater#updateSuggestedWordsInList()</code> will update the chosen list which was filtered to fit the key that is partially typed. Eg: User typed “ad”. “add” and “add-medcon” which are both in the current list will be suggested.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="model"><a class="link" href="#model">Model</a></h4>
-<div class="paragraph">
-<p>The following methods are added to the <code>Model</code> interface:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>Model#commit(MutatorCommand)</code> - Commits the changes made to the address book since the last call to this method,
-making them permanent and updating the UI data. The committing <code>MutatorCommand</code> is stored for history record purposes.</p>
-</li>
-<li>
-<p><code>Model#getHistory()</code> - Returns an unmodifiable view of the history.</p>
-</li>
-<li>
-<p><code>Model#undoTo(HistoryRecord)</code> - Reverts current model state to the that contained in the specified <code>HistoryRecord</code>
-(i.e. the state before the command was executed).</p>
-</li>
-<li>
-<p><code>Model#redo()</code> - Redoes the previous <code>MutatorCommand</code> if it was an undo.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="model-design-considerations"><a class="link" href="#model-design-considerations">Model Design Considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-how-to-record-the-patientbook-and-appointmentbook-states-in-the-history"><a class="link" href="#aspect-how-to-record-the-patientbook-and-appointmentbook-states-in-the-history">Aspect: How to record the PatientBook and AppointmentBook states in the history</a></h5>
+<h5 id="aspect-method-to-suggest-auto-complete-words"><a class="link" href="#aspect-method-to-suggest-auto-complete-words">Aspect: Method to suggest auto-complete words</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p>Alternative 1: Simply store references to <code>PatientBook</code> and <code>AppointmentBook</code>.</p>
+<p><strong>Alternative 1:</strong> Have several lists. First word list, Second word list, etc</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
+<p>Pros: Minimal effort in parsing of command line input.</p>
+</li>
 <li>
-<p>Easier to implement.</p>
+<p>Cons: Auto-complete panel will be unorganised. Eg: both index 1 and prefix may be suggested instead of just all index or all prefix suggested.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Cons:</p>
+<p><strong>Alternative 2:</strong> Suggest full commands such as pat-edit 2 n/ t/ .. and omit any list</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Relies on the assumption that the objects in <code>PatientBook</code> and <code>AddressBook</code>
-are immutable; if they are not truly immutable, changes to the current model&#8217;s
-<code>PatientBook</code> and <code>AddressBook</code> state may leak and affect the states stored in
-the history.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
+<p>Pros: Easy to implement. No parsing required.</p>
 </li>
 <li>
-<p><strong>Alternative 2 (current choice):</strong> Defensively store deep copies of the <code>PatientBook</code> and <code>AppointmentBook</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Prevents improperly coded <code>Patient</code> or <code>Appointment</code> (or their
-associated classes) from breaking undo/redo/history functionality.</p>
-</li>
-<li>
-<p>Can reuse JSON serialization code for persistent storage of <code>PatientBook</code> and <code>AppointmentBook</code>
-to create deep copies by serializing then immediately deserializing them.</p>
+<p>Cons: Auto-complete panel will be chunky as all commands are suggested at the same time. User will not be guided in selecting which command to choose.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Cons:</p>
+<p><strong>Alternative 3(current choice):</strong> Have several lists. Object/Command/Index/Prefix lists.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Consumes more memory and CPU time.</p>
+<p>Pros: User will be guided. Very user friendly. Panel will be more organised as words are suggested in sets of the same type.</p>
 </li>
 <li>
-<p>More difficult to implement - MVC pattern between UI view and models is broken in
-two. This is because each time the current state is swapped with a state in the
-history by <code>ModelManager</code>, the <code>ObservableList</code> viewed by the UI must also be
-updated by the <code>ModelManager</code> instead of the <code>PatientBook</code> as the current
-<code>PatientBook</code> is completely decoupled and placed into the history.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-which-class-to-place-the-historymanager-in"><a class="link" href="#aspect-which-class-to-place-the-historymanager-in">Aspect: Which class to place the HistoryManager in</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Make <code>HistoryManager</code> a field of <code>ModelManager</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Ensures atomicity of the records in the history as pushing a transaction
-to the <code>HistoryManager</code> can only be (and is always) done by <code>Model#commit()</code>
-itself - records in the history are guaranteed to be products of complete command
-execution rather than intermediate states.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Cons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>More difficult to test <code>ModelManager</code> as two <code>ModelManager</code> objects may have
-the same current state but differing <code>HistoryManager</code> objects.</p>
-</li>
-<li>
-<p>May violate Single Responsibility Principle as <code>ModelManager</code> now has to manage
-both its current state and its previous states.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Alternative 2: Make <code>HistoryManager</code> a field of <code>LogicManager</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Higher cohesion as <code>ModelManager</code> only represents the model&#8217;s current state.</p>
-</li>
-<li>
-<p>Easier to test <code>ModelManager</code> as only its current state matters.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Cons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>It is possible for intermediate model states to be pushed to the <code>HistoryManager</code> -
-trusts <code>LogicManager</code> to push the transaction to history after (and only
-after) calling <code>Model#commit()</code>.</p>
-</li>
-<li>
-<p>Requires <code>Command#execute()</code> to accept <code>HistoryManager</code> as a parameter just so
-<code>UndoCommand</code> and <code>RedoCommand</code> can work even though the vast majority of commands do not require it.</p>
-</li>
-</ul>
-</div>
+<p>Cons: Parsing of command line input can be tedious.</p>
 </li>
 </ul>
 </div>
@@ -442,135 +304,12 @@ after) calling <code>Model#commit()</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="logic"><a class="link" href="#logic">Logic</a></h4>
-<div class="paragraph">
-<p>In addition to <code>MutatorCommand</code> which was described earlier, the following logical classes are added:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>UndoCommand</code> - Undoes a designated command in the history, or the previous one if no argument is specified. The
-<code>COMMAND_WORD</code> for this command is <code>app-undo</code>.</p>
-</li>
-<li>
-<p><code>UndoCommandParser</code> - Parses input arguments and creates a new UndoCommand object.</p>
-</li>
-<li>
-<p><code>RedoCommand</code> - Redoes the previous command if it was an undo. The <code>COMMAND_WORD</code> for this command is <code>app-redo</code>.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><code>HistoryManager</code> checks the classes of commands pushed to the history and does not record
-them if they are instances of <code>UndoCommand</code> or <code>RedoCommand</code>. This ensures that successive <code>UndoCommand</code> s do
-not undo themselves instead of the desired data-modifying commands, requiring <code>RedoCommand</code> for
-the special case of undo reversion.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="ui"><a class="link" href="#ui">UI</a></h4>
-<div class="paragraph">
-<p>The command history is constantly displayed in a panel on the right side of
-the app. This <code>HistoryPanel</code> uses <code>HistoryRecordCard</code> s to display the
-user-input text that invoked each command. It is a view of the <code>ObservableList&lt;HistoryRecord&gt;</code>
-returned by <code>HistoryManager#asUnmodifiableObservableList()</code>.</p>
-</div>
+<h4 id="logic-design-considerations"><a class="link" href="#logic-design-considerations">Logic Design Considerations</a></h4>
+
 </div>
 <div class="sect3">
 <h4 id="ui-design-considerations"><a class="link" href="#ui-design-considerations">UI Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-where-to-display-the-history"><a class="link" href="#aspect-where-to-display-the-history">Aspect: Where to display the history</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Permanently display it in a dedicated panel.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>User does not have to execute a 'history' command to view the history,
-making it much easier to use the multiple undo function.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Cons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Takes up more space in the UI.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Alternative 2: Display it as a tab in the <code>TabPane</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Saves space in the UI.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Cons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>User has to switch to the history tab to view it.</p>
-</li>
-<li>
-<p>Less intuitive UX as the other tabs in the <code>TabPane</code> all display actual data
-such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> info, whereas history is app metadata.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="use-case"><a class="link" href="#use-case">Use case</a></h4>
-<div class="paragraph">
-<p>The following sequence diagram illustrates what happens when an <code>app-undo 3</code> command is executed:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram">
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">[Proposed] Data Encryption</a></h3>
-<div class="paragraph">
-<p><em>{Explain here how the data encryption feature will be implemented}</em></p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">PROJECT: PowerPointLabs</a></h2>
-<div class="sectionbody">
-<hr>
-<div class="paragraph">
-<p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
-</div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 20:28:11 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-07 22:36:36 UTC</div></div></div></body></html>
