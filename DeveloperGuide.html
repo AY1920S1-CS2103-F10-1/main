@@ -23,13 +23,12 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#undo-redo-history">3.1. Undo/Redo/History</a></li>
-<li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
-<li><a href="#visits-management">3.3. Visits Management</a></li>
-<li><a href="#appointment-management">3.4. Appointment Management</a></li>
-<li><a href="#import-and-export">3.5. Import and Export</a></li>
-<li><a href="#auto-complete">3.6. Auto-complete</a></li>
-<li><a href="#logging">3.7. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.8. Configuration</a></li>
+<li><a href="#visits-management">3.2. Visits Management</a></li>
+<li><a href="#appointment-management">3.3. Appointment Management</a></li>
+<li><a href="#import-and-export">3.4. Import and Export</a></li>
+<li><a href="#auto-complete">3.5. Auto-complete</a></li>
+<li><a href="#logging">3.6. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -198,7 +197,7 @@ The following class plays an important role at the architecture level:</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>Logic</code> uses the <code>AddressBookParser</code> class to parse the user command.</p>
+<p><code>Logic</code> uses the <code>PatientBookParser</code> class to parse the user command.</p>
 </li>
 <li>
 <p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
@@ -256,7 +255,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
 </li>
 <li>
-<p>stores the Address Book data.</p>
+<p>stores the Patient Book data.</p>
 </li>
 <li>
 <p>exposes an unmodifiable <code>ObservableList&lt;Person&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
@@ -273,7 +272,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book</code>, which <code>Person</code> can reference. This would allow <code>Address Book</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Person</code> needing their own <code>Tag</code> object. An example of how such a model may look like is given below.<br>
+As a more OOP model, we can store a <code>Tag</code> list in <code>Patient Book</code>, which <code>Person</code> can reference. This would allow <code>Patient Book</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Person</code> needing their own <code>Tag</code> object. An example of how such a model may look like is given below.<br>
 <br>
 <span class="image"><img src="images/BetterModelClassDiagram.png" alt="BetterModelClassDiagram"></span>
 </td>
@@ -301,7 +300,10 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>can save <code>UserPref</code> objects in json format and read it back.</p>
 </li>
 <li>
-<p>can save the Address Book data in json format and read it back.</p>
+<p>can save the Patient Book data in json format and read it back.</p>
+</li>
+<li>
+<p>can save the Appointment Book data in json format and read it back.</p>
 </li>
 </ul>
 </div>
@@ -309,7 +311,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <div class="sect2">
 <h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.6. Common classes</a></h3>
 <div class="paragraph">
-<p>Classes used by multiple components are in the <code>seedu.addressbook.commons</code> package.</p>
+<p>Classes used by multiple components are in the <code>cs.f10.t1.nursetraverse.commons</code> package.</p>
 </div>
 </div>
 </div>
@@ -727,18 +729,12 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></h3>
-<div class="paragraph">
-<p><em>{Explain here how the data encryption feature will be implemented}</em></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="visits-management"><a class="link" href="#visits-management">3.3. Visits Management</a></h3>
+<h3 id="visits-management"><a class="link" href="#visits-management">3.2. Visits Management</a></h3>
 <div class="paragraph">
 <p>Visit Management has 3 sections to it: the model that models the visits, the logic that allows users to manipulate these models and the UI.</p>
 </div>
 <div class="sect3">
-<h4 id="model-2"><a class="link" href="#model-2">3.3.1. Model</a></h4>
+<h4 id="model-2"><a class="link" href="#model-2">3.2.1. Model</a></h4>
 <div class="paragraph">
 <p>How Visits, VisitTodos and VisitTasks are stored can be seen in <a href="#Design-Model">Section 2.4, &#8220;Model component&#8221;</a> above. To support the feature of ongoing visits and the constraint that there can only be 1 ongoing visit at a time, a <code>Pair&lt;Integer, Integer&gt;</code> named <code>pairOfOngoingPatAndVisitIndexes</code> is stored in <code>PatientBook</code>. This serves multiple purposes:</p>
 </div>
@@ -754,7 +750,7 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 <p>To ensure there is no duplication of data by storing only the indexes for reference</p>
 </li>
 <li>
-<p>Although there is a reference to the <code>Patient</code> in the <code>Visit</code> class, it is not stored in the JSON file. Thus, the <code>Patient</code> needs to be stored together with the <code>Visit</code> as a pair in <code>PatientBook</code>.</p>
+<p>Although there is a reference to the <code>Patient</code> in the <code>Visit</code> class, this reference is only implied in the JSON file. To maximize efficiency such that the application does not have to search every patient to find an ongoing visit every time the application is opened, the <code>Patient</code> needs to be stored together with the <code>Visit</code> as a pair in <code>PatientBook</code>.</p>
 </li>
 </ul>
 </div>
@@ -764,16 +760,16 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 <div class="ulist">
 <ul>
 <li>
-<p><code>Model#setNewOngoingVisit(Visit visit)</code>&#8201;&#8212;&#8201;Record a new ongoing <code>Visit</code> of person in the model. This <code>Visit</code> must be retrieved unmodified from a <code>Patient</code>, or an <code>IllegalArgumentException</code> will be thrown so only use this to begin visits.</p>
+<p><code>Model#setNewOngoingVisit(Visit visit)</code>&#8201;&#8212;&#8201;Record a new ongoing <code>Visit</code> of person in the model. This <code>Visit</code> must be retrieved unmodified from a <code>Patient</code>, or an <code>IllegalArgumentException</code> will be thrown (so only use this to begin visits).</p>
 </li>
 <li>
 <p><code>Model#updateOngoingVisit(Visit updatedVisit)</code>&#8201;&#8212;&#8201;Update an ongoing <code>Visit</code> in the model. This will update the ongoing <code>Visit</code> and update the <code>Visit</code> in the <code>Patient</code>. Use this to update an ongoing <code>Visit</code> when there is already a <code>Visit</code>.</p>
 </li>
 <li>
-<p><code>Model#unsetOngoingVisit()</code>&#8201;&#8212;&#8201;Set the ongoing visit of person in the model and address book to null (for cancelling or deleting visits).</p>
+<p><code>Model#unsetOngoingVisit()</code>&#8201;&#8212;&#8201;Set the ongoing visit of person in the model and patient book to null (for cancelling or deleting visits).</p>
 </li>
 <li>
-<p><code>Model#patientHasOngoingVisit(Person person)</code>&#8201;&#8212;&#8201;Return true if the person has an ongoing visit.</p>
+<p><code>Model#patientHasOngoingVisit(Person person)</code>&#8201;&#8212;&#8201;Returns true if the person has an ongoing visit.</p>
 </li>
 <li>
 <p><code>Model#getObservableOngoingVisitList()</code>&#8201;&#8212;&#8201;Returns a <code>ObservableList&lt;Visit&gt;</code> containing the ongoing <code>Visit</code> if there is an ongoing <code>Visit</code>.</p>
@@ -782,7 +778,7 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 </div>
 </div>
 <div class="sect3">
-<h4 id="model-design-considerations-2"><a class="link" href="#model-design-considerations-2">3.3.2. Model Design Considerations</a></h4>
+<h4 id="model-design-considerations-2"><a class="link" href="#model-design-considerations-2">3.2.2. Model Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-to-reflect-changes-in-ongoing-visit-on-ui"><a class="link" href="#aspect-how-to-reflect-changes-in-ongoing-visit-on-ui">Aspect: How to reflect changes in ongoing visit on UI</a></h5>
 <div class="ulist">
@@ -818,20 +814,20 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 </div>
 </div>
 <div class="sect3">
-<h4 id="logic-2"><a class="link" href="#logic-2">3.3.3. Logic</a></h4>
+<h4 id="logic-2"><a class="link" href="#logic-2">3.2.3. Logic</a></h4>
 
 </div>
 <div class="sect3">
-<h4 id="logic-design-considerations"><a class="link" href="#logic-design-considerations">3.3.4. Logic Design Considerations</a></h4>
+<h4 id="logic-design-considerations"><a class="link" href="#logic-design-considerations">3.2.4. Logic Design Considerations</a></h4>
 
 </div>
 <div class="sect3">
-<h4 id="ui-2"><a class="link" href="#ui-2">3.3.5. UI</a></h4>
+<h4 id="ui-2"><a class="link" href="#ui-2">3.2.5. UI</a></h4>
 <div class="paragraph">
 <p>A <code>Patient</code> 's <code>Visit</code> s, <code>VisitTodo</code> are displayed together with his details on <code>pat-list</code> and <code>pat-find</code> in a <code>TitledPane</code>.</p>
 </div>
 <div class="paragraph">
-<p>An ongoing <code>Visit</code> is displayed in another tab named "Current Visit" using  <code>OngoingVisitListPanel</code> containing <code>OngoingVisitCard</code> which contains <code>VisitTaskTableView</code>. Likewise, in <code>pat-list</code> and <code>pat-find</code> use <code>FinishedVisitCard</code> s each containing a <code>VisitTaskTableView</code> to display the <code>Visit</code> s and <code>VisitTask</code> s.</p>
+<p>An ongoing <code>Visit</code> is displayed in another tab named "Current Visit" using  <code>OngoingVisitListPanel</code> containing <code>OngoingVisitCard</code> which contains <code>VisitTaskTableView</code>. Likewise, <code>pat-list</code> and <code>pat-find</code> use <code>FinishedVisitCard</code> s each containing a <code>VisitTaskTableView</code> to display the <code>Visit</code> s and <code>VisitTask</code> s.</p>
 </div>
 <div class="sect4">
 <h5 id="changing-of-tabs-on-running-the-appropriate-command"><a class="link" href="#changing-of-tabs-on-running-the-appropriate-command">Changing of tabs on running the appropriate command</a></h5>
@@ -839,12 +835,12 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 <p>The application currently does not change tabs when an appropriate command is run (e.g. if you&#8217;re on the Patient tab and you run visit-now-update, it will stay on the Patient tab). This is actually by design as it allows users to multitask across tabs.</p>
 </div>
 <div class="paragraph">
-<p>If in future iterations there is a need to change the tab on running an appropriate command, there are some consideration on how to implement the changing of tabs programmatically (e.g. when someone executes the command to begin a visit), which necessitates some additional coupling between <code>Model</code> and <code>Ui</code>. The proposed implementation may be to use the Observer pattern: <code>Model</code> would contain a subject that would notify its observers whenever a component (e.g. <code>Patient</code> or <code>Visit</code>) is listed/added/updated/deleted/etc, and <code>Ui</code> could observer this subject and update itself accordingly.</p>
+<p>If in future iterations there is a need to change the tab on running an appropriate command, there are some considerations on how to implement the changing of tabs programmatically (e.g. when someone executes the command to begin a visit), which necessitates some additional coupling between <code>Model</code> and <code>Ui</code>. The proposed implementation may be to use the Observer pattern: <code>Model</code> would contain a subject that would notify its observers whenever a component (e.g. <code>Patient</code> or <code>Visit</code>) is listed/added/updated/deleted/etc, and <code>Ui</code> could observer this subject and update itself accordingly.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ui-design-considerations-2"><a class="link" href="#ui-design-considerations-2">3.3.6. UI Design Considerations</a></h4>
+<h4 id="ui-design-considerations-2"><a class="link" href="#ui-design-considerations-2">3.2.6. UI Design Considerations</a></h4>
 <div class="paragraph">
 <p>Aspect: How to display the <code>Patient</code> 's <code>Visit</code> records (and his <code>VisitTodo</code> s)</p>
 </div>
@@ -913,7 +909,7 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 </div>
 </div>
 <div class="sect3">
-<h4 id="use-case-2"><a class="link" href="#use-case-2">3.3.7. Use case</a></h4>
+<h4 id="use-case-2"><a class="link" href="#use-case-2">3.2.7. Use case</a></h4>
 <div class="paragraph">
 <p>Visit Management is used when the user wants to visit a patient and record their visit. There are 4 actions that a user can perform:</p>
 </div>
@@ -923,7 +919,7 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 </div>
 </div>
 <div class="paragraph">
-<p>The possible workflow a user can take when these set of actions is depicted in the following diagram. Take note that the application will always start without an ongoing visit and this is an assumption is applied in the activity diagram. Also note that the terms "visit" and "ongoing visit" are interchangeable, as a user can only cancel, update or finish an ongoing visit.</p>
+<p>The possible workflow a user can take when these set of actions is depicted in the following diagram. Take note that the application will always start without an ongoing visit and this assumption is implied in the activity diagram. Also note that the terms "visit" and "ongoing visit" are interchangeable, as a user can only cancel, update or finish an ongoing visit.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -931,7 +927,7 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 </div>
 </div>
 <div class="paragraph">
-<p>The most complex part of this use case is in when the user decides to update the ongoing visit. The sequence of events when updating an ongoing visit is detailed in this <a href="images/UpdateOngoingVisitSequenceDiagram.png">sequence diagram</a>. Note that this sequence diagram is <em>not</em> exhaustive to help you understand without going into too much detail. (e.g. Exception handling is omitted).</p>
+<p>The most complex part of this use case is in when the user decides to update the ongoing visit. The sequence of events when updating an ongoing visit is detailed in this <a href="images/UpdateOngoingVisitSequenceDiagram.png">sequence diagram</a>. Note that this sequence diagram is <em>not</em> exhaustive to help you understand without going into too much detail. (e.g. Exception handling is omitted and in-depth code is placed into ref fragments which are not included in this developer guide).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -941,7 +937,7 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 </div>
 </div>
 <div class="sect2">
-<h3 id="appointment-management"><a class="link" href="#appointment-management">3.4. Appointment Management</a></h3>
+<h3 id="appointment-management"><a class="link" href="#appointment-management">3.3. Appointment Management</a></h3>
 <div class="paragraph">
 <p>The appointment class extends NurseTraverse with the following functionalities:</p>
 </div>
@@ -968,7 +964,7 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 </ul>
 </div>
 <div class="sect3">
-<h4 id="model-3"><a class="link" href="#model-3">3.4.1. Model</a></h4>
+<h4 id="model-3"><a class="link" href="#model-3">3.3.1. Model</a></h4>
 <div class="paragraph">
 <p>All appointments are stored and managed in the <code>AppointmentBook</code>.</p>
 </div>
@@ -1011,19 +1007,19 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 </div>
 </div>
 <div class="sect3">
-<h4 id="model-design-considerations-3"><a class="link" href="#model-design-considerations-3">3.4.2. Model Design Considerations</a></h4>
+<h4 id="model-design-considerations-3"><a class="link" href="#model-design-considerations-3">3.3.2. Model Design Considerations</a></h4>
 
 </div>
 <div class="sect3">
-<h4 id="logic-3"><a class="link" href="#logic-3">3.4.3. Logic</a></h4>
+<h4 id="logic-3"><a class="link" href="#logic-3">3.3.3. Logic</a></h4>
 
 </div>
 <div class="sect3">
-<h4 id="logic-design-considerations-2"><a class="link" href="#logic-design-considerations-2">3.4.4. Logic Design Considerations</a></h4>
+<h4 id="logic-design-considerations-2"><a class="link" href="#logic-design-considerations-2">3.3.4. Logic Design Considerations</a></h4>
 
 </div>
 <div class="sect3">
-<h4 id="ui-3"><a class="link" href="#ui-3">3.4.5. UI</a></h4>
+<h4 id="ui-3"><a class="link" href="#ui-3">3.3.5. UI</a></h4>
 <div class="paragraph">
 <p>A list of <code>Appointment</code> s are displayed on a side pane with <code>appt-list</code> and <code>appt-find</code>.</p>
 </div>
@@ -1032,12 +1028,12 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 </div>
 </div>
 <div class="sect3">
-<h4 id="ui-design-considerations-3"><a class="link" href="#ui-design-considerations-3">3.4.6. UI Design Considerations</a></h4>
+<h4 id="ui-design-considerations-3"><a class="link" href="#ui-design-considerations-3">3.3.6. UI Design Considerations</a></h4>
 
 </div>
 </div>
 <div class="sect2">
-<h3 id="import-and-export"><a class="link" href="#import-and-export">3.5. Import and Export</a></h3>
+<h3 id="import-and-export"><a class="link" href="#import-and-export">3.4. Import and Export</a></h3>
 <div class="paragraph">
 <p>Import and export functionality are split into three commands:</p>
 </div>
@@ -1055,7 +1051,7 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 </ol>
 </div>
 <div class="sect3">
-<h4 id="jackson-library"><a class="link" href="#jackson-library">3.5.1. Jackson Library</a></h4>
+<h4 id="jackson-library"><a class="link" href="#jackson-library">3.4.1. Jackson Library</a></h4>
 <div class="paragraph">
 <p>The current import and export features are built upon the the existing <code>Jackson</code> libraries,
 in particular the <code>dataformat</code>, <code>databind</code> and <code>datatype</code> modules. Technical knowledge of the
@@ -1068,7 +1064,7 @@ functionality to cover new data fields or classes implemented in the future. The
 </div>
 </div>
 <div class="sect3">
-<h4 id="csv-processing"><a class="link" href="#csv-processing">3.5.2. Csv Processing</a></h4>
+<h4 id="csv-processing"><a class="link" href="#csv-processing">3.4.2. Csv Processing</a></h4>
 <div class="paragraph">
 <p>All of the data processing needed for this feature can be found in the <code>CsvUtil</code> file;
 it is responsible for converting the data of <code>Patient</code> objects into a .csv friendly <code>String</code> format
@@ -1116,7 +1112,7 @@ contains no duplicate patients.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="command-implementation"><a class="link" href="#command-implementation">3.5.3. Command Implementation</a></h4>
+<h4 id="command-implementation"><a class="link" href="#command-implementation">3.4.3. Command Implementation</a></h4>
 <div class="sect4">
 <h5 id="command-code-app-export-code"><a class="link" href="#command-code-app-export-code">Command: <code>app-export</code></a></h5>
 <div class="paragraph">
@@ -1349,9 +1345,9 @@ with <code>app-undo</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="auto-complete"><a class="link" href="#auto-complete">3.6. Auto-complete</a></h3>
+<h3 id="auto-complete"><a class="link" href="#auto-complete">3.5. Auto-complete</a></h3>
 <div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.6.1. Proposed Implementation</a></h4>
+<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.5.1. Proposed Implementation</a></h4>
 <div class="paragraph">
 <p>The auto-complete mechanism extends NurseTraverse with 2 functionalities, word completion and word suggestions. To support word suggestions of only compatible words, several lists are created and the list in operation will be switched during runtime by <code>AutoCompletePanel#resetList()</code></p>
 </div>
@@ -1398,7 +1394,7 @@ When the user launches the application, an instance of the object, command and p
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.6.2. Design Considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.5.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-method-to-suggest-auto-complete-words"><a class="link" href="#aspect-method-to-suggest-auto-complete-words">Aspect: Method to suggest auto-complete words</a></h5>
 <div class="ulist">
@@ -1447,23 +1443,23 @@ When the user launches the application, an instance of the object, command and p
 </div>
 </div>
 <div class="sect3">
-<h4 id="logic-design-considerations-3"><a class="link" href="#logic-design-considerations-3">3.6.3. Logic Design Considerations</a></h4>
+<h4 id="logic-design-considerations-3"><a class="link" href="#logic-design-considerations-3">3.5.3. Logic Design Considerations</a></h4>
 
 </div>
 <div class="sect3">
-<h4 id="ui-design-considerations-4"><a class="link" href="#ui-design-considerations-4">3.6.4. UI Design Considerations</a></h4>
+<h4 id="ui-design-considerations-4"><a class="link" href="#ui-design-considerations-4">3.5.4. UI Design Considerations</a></h4>
 
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.8, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1494,7 +1490,7 @@ When the user launches the application, an instance of the object, command and p
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.8. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1771,7 +1767,7 @@ When the user launches the application, an instance of the object, command and p
 <h2 id="use-cases"><a class="link" href="#use-cases">Appendix C: Use Cases</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>(For all use cases below, the <strong>System</strong> is the <code>AddressBook</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
+<p>(For all use cases below, the <strong>System</strong> is the <code>PatientBook</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
 <h3 id="use-case-add-patient" class="discrete">Use case: Add patient</h3>
 <div class="paragraph">
@@ -2208,4 +2204,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 12:59:26 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 14:00:49 UTC</div></div></div></body></html>

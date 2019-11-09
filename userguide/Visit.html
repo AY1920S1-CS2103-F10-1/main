@@ -41,7 +41,13 @@
 <p>There can only be one ongoing visit at any point in time; if there is already an ongoing visit this command does nothing.</p>
 </li>
 <li>
-<p>This command does not bring up the "Current Visit" tab (Feature coming in v2.0)</p>
+<p>This command does not bring up the "Current Visit" tab. You will have to manually click the tab.</p>
+</li>
+<li>
+<p>You cannot delete the patient who you are currently visiting.</p>
+</li>
+<li>
+<p>You can update the details of the patient you are currently visiting, but changes to his/her Visit Todos will not affect the ongoing visit&#8217;s Visit Tasks.</p>
 </li>
 </ul>
 </div>
@@ -78,7 +84,7 @@ Starts a visit for the 1st patient in the patient list.</p>
 <p><code>d/</code> Represents "detail". Each task in the visit checklist can be assigned some information if it is useful for you. For example, if task of index 1 is "Check Body Temp", you can use <code>d/1 37.0degc</code> to record that detail to that task (<code>TASK_INDEX</code> followed by a space followed by the details you want to store).</p>
 </li>
 <li>
-<p><code>f/</code> Represents "finish". Each task begins as unfinished and to mark a task as finished, you can use this prefix. For example, to mark task of index 1 as finished, you can use <code>f/1</code> (`TASK_INDEX of the task you want to mark as finished).</p>
+<p><code>f/</code> Represents "finish". Each task begins as unfinished and to mark a task as finished, you can use this prefix. For example, to mark task of index 1 as finished, you can use <code>f/1</code> (<code>TASK_INDEX</code> of the task you want to mark as finished).</p>
 </li>
 <li>
 <p><code>uf/</code> Represents "un-finish". If you have marked a task as finished prior using <code>f/</code> and you want to undo that, you can use <code>uf/</code> (e.g. for task index 1 use <code>uf/1</code>).</p>
@@ -132,12 +138,15 @@ Starts a visit for the 1st patient in the patient list.</p>
 <li>
 <p>A task does not need to be marked as finished in order to finish the visit. It is simply for your reference and to help you keep track of which tasks have / have not been finished.</p>
 </li>
+<li>
+<p>Editing the Visit Todos of a patient while a visit is ongoing for that patient will not update the Visit Tasks of said patient. If you want to update the tasks, cancel the visit first, then start the visit again.</p>
+</li>
 </ul>
 </div>
 </div>
 </div>
 <div class="paragraph">
-<p>Example:</p>
+<p>Example for <code>visit-now-update</code>:</p>
 </div>
 <div class="paragraph">
 <p>Assume that you have an ongoing visit and 2 tasks (task 1 is "Check Blood Pressure", task 2 is "Check for bed bugs") in your visit checklist. After you&#8217;re done, you can update the application using:</p>
@@ -185,4 +194,4 @@ Starts a visit for the 1st patient in the patient list.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 12:59:26 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 14:00:49 UTC</div></div></div></body></html>
