@@ -25,7 +25,7 @@
 <li><a href="#undo-redo-history">3.1. Undo/Redo/History</a></li>
 <li><a href="#visits-management">3.2. Visits Management</a></li>
 <li><a href="#appointment-management">3.3. Appointment Management</a></li>
-<li><a href="#use-case-3">3.4. Use Case</a></li>
+<li><a href="#use-case-2">3.4. Use Case</a></li>
 <li><a href="#import-and-export">3.5. Import and Export</a></li>
 <li><a href="#auto-complete">3.6. Auto-complete</a></li>
 <li><a href="#overview-of-implementation">3.7. Overview Of Implementation</a></li>
@@ -62,6 +62,9 @@
 <li><a href="#updating-of-current-autocomplete-suggestion-list">F.14. Updating of current autocomplete suggestion list</a></li>
 <li><a href="#exporting-data">F.15. Exporting data</a></li>
 <li><a href="#importing-data">F.16. Importing data</a></li>
+<li><a href="#viewing-the-command-history">F.17. Viewing the command history:</a></li>
+<li><a href="#undoing-a-command">F.18. Undoing a command:</a></li>
+<li><a href="#redoing-a-command">F.19. Redoing a command:</a></li>
 </ul>
 </li>
 </ul>
@@ -355,7 +358,7 @@ in the history, or the previous data-modifying command if no argument is specifi
 </ol>
 </div>
 <div class="sect3">
-<h4 id="implementation-overview"><a class="link" href="#implementation-overview">3.1.1. Implementation Overview</a></h4>
+<h4 id="overview-of-changes"><a class="link" href="#overview-of-changes">3.1.1. Overview of Changes</a></h4>
 <div class="paragraph">
 <p>For undo/redo/history to function, there must be the following:</p>
 </div>
@@ -441,17 +444,16 @@ object from <code>copiedPatient</code>, thus changes to <code>patient</code> wou
 </div>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="model"><a class="link" href="#model">3.1.2. Model</a></h4>
 <div class="paragraph">
-<p>The following methods are added to the <code>Model</code> interface:</p>
+<p>The following methods are added to the <code>ModelManager</code> class:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><code>Model#commit(MutatorCommand)</code> - Commits the changes made to the address book since the last call to this method,
-making them permanent and updating the UI data. The committing <code>MutatorCommand</code> is stored for history record purposes.</p>
+making them permanent and updating the UI data. Creates a new <code>HistoryRecord</code> containing the committing
+<code>MutatorCommand</code> and the <code>PatientBook</code> and <code>AppointmentBook</code> states before the execution of the command and pushes it
+to the <code>HistoryManager</code> for storage.</p>
 </li>
 <li>
 <p><code>Model#getHistory()</code> - Returns an unmodifiable view of the history.</p>
@@ -461,13 +463,149 @@ making them permanent and updating the UI data. The committing <code>MutatorComm
 (i.e. the state before the command was executed).</p>
 </li>
 <li>
-<p><code>Model#redo()</code> - Redoes the previous <code>MutatorCommand</code> if it was an undo.</p>
+<p><code>Model#redo()</code> - Redoes the previous <code>MutatorCommand</code> if it was an undo by popping the latest <code>HistoryRecord</code> from the
+<code>HistoryManager</code> 's redo stack.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Furthermore, in addition to <code>MutatorCommand</code> which was described earlier, the following logical classes are added:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>UndoCommand</code> - Undoes a designated command in the history, or the previous one if no argument is specified. The
+<code>COMMAND_WORD</code> for this command is <code>app-undo</code>.</p>
+</li>
+<li>
+<p><code>UndoCommandParser</code> - Parses input arguments and creates a new UndoCommand object.</p>
+</li>
+<li>
+<p><code>RedoCommand</code> - Redoes the previous command if it was an undo. The <code>COMMAND_WORD</code> for this command is <code>app-redo</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><code>HistoryManager</code> checks the classes of commands pushed to the history and does not record
+them if they are instances of <code>UndoCommand</code> or <code>RedoCommand</code>. This ensures that successive <code>UndoCommand</code> s do
+not undo themselves instead of the desired data-modifying commands, requiring <code>RedoCommand</code> for
+the special case of undo reversion.</p>
+</div>
 </div>
 <div class="sect3">
-<h4 id="model-design-considerations"><a class="link" href="#model-design-considerations">3.1.3. Model Design Considerations</a></h4>
+<h4 id="example-usage-scenario"><a class="link" href="#example-usage-scenario">3.1.2. Example Usage Scenario</a></h4>
+<div class="paragraph">
+<p>The following example usage scenario and the state of <code>historyManager</code> at each step.</p>
+</div>
+<div class="paragraph">
+<p><strong>Step 1</strong>: The user launches the application.<br></p>
+</div>
+<div class="paragraph">
+<p><code>HistoryManager</code> is initialized with empty <code>history</code> and <code>redoStack</code> objects.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UndoRedoState0.png" alt="UndoRedoState0">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Step 2</strong>: The user executes the command <code>pat-delete 3</code>.<br></p>
+</div>
+<div class="paragraph">
+<p>After the <code>DeleteCommand</code> makes its changes on the model, <code>logicManager</code> calls <code>Model#commit(MutatorCommand)</code>,
+passing the command object into <code>modelManager</code>. In turn, <code>modelManager</code> passes the command object, <code>stagedPatientBook</code>,
+and <code>stagedAppointmentBook</code> into <code>historyManager</code> through
+<code>HistoryManager#pushRecord(MutatorCommand, PatientBook, AppointmentBook)</code>.<br></p>
+</div>
+<div class="paragraph">
+<p><code>historyManager</code> uses those objects to create a new <code>HistoryRecord</code> object which contains the model state <strong>before</strong> the
+command was executed (here labelled <code>hr0</code>) and pushes it into the <code>history</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UndoRedoState1.png" alt="UndoRedoState1">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Step 3</strong>: The user executes the command <code>visit-start</code>.<br></p>
+</div>
+<div class="paragraph">
+<p>The interaction between <code>logicManager</code>, <code>modelManager</code> and <code>historyManager</code> is the same as before.</p>
+</div>
+<div class="paragraph">
+<p><code>historyManager</code> creates a new <code>HistoryRecord</code> object (here labelled <code>hr1</code>) and pushes it into the <code>history</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UndoRedoState2.png" alt="UndoRedoState2">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Step 4</strong>: The user wants to revert to the first item in the history, so he executes the command <code>app-undo 1</code>.<br></p>
+</div>
+<div class="paragraph">
+<p>First, the <code>UndoCommand</code> retrieves the <code>HistoryRecord</code> corresponding to the first item in the history by searching the
+list returned by <code>Model#getHistory()</code>. Then, <code>UndoCommand</code> calls <code>Model#undoTo(HistoryRecord)</code> passing in the target
+record. When this happens, <code>modelManager</code> calls <code>historyManager#popRecordsTo(HistoryRecord)</code> to pop all records after
+and including the target record from the history (<code>hr1</code> and <code>hr0</code> in the previous step). The <code>historyManager</code> uses
+these popped records to create new records of the model state <strong>after</strong> the commands were executed, and places these
+new records (<code>hr2</code> and <code>hr3</code>) into the <code>redoStack</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UndoRedoState3.png" alt="UndoRedoState3">
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, <code>modelManager</code> calls <code>ModelManager#changeBaseTo(PatientBook, AppointmentBook)</code> using the state objects in the
+target record. This performs the actual reversion of the state.<br></p>
+</div>
+<div class="paragraph">
+<p>The action of the <code>UndoCommand</code> is summarised in the sequence diagram below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Step 5</strong>: The user wants to redo <code>pat-delete 3</code>, so he executes the command <code>app-redo</code>.<br></p>
+</div>
+<div class="paragraph">
+<p>The <code>RedoCommand</code> calls <code>Model#redo()</code>. The <code>modelManager</code> calls <code>HistoryManager#popRedo(PatientBook, AppointmentBook)</code>
+passing it the current <code>stagedPatientBook</code> and <code>stagedAppointmentBook</code>.<br></p>
+</div>
+<div class="paragraph">
+<p><code>historyManager</code> pops the record at the top of the <code>redoStack</code> (<code>hr3</code>) and uses its <code>command</code>, together with the
+<code>PatientBook</code> and <code>AppointmentBook</code> just passed in by the <code>modelManager</code>, to create a new <code>HistoryRecord</code> (<code>hr4</code>)
+describing the model state <strong>before</strong> that command was executed. It then pushes <code>hr4</code> into the history.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UndoRedoState4.png" alt="UndoRedoState4">
+</div>
+</div>
+<div class="paragraph">
+<p><code>historyManager#popRedo()</code> returns the <code>HistoryRecord</code> (<code>hr3</code>) containing the state after the redo. <code>modelManager</code>
+can now call <code>ModelManager#changeBaseTo()</code> to change the state to it.</p>
+</div>
+<div class="paragraph">
+<p><strong>Step 6</strong>: The user executes the command <code>pat-clear</code>.</p>
+</div>
+<div class="paragraph">
+<p>The action of the <code>logicManager</code> and <code>modelManager</code> is similar what is described in <strong>Step 2</strong>; only this time, when
+<code>modelManager</code> calls <code>HistoryManager#pushRecord(MutatorCommand, PatientBook, AppointmentBook)</code>, the
+<code>historyManager</code> sees that the committing command is not an <code>UndoCommand</code> or a <code>RedoCommand</code> and clears the
+<code>redoStack</code> to avoid branching.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UndoRedoState5.png" alt="UndoRedoState5">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="model-and-logic-design-considerations"><a class="link" href="#model-and-logic-design-considerations">3.1.3. Model and Logic Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-to-undo-and-redo-between-states"><a class="link" href="#aspect-how-to-undo-and-redo-between-states">Aspect: How to undo and redo between states</a></h5>
 <div class="ulist">
@@ -687,33 +825,7 @@ after) calling <code>Model#commit()</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="logic"><a class="link" href="#logic">3.1.4. Logic</a></h4>
-<div class="paragraph">
-<p>In addition to <code>MutatorCommand</code> which was described earlier, the following logical classes are added:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>UndoCommand</code> - Undoes a designated command in the history, or the previous one if no argument is specified. The
-<code>COMMAND_WORD</code> for this command is <code>app-undo</code>.</p>
-</li>
-<li>
-<p><code>UndoCommandParser</code> - Parses input arguments and creates a new UndoCommand object.</p>
-</li>
-<li>
-<p><code>RedoCommand</code> - Redoes the previous command if it was an undo. The <code>COMMAND_WORD</code> for this command is <code>app-redo</code>.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><code>HistoryManager</code> checks the classes of commands pushed to the history and does not record
-them if they are instances of <code>UndoCommand</code> or <code>RedoCommand</code>. This ensures that successive <code>UndoCommand</code> s do
-not undo themselves instead of the desired data-modifying commands, requiring <code>RedoCommand</code> for
-the special case of undo reversion.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="ui"><a class="link" href="#ui">3.1.5. UI</a></h4>
+<h4 id="ui"><a class="link" href="#ui">3.1.4. UI</a></h4>
 <div class="paragraph">
 <p>The command history is constantly displayed in a panel on the right side of
 the app. This <code>HistoryPanel</code> uses <code>HistoryRecordCard</code> s to display the
@@ -722,7 +834,7 @@ returned by <code>HistoryManager#asUnmodifiableObservableList()</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ui-design-considerations"><a class="link" href="#ui-design-considerations">3.1.6. UI Design Considerations</a></h4>
+<h4 id="ui-design-considerations"><a class="link" href="#ui-design-considerations">3.1.5. UI Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-where-to-display-the-history"><a class="link" href="#aspect-where-to-display-the-history">Aspect: Where to display the history</a></h5>
 <div class="ulist">
@@ -790,17 +902,6 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="use-case"><a class="link" href="#use-case">3.1.7. Use case</a></h4>
-<div class="paragraph">
-<p>The following sequence diagram illustrates what happens when an <code>app-undo 3</code> command is executed:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram">
-</div>
-</div>
-</div>
 </div>
 <div class="sect2">
 <h3 id="visits-management"><a class="link" href="#visits-management">3.2. Visits Management</a></h3>
@@ -808,7 +909,7 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 <p>Visit Management has 3 sections to it: the model that models the visits, the logic that allows users to manipulate these models and the UI.</p>
 </div>
 <div class="sect3">
-<h4 id="model-2"><a class="link" href="#model-2">3.2.1. Model</a></h4>
+<h4 id="model"><a class="link" href="#model">3.2.1. Model</a></h4>
 <div class="paragraph">
 <p>How Visits, VisitTodos and VisitTasks are stored can be seen in <a href="#Design-Model">Section 2.4, &#8220;Model component&#8221;</a> above. To support the feature of ongoing visits and the constraint that there can only be 1 ongoing visit at a time, a <code>Pair&lt;Integer, Integer&gt;</code> named <code>pairOfOngoingPatAndVisitIndexes</code> is stored in <code>PatientBook</code>. This serves multiple purposes:</p>
 </div>
@@ -852,7 +953,7 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 </div>
 </div>
 <div class="sect3">
-<h4 id="model-design-considerations-2"><a class="link" href="#model-design-considerations-2">3.2.2. Model Design Considerations</a></h4>
+<h4 id="model-design-considerations"><a class="link" href="#model-design-considerations">3.2.2. Model Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-to-reflect-changes-in-ongoing-visit-on-ui"><a class="link" href="#aspect-how-to-reflect-changes-in-ongoing-visit-on-ui">Aspect: How to reflect changes in ongoing visit on UI</a></h5>
 <div class="ulist">
@@ -888,7 +989,7 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 </div>
 </div>
 <div class="sect3">
-<h4 id="logic-2"><a class="link" href="#logic-2">3.2.3. Logic</a></h4>
+<h4 id="logic"><a class="link" href="#logic">3.2.3. Logic</a></h4>
 
 </div>
 <div class="sect3">
@@ -983,7 +1084,7 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 </div>
 </div>
 <div class="sect3">
-<h4 id="use-case-2"><a class="link" href="#use-case-2">3.2.7. Use case</a></h4>
+<h4 id="use-case"><a class="link" href="#use-case">3.2.7. Use case</a></h4>
 <div class="paragraph">
 <p>Visit Management is used when the user wants to visit a patient and record their visit. There are 4 actions that a user can perform:</p>
 </div>
@@ -1013,7 +1114,7 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 <div class="sect2">
 <h3 id="appointment-management"><a class="link" href="#appointment-management">3.3. Appointment Management</a></h3>
 <div class="sect3">
-<h4 id="implementation-overview-2"><a class="link" href="#implementation-overview-2">3.3.1. Implementation Overview</a></h4>
+<h4 id="implementation-overview"><a class="link" href="#implementation-overview">3.3.1. Implementation Overview</a></h4>
 <div class="paragraph">
 <p>The appointments management feature is facilitated primarily by the <code>AppointmentBook</code>, a class that implements the <code>ReadOnlyAppointmentBook</code> interface and wraps around all appointments data of the app.
 This is a new book (different from the <code>PatientBook</code>) that is now required by the <code>ModelManager</code> class for instantiation along with <code>UserPrefs</code> and <code>PatientBook</code>. The <code>AppointmentBook</code> is, therefore, a field in the <code>ModelManager</code> class.
@@ -1081,7 +1182,7 @@ The <code>AppointmentBook</code> has <code>appointments</code>, which is a <code
 </div>
 </div>
 <div class="sect3">
-<h4 id="model-3"><a class="link" href="#model-3">3.3.2. Model</a></h4>
+<h4 id="model-2"><a class="link" href="#model-2">3.3.2. Model</a></h4>
 <div class="paragraph">
 <p>The operations in the <code>AppointmentBook</code> are exposed to in the <code>Model</code> interface. <code>Model</code> implements the methods following operations to accommodate for the inclusion of the <code>AppointmentBook</code> and its related methods:</p>
 </div>
@@ -1133,7 +1234,7 @@ The <code>AppointmentBook</code> has <code>appointments</code>, which is a <code
 </div>
 </div>
 <div class="sect3">
-<h4 id="model-design-considerations-3"><a class="link" href="#model-design-considerations-3">3.3.3. Model Design Considerations</a></h4>
+<h4 id="model-design-considerations-2"><a class="link" href="#model-design-considerations-2">3.3.3. Model Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-where-to-wrap-all-appointments-data-in"><a class="link" href="#aspect-where-to-wrap-all-appointments-data-in">Aspect: Where to wrap all appointments data in</a></h5>
 <div class="ulist">
@@ -1206,7 +1307,7 @@ The <code>AppointmentBook</code> has <code>appointments</code>, which is a <code
 </div>
 </div>
 <div class="sect3">
-<h4 id="logic-3"><a class="link" href="#logic-3">3.3.4. Logic</a></h4>
+<h4 id="logic-2"><a class="link" href="#logic-2">3.3.4. Logic</a></h4>
 <div class="paragraph">
 <p>The following logical <code>Parser</code> classes to parse user commands' arguments, and the corresponding <code>Command</code> classes they returned were implemented:</p>
 </div>
@@ -1450,7 +1551,7 @@ After the app is closed, all appointments in the <code>finishedAppointments</cod
 </div>
 </div>
 <div class="sect2">
-<h3 id="use-case-3"><a class="link" href="#use-case-3">3.4. Use Case</a></h3>
+<h3 id="use-case-2"><a class="link" href="#use-case-2">3.4. Use Case</a></h3>
 <div class="paragraph">
 <p>Appointment Management is used when the user wants to schedule an appointment with the patient. There are 6 actions that a user can perform:</p>
 </div>
@@ -3126,5 +3227,121 @@ Expected: All patients in <code>testcase4.csv</code> added into the app.</p>
 </ol>
 </div>
 </div>
+<div class="sect2">
+<h3 id="viewing-the-command-history"><a class="link" href="#viewing-the-command-history">F.17. Viewing the command history:</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Viewing the command history.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisite: None.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>pat-list</code><br>
+Expected: No change to the history panel.</p>
+</li>
+</ol>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:36:42 UTC</div></div></div></body></html>
+</li>
+<li>
+<p>Prerequisites: List all patients using the <code>pat-list</code> command. At least one patient in the list. No ongoing visit.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>pat-delete 1</code><br>
+Expected: <code>pat-delete 1</code> appears in the history panel at the bottom of the list with the greatest index number.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undoing-a-command"><a class="link" href="#undoing-a-command">F.18. Undoing a command:</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Undoing a command.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisite: There are commands in the history.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>app-undo</code><br>
+Expected: The previous command in the history is undone.</p>
+</li>
+<li>
+<p>Test case: <code>app-undo 1</code><br>
+Expected: All commands in the history are undone.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Prerequisite: There are no commands in the history.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>app-undo</code><br>
+Expected: No command is undone. An error message appears in the status box.</p>
+</li>
+<li>
+<p>Test case: <code>app-undo 1</code><br>
+Expected: No command is undone. An error message appears in the status box.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="redoing-a-command"><a class="link" href="#redoing-a-command">F.19. Redoing a command:</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Redoing a command.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisite: <code>app-undo</code> is the last successful data-modifying command.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>app-redo</code><br>
+Expected: The undone command is redone.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Prerequisite: <code>app-undo</code> is <strong>not</strong> the last successful data-modifying command.</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Test case: <code>app-redo</code><br>
+Expected: No command is redone. An error message appears in the status box.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:51:51 UTC</div></div></div></body></html>

@@ -10,8 +10,11 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>NurseTraverse is a desktop application meant for community nurse to help manage all the data that a community nurse
-might need. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.</p>
+<p>NurseTraverse is a desktop application designed to help community nurses manage all the data they may need, including
+visit management, appointment scheduling, and importing and exporting of patient data.
+The user interacts with the app using a CLI (Command Line Interface) enhanced with an autocomplete functionality and
+ability to undo and redo commands. The app has a GUI created with JavaFX and is written in Java.
+NurseTraverse is built by me and 4 other students.</p>
 </div>
 </div>
 </div>
@@ -370,7 +373,7 @@ in the history, or the previous data-modifying command if no argument is specifi
 </ol>
 </div>
 <div class="sect3">
-<h4 id="implementation-overview"><a class="link" href="#implementation-overview">Implementation Overview</a></h4>
+<h4 id="overview-of-changes"><a class="link" href="#overview-of-changes">Overview of Changes</a></h4>
 <div class="paragraph">
 <p>For undo/redo/history to function, there must be the following:</p>
 </div>
@@ -456,17 +459,16 @@ object from <code>copiedPatient</code>, thus changes to <code>patient</code> wou
 </div>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="model"><a class="link" href="#model">Model</a></h4>
 <div class="paragraph">
-<p>The following methods are added to the <code>Model</code> interface:</p>
+<p>The following methods are added to the <code>ModelManager</code> class:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><code>Model#commit(MutatorCommand)</code> - Commits the changes made to the address book since the last call to this method,
-making them permanent and updating the UI data. The committing <code>MutatorCommand</code> is stored for history record purposes.</p>
+making them permanent and updating the UI data. Creates a new <code>HistoryRecord</code> containing the committing
+<code>MutatorCommand</code> and the <code>PatientBook</code> and <code>AppointmentBook</code> states before the execution of the command and pushes it
+to the <code>HistoryManager</code> for storage.</p>
 </li>
 <li>
 <p><code>Model#getHistory()</code> - Returns an unmodifiable view of the history.</p>
@@ -476,13 +478,149 @@ making them permanent and updating the UI data. The committing <code>MutatorComm
 (i.e. the state before the command was executed).</p>
 </li>
 <li>
-<p><code>Model#redo()</code> - Redoes the previous <code>MutatorCommand</code> if it was an undo.</p>
+<p><code>Model#redo()</code> - Redoes the previous <code>MutatorCommand</code> if it was an undo by popping the latest <code>HistoryRecord</code> from the
+<code>HistoryManager</code> 's redo stack.</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Furthermore, in addition to <code>MutatorCommand</code> which was described earlier, the following logical classes are added:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>UndoCommand</code> - Undoes a designated command in the history, or the previous one if no argument is specified. The
+<code>COMMAND_WORD</code> for this command is <code>app-undo</code>.</p>
+</li>
+<li>
+<p><code>UndoCommandParser</code> - Parses input arguments and creates a new UndoCommand object.</p>
+</li>
+<li>
+<p><code>RedoCommand</code> - Redoes the previous command if it was an undo. The <code>COMMAND_WORD</code> for this command is <code>app-redo</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><code>HistoryManager</code> checks the classes of commands pushed to the history and does not record
+them if they are instances of <code>UndoCommand</code> or <code>RedoCommand</code>. This ensures that successive <code>UndoCommand</code> s do
+not undo themselves instead of the desired data-modifying commands, requiring <code>RedoCommand</code> for
+the special case of undo reversion.</p>
+</div>
 </div>
 <div class="sect3">
-<h4 id="model-design-considerations"><a class="link" href="#model-design-considerations">Model Design Considerations</a></h4>
+<h4 id="example-usage-scenario"><a class="link" href="#example-usage-scenario">Example Usage Scenario</a></h4>
+<div class="paragraph">
+<p>The following example usage scenario and the state of <code>historyManager</code> at each step.</p>
+</div>
+<div class="paragraph">
+<p><strong>Step 1</strong>: The user launches the application.<br></p>
+</div>
+<div class="paragraph">
+<p><code>HistoryManager</code> is initialized with empty <code>history</code> and <code>redoStack</code> objects.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UndoRedoState0.png" alt="UndoRedoState0">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Step 2</strong>: The user executes the command <code>pat-delete 3</code>.<br></p>
+</div>
+<div class="paragraph">
+<p>After the <code>DeleteCommand</code> makes its changes on the model, <code>logicManager</code> calls <code>Model#commit(MutatorCommand)</code>,
+passing the command object into <code>modelManager</code>. In turn, <code>modelManager</code> passes the command object, <code>stagedPatientBook</code>,
+and <code>stagedAppointmentBook</code> into <code>historyManager</code> through
+<code>HistoryManager#pushRecord(MutatorCommand, PatientBook, AppointmentBook)</code>.<br></p>
+</div>
+<div class="paragraph">
+<p><code>historyManager</code> uses those objects to create a new <code>HistoryRecord</code> object which contains the model state <strong>before</strong> the
+command was executed (here labelled <code>hr0</code>) and pushes it into the <code>history</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UndoRedoState1.png" alt="UndoRedoState1">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Step 3</strong>: The user executes the command <code>visit-start</code>.<br></p>
+</div>
+<div class="paragraph">
+<p>The interaction between <code>logicManager</code>, <code>modelManager</code> and <code>historyManager</code> is the same as before.</p>
+</div>
+<div class="paragraph">
+<p><code>historyManager</code> creates a new <code>HistoryRecord</code> object (here labelled <code>hr1</code>) and pushes it into the <code>history</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UndoRedoState2.png" alt="UndoRedoState2">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Step 4</strong>: The user wants to revert to the first item in the history, so he executes the command <code>app-undo 1</code>.<br></p>
+</div>
+<div class="paragraph">
+<p>First, the <code>UndoCommand</code> retrieves the <code>HistoryRecord</code> corresponding to the first item in the history by searching the
+list returned by <code>Model#getHistory()</code>. Then, <code>UndoCommand</code> calls <code>Model#undoTo(HistoryRecord)</code> passing in the target
+record. When this happens, <code>modelManager</code> calls <code>historyManager#popRecordsTo(HistoryRecord)</code> to pop all records after
+and including the target record from the history (<code>hr1</code> and <code>hr0</code> in the previous step). The <code>historyManager</code> uses
+these popped records to create new records of the model state <strong>after</strong> the commands were executed, and places these
+new records (<code>hr2</code> and <code>hr3</code>) into the <code>redoStack</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UndoRedoState3.png" alt="UndoRedoState3">
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, <code>modelManager</code> calls <code>ModelManager#changeBaseTo(PatientBook, AppointmentBook)</code> using the state objects in the
+target record. This performs the actual reversion of the state.<br></p>
+</div>
+<div class="paragraph">
+<p>The action of the <code>UndoCommand</code> is summarised in the sequence diagram below:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Step 5</strong>: The user wants to redo <code>pat-delete 3</code>, so he executes the command <code>app-redo</code>.<br></p>
+</div>
+<div class="paragraph">
+<p>The <code>RedoCommand</code> calls <code>Model#redo()</code>. The <code>modelManager</code> calls <code>HistoryManager#popRedo(PatientBook, AppointmentBook)</code>
+passing it the current <code>stagedPatientBook</code> and <code>stagedAppointmentBook</code>.<br></p>
+</div>
+<div class="paragraph">
+<p><code>historyManager</code> pops the record at the top of the <code>redoStack</code> (<code>hr3</code>) and uses its <code>command</code>, together with the
+<code>PatientBook</code> and <code>AppointmentBook</code> just passed in by the <code>modelManager</code>, to create a new <code>HistoryRecord</code> (<code>hr4</code>)
+describing the model state <strong>before</strong> that command was executed. It then pushes <code>hr4</code> into the history.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UndoRedoState4.png" alt="UndoRedoState4">
+</div>
+</div>
+<div class="paragraph">
+<p><code>historyManager#popRedo()</code> returns the <code>HistoryRecord</code> (<code>hr3</code>) containing the state after the redo. <code>modelManager</code>
+can now call <code>ModelManager#changeBaseTo()</code> to change the state to it.</p>
+</div>
+<div class="paragraph">
+<p><strong>Step 6</strong>: The user executes the command <code>pat-clear</code>.</p>
+</div>
+<div class="paragraph">
+<p>The action of the <code>logicManager</code> and <code>modelManager</code> is similar what is described in <strong>Step 2</strong>; only this time, when
+<code>modelManager</code> calls <code>HistoryManager#pushRecord(MutatorCommand, PatientBook, AppointmentBook)</code>, the
+<code>historyManager</code> sees that the committing command is not an <code>UndoCommand</code> or a <code>RedoCommand</code> and clears the
+<code>redoStack</code> to avoid branching.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UndoRedoState5.png" alt="UndoRedoState5">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="model-and-logic-design-considerations"><a class="link" href="#model-and-logic-design-considerations">Model and Logic Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-to-undo-and-redo-between-states"><a class="link" href="#aspect-how-to-undo-and-redo-between-states">Aspect: How to undo and redo between states</a></h5>
 <div class="ulist">
@@ -702,32 +840,6 @@ after) calling <code>Model#commit()</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="logic"><a class="link" href="#logic">Logic</a></h4>
-<div class="paragraph">
-<p>In addition to <code>MutatorCommand</code> which was described earlier, the following logical classes are added:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>UndoCommand</code> - Undoes a designated command in the history, or the previous one if no argument is specified. The
-<code>COMMAND_WORD</code> for this command is <code>app-undo</code>.</p>
-</li>
-<li>
-<p><code>UndoCommandParser</code> - Parses input arguments and creates a new UndoCommand object.</p>
-</li>
-<li>
-<p><code>RedoCommand</code> - Redoes the previous command if it was an undo. The <code>COMMAND_WORD</code> for this command is <code>app-redo</code>.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p><code>HistoryManager</code> checks the classes of commands pushed to the history and does not record
-them if they are instances of <code>UndoCommand</code> or <code>RedoCommand</code>. This ensures that successive <code>UndoCommand</code> s do
-not undo themselves instead of the desired data-modifying commands, requiring <code>RedoCommand</code> for
-the special case of undo reversion.</p>
-</div>
-</div>
-<div class="sect3">
 <h4 id="ui"><a class="link" href="#ui">UI</a></h4>
 <div class="paragraph">
 <p>The command history is constantly displayed in a panel on the right side of
@@ -805,16 +917,5 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="use-case"><a class="link" href="#use-case">Use case</a></h4>
-<div class="paragraph">
-<p>The following sequence diagram illustrates what happens when an <code>app-undo 3</code> command is executed:</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram">
-</div>
-</div>
-</div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:36:42 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:51:51 UTC</div></div></div></body></html>
