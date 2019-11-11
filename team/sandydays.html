@@ -4,45 +4,85 @@
 <h2 id="project-nursetraverse"><a class="link" href="#project-nursetraverse">PROJECT: NurseTraverse</a></h2>
 <div class="sectionbody">
 <hr>
+<div class="paragraph">
+<p>I am Year 2 Computer Science student at the National University of Singapore. I enjoy learning new technologies and software tools as well as helping out in any project that is interesting, challenging, and can have a positive impact in any community. Here you can find my contributions to one of my projects.</p>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>NurseTraverse is a desktop application meant for community nurse to help manage all the data that a community nurse might need. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.</p>
+<p>NurseTraverse is a desktop application designed to help community nurses manage all the data they may need, including visit management, appointment scheduling, and importing and exporting of patient data.
+The user interacts with the app using a CLI (Command Line Interface) enhanced with an autocomplete functionality and ability to undo and redo commands. The app has a GUI created with JavaFX and is written in Java.
+NurseTraverse is built by me and 4 other students.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Lists all appointments nurses have scheduled, including reference to patient details, appointment start and end date and time, frequency with which the appointment recurs (if it does), and additional description details associated with the appointment.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: added <strong>the ability to undo/redo previous commands</strong></p>
+<p><strong>Major enhancement</strong>: added <strong>the ability to manage appointments</strong></p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.</p>
+<p>What it does: allows the user to schedule and manage appointments with their patients. The user can add, edit, delete their appointments, Preceding undo commands can be reversed by using the redo command.</p>
 </li>
 <li>
-<p>Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.</p>
+<p>Justification: This feature improves the product significantly because tracking the appointments associated with different patients is a must-have for every community nurse so that they can organize their schedule before paying visits to the patients.<br>
+This feature has been identified as a required feature in user story <a href="https://github.com/AY1920S1-CS2103-F10-1/main/issues/7">#7</a>.</p>
 </li>
 <li>
-<p>Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.</p>
+<p>Highlights:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This enhancement adds a new feature to the app. Lot of groundwork to be done in terms of setting up the <code>AppointmentBook</code>, converting <code>AppointmentBook</code> data to <code>JSON</code> for storage, adding it to be tracked by the <code>ModelManager</code> when the app is running, etc.</p>
 </li>
 <li>
-<p>Credits: <em>{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}</em></p>
+<p>The feature adds new commands for listing appointments scheduled, finding specific appointments by patient name, adding, deleting, and editing appointments, where the appointments can be recurring or non-recurring. It affects any appointment-related commands to be added in the future.</p>
+</li>
+<li>
+<p>Particularly challenging was implementing recurring appointments and prevention of clashing appointments alongside each other, since appointments that are added may clash with future date and time of a recurring appointment. Many design alternatives had to be considered before it was decided to recur appointments until they did not clash with any appointments in the existing list of appointments.</p>
+</li>
+<li>
+<p>Moreover, since this feature takes into account the association from the <code>Appointments</code> to the <code>Patient</code> class, it affected existing patient commands' behaviour (for instance, deleting or editing of patients accordingly result in deleting and editing the appointments associated with this patient).<br>
+Handling and implementing this association while trying to minimise the coupling as much as possible was challenging and required an in-depth analysis of design alternatives.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Minor enhancement</strong>: added a history command that allows the user to navigate to previous commands using up/down keys.</p>
+<p>Credits: No code or ideas were borrowed or adapted from outside applications, nor were any third-party libraries used. Only referenced, used, and modified code within <em>Address Book 3</em>.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p><strong>Code contributed</strong>: [<a href="https://github.com">Functional code</a>] [<a href="https://github.com">Test code</a>] <em>{give links to collated code files}</em></p>
+<p><strong>Minor enhancements</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Added appointment card and appointment list in a separate tab for easy user visibility.</p>
+</li>
+<li>
+<p>Improved date time printing such that the date times are viewed as, for example, <code>Sun, 1st Dec 2019, 18:00</code> instead of <code>01-12-2019 1800</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Code contributed</strong>: Code contributed can be found in the following link (there are filters on the landing page to view the code contributed as functional or tests) <a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#=undefined&amp;search=sandydays">here</a>.
+For a more specific breakdown, my PRs reference the following issues
+(v1.2 <a href="https://github.com/AY1920S1-CS2103-F10-1/main/issues/65">#65</a>,
+v1.3 <a href="https://github.com/AY1920S1-CS2103-F10-1/main/issues/97">#97</a>,
+v1.4 <a href="https://github.com/AY1920S1-CS2103-F10-1/main/issues/64">#64</a>)</p>
 </li>
 <li>
 <p><strong>Other contributions</strong>:</p>
@@ -53,20 +93,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Managed releases <code>v1.3</code> - <code>v1.5rc</code> (3 releases) on GitHub</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Enhancements to existing features:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Updated the GUI color scheme (Pull requests <a href="https://github.com">#33</a>, <a href="https://github.com">#34</a>)</p>
-</li>
-<li>
-<p>Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests <a href="https://github.com">#36</a>, <a href="https://github.com">#38</a>)</p>
+<p>Opened user stories issues</p>
 </li>
 </ul>
 </div>
@@ -76,7 +103,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Did cosmetic tweaks to existing contents of the User Guide: <a href="https://github.com">#14</a></p>
+<p>Pointed out various issues in the early stages of designing the User Guide for the app: <a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/42">#42</a>.</p>
+</li>
+<li>
+<p>Updated About Us and Contact Us Pages: <a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/38">#38</a>.</p>
+</li>
+<li>
+<p>Opened draft PPPs for everyone, as well as updated (and made more specific) the app&#8217;s information in the PPPs: <a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/38">#38</a>.</p>
 </li>
 </ul>
 </div>
@@ -86,16 +119,14 @@
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com">#12</a>, <a href="https://github.com">#32</a>, <a href="https://github.com">#19</a>, <a href="https://github.com">#42</a></p>
+<p>PRs reviewed (with non-trivial review comments or reviewed to approve):
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/73">#73</a>,
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/80">#80</a>,
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/104">#104</a>,
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/194">#194</a></p>
 </li>
 <li>
-<p>Contributed to forum discussions (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>, <a href="https://github.com">4</a>)</p>
-</li>
-<li>
-<p>Reported bugs and suggestions for other teams in the class (examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
-</li>
-<li>
-<p>Some parts of the history feature I added was adopted by several other class mates (<a href="https://github.com">1</a>, <a href="https://github.com">2</a>)</p>
+<p>Contributed to forum discussions (in Pull Requests(s) <a href="https://github.com/AY1920S1-CS2103-F10-1/main/pull/42">#42</a> and offline/Telegram discussions)</p>
 </li>
 </ul>
 </div>
@@ -105,10 +136,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Integrated a third party library (Natty) to the project (<a href="https://github.com">#42</a>)</p>
-</li>
-<li>
-<p>Integrated a new Github plugin (CircleCI) to the team repo</p>
+<p>Set up team repo and organization.</p>
 </li>
 </ul>
 </div>
@@ -117,9 +145,6 @@
 </div>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p><em>{you can add/remove categories in the list above}</em></p>
 </div>
 </div>
 </div>
@@ -139,6 +164,501 @@
 </div>
 </div>
 <div class="sect1">
+<h2 id="Appointment"><a class="link" href="#Appointment">Appointments</a></h2>
+<div class="sectionbody">
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Appointments</strong></p>
+</div>
+<div class="paragraph">
+<p>As a community nurse, you will often schedule appointments with your patients before visiting them, as well as keep track of these appointments you make with your patients. You can use the application to manage and keep track of these appointments. This section describes the features that will allow you to manage your appointments.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-all-appointments-code-appt-list-code"><a class="link" href="#listing-all-appointments-code-appt-list-code">Listing All Appointments: <code>appt-list</code></a></h3>
+<div class="paragraph">
+<p>You can see a list of all appointments in the app by typing <code>appt-list</code>.</p>
+</div>
+<div class="paragraph">
+<p>In the list displayed, each appointment will have an <strong>index</strong> number which can then be used for other features that require you to select an appointment by <strong>index</strong> e.g. <code>appt-delete</code>. Take note that an appointment will be given the same <strong>index</strong> regardless of other display commands such as <code>appt-find</code>.</p>
+</div>
+<div class="paragraph">
+<p>The appointment list is sorted in increasing order of start date time of the appointments, i.e it shows the earlier scheduled appointments followed by the later ones.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt-list</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finding-appointment-s-code-appt-find-code"><a class="link" href="#finding-appointment-s-code-appt-find-code">Finding Appointment(s): <code>appt-find</code></a></h3>
+<div class="paragraph">
+<p>You can find appointments by patient name by typing any keyword of your choice following <code>appt-find</code>.</p>
+</div>
+<div class="paragraph">
+<p>In the list displayed, each appointment will have an <strong>index</strong> number which can then be used for other features that require you to select an appointment by <strong>index</strong> e.g. <code>appt-delete</code>. Take note that an appointment will be given the same <strong>index</strong> regardless of other display commands such as <code>appt-list</code> or if different parameters are used.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt-find [PATIENT_NAME]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
+</li>
+<li>
+<p>Only the patient name is searched for in the list of appointments.</p>
+</li>
+<li>
+<p>Partial words will be matched (e.g. <code>John</code> will return <code>John Smith</code> and <code>John Kim</code> if both have appointments in the appointment list).</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>appt-find James</code><br>
+Lists all appointments of that particular patient James</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adding-an-appointment-code-appt-add-code"><a class="link" href="#adding-an-appointment-code-appt-add-code">Adding an Appointment: <code>appt-add</code></a></h3>
+<div class="paragraph">
+<p>You can add an appointment to the list of all appointments by using <code>appt-add</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt-add p/PATIENT_INDEX sdt/START_DATE_TIME edt/END_DATE_TIME [desc/DESCRIPTION] [ryr/RECUR_YEARS] [rmon/RECUR_MONTHS] [rweek/RECUR_WEEKS] [rday/RECUR_DAYS] [rhr/RECUR_HOURS] [rmin/RECUR_MINUTES]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>START_DATE_TIME</code> and <code>END_DATE_TIME</code> expect inputs in the format <code>dd-MM-yyyy HHmm</code> with <code>dd</code>, <code>MM</code>, <code>yyyy</code>, <code>HH</code>, and <code>mm</code> all as numerical numbers (HHmm being in 24-hour time), and the end date time should be equal to or after the start date time. Also, both start and end date times must be past the system&#8217;s local date time.</p>
+</li>
+<li>
+<p><code>RECUR_YEARS</code>, <code>RECUR_MONTHS</code>, <code>RECUR_WEEKS</code>, <code>RECUR_DAYS</code>, <code>RECUR_HOURS</code>, <code>RECUR_MINUTES</code> each <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>An appointment can recur by any amount of each of the frequencies: years, months, weeks, days, hours, and minutes. If you wish for an appointment to only recur by years and months, just typing <code>ryr/[RECUR_YEARS]</code> and `rmon/[RECUR_MONTHS] in any order is sufficient.</p>
+</li>
+<li>
+<p>The appointment added cannot have the same <strong>identity</strong> as an existing appointment. Its <strong>identity</strong> is defined by <code>START_DATE_TIME</code>, <code>END_DATE_TIME</code>, patient it is associated with through the <code>PATIENT_INDEX</code>, and the frequency as defined by <code>RECUR_YEARS</code>, <code>RECUR_MONTHS</code>, etc.</p>
+</li>
+<li>
+<p>The appointment added cannot clash in timing with any other existing appointment, i.e. their start and end date times must not overlap in any way.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>`appt-add p/1 sdt/24-12-2019 1200 edt/24-12-2019 1400 desc/Medical checkup</p>
+</li>
+<li>
+<p><code>appt-add p/2 sdt/09-12-2019 1300 edt/09-12-2019 1330 ryr/1 rmon/3</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-an-appointment-code-appt-edit-code"><a class="link" href="#editing-an-appointment-code-appt-edit-code">Editing an Appointment: <code>appt-edit</code></a></h3>
+<div class="paragraph">
+<p>You can edit an existing appointment in the app using <code>appt-edit</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt-edit INDEX [sdt/START_DATE_TIME] [edt/END_DATE_TIME] [p/PATIENT_INDEX] [desc/DESCRIPTION] [ryr/RECUR_YEARS] [rmon/RECUR_MONTHS] [rweek/RECUR_WEEKS] [rday/RECUR_DAYS] [rhr/RECUR_HOURS] [rmin/RECUR_MINUTES]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Edits the appointment at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of appointments displayed by <code>appt-list</code> or <code>appt-find</code>.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>At least one of the optional fields must be provided.</p>
+</li>
+<li>
+<p>Existing values will be updated to the input values.</p>
+</li>
+<li>
+<p>When editing recurring frequencies (years, months, etc.), the existing frequencies of the appointment will be kept unless overwritten by  i.e adding of frequencies is cumulative.</p>
+</li>
+<li>
+<p>You can make the appointment not recurring by setting all the necessary recurring frequencies to 0. For example, if an appointment recurs every year, then specify a 0 frequency as <code>ryr/0</code> to make the appointment non-recurring.</p>
+</li>
+<li>
+<p>You cannot change individual fields of the patient (i.e. patient name, phone number, etc.) using the <code>appt-edit</code> command. Refer to <code>pat-edit</code> under <a href="#Patient">[Patient]</a> for more on this.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>appt-list</code><br>
+ <code>appt-edit 1 sdt/05-12-2019 1900 edt/05-12-2019 2000</code><br>
+Edits the start date time and end date time of the 1st person in the entire appointment&#8217;s list to be <code>05-12-2019 1900</code> and <code>05-12-2019 2000</code> respectively.</p>
+</li>
+<li>
+<p><code>appt-edit 2 p/3 ryr/1</code><br>
+Edits the second appointment to be associated with the third patient in the patient list. Also edits the appointment to recur by 1 year.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-an-appointment-code-appt-delete-code"><a class="link" href="#deleting-an-appointment-code-appt-delete-code">Deleting an Appointment: <code>appt-delete</code></a></h3>
+<div class="paragraph">
+<p>You can delete an appointment by <strong>index</strong> using <code>appt-delete</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt-delete INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the appointment at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of appointments displayed by <code>appt-list</code> or <code>appt-find</code>.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>If the appointment referred to by the <code>INDEX</code> is a recurring appointment, deleting this appointment will automatically recur the appointment (i.e. get the next start and end date time) and add it to the appointment list. If you wish to remove a recurring appointment permanently from the appointment list, refer to <a href="#Deleting an Appointment Permanently">[Deleting an Appointment Permanently]</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="paragraph">
+<p>Assuming the first appointment in the list is a recurring appointment, and the second is a non-recurring one.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>appt-delete 2</code><br>
+Deletes the 2nd appointment in the displayed appointment list.</p>
+</li>
+<li>
+<p><code>appt-delete 1</code><br>
+Deletes the 1st appointment in the displayed appointment list.
+Recurs the appointment and adds the new appointment with the next start and end date time to the appointment list.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-an-appointment-permanently-code-appt-delete-permanent-code"><a class="link" href="#deleting-an-appointment-permanently-code-appt-delete-permanent-code">Deleting an Appointment permanently: <code>appt-delete-permanent</code></a></h3>
+<div class="paragraph">
+<p>You can delete an appointment permanently by <strong>index</strong> using <code>appt-delete-permanent</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can use this command on both recurring and non-recurring appointments, but its use is more suited for recurring appointments since <code>appt-delete</code> and <code>appt-delete-permanent</code> work in the same way for non-recurring appointments.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt-delete-permanent INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the appointment permanently at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of appointments displayed by <code>appt-list</code> or <code>appt-find</code>.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>For recurring appointments, unlike in the case of <code>appt-delete</code>, now the recurring appointment referred to by the <code>INDEX</code> is removed from the appointment list permanently and not recurred.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="paragraph">
+<p>Assuming the first appointment in the list is a recurring appointment, and the second is a non-recurring one.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>appt-list</code><br>
+<code>appt-delete-permanent 2</code><br>
+Deletes the 2nd appointment in the displayed appointment list permanently.</p>
+</li>
+<li>
+<p><code>appt-delete-permanent 1</code><br>
+Deletes the 1st appointment in the displayed appointment list permanently.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-multiple-appointments-code-appt-delete-code-code-coming-in-v2-0-code"><a class="link" href="#deleting-multiple-appointments-code-appt-delete-code-code-coming-in-v2-0-code">Deleting Multiple Appointments: <code>appt-delete</code> <code>[coming in V2.0]</code></a></h3>
+<div class="paragraph">
+<p>You can delete multiple appointments by <strong>indexes</strong> using <code>appt-delete</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt-delete INDEX_1 [INDEX_2] [INDEX_3]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes appointments at the specified <code>INDEX</code> es. You can put in as many indices to delete as many appointments as you wish.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of appointments displayed by <code>appt-list</code> or <code>appt-find</code>.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>If any of the appointments referred to by the <code>INDEX</code> es is a recurring appointment, deleting this appointment will automatically recur the appointment (i.e. get the next start and end date time) and add it to the appointment list. If you wish to remove one or more recurring appointments permanently from the appointment list, refer to <a href="#Deleting Multiple Appointments Permanently">[Deleting Multiple Appointments Permanently]</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Assuming the first appointment in the list is a recurring appointment, and the second is a non-recurring one.</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>appt-delete 2</code><br>
+Deletes the 2nd appointment in the appointment list.</p>
+</li>
+<li>
+<p><code>appt-delete 1 2</code><br>
+Deletes the 1st and 2nd appointment in the appointment list.
+Recurs the 1st appointment and adds the new appointment with the next start and end date time to the appointment list.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-multiple-appointments-permanently-code-appt-delete-permanent-code-code-coming-in-v2-0-code"><a class="link" href="#deleting-multiple-appointments-permanently-code-appt-delete-permanent-code-code-coming-in-v2-0-code">Deleting Multiple Appointments Permanently: <code>appt-delete-permanent</code> <code>[coming in V2.0]</code></a></h3>
+<div class="paragraph">
+<p>You can delete an appointment by <strong>indexes</strong> using <code>appt-delete-permanent</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can use this command on both recurring and non-recurring appointments, but its use is more suited for recurring appointments since <code>appt-delete</code> and <code>appt-delete-permanent</code> work in the same way for non-recurring appointments.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt-delete-permanent INDEX_1 [INDEX_2] [INDEX_3]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the appointments permanently at the specified <code>INDEX</code> es. You can put in as many indices to delete as many appointments as you wish.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of appointments displayed by <code>appt-list</code> or <code>appt-find</code>.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>For recurring appointments, unlike in the case of <code>appt-delete</code>, now any recurring appointment specified by any of the <code>INDEX</code> es is removed from the appointment list permanently and not recurred.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="paragraph">
+<p>Assuming the first appointment in the list is a recurring appointment, and the second is a non-recurring one.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>appt-list</code><br>
+<code>appt-delete-permanent 2</code><br>
+Deletes the 2nd appointment in the appointment list permanently.</p>
+</li>
+<li>
+<p><code>appt-delete-permanent 1 2</code><br>
+Deletes the 1st and 2nd appointments in the appointment list permanently.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="displaying-finished-appointments-code-coming-in-v2-0-code"><a class="link" href="#displaying-finished-appointments-code-coming-in-v2-0-code">Displaying Finished Appointments <code>[coming in V2.0]</code></a></h3>
+<div class="paragraph">
+<p>This is an intended additional <code>UI</code> and <code>Storage</code> feature.</p>
+</div>
+<div class="paragraph">
+<p>Along with all the appointments that currently are in the appointment list, appointments that finished (were in the appointment list the previous time the app was run but are now before the system date and time and so removed from the appointment list) are displayed in a separate tab and also saved to another <code>json</code> file time the app is closed.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-all-finished-appointments-code-appt-finished-list-code-code-coming-in-v2-0-code"><a class="link" href="#listing-all-finished-appointments-code-appt-finished-list-code-code-coming-in-v2-0-code">Listing All Finished Appointments <code>appt-finished-list</code> <code>[coming in V2.0]</code></a></h3>
+<div class="paragraph">
+<p>You can see a list of all finished appointments in the app by typing <code>appt-finished-list</code>.</p>
+</div>
+<div class="paragraph">
+<p>In the list displayed, each finished appointment will have an <strong>index</strong> number which can then be used for other features that require you to select a finished appointment by <strong>index</strong> e.g. <code>appt-finished-delete</code>. Take note that a finished appointment will be given the same <strong>index</strong> regardless of other display commands such as <code>appt-finished-find</code>.</p>
+</div>
+<div class="paragraph">
+<p>The finished appointment list is sorted in increasing order of start date time of the appointments, i.e it shows the earlier appointments followed by the later ones.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt-finished-list</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finding-finished-appointment-s-code-appt-finished-find-code"><a class="link" href="#finding-finished-appointment-s-code-appt-finished-find-code">Finding Finished Appointment(s): <code>appt-finished-find</code></a></h3>
+<div class="paragraph">
+<p>You can find finished appointments by patient name by typing any keyword of your choice following <code>appt-finished-find</code>.</p>
+</div>
+<div class="paragraph">
+<p>In the list displayed, each finished appointment will have an <strong>index</strong> number which can then be used for other features that require you to select a finished appointment by <strong>index</strong> e.g. <code>appt-finished-delete</code>. Take note that an appointment will be given the same <strong>index</strong> regardless of other display commands such as <code>appt-finished-list</code> or if different parameters are used.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt-finished-find [PATIENT_NAME]</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finishing-appointment-code-appt-finish-code-code-coming-in-v2-0-code"><a class="link" href="#finishing-appointment-code-appt-finish-code-code-coming-in-v2-0-code">Finishing Appointment <code>appt-finish</code> <code>[coming in V2.0]</code></a></h3>
+<div class="paragraph">
+<p>Instead of deleting an appointment using <code>appt-delete</code> or <code>appt-delete-permanent</code>, you can use this command to simply mark an appointment as finished.</p>
+</div>
+<div class="paragraph">
+<p>The appointment is removed from the appointment list and added to the list of finished appointments.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-finished-appointment-code-appt-finished-delete-code-code-coming-in-v2-0-code"><a class="link" href="#deleting-finished-appointment-code-appt-finished-delete-code-code-coming-in-v2-0-code">Deleting Finished Appointment <code>appt-finished-delete</code> <code>[coming in V2.0]</code></a></h3>
+<div class="paragraph">
+<p>You can delete (permanently) a finished appointment by <strong>index</strong> using <code>appt-finished-delete</code>.</p>
+</div>
+<div class="paragraph">
+<p>There is no distinction in behaviour of this command between recurring and non-recurring appointments as deletion is from the finished appointment list.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt-finished-delete INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the finished appointment at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of finished appointments displayed by <code>appt-finished-list</code> or <code>appt-finished-find</code>.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>appt-finished-delete 2</code><br>
+Deletes the 2nd appointment in the finished appointment list.</p>
+</li>
+<li>
+<p><code>appt-finished-delete 1</code><br>
+Deletes the 1st appointment in the finished appointment list.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>As of version 1.4, the appointments feature <strong>does not allow for user&#8217;s discretion on managing clashing appointments. Instead, it simply prevents a user from adding a clashing appointment.</strong></p>
+</li>
+<li>
+<p>When an appointment is added or edited, while there is a check to ensure the appointment does not clash with any other existing appointment in the list, there is <strong>no check done on whether this new appointment could potentially clash with any future appointments</strong> that could result from an appointment recurring.<br>
+In such cases, if an appointment that is a added or edited clashes with a future date time of a recurring appointment, the app allows adding such an appointment.<br>
+But when the recurring appointment that our new appointment clashes with is recurred (due to <code>appt-delete</code> of the recurring appointment or the recurring appointment passing the system date time), then the <strong>recurring appointment is recurred (keep getting the next start and end date time) until it doesn&#8217;t clash with any of the existing appointments in the appointment list.</strong><br>
+Allowing user discretion for clashing appointments (i.e. simply flagging the clashing appointments) is a feature coming in <code>V2.0</code>.</p>
+</li>
+<li>
+<p>If changes are made to the <code>appointmentBook.json</code> file directly (i.e. not through the app) such that there are clashing appointments, the app won&#8217;t detect these clashes and will <strong>load the appointment book as it is with these clashing appointments. This can result in unexpected behaviour of the app as it is not thoroughly designed to work with clashing appointments in the appointment list.</strong><br>
+So, please refrain from making direct edits such that there result clashing appointments in the <code>appointmentBook.json</code> file.<br>
+Detecting these clashes from storage and if detected, loading an empty appointment list instead is a feature coming in <code>V2.0</code>.</p>
+</li>
+<li>
+<p>While the system doesn&#8217;t allow appointments with end date and times before the system&#8217;s date and time, and recurs appointments (that are recurring) until they are past the system date and time, this happens only when the app is opened.<br>
+<strong>While the app is running, there is no constant checking of whether the appointments in the list have already finished (i.e. if their end date time is before the system date time).</strong></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
@@ -151,135 +671,122 @@
 </tr>
 </tbody>
 </table>
-<div class="sect2">
-<h3 id="undo-redo-history"><a class="link" href="#undo-redo-history">Undo/Redo/History</a></h3>
-<div class="paragraph">
-<p>This set of functionality consists of one GUI component and two commands,
-each of which rely on the same core components:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>HistoryPane</code> - GUI component that displays a numbered list of previous
-data-modifying commands that can be reverted by <code>app-undo</code>.</p>
-</li>
-<li>
-<p><code>app-undo</code> - Command that reverts until a specified data-modifying command
-in the history, or the previous data-modifying command if no argument is specified.</p>
-</li>
-<li>
-<p><code>app-redo</code> - Command that reverts the previous command if and only if it was an <code>app-undo</code>.</p>
-</li>
-</ol>
-</div>
 <div class="sect3">
 <h4 id="implementation-overview"><a class="link" href="#implementation-overview">Implementation Overview</a></h4>
 <div class="paragraph">
-<p>For undo/redo/history to function, there must be the following:</p>
+<p>The appointments management feature is facilitated primarily by the <code>AppointmentBook</code>, a class that implements the <code>ReadOnlyAppointmentBook</code> interface and wraps around all appointments data of the app.
+This is a new book (different from the <code>PatientBook</code>) that is now required by the <code>ModelManager</code> class for instantiation along with <code>UserPrefs</code> and <code>PatientBook</code>. The <code>AppointmentBook</code> is, therefore, a field in the <code>ModelManager</code> class.
+The <code>AppointmentBook</code> has <code>appointments</code>, which is a <code>UniqueAppointmentList</code>, as a private field that holds all appointments currently in the <code>AppointmentBook</code> as a unique list. This list is modified from certain method calls in the <code>ModelManager</code> class.</p>
+</div>
+<div class="paragraph">
+<p>The operations of the <code>ReadOnlyAppointmentBook</code> interface that the <code>AppointmentBook</code> implements:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>A way to mark which <code>Command</code> s are data-modifying commands so that
-non-data-modifying commands can be ignored.</p>
+<p><code>AppointmentBook#getAppointmentList()</code> - Returns an unmodifiable view of the appointments list in the <code>AppointmentBook</code>.</p>
 </li>
 <li>
-<p>A mechanism to clearly demarcate the model state before and after the execution
-of each data-modifying command.</p>
-</li>
-<li>
-<p>A way to record the state of the model before (or after) each command, together
-with the <code>Command</code> object responsible.</p>
-</li>
-<li>
-<p>Methods to switch the state of the model back and forth from the states stored
-in the history.</p>
+<p><code>AppointmentBook#deepCopy()</code> - Returns a deep copy of the <code>AppointmentBook</code>.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>To achieve this, the following classes are introduced:</p>
+<p>Apart from the above, the other main operations (both public and private methods) that the <code>AppointmentBook</code> implements include:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>MutatorCommand</code> - An empty subclass of <code>Command</code> to indicate that a <code>Command</code> is a
-data-modifying command and should be considered for undo/redo/history.</p>
+<p><code>AppointmentBook#setAppointments(List&lt;Appointment&gt; appointments)</code>&#8201;&#8212;&#8201;Replaces the contents of the private <code>appointments</code> field with <code>appointments</code> passed in as argument.</p>
 </li>
 <li>
-<p><code>HistoryRecord</code> - Record of the command and data of one atomic commit in the command history. It consists of the
-<code>MutatorCommand</code> responsible for the commit and the state of the model either before or after the commit. All recorded
-states are deep copies decoupled from their original references.</p>
+<p><code>AppointmentBook#setFinishedAppointments(List&lt;Appointment&gt; appointments)</code>&#8201;&#8212;&#8201;Replaces the contents of the private <code>finishedAppointments</code> field with <code>appointments</code> passed in as argument (layout for a possible feature <a href="#Displaying Finished Appointments">[Displaying Finished Appointments]</a> in V2.0).</p>
 </li>
 <li>
-<p><code>HistoryManager</code> - Represents the history of the application. Maintains data structures containing <code>HistoryRecord</code> s
-of each data state change.</p>
+<p><code>AppointmentBook#resetData(ReadOnlyAppointmentBook newData)</code>&#8201;&#8212;&#8201;Resets the existing data of the <code>AppointmentBook</code> with <code>newData</code>.</p>
+</li>
+<li>
+<p><code>AppointmentBook#hasAppointment(Appointment appointment)</code>&#8201;&#8212;&#8201;Returns true if an appointment with the same identity as the <code>appointment</code> argument exists in the <code>AppointmentBook</code>.</p>
+</li>
+<li>
+<p><code>AppointmentBook#hasClashingAppointment(Appointment appointment)</code>&#8201;&#8212;&#8201;Returns true if an appointment with clashing time as the <code>appointment</code> argument exists in the <code>AppointmentBook</code>.</p>
+</li>
+<li>
+<p><code>AppointmentBook#addAppointment(Appointment a)</code>&#8201;&#8212;&#8201;Adds an appointment <code>a</code> to the <code>AppointmentBook</code>.</p>
+</li>
+<li>
+<p><code>AppointmentBook#setAppointment(Appointment target, Appointment editedAppointment)</code>&#8201;&#8212;&#8201;Replaces the given appointment <code>target</code> in the list of the <code>AppointmentBook</code> with the <code>editedAppointment</code>.</p>
+</li>
+<li>
+<p><code>AppointmentBook#editAppointments(Patient patientToEdit, Patient editedPatient)</code>&#8201;&#8212;&#8201;Replaces all appointments with the <code>patientToEdit</code> in the list with <code>editedPatient</code>.</p>
+</li>
+<li>
+<p><code>AppointmentBook#removeAppointment(Appointment key)</code>&#8201;&#8212;&#8201;Removes <code>key</code> from the <code>AppointmentBook</code>.<br>
+<strong>Note: If appointment <code>key</code> is recurring, the appointment is recurred to get the next start and end date times of this appointment, and this next appointment is added to the the <code>AppointmentBook</code>.</strong></p>
+</li>
+<li>
+<p><code>AppointmentBook#removeRecurringAppointment(Appointment key)</code>&#8201;&#8212;&#8201;Removes <code>key</code> from the <code>AppointmentBook</code> permanently. <strong>Does not</strong> recur the appointment <code>key</code>.</p>
+</li>
+<li>
+<p><code>AppointmentBook#removeAppointments(Patient patient, Index patientIndex)</code>&#8201;&#8212;&#8201;Removes all appointments with this <code>patient</code> from the <code>AppointmentBook</code>.</p>
+</li>
+<li>
+<p><code>AppointmentBook#getRecurredAppointment(Appointment key)</code>&#8201;&#8212;&#8201;Returns the next (recurred) appointment for <code>key</code> based on the recurring frequencies of years, months, etc. of the appointment <code>key</code> and its current start and end date and time.</p>
+</li>
+<li>
+<p><code>AppointmentBook#addRecurringAppointment(Appointment key)</code>&#8201;&#8212;&#8201;Adds same appointment <code>key</code> with the next date time if previous one was deleted and was recurring.</p>
 </li>
 </ul>
-</div>
-<div class="paragraph">
-<p>Additionally, <code>LogicManager</code> and <code>Model</code> are modified to accommodate this functionality.</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">Shallow Copy vs Deep copy</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Performing a <em>shallow copy</em> of an object simply copies the values of the
-references of each object the original object is pointing to. This results in the
-copied object pointing to the same objects as the original. In the figure below,
-<code>patientBook</code> and <code>copiedPatientBook</code> are separate <code>PatientBook</code> objects but actually
-share the same <code>patient</code> object. Changes to <code>patient</code> through <code>PatientBook</code> would thus
-affect <code>copiedPatientBook</code> as well.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/shallow_copy.png" alt="shallow copy">
-</div>
-<div class="title">Figure 1. Shallow copy</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Performing a <em>deep copy</em> creates duplicates of each object referenced by the original,
-the objects referenced by those duplicates, and so on. These duplicates are completely
-decoupled from their originals. In the figure below, <code>patient</code> is a different
-object from <code>copiedPatient</code>, thus changes to <code>patient</code> would not affect <code>copiedPatient</code>.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/deep_copy.png" alt="deep copy">
-</div>
-<div class="title">Figure 2. Deep copy</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="model"><a class="link" href="#model">Model</a></h4>
 <div class="paragraph">
-<p>The following methods are added to the <code>Model</code> interface:</p>
+<p>The operations in the <code>AppointmentBook</code> are exposed to in the <code>Model</code> interface. <code>Model</code> implements the methods following operations to accommodate for the inclusion of the <code>AppointmentBook</code> and its related methods:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Model#commit(MutatorCommand)</code> - Commits the changes made to the address book since the last call to this method,
-making them permanent and updating the UI data. The committing <code>MutatorCommand</code> is stored for history record purposes.</p>
+<p><code>Model#setStagedAppointmentBook(ReadOnlyAppointmentBook appointmentBook)</code></p>
 </li>
 <li>
-<p><code>Model#getHistory()</code> - Returns an unmodifiable view of the history.</p>
+<p><code>Model#replaceStagedAppointmentBook(List&lt;Appointment&gt; appointments)</code></p>
 </li>
 <li>
-<p><code>Model#undoTo(HistoryRecord)</code> - Reverts current model state to the that contained in the specified <code>HistoryRecord</code>
-(i.e. the state before the command was executed).</p>
+<p><code>Model#getStagedAppointmentBook()</code></p>
 </li>
 <li>
-<p><code>Model#redo()</code> - Redoes the previous <code>MutatorCommand</code> if it was an undo.</p>
+<p><code>Model#hasAppointment(Appointment appointment)</code></p>
+</li>
+<li>
+<p><code>Model#hasClashingAppointment(Appointment appointment)</code></p>
+</li>
+<li>
+<p><code>Model#deleteAppointment(Appointment target)</code></p>
+</li>
+<li>
+<p><code>Model#deleteRecurringAppointment(Appointment target)</code></p>
+</li>
+<li>
+<p><code>Model#deleteAppointments(Patient target, Index targetIndex)</code></p>
+</li>
+<li>
+<p><code>Model#addAppointment(Appointment appointment)</code></p>
+</li>
+<li>
+<p><code>Model#setAppointment(Appointment target, Appointment editedAppointment)</code></p>
+</li>
+<li>
+<p><code>Model#setAppointments(Patient patientToEdit, Patient editedPatient)</code></p>
+</li>
+<li>
+<p><code>Model#ObservableList&lt;Appointment&gt; getStagedAppointmentList()</code></p>
+</li>
+<li>
+<p><code>Model#FilteredList&lt;Appointment&gt; getFilteredAppointmentList()</code></p>
+</li>
+<li>
+<p><code>Model#void updateFilteredAppointmentList(Predicate&lt;Appointment&gt; predicate)</code></p>
 </li>
 </ul>
 </div>
@@ -287,12 +794,11 @@ making them permanent and updating the UI data. The committing <code>MutatorComm
 <div class="sect3">
 <h4 id="model-design-considerations"><a class="link" href="#model-design-considerations">Model Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-how-to-undo-and-redo-between-states"><a class="link" href="#aspect-how-to-undo-and-redo-between-states">Aspect: How to undo and redo between states</a></h5>
+<h5 id="aspect-where-to-wrap-all-appointments-data-in"><a class="link" href="#aspect-where-to-wrap-all-appointments-data-in">Aspect: Where to wrap all appointments data in</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice)</strong>: Save the entire <code>PatientBook</code> and <code>AppointmentBook</code> objects to
-record each model state.</p>
+<p><strong>Alternative 1 (current choice):</strong> Create <code>AppointmentBook</code> to wrap around all appointments and add it as a field of <code>ModelManager</code>.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -300,7 +806,10 @@ record each model state.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Easier to implement.</p>
+<p>Splitting the <code>AddressBook</code> into <code>PatientBook</code> and <code>AppointmentBook</code> clearly demarcates the handling of patients and appointments separately.</p>
+</li>
+<li>
+<p>When there are changes made to the appointments, only the <code>AppointmentBook</code> is modified, i.e. there is no need to, for example, refresh the data for patients.</p>
 </li>
 </ul>
 </div>
@@ -310,7 +819,10 @@ record each model state.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Consumes more memory.</p>
+<p>Overhead of more methods in the <code>Model</code> needed separately for the changes made in the <code>AppointmentBook</code>.</p>
+</li>
+<li>
+<p>Major refactoring was needed in many classes and tests since there were changes to the constructor and fields of the <code>ModelManager</code>.</p>
 </li>
 </ul>
 </div>
@@ -319,8 +831,7 @@ record each model state.</p>
 </div>
 </li>
 <li>
-<p>Alternative 2: Only save the <code>MutatorCommand</code> objects but implement an <code>undo()</code>
-method for each <code>MutatorCommand</code> which does exactly the reverse of its <code>execute()</code> method.</p>
+<p><strong>Alternative 2:</strong> Modify the original <code>AddressBook</code> to have two unique lists as fields within it, one for patients and one for appointments.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -328,7 +839,7 @@ method for each <code>MutatorCommand</code> which does exactly the reverse of it
 <div class="ulist">
 <ul>
 <li>
-<p>Consumes much less memory.</p>
+<p>The number of extra methods added to the <code>Model</code> could have been reduced since some methods may do the same operation on both appointment and patient lists.</p>
 </li>
 </ul>
 </div>
@@ -338,161 +849,10 @@ method for each <code>MutatorCommand</code> which does exactly the reverse of it
 <div class="ulist">
 <ul>
 <li>
-<p>Difficult to implement - doubles the amount of work needed for each command.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-how-to-record-the-patientbook-and-appointmentbook-states-in-the-history"><a class="link" href="#aspect-how-to-record-the-patientbook-and-appointmentbook-states-in-the-history">Aspect: How to record the PatientBook and AppointmentBook states in the history</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p>Alternative 1: Simply store references to <code>PatientBook</code> and <code>AppointmentBook</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Easier to implement.</p>
-</li>
-</ul>
-</div>
+<p>Principle of separation of concerns may be violated.</p>
 </li>
 <li>
-<p>Cons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Relies on the assumption that the objects in <code>PatientBook</code> and <code>AppointmentBook</code>
-are immutable; if they are not truly immutable, changes to the current model&#8217;s
-<code>PatientBook</code> and <code>AppointmentBook</code> state may leak and affect the states stored in
-the history.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2 (current choice):</strong> Defensively store deep copies of the <code>PatientBook</code> and <code>AppointmentBook</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Prevents improperly coded <code>Patient</code> or <code>Appointment</code> (or their
-associated classes) from breaking undo/redo/history functionality.</p>
-</li>
-<li>
-<p>Can reuse JSON serialization code for persistent storage of <code>PatientBook</code> and <code>AppointmentBook</code>
-to create deep copies by serializing then immediately deserializing them.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Cons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Consumes more memory and CPU time.</p>
-</li>
-<li>
-<p>More difficult to implement - MVC pattern between UI view and models is broken in
-two. This is because each time the current state is swapped with a state in the
-history by <code>ModelManager</code>, the <code>ObservableList</code> viewed by the UI must also be
-updated by the <code>ModelManager</code> instead of the <code>PatientBook</code> as the current
-<code>PatientBook</code> is completely decoupled and placed into the history.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="aspect-which-class-to-place-the-historymanager-in"><a class="link" href="#aspect-which-class-to-place-the-historymanager-in">Aspect: Which class to place the HistoryManager in</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Make <code>HistoryManager</code> a field of <code>ModelManager</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Ensures atomicity of the records in the history as pushing a transaction
-to the <code>HistoryManager</code> can only be (and is always) done by <code>Model#commit()</code>
-itself - records in the history are guaranteed to be products of complete command
-execution rather than intermediate states.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Cons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>More difficult to test <code>ModelManager</code> as two <code>ModelManager</code> objects may have
-the same current state but differing <code>HistoryManager</code> objects.</p>
-</li>
-<li>
-<p>May violate Single Responsibility Principle as <code>ModelManager</code> now has to manage
-both its current state and its previous states.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Alternative 2: Make <code>HistoryManager</code> a field of <code>LogicManager</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Higher cohesion as <code>ModelManager</code> only represents the model&#8217;s current state.</p>
-</li>
-<li>
-<p>Easier to test <code>ModelManager</code> as only its current state matters.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Cons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>It is possible for intermediate model states to be pushed to the <code>HistoryManager</code> -
-trusts <code>LogicManager</code> to push the transaction to history after (and only
-after) calling <code>Model#commit()</code>.</p>
-</li>
-<li>
-<p>Requires <code>Command#execute()</code> to accept <code>HistoryManager</code> as a parameter just so
-<code>UndoCommand</code> and <code>RedoCommand</code> can work even though the vast majority of commands do not require it.</p>
+<p>Optimization might be compromised, since methods intended to operate only on the specific patient or appointment lists might operate on the whole <code>AddressBook</code> unnecessarily.</p>
 </li>
 </ul>
 </div>
@@ -507,127 +867,275 @@ after) calling <code>Model#commit()</code>.</p>
 <div class="sect3">
 <h4 id="logic"><a class="link" href="#logic">Logic</a></h4>
 <div class="paragraph">
-<p>In addition to <code>MutatorCommand</code> which was described earlier, the following logical classes are added:</p>
+<p>The following logical <code>Parser</code> classes to parse user commands' arguments, and the corresponding <code>Command</code> classes they returned were implemented:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>UndoCommand</code> - Undoes a designated command in the history, or the previous one if no argument is specified. The
-<code>COMMAND_WORD</code> for this command is <code>app-undo</code>.</p>
+<p><code>FindAppointmentParser</code> returns <code>FindAppointmentCommand</code> - Finds and lists all appointments in appointment book whose name contains any of the argument keywords.<br>
+The <code>COMMAND_WORD</code> for this command is <code>appt-find</code>.</p>
 </li>
 <li>
-<p><code>UndoCommandParser</code> - Parses input arguments and creates a new UndoCommand object.</p>
+<p><code>AddAppointmentParser</code> returns <code>AddAppointmentCommand</code> - Adds an appointment to the appointment list.<br>
+The <code>COMMAND_WORD</code> is <code>appt-add</code>.</p>
 </li>
 <li>
-<p><code>RedoCommand</code> - Redoes the previous command if it was an undo. The <code>COMMAND_WORD</code> for this command is <code>app-redo</code>.</p>
+<p><code>EditAppointmentParser</code> returns <code>EditAppointmentCommand</code> - Edits the details of an existing appointment in the appointment book.<br>
+The <code>COMMAND_WORD</code> is <code>appt-edit</code>.</p>
+</li>
+<li>
+<p><code>DeleteAppointmentParser</code> returns <code>DeleteAppointmentCommand</code> - Deletes an appointment identified using it&#8217;s displayed index from the appointment book.
+For recurring appointments, the recurring appointment is deleted and the next recurred one is added to the appointment list.<br>
+The <code>COMMAND_WORD</code> is <code>appt-delete</code>.</p>
+</li>
+<li>
+<p><code>DeleteAppointmentPermanentlyParser</code> returns <code>DeleteAppointmentPermanentlyCommand</code> - Deletes permanently a recurring appointment identified using it&#8217;s displayed index from the appointment book.<br>
+The <code>COMMAND_WORD</code> is <code>appt-delete-permanent</code>.</p>
+</li>
+<li>
+<p><code>ListAppointmentCommand</code> - Lists all appointments in the appointment book.
+Note: The <code>ListAppointmentCommand</code> does not have a parser as it does not have any arguments to parse.<br>
+The <code>COMMAND_WORD</code> is <code>appt-list</code>.</p>
 </li>
 </ol>
 </div>
+</div>
+<div class="sect3">
+<h4 id="logic-design-considerations"><a class="link" href="#logic-design-considerations">Logic Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-deleting-recurring-appointments-permanently"><a class="link" href="#aspect-deleting-recurring-appointments-permanently">Aspect: Deleting recurring appointments permanently</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Create <code>DeleteAppointmentPermanentlyParser</code> and <code>DeleteAppointmentPermanentlyCommand</code> as new classes independent of the <code>DeleteAppointmentParser</code> and <code>DeleteAppointmentCommand</code> classes.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A simple solution that clearly separates cases of when an appointment is deleted permanently from the list versus when the appointment is deleted and the recurred next appointment is added to the list.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Does not really separate the cases of recurring appointments from non-recurring ones since <code>appt-delete-permanent</code> can be applied on both recurring and non-recurring appointments.</p>
+</li>
+<li>
+<p>There might be fragments of code in both classes that are common and could be extracted out and reused instead.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Create <code>DeleteAppointmentPermanentlyParser</code> and <code>DeleteAppointmentPermanentlyCommand</code> as new classes that now extend from the <code>DeleteAppointmentParser</code> and <code>DeleteAppointmentCommand</code> classes.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>By extending, code reusability is increased.</p>
+</li>
+<li>
+<p>It also makes sense in terms of class structure for such an extension, since deleting an appointment permanently is a more specific case of deleting an appointment and also allowing to recur it and then add it back (if it was a recurring appointment).</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This still does not resolve the issue of separation deletion of recurring appointments from non-recurring ones.</p>
+</li>
+<li>
+<p>Despite extending, there may not be too much code overlap. Also, considering that new methods will have to be added to the <code>Model</code> for each case of permanent and non-permanent deletion, the extension might well prove to be unecessary.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 3:</strong> Create <code>DeleteRecurringAppointmentParser</code> and <code>DeleteRecurringAppointmentCommand</code> as new classes independent from the <code>DeleteAppointmentParser</code> and <code>DeleteAppointmentCommand</code> classes.<br>
+But <code>DeleteRecurringAppointmentCommand</code> can only be applied to appointments that are recurring.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Demarcates recurring and non-recurring appointments deletion better since the user will now have only one way to delete non-recurring appointments, i.e. through <code>appt-delete</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Can be a bit restrictive since one command is reserved for only recurring appointments.</p>
+</li>
+<li>
+<p>The names of these classes can be a bit misleading since <code>appt-delete</code> can still be applied on both recurring and non-recurring appointments.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="storage"><a class="link" href="#storage">Storage</a></h4>
 <div class="paragraph">
-<p><code>HistoryManager</code> checks the classes of commands pushed to the history and does not record
-them if they are instances of <code>UndoCommand</code> or <code>RedoCommand</code>. This ensures that successive <code>UndoCommand</code> s do
-not undo themselves instead of the desired data-modifying commands, requiring <code>RedoCommand</code> for
-the special case of undo reversion.</p>
+<p>The <code>AppointmentBook</code> and <code>Appointment</code> class have the <code>JsonSerializableAppointmentBook</code> and <code>JsonAdaptedAppointment</code> classes respectively to allow saving of appointments data to <code>appointmentBook.json</code> and reading data from it.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The reading of appointments data from storage currently does not check if there are clashing appointments.
+Hence, any modifications to the <code>appointmentBook.json</code> directly (i.e. not through tha app) that result in clashing appointments will be just loaded as normal onto the app, but lead to undesirable results.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="storage-design-considerations"><a class="link" href="#storage-design-considerations">Storage Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-to-handle-appointments-that-have-finished-i-e-are-before-the-system-date-and-time"><a class="link" href="#aspect-how-to-handle-appointments-that-have-finished-i-e-are-before-the-system-date-and-time">Aspect: How to handle appointments that have finished (i.e. are before the system date and time)</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> <code>AppointmentBook</code> has two fields of <code>UniqueAppointmentList</code>: <code>appointments</code> and <code>finishedAppointments</code>.<br>
+When data is read from the storage, all appointments that are past the system date and time are stored in the <code>appointments</code> list, while those that are finished are stored in the <code>finishedAppointments</code> list.<br>
+After the app is closed, all appointments in the <code>finishedAppointments</code> list are not saved.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Ensures a clear distinction between appointments that have finished and those that are still only scheduled and yet to happen.
+<strong>*</strong></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Throws away the finished appointments every time app is closed.</p>
+</li>
+<li>
+<p>No indication to the user that certain appointments finished and so are no longer displayed in the list of appointments.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> As before, but once the app is closed, appointments both in <code>appointments</code> and <code>finishedAppointments</code> list are saved.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Still ensures a clear distinction between appointments that have finished and those that are still only scheduled and yet to happen.</p>
+</li>
+<li>
+<p>Keeps the finished appointments.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Might need to handle the reading and saving of the finished appointments differently from the main appointment list.</p>
+</li>
+<li>
+<p>Need to consider whether user deleting an appointment implies the user wants it marked as finished or wants to remove it completely. If the former is the case,  the delete appointment command would need to modify the <code>finishedAppointments</code> list, and that is an overhead.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="ui"><a class="link" href="#ui">UI</a></h4>
 <div class="paragraph">
-<p>The command history is constantly displayed in a panel on the right side of
-the app. This <code>HistoryPanel</code> uses <code>HistoryRecordCard</code> s to display the
-user-input text that invoked each command. It is a view of the <code>ObservableList&lt;HistoryRecord&gt;</code>
-returned by <code>HistoryManager#asUnmodifiableObservableList()</code>.</p>
+<p>The list of <code>Appointment</code> s are displayed on a separate tab in the app.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="ui-design-considerations"><a class="link" href="#ui-design-considerations">UI Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-where-to-display-the-history"><a class="link" href="#aspect-where-to-display-the-history">Aspect: Where to display the history</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Permanently display it in a dedicated panel.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>User does not have to execute a 'history' command to view the history,
-making it much easier to use the multiple undo function.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Cons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Takes up more space in the UI.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Alternative 2: Display it as a tab in the <code>TabPane</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Saves space in the UI.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Cons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>User has to switch to the history tab to view it.</p>
-</li>
-<li>
-<p>Less intuitive UX as the other tabs in the <code>TabPane</code> all display actual data
-such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> info, whereas history is app metadata.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="use-case"><a class="link" href="#use-case">Use case</a></h4>
+<div class="sect2">
+<h3 id="use-case"><a class="link" href="#use-case">Use Case</a></h3>
 <div class="paragraph">
-<p>The following sequence diagram illustrates what happens when an <code>app-undo 3</code> command is executed:</p>
+<p>Appointment Management is used when the user wants to schedule an appointment with the patient. There are 6 actions that a user can perform:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram">
+<img src="../images/AppointmentManagementUseCase.png" alt="AppointmentManagementUseCase">
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="project-powerpointlabs"><a class="link" href="#project-powerpointlabs">PROJECT: PowerPointLabs</a></h2>
-<div class="sectionbody">
-<hr>
 <div class="paragraph">
-<p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
+<p>Perhaps the most complex workflow is when a user deletes a recurring appointment.
+In doing so, as indicated in the Use Case diagram above, the appointment is first deleted from the list of appointments.
+The appointment is then recurred to get the next appointment (i.e. with the next start and end date time), and added to the list of appointments by directly calling the <code>AppointmentBook#addRecurringAppointment</code> method.
+Assuming the first appointment in the appointment list is recurring. The following sequence diagrams show the object interactions for user command <code>appt-delete 1</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AppointmentManagementSequenceDiagram.png" alt="AppointmentManagementSequenceDiagram">
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 08:04:37 UTC</div></div></div></body></html>
+<div class="paragraph">
+<p><em>Figure</em></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/AppointmentManagementSequenceDiagramRef.png" alt="AppointmentManagementSequenceDiagramRef">
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 14:24:50 UTC</div></div></div></body></html>

@@ -1,7 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Appointments [Parameters not updated]</title><link rel="stylesheet" href="./gh-pages.css">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Appointments</title><link rel="stylesheet" href="./gh-pages.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./coderay-asciidoctor.css"></head><body class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">NurseTraverse</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S1-CS2103-F10-1/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"></div><div id="content"><div class="sect1">
-<h2 id="appointments-parameters-not-updated"><a class="link" href="#appointments-parameters-not-updated">Appointments [Parameters not updated]</a></h2>
+<h2 id="Appointment"><a class="link" href="#Appointment">Appointments</a></h2>
 <div class="sectionbody">
 <div class="exampleblock">
 <div class="content">
@@ -9,32 +9,35 @@
 <p><strong>Appointments</strong></p>
 </div>
 <div class="paragraph">
-<p>As a community nurse, you will often make home visits to your patients. and keep track of these appointments you make with your patients. You can use the application to manage and keep track of these appointments. This section describes the features that will allow you to manage your appointments.</p>
+<p>As a community nurse, you will often schedule appointments with your patients before visiting them, as well as keep track of these appointments you make with your patients. You can use the application to manage and keep track of these appointments. This section describes the features that will allow you to manage your appointments.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-all-appointments-code-appt-list-code-coming-in-v1-4"><a class="link" href="#listing-all-appointments-code-appt-list-code-coming-in-v1-4">Listing All Appointments: <code>appt list</code> [coming in V1.4]</a></h3>
+<h3 id="listing-all-appointments-code-appt-list-code"><a class="link" href="#listing-all-appointments-code-appt-list-code">Listing All Appointments: <code>appt-list</code></a></h3>
 <div class="paragraph">
-<p>You can see a list of all appointments in the app by typing <code>appt list</code>.</p>
+<p>You can see a list of all appointments in the app by typing <code>appt-list</code>.</p>
 </div>
 <div class="paragraph">
-<p>In the list displayed, each appointment will have an <strong>index</strong> number which can then be used for other features that require you to select an appointment by <strong>index</strong> e.g. <code>appt delete</code>. Take note that an appointment will be given the same <strong>index</strong> regardless of other display commands such as <code>appt find</code>.</p>
+<p>In the list displayed, each appointment will have an <strong>index</strong> number which can then be used for other features that require you to select an appointment by <strong>index</strong> e.g. <code>appt-delete</code>. Take note that an appointment will be given the same <strong>index</strong> regardless of other display commands such as <code>appt-find</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>appt list</code></p>
+<p>The appointment list is sorted in increasing order of start date time of the appointments, i.e it shows the earlier scheduled appointments followed by the later ones.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt-list</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="finding-appointment-s-code-appt-find-code"><a class="link" href="#finding-appointment-s-code-appt-find-code">Finding Appointment(s): <code>appt find</code></a></h3>
+<h3 id="finding-appointment-s-code-appt-find-code"><a class="link" href="#finding-appointment-s-code-appt-find-code">Finding Appointment(s): <code>appt-find</code></a></h3>
 <div class="paragraph">
-<p>You can find appointments that fit the parameters given using <code>appt find</code>.</p>
+<p>You can find appointments by patient name by typing any keyword of your choice following <code>appt-find</code>.</p>
 </div>
 <div class="paragraph">
-<p>In the list displayed, each appointment will have an <strong>index</strong> number which can then be used for other features that require you to select an appointment by <strong>index</strong> e.g. <code>appt delete</code>. Take note that an appointment will be given the same <strong>index</strong> regardless of other display commands such as <code>appt list</code> or if different parameters are used.</p>
+<p>In the list displayed, each appointment will have an <strong>index</strong> number which can then be used for other features that require you to select an appointment by <strong>index</strong> e.g. <code>appt-delete</code>. Take note that an appointment will be given the same <strong>index</strong> regardless of other display commands such as <code>appt-list</code> or if different parameters are used.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>appt find [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]</code></p>
+<p>Format: <code>appt-find [PATIENT_NAME]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -47,10 +50,10 @@
 <p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
 </li>
 <li>
-<p>Only the name is searched.</p>
+<p>Only the patient name is searched for in the list of appointments.</p>
 </li>
 <li>
-<p>If the parameter is text (e.g. <code>n/NAME</code>), partial words will be matched (e.g. <code>n/John</code> will return <code>John Smith</code> and <code>John Kim</code>.</p>
+<p>Partial words will be matched (e.g. <code>John</code> will return <code>John Smith</code> and <code>John Kim</code> if both have appointments in the appointment list).</p>
 </li>
 </ul>
 </div>
@@ -62,32 +65,38 @@
 <div class="ulist">
 <ul>
 <li>
-<p><code>appt find n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague</code><br>
-Lists all appointments of that particular patient</p>
+<p><code>appt-find James</code><br>
+Lists all appointments of that particular patient James</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="viewing-an-appointment-code-appt-view-code-coming-in-v1-4"><a class="link" href="#viewing-an-appointment-code-appt-view-code-coming-in-v1-4">Viewing an Appointment: <code>appt view</code> [coming in V1.4]</a></h3>
+<h3 id="adding-an-appointment-code-appt-add-code"><a class="link" href="#adding-an-appointment-code-appt-add-code">Adding an Appointment: <code>appt-add</code></a></h3>
 <div class="paragraph">
-<p>You can see an appointment&#8217;s full details using <code>appt view</code>. The appointment is selected by their <strong>index</strong>.</p>
+<p>You can add an appointment to the list of all appointments by using <code>appt-add</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>appt view INDEX</code></p>
+<p>Format: <code>appt-add p/PATIENT_INDEX sdt/START_DATE_TIME edt/END_DATE_TIME [desc/DESCRIPTION] [ryr/RECUR_YEARS] [rmon/RECUR_MONTHS] [rweek/RECUR_WEEKS] [rday/RECUR_DAYS] [rhr/RECUR_HOURS] [rmin/RECUR_MINUTES]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>View the appointment at the specified <code>INDEX</code>.</p>
+<p><code>START_DATE_TIME</code> and <code>END_DATE_TIME</code> expect inputs in the format <code>dd-MM-yyyy HHmm</code> with <code>dd</code>, <code>MM</code>, <code>yyyy</code>, <code>HH</code>, and <code>mm</code> all as numerical numbers (HHmm being in 24-hour time), and the end date time should be equal to or after the start date time. Also, both start and end date times must be past the system&#8217;s local date time.</p>
 </li>
 <li>
-<p>The index refers to the index number shown in the list of appointments displayed by <code>appt list</code> or <code>appt find</code>.</p>
+<p><code>RECUR_YEARS</code>, <code>RECUR_MONTHS</code>, <code>RECUR_WEEKS</code>, <code>RECUR_DAYS</code>, <code>RECUR_HOURS</code>, <code>RECUR_MINUTES</code> each <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 <li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>An appointment can recur by any amount of each of the frequencies: years, months, weeks, days, hours, and minutes. If you wish for an appointment to only recur by years and months, just typing <code>ryr/[RECUR_YEARS]</code> and `rmon/[RECUR_MONTHS] in any order is sufficient.</p>
+</li>
+<li>
+<p>The appointment added cannot have the same <strong>identity</strong> as an existing appointment. Its <strong>identity</strong> is defined by <code>START_DATE_TIME</code>, <code>END_DATE_TIME</code>, patient it is associated with through the <code>PATIENT_INDEX</code>, and the frequency as defined by <code>RECUR_YEARS</code>, <code>RECUR_MONTHS</code>, etc.</p>
+</li>
+<li>
+<p>The appointment added cannot clash in timing with any other existing appointment, i.e. their start and end date times must not overlap in any way.</p>
 </li>
 </ul>
 </div>
@@ -99,50 +108,31 @@ Lists all appointments of that particular patient</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>appt list</code><br>
-<code>appt view 1</code>
-View the item with index number 1. This index can be found from the full list of appointments.</p>
+<p>`appt-add p/1 sdt/24-12-2019 1200 edt/24-12-2019 1400 desc/Medical checkup</p>
 </li>
 <li>
-<p><code>appt view 2</code>
-View the item with the index number 2.</p>
+<p><code>appt-add p/2 sdt/09-12-2019 1300 edt/09-12-2019 1330 ryr/1 rmon/3</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="listing-the-next-earliest-appointments-code-appt-next-code-coming-in-v1-4"><a class="link" href="#listing-the-next-earliest-appointments-code-appt-next-code-coming-in-v1-4">Listing the next earliest Appointments: <code>appt next</code> [coming in V1.4]</a></h3>
+<h3 id="editing-an-appointment-code-appt-edit-code"><a class="link" href="#editing-an-appointment-code-appt-edit-code">Editing an Appointment: <code>appt-edit</code></a></h3>
 <div class="paragraph">
-<p>You can list the next earliest appointments using <code>appt next</code>.</p>
+<p>You can edit an existing appointment in the app using <code>appt-edit</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>appt next NUMBER</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="paragraph">
-<p><code>appt next 3</code><br>
-Displays the next 3 earliest appointments sorted by time.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="editing-an-appointment-code-appt-edit-code-coming-in-v1-4"><a class="link" href="#editing-an-appointment-code-appt-edit-code-coming-in-v1-4">Editing an Appointment: <code>appt edit</code> [coming in V1.4]</a></h3>
-<div class="paragraph">
-<p>You can edit an existing appointment in the app using <code>appt edit</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>appt edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]&#8230;&#8203;</code></p>
+<p>Format: <code>appt-edit INDEX [sdt/START_DATE_TIME] [edt/END_DATE_TIME] [p/PATIENT_INDEX] [desc/DESCRIPTION] [ryr/RECUR_YEARS] [rmon/RECUR_MONTHS] [rweek/RECUR_WEEKS] [rday/RECUR_DAYS] [rhr/RECUR_HOURS] [rmin/RECUR_MINUTES]</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Edits the person at the specified <code>INDEX</code>.</p>
+<p>Edits the appointment at the specified <code>INDEX</code>.</p>
 </li>
 <li>
-<p>The index refers to the index number shown in the list of appointments displayed by <code>appt list</code> or <code>appt find</code>.</p>
+<p>The index refers to the index number shown in the list of appointments displayed by <code>appt-list</code> or <code>appt-find</code>.</p>
 </li>
 <li>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
@@ -154,10 +144,13 @@ Displays the next 3 earliest appointments sorted by time.</p>
 <p>Existing values will be updated to the input values.</p>
 </li>
 <li>
-<p>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</p>
+<p>When editing recurring frequencies (years, months, etc.), the existing frequencies of the appointment will be kept unless overwritten by  i.e adding of frequencies is cumulative.</p>
 </li>
 <li>
-<p>You can remove all the person&#8217;s tags by typing <code>t/</code> without specifying any tags after it.</p>
+<p>You can make the appointment not recurring by setting all the necessary recurring frequencies to 0. For example, if an appointment recurs every year, then specify a 0 frequency as <code>ryr/0</code> to make the appointment non-recurring.</p>
+</li>
+<li>
+<p>You cannot change individual fields of the patient (i.e. patient name, phone number, etc.) using the <code>appt-edit</code> command. Refer to <code>pat-edit</code> under <a href="#Patient">[Patient]</a> for more on this.</p>
 </li>
 </ul>
 </div>
@@ -169,24 +162,24 @@ Displays the next 3 earliest appointments sorted by time.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>appt list</code><br>
- <code>edit 1 p/91234567 e/johndoe@example.com</code><br>
-Edits the phone number and email address of the 1st person in the entire appointment&#8217;s list to be <code>91234567</code> and <code>johndoe@example.com</code> respectively.</p>
+<p><code>appt-list</code><br>
+ <code>appt-edit 1 sdt/05-12-2019 1900 edt/05-12-2019 2000</code><br>
+Edits the start date time and end date time of the 1st person in the entire appointment&#8217;s list to be <code>05-12-2019 1900</code> and <code>05-12-2019 2000</code> respectively.</p>
 </li>
 <li>
-<p><code>edit 2 n/Betsy Crower t/</code><br>
-Edits the name of the 2nd person with the index 1.<code>Betsy Crower</code> and clears all existing tags.</p>
+<p><code>appt-edit 2 p/3 ryr/1</code><br>
+Edits the second appointment to be associated with the third patient in the patient list. Also edits the appointment to recur by 1 year.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-an-appointment-code-appt-delete-code"><a class="link" href="#deleting-an-appointment-code-appt-delete-code">Deleting an Appointment: <code>appt delete</code></a></h3>
+<h3 id="deleting-an-appointment-code-appt-delete-code"><a class="link" href="#deleting-an-appointment-code-appt-delete-code">Deleting an Appointment: <code>appt-delete</code></a></h3>
 <div class="paragraph">
-<p>You can delete an appointment by <strong>index</strong> using <code>appt delete</code>.</p>
+<p>You can delete an appointment by <strong>index</strong> using <code>appt-delete</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>appt delete INDEX</code></p>
+<p>Format: <code>appt-delete INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -196,10 +189,13 @@ Edits the name of the 2nd person with the index 1.<code>Betsy Crower</code> and 
 <p>Deletes the appointment at the specified <code>INDEX</code>.</p>
 </li>
 <li>
-<p>The index refers to the index number shown in the list of appointments displayed by <code>appt list</code> or <code>appt find</code>.</p>
+<p>The index refers to the index number shown in the list of appointments displayed by <code>appt-list</code> or <code>appt-find</code>.</p>
 </li>
 <li>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>If the appointment referred to by the <code>INDEX</code> is a recurring appointment, deleting this appointment will automatically recur the appointment (i.e. get the next start and end date time) and add it to the appointment list. If you wish to remove a recurring appointment permanently from the appointment list, refer to <a href="#Deleting an Appointment Permanently">[Deleting an Appointment Permanently]</a>.</p>
 </li>
 </ul>
 </div>
@@ -208,37 +204,238 @@ Edits the name of the 2nd person with the index 1.<code>Betsy Crower</code> and 
 <div class="paragraph">
 <p>Examples:</p>
 </div>
+<div class="paragraph">
+<p>Assuming the first appointment in the list is a recurring appointment, and the second is a non-recurring one.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>appt list</code><br>
-<code>appt delete 2</code><br>
-Deletes the 2nd appointment in the appointment list.</p>
+<p><code>appt-delete 2</code><br>
+Deletes the 2nd appointment in the displayed appointment list.</p>
 </li>
 <li>
-<p><code>appt delete 1</code><br>
-Deletes the appointment which had been assigned the index 1.</p>
+<p><code>appt-delete 1</code><br>
+Deletes the 1st appointment in the displayed appointment list.
+Recurs the appointment and adds the new appointment with the next start and end date time to the appointment list.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-multiple-appointments-code-appt-delete-code-code-coming-in-v2-0-code"><a class="link" href="#deleting-multiple-appointments-code-appt-delete-code-code-coming-in-v2-0-code">Deleting multiple Appointments: <code>appt delete</code> <code>[coming in V2.0]</code></a></h3>
+<h3 id="deleting-an-appointment-permanently-code-appt-delete-permanent-code"><a class="link" href="#deleting-an-appointment-permanently-code-appt-delete-permanent-code">Deleting an Appointment permanently: <code>appt-delete-permanent</code></a></h3>
 <div class="paragraph">
-<p>You can delete an appointment by <strong>indexes</strong> using <code>appt delete</code>.</p>
+<p>You can delete an appointment permanently by <strong>index</strong> using <code>appt-delete-permanent</code>.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>appt delete INDEX_1 [INDEX_2] [INDEX_3]&#8230;&#8203;</code></p>
+<p>You can use this command on both recurring and non-recurring appointments, but its use is more suited for recurring appointments since <code>appt-delete</code> and <code>appt-delete-permanent</code> work in the same way for non-recurring appointments.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt-delete-permanent INDEX</code></p>
 </div>
 <div class="sidebarblock">
 <div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Deletes the appointment at the specified <code>INDEX</code> es. You can put in as many indexes to delete as many appointments as you wish.</p>
+<p>Deletes the appointment permanently at the specified <code>INDEX</code>.</p>
 </li>
 <li>
-<p>The index refers to the index number shown in the list of appointments displayed by <code>appt list</code> or <code>appt find</code>.</p>
+<p>The index refers to the index number shown in the list of appointments displayed by <code>appt-list</code> or <code>appt-find</code>.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>For recurring appointments, unlike in the case of <code>appt-delete</code>, now the recurring appointment referred to by the <code>INDEX</code> is removed from the appointment list permanently and not recurred.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="paragraph">
+<p>Assuming the first appointment in the list is a recurring appointment, and the second is a non-recurring one.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>appt-list</code><br>
+<code>appt-delete-permanent 2</code><br>
+Deletes the 2nd appointment in the displayed appointment list permanently.</p>
+</li>
+<li>
+<p><code>appt-delete-permanent 1</code><br>
+Deletes the 1st appointment in the displayed appointment list permanently.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-multiple-appointments-code-appt-delete-code-code-coming-in-v2-0-code"><a class="link" href="#deleting-multiple-appointments-code-appt-delete-code-code-coming-in-v2-0-code">Deleting Multiple Appointments: <code>appt-delete</code> <code>[coming in V2.0]</code></a></h3>
+<div class="paragraph">
+<p>You can delete multiple appointments by <strong>indexes</strong> using <code>appt-delete</code>.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt-delete INDEX_1 [INDEX_2] [INDEX_3]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes appointments at the specified <code>INDEX</code> es. You can put in as many indices to delete as many appointments as you wish.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of appointments displayed by <code>appt-list</code> or <code>appt-find</code>.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>If any of the appointments referred to by the <code>INDEX</code> es is a recurring appointment, deleting this appointment will automatically recur the appointment (i.e. get the next start and end date time) and add it to the appointment list. If you wish to remove one or more recurring appointments permanently from the appointment list, refer to <a href="#Deleting Multiple Appointments Permanently">[Deleting Multiple Appointments Permanently]</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Assuming the first appointment in the list is a recurring appointment, and the second is a non-recurring one.</p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>appt-delete 2</code><br>
+Deletes the 2nd appointment in the appointment list.</p>
+</li>
+<li>
+<p><code>appt-delete 1 2</code><br>
+Deletes the 1st and 2nd appointment in the appointment list.
+Recurs the 1st appointment and adds the new appointment with the next start and end date time to the appointment list.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-multiple-appointments-permanently-code-appt-delete-permanent-code-code-coming-in-v2-0-code"><a class="link" href="#deleting-multiple-appointments-permanently-code-appt-delete-permanent-code-code-coming-in-v2-0-code">Deleting Multiple Appointments Permanently: <code>appt-delete-permanent</code> <code>[coming in V2.0]</code></a></h3>
+<div class="paragraph">
+<p>You can delete an appointment by <strong>indexes</strong> using <code>appt-delete-permanent</code>.</p>
+</div>
+<div class="paragraph">
+<p>You can use this command on both recurring and non-recurring appointments, but its use is more suited for recurring appointments since <code>appt-delete</code> and <code>appt-delete-permanent</code> work in the same way for non-recurring appointments.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt-delete-permanent INDEX_1 [INDEX_2] [INDEX_3]&#8230;&#8203;</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the appointments permanently at the specified <code>INDEX</code> es. You can put in as many indices to delete as many appointments as you wish.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of appointments displayed by <code>appt-list</code> or <code>appt-find</code>.</p>
+</li>
+<li>
+<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+</li>
+<li>
+<p>For recurring appointments, unlike in the case of <code>appt-delete</code>, now any recurring appointment specified by any of the <code>INDEX</code> es is removed from the appointment list permanently and not recurred.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="paragraph">
+<p>Assuming the first appointment in the list is a recurring appointment, and the second is a non-recurring one.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>appt-list</code><br>
+<code>appt-delete-permanent 2</code><br>
+Deletes the 2nd appointment in the appointment list permanently.</p>
+</li>
+<li>
+<p><code>appt-delete-permanent 1 2</code><br>
+Deletes the 1st and 2nd appointments in the appointment list permanently.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="displaying-finished-appointments-code-coming-in-v2-0-code"><a class="link" href="#displaying-finished-appointments-code-coming-in-v2-0-code">Displaying Finished Appointments <code>[coming in V2.0]</code></a></h3>
+<div class="paragraph">
+<p>This is an intended additional <code>UI</code> and <code>Storage</code> feature.</p>
+</div>
+<div class="paragraph">
+<p>Along with all the appointments that currently are in the appointment list, appointments that finished (were in the appointment list the previous time the app was run but are now before the system date and time and so removed from the appointment list) are displayed in a separate tab and also saved to another <code>json</code> file time the app is closed.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="listing-all-finished-appointments-code-appt-finished-list-code-code-coming-in-v2-0-code"><a class="link" href="#listing-all-finished-appointments-code-appt-finished-list-code-code-coming-in-v2-0-code">Listing All Finished Appointments <code>appt-finished-list</code> <code>[coming in V2.0]</code></a></h3>
+<div class="paragraph">
+<p>You can see a list of all finished appointments in the app by typing <code>appt-finished-list</code>.</p>
+</div>
+<div class="paragraph">
+<p>In the list displayed, each finished appointment will have an <strong>index</strong> number which can then be used for other features that require you to select a finished appointment by <strong>index</strong> e.g. <code>appt-finished-delete</code>. Take note that a finished appointment will be given the same <strong>index</strong> regardless of other display commands such as <code>appt-finished-find</code>.</p>
+</div>
+<div class="paragraph">
+<p>The finished appointment list is sorted in increasing order of start date time of the appointments, i.e it shows the earlier appointments followed by the later ones.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt-finished-list</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finding-finished-appointment-s-code-appt-finished-find-code"><a class="link" href="#finding-finished-appointment-s-code-appt-finished-find-code">Finding Finished Appointment(s): <code>appt-finished-find</code></a></h3>
+<div class="paragraph">
+<p>You can find finished appointments by patient name by typing any keyword of your choice following <code>appt-finished-find</code>.</p>
+</div>
+<div class="paragraph">
+<p>In the list displayed, each finished appointment will have an <strong>index</strong> number which can then be used for other features that require you to select a finished appointment by <strong>index</strong> e.g. <code>appt-finished-delete</code>. Take note that an appointment will be given the same <strong>index</strong> regardless of other display commands such as <code>appt-finished-list</code> or if different parameters are used.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt-finished-find [PATIENT_NAME]</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finishing-appointment-code-appt-finish-code-code-coming-in-v2-0-code"><a class="link" href="#finishing-appointment-code-appt-finish-code-code-coming-in-v2-0-code">Finishing Appointment <code>appt-finish</code> <code>[coming in V2.0]</code></a></h3>
+<div class="paragraph">
+<p>Instead of deleting an appointment using <code>appt-delete</code> or <code>appt-delete-permanent</code>, you can use this command to simply mark an appointment as finished.</p>
+</div>
+<div class="paragraph">
+<p>The appointment is removed from the appointment list and added to the list of finished appointments.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-finished-appointment-code-appt-finished-delete-code-code-coming-in-v2-0-code"><a class="link" href="#deleting-finished-appointment-code-appt-finished-delete-code-code-coming-in-v2-0-code">Deleting Finished Appointment <code>appt-finished-delete</code> <code>[coming in V2.0]</code></a></h3>
+<div class="paragraph">
+<p>You can delete (permanently) a finished appointment by <strong>index</strong> using <code>appt-finished-delete</code>.</p>
+</div>
+<div class="paragraph">
+<p>There is no distinction in behaviour of this command between recurring and non-recurring appointments as deletion is from the finished appointment list.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>appt-finished-delete INDEX</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the finished appointment at the specified <code>INDEX</code>.</p>
+</li>
+<li>
+<p>The index refers to the index number shown in the list of finished appointments displayed by <code>appt-finished-list</code> or <code>appt-finished-find</code>.</p>
 </li>
 <li>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
@@ -253,16 +450,48 @@ Deletes the appointment which had been assigned the index 1.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>appt list</code><br>
-<code>appt delete 2</code><br>
-Deletes the 2nd appointment in the appointment list.</p>
+<p><code>appt-finished-delete 2</code><br>
+Deletes the 2nd appointment in the finished appointment list.</p>
 </li>
 <li>
-<p><code>appt delete 1 2</code><br>
-Deletes the and 2nd appointments which had been assigned the index 1.</p>
+<p><code>appt-finished-delete 1</code><br>
+Deletes the 1st appointment in the finished appointment list.</p>
 </li>
 </ul>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>As of version 1.4, the appointments feature <strong>does not allow for user&#8217;s discretion on managing clashing appointments. Instead, it simply prevents a user from adding a clashing appointment.</strong></p>
+</li>
+<li>
+<p>When an appointment is added or edited, while there is a check to ensure the appointment does not clash with any other existing appointment in the list, there is <strong>no check done on whether this new appointment could potentially clash with any future appointments</strong> that could result from an appointment recurring.<br>
+In such cases, if an appointment that is a added or edited clashes with a future date time of a recurring appointment, the app allows adding such an appointment.<br>
+But when the recurring appointment that our new appointment clashes with is recurred (due to <code>appt-delete</code> of the recurring appointment or the recurring appointment passing the system date time), then the <strong>recurring appointment is recurred (keep getting the next start and end date time) until it doesn&#8217;t clash with any of the existing appointments in the appointment list.</strong><br>
+Allowing user discretion for clashing appointments (i.e. simply flagging the clashing appointments) is a feature coming in <code>V2.0</code>.</p>
+</li>
+<li>
+<p>If changes are made to the <code>appointmentBook.json</code> file directly (i.e. not through the app) such that there are clashing appointments, the app won&#8217;t detect these clashes and will <strong>load the appointment book as it is with these clashing appointments. This can result in unexpected behaviour of the app as it is not thoroughly designed to work with clashing appointments in the appointment list.</strong><br>
+So, please refrain from making direct edits such that there result clashing appointments in the <code>appointmentBook.json</code> file.<br>
+Detecting these clashes from storage and if detected, loading an empty appointment list instead is a feature coming in <code>V2.0</code>.</p>
+</li>
+<li>
+<p>While the system doesn&#8217;t allow appointments with end date and times before the system&#8217;s date and time, and recurs appointments (that are recurring) until they are past the system date and time, this happens only when the app is opened.<br>
+<strong>While the app is running, there is no constant checking of whether the appointments in the list have already finished (i.e. if their end date time is before the system date time).</strong></p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 08:04:37 UTC</div></div></div></body></html>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 14:24:50 UTC</div></div></div></body></html>
