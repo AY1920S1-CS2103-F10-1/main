@@ -47,14 +47,19 @@
 <li><a href="#instructions-for-manual-testing">Appendix F: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">F.2. Deleting a person</a></li>
+<li><a href="#deleting-a-patient">F.2. Deleting a patient</a></li>
 <li><a href="#updating-a-patient-s-visit-todos">F.3. Updating a patient&#8217;s Visit Todos:</a></li>
 <li><a href="#starting-a-visit-for-a-patient">F.4. Starting a Visit for a patient:</a></li>
 <li><a href="#updating-an-ongoing-visit">F.5. Updating an ongoing visit:</a></li>
 <li><a href="#cancelling-a-visit-for-a-patient">F.6. Cancelling a Visit for a patient:</a></li>
 <li><a href="#finishing-a-visit-for-a-patient">F.7. Finishing a Visit for a patient:</a></li>
-<li><a href="#changing-of-autocomplete-suggestion-list">F.8. Changing of autocomplete suggestion list:</a></li>
-<li><a href="#updating-of-current-autocomplete-suggestion-list">F.9. Updating of current autocomplete suggestion list:</a></li>
+<li><a href="#adding-an-appointment">F.8. Adding an appointment</a></li>
+<li><a href="#editing-an-appointment">F.9. Editing an appointment</a></li>
+<li><a href="#deleting-a-non-recurring-appointment">F.10. Deleting a non-recurring appointment</a></li>
+<li><a href="#deleting-a-recurring-appointment">F.11. Deleting a recurring appointment</a></li>
+<li><a href="#deleting-an-appointment-permanently">F.12. Deleting an appointment permanently</a></li>
+<li><a href="#changing-of-autocomplete-suggestion-list">F.13. Changing of autocomplete suggestion list:</a></li>
+<li><a href="#updating-of-current-autocomplete-suggestion-list">F.14. Updating of current autocomplete suggestion list:</a></li>
 </ul>
 </li>
 </ul>
@@ -1464,12 +1469,15 @@ Assuming the first appointment in the appointment list is recurring. The followi
 </div>
 </div>
 <div class="paragraph">
-<p><em>Figure</em></p>
+<p><em>Figure: Delete Appointment Sequence Diagram</em></p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/AppointmentManagementSequenceDiagramRef.png" alt="AppointmentManagementSequenceDiagramRef">
 </div>
+</div>
+<div class="paragraph">
+<p><em>Figure: Reference - delete appointment, recur, and add the recurred appointment</em></p>
 </div>
 </div>
 <div class="sect2">
@@ -2573,26 +2581,26 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">F.2. Deleting a person</a></h3>
+<h3 id="deleting-a-patient"><a class="link" href="#deleting-a-patient">F.2. Deleting a patient</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Deleting a person while all persons are listed</p>
+<p>Deleting a patient while all patients are listed</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Prerequisites: List all persons using the <code>list</code> command. Multiple persons in the list.</p>
+<p>Prerequisites: List all patients using the <code>pat-list</code> command. Multiple patients in the list.</p>
 </li>
 <li>
-<p>Test case: <code>delete 1</code><br>
+<p>Test case: <code>pat-delete 1</code><br>
 Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.</p>
 </li>
 <li>
-<p>Test case: <code>delete 0</code><br>
-Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.</p>
+<p>Test case: <code>pat-delete 0</code><br>
+Expected: No patient is deleted. Error details shown in the status message. Status bar remains the same.</p>
 </li>
 <li>
-<p>Other incorrect delete commands to try: <code>delete</code>, <code>delete x</code> (where x is larger than the list size)<br>
+<p>Other incorrect delete commands to try: <code>pat-delete</code>, <code>pat-delete x</code> (where x is larger than the list size)<br>
 Expected: Similar to previous.</p>
 </li>
 </ol>
@@ -2739,7 +2747,208 @@ Expected: No visit is finished. An error message will appear in the status messa
 </div>
 </div>
 <div class="sect2">
-<h3 id="changing-of-autocomplete-suggestion-list"><a class="link" href="#changing-of-autocomplete-suggestion-list">F.8. Changing of autocomplete suggestion list:</a></h3>
+<h3 id="adding-an-appointment"><a class="link" href="#adding-an-appointment">F.8. Adding an appointment</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Adding an appointment while all appointments are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>List all appointments using the <code>appt-list</code> command. Multiple appointments in the list.</p>
+</li>
+<li>
+<p>Ensure all the suggested date times below don&#8217;t already exist in the appointment book. If they do, try with start and end date times that don&#8217;t exist in the appointment list to get the expected results.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test case: <code>appt-add p/1 sdt/01-01-2020 1000 edt/01-01-2020 1200</code><br>
+Expected: Appointment is added to the list (based on its start date and time as the list is sorted by that) with first patient&#8217;s details from the list of patients and the input start and end date times. Details of the added appointment shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>appt-add p/1 sdt/14-02-2020 2000 edt/14-02-2020 2100 rmon/4</code><br>
+Expected: Appointment is added to the list with first patient&#8217;s details from the list of patients, the input start and end date times, and recurring frequency of 4 months. The added appointment will be marked <code>recurring</code> as well. Details of the added appointment shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case (two commands): <code>appt-add p/1 sdt/12-02-2020 2000 edt/12-02-2020 2100 ryr/1</code><br>
+                          Followed by:<br>
+                          <code>appt-add p/1 sdt/12-02-2020 2000 edt/12-02-2020 2100 rmon/1</code><br>
+Expected: No appointment is added. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Test case (two commands): <code>appt-add p/1 sdt/10-02-2020 2000 edt/12-02-2020 2100</code><br>
+                          Followed by:<br>
+                          <code>appt-add p/1 sdt/10-02-2020 2000 edt/12-02-2020 2100</code><br>
+Expected: No appointment is added. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect appointment add commands to try: <code>appt-add</code>, <code>appt-delete p/x</code> (where x is larger than the patient list size)<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="editing-an-appointment"><a class="link" href="#editing-an-appointment">F.9. Editing an appointment</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Editing an appointment while all appointments are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>List all appointments using the <code>appt-list</code> command. Multiple appointments in the list.</p>
+</li>
+<li>
+<p>Ensure all the suggested date times below don&#8217;t already exist in the appointment book. If they do, try with start and end date times that don&#8217;t exist in the appointment list to get the expected results.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test case: <code>appt-edit 1 p/5 sdt/01-01-2020 1000 edt/01-01-2020 1200</code><br>
+Expected: First appointment is edited in the list to fifth patient&#8217;s details from the list of patients and the input start and end date times as mentioned. Details of the edited appointment shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>appt-edit 1 rmon/3</code><br>
+Expected: First appointment is edited in the list to recur by 3 months. If the appointment was previously not recurring, it will be tagged as <code>recurring</code>. Details of the edited appointment shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>appt-edit 3 p/0</code><br>
+Expected: No appointment is edited. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect appointment edit commands to try: <code>appt-edit</code>, <code>appt-edit x</code> (where x is larger than the appointment list size)<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-non-recurring-appointment"><a class="link" href="#deleting-a-non-recurring-appointment">F.10. Deleting a non-recurring appointment</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deleting a non-recurring appointment while all appointments are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>List all appointments using the <code>appt-list</code> command. Multiple appointments in the list.</p>
+</li>
+<li>
+<p>xth appointment in the appointment list should be a non-recurring appointment, where x is a positive integer.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test case: <code>appt-delete x</code><br>
+Expected: xth appointment is deleted from the list. Details of the deleted appointment shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>appt-delete 0</code><br>
+Expected: No appointment is deleted. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect non-recurring appointment delete commands to try: <code>appt-delete</code>, <code>appt-delete x</code> (where x is larger than the appointment list size)<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-a-recurring-appointment"><a class="link" href="#deleting-a-recurring-appointment">F.11. Deleting a recurring appointment</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deleting a recurring appointment while all appointments are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>List all appointments using the <code>appt-list</code> command. Multiple appointments in the list.</p>
+</li>
+<li>
+<p>xth appointment in the appointment list should be a recurring appointment.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Test case: <code>appt-delete x</code><br>
+Expected: xth appointment is deleted from the list and the next appointment from xth appointment being recurred is gotten and added to the list. Details of the deleted appointment shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>appt-delete 0</code><br>
+Expected: No appointment is deleted. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect recurring appointment delete commands to try: <code>appt-delete</code>, <code>appt-delete x</code> (where x is larger than the appointment list size)<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="deleting-an-appointment-permanently"><a class="link" href="#deleting-an-appointment-permanently">F.12. Deleting an appointment permanently</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Deleting an appointment permanently while all appointments are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all appointments using the <code>appt-list</code> command. Multiple appointments in the list.</p>
+</li>
+<li>
+<p>Test case: <code>appt-delete-permanent 1</code><br>
+Expected: First appointment is deleted from the list. Details of the deleted appointment shown in the status message. Timestamp in the status bar is updated.</p>
+</li>
+<li>
+<p>Test case: <code>appt-delete-permanent 0</code><br>
+Expected: No appointment is deleted. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect appointment permanent delete commands to try: <code>appt-delete-permanent</code>, <code>appt-delete-permanent x</code> (where x is larger than the appointment list size)<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="changing-of-autocomplete-suggestion-list"><a class="link" href="#changing-of-autocomplete-suggestion-list">F.13. Changing of autocomplete suggestion list:</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2796,7 +3005,7 @@ Expected: The suggestion list is changed from index list to prefix list</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="updating-of-current-autocomplete-suggestion-list"><a class="link" href="#updating-of-current-autocomplete-suggestion-list">F.9. Updating of current autocomplete suggestion list:</a></h3>
+<h3 id="updating-of-current-autocomplete-suggestion-list"><a class="link" href="#updating-of-current-autocomplete-suggestion-list">F.14. Updating of current autocomplete suggestion list:</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2814,4 +3023,4 @@ Expected: The suggestion list should only contain "appt-" and "app-" now</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:05:30 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:23:00 UTC</div></div></div></body></html>
