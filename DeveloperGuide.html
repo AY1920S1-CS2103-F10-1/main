@@ -28,8 +28,12 @@
 <li><a href="#use-case-3">3.4. Use Case</a></li>
 <li><a href="#import-and-export">3.5. Import and Export</a></li>
 <li><a href="#auto-complete">3.6. Auto-complete</a></li>
-<li><a href="#logging">3.7. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.8. Configuration</a></li>
+<li><a href="#overview-of-implementation">3.7. Overview Of Implementation</a></li>
+<li><a href="#design-considerations">3.8. Design Considerations</a></li>
+<li><a href="#logic-design-considerations-3">3.9. Logic Design Considerations</a></li>
+<li><a href="#ui-design-considerations-3">3.10. UI Design Considerations</a></li>
+<li><a href="#logging">3.11. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.12. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -39,7 +43,7 @@
 <li><a href="#user-stories">Appendix B: User Stories</a></li>
 <li><a href="#use-cases">Appendix C: Use Cases</a></li>
 <li><a href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></li>
-<li><a href="#glossary-do-along-the-way">Appendix E: Glossary (do along the way)</a></li>
+<li><a href="#glossary">Appendix E: Glossary</a></li>
 <li><a href="#instructions-for-manual-testing">Appendix F: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
@@ -49,6 +53,8 @@
 <li><a href="#updating-an-ongoing-visit">F.5. Updating an ongoing visit:</a></li>
 <li><a href="#cancelling-a-visit-for-a-patient">F.6. Cancelling a Visit for a patient:</a></li>
 <li><a href="#finishing-a-visit-for-a-patient">F.7. Finishing a Visit for a patient:</a></li>
+<li><a href="#changing-of-autocomplete-suggestion-list">F.8. Changing of autocomplete suggestion list:</a></li>
+<li><a href="#updating-of-current-autocomplete-suggestion-list">F.9. Updating of current autocomplete suggestion list:</a></li>
 </ul>
 </li>
 </ul>
@@ -184,6 +190,12 @@ The following class plays an important role at the architecture level:</p>
 <p>Listens for changes to <code>Model</code> data so that the UI can be updated with the modified data.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Manager classes like <code>AutoCompletePanelManager</code> and <code>DataPanelsTabPaneManager</code> handles changes of its respective components.</p>
+</div>
+<div class="paragraph">
+<p><code>UiPartObserver</code> interface prevents direct communication between 2 UiPart. It is implemented by the result display and autocomplete panel to listen for userinput from the command box and make changes acccordingly.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1774,17 +1786,32 @@ with <code>app-undo</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="auto-complete"><a class="link" href="#auto-complete">3.6. Auto-complete</a></h3>
-<div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.6.1. Proposed Implementation</a></h4>
+
+</div>
+<div class="sect2">
+<h3 id="overview-of-implementation"><a class="link" href="#overview-of-implementation">3.7. Overview Of Implementation</a></h3>
 <div class="paragraph">
-<p>The auto-complete mechanism extends NurseTraverse with 2 functionalities, word completion and word suggestions. To support word suggestions of only compatible words, several lists are created and the list in operation will be switched during runtime by <code>AutoCompletePanel#resetList()</code></p>
+<p>The auto-complete mechanism extends NurseTraverse with 3 functionalities<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Completing word in command box</p>
+</li>
+<li>
+<p>Suggesting of words that are compatible with previous sub-commands</p>
+</li>
+<li>
+<p>Guide for user to select from the various sub-commands<br></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>Given below is an example usage scenario and how the word suggestion and word completion function behaves at each step.</p>
+<p><strong>Given below is an example usage scenario of autocompletion</strong><br></p>
 </div>
 <div class="paragraph">
 <p>Step 1:
-When the user launches the application, an instance of the object, command and prefix autocomplete word list will be initialised in <code>AutoCompleteStorage</code>(created in <code>AutoCompletePanel</code>), which implements the following operations:</p>
+When the user launches the application, an instance of the object, command and prefix autocomplete word list will be initialised in <code>AutoCompleteStorage</code>, which implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1798,31 +1825,115 @@ When the user launches the application, an instance of the object, command and p
 <p><code>AutoCompleteWordStorage#getOListAllObjectWord()</code> — returns the observable list of object words stored</p>
 </li>
 <li>
-<p><code>AutoCompleteWordStorage#generateOListAllIndexWord(String objectName)</code> — generate an observable list of index words corresponding to object when called</p>
+<p><code>AutoCompleteWordStorage#generateOListAllIndexWord(String objectName)</code> — generate an observable list of index words corresponding to previous object word when called</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The auto-complete panel will be set to object list by default.</p>
+<p>The auto-complete panel will be set to object list when user first start the application.</p>
 </div>
 <div class="paragraph">
-<p>Step 2: Whenever user types a key in the command line, <code>CommandBox</code> will call <code>AutoCompletePanel#updateListView(String currentPhraseInCommandBox)</code>.</p>
+<p>Step 2: Whenever user types a key in the command line, <code>CommandBox</code> will notify <code>AutoCompletePanelManager</code> to perform changes based on userinput</p>
 </div>
 <div class="paragraph">
-<p>This will update the number of matched words with the current list and runs 3 sets of algorithms, through word list handler classes.</p>
+<p>This will update the number of matched words with the current list and 3 sets of algorithms will be run<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AutoCompleteListHandler#chooseList()</code><br>
+&#8594; Based on the number of matched words(pre-processed in the <code>AutoCompletePanelManager</code>)<br>
+&#8594; List will be chosen from <code>AutoCompleteStorage</code></p>
+</li>
+<li>
+<p><code>AutoCompleteListHandler#filterList()</code><br>
+&#8594; The chosen list will then be filter to only words that are compatible with previous correctly typed full words.<br>
+&#8594; This is done by iterating through all the matched word and checking if <code>AutoCompleteWord</code> has a list of associated words<br>
+&#8594; If the <code>AutoCompleteWord</code> has a list of associated words, this method will attempt to match the associated words with the matched words while filter out all incompatible words in the chosen list in the process <br>
+(Eg: prefix list will be filtered to only be compatible with “pat-add” user command, the words that come before prefix.)</p>
+</li>
+<li>
+<p><code>AutoCompleteListHandler#updateList()</code><br>
+&#8594; Update the filtered list to fit the last partially typed word<br>
+&#8594; The last partially typed word in <code>CommandBox</code> will be checked against the filtered list<br>
+&#8594; If the word in the filter list does not start with the last partially typed word, it will be filtered out<br>
+(Eg: User typed “pat-ad”. “add” and “add-medcon” which are both in the current list will be suggested since they both starts with "ad".)</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>First, <code>AutoCompletePanel#resetList()</code> will switch the current list based on what is typed.</p>
+<p>The following sequence and activity diagrams illustrates the general flow when user input is detected<br></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AutocompleteSequenceDiagram1.png" alt="Up key pressed">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AutocompleteSequenceDiagram2.png" alt="Shift key pressed">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/AutocompleteSequenceDiagram3.png" alt="Any other key pressed">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/GeneratingListActivityDiagram.png" alt="ref generating list">
+</div>
 </div>
 <div class="paragraph">
-<p>Second, <code>AutoCompleteListFilter#filterList()</code> will filter the chosen list to only words that are compatible with previous correctly typed full words. Eg: prefix list will be filtered to only be compatible with “pat-add” user command, the words that come before prefix.</p>
+<p>Shown below is the sequence diagram for the guided system when selecting suggestion word<br></p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/GuideSystemSequenceDiagram.png" alt="GuideSystemSequenceDiagram">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="design-considerations"><a class="link" href="#design-considerations">3.8. Design Considerations</a></h3>
+<div class="sect4">
+<h5 id="aspect-communication-between-code-uipart-code-s-br"><a class="link" href="#aspect-communication-between-code-uipart-code-s-br">Aspect: Communication between <code>UiPart</code> s<br></a></h5>
 <div class="paragraph">
-<p>Lastly, <code>AutoCompleteListUpdater#updateSuggestedWordsInList()</code> will update the chosen list which was filtered to fit the key that is partially typed. Eg: User typed “ad”. “add” and “add-medcon” which are both in the current list will be suggested.</p>
+<p>(<code>CommandBox</code>, <code>AutoCompletePanel</code> and <code>ResultDisplay</code>)<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1:</strong> Pass references of each UiParts components around</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Simpler to call methods as required, code will be easier to understand and implementation will take less effort</p>
+</li>
+<li>
+<p>Cons: Code will be harder to track since any component with reference to the UiPart can manipulate its property</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2(current choice):</strong> Implement facades and observer patterns</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Code is easier to maintain</p>
+</li>
+<li>
+<p>Cons: Less readability</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.6.2. Design Considerations</a></h4>
+</div>
+<div class="sect2">
+<h3 id="logic-design-considerations-3"><a class="link" href="#logic-design-considerations-3">3.9. Logic Design Considerations</a></h3>
 <div class="sect4">
 <h5 id="aspect-method-to-suggest-auto-complete-words"><a class="link" href="#aspect-method-to-suggest-auto-complete-words">Aspect: Method to suggest auto-complete words</a></h5>
 <div class="ulist">
@@ -1870,24 +1981,51 @@ When the user launches the application, an instance of the object, command and p
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="logic-design-considerations-3"><a class="link" href="#logic-design-considerations-3">3.6.3. Logic Design Considerations</a></h4>
-
+<div class="sect2">
+<h3 id="ui-design-considerations-3"><a class="link" href="#ui-design-considerations-3">3.10. UI Design Considerations</a></h3>
+<div class="sect4">
+<h5 id="aspect-location-of-autocomplete-panel"><a class="link" href="#aspect-location-of-autocomplete-panel">Aspect: Location of autocomplete panel</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1:</strong> Place it as a floating window</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: User is able to resize and can be moved around easily</p>
+</li>
+<li>
+<p>Cons: A floating window may block out some of the UI of the application, and user will have to re-place the autocomplete panel every time the application starts</p>
+</li>
+</ul>
 </div>
-<div class="sect3">
-<h4 id="ui-design-considerations-3"><a class="link" href="#ui-design-considerations-3">3.6.4. UI Design Considerations</a></h4>
-
+</li>
+<li>
+<p><strong>Alternative 2(current choice):</strong> Fix it permanently at a pre-set location</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Simpler and user will get use to the its location easier since it is pre-set</p>
+</li>
+<li>
+<p>Cons: Less customisable for user</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.11. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.8, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.12, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1918,7 +2056,7 @@ When the user launches the application, an instance of the object, command and p
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.8. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.12. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -2365,7 +2503,7 @@ When the user launches the application, an instance of the object, command and p
 </div>
 </div>
 <div class="sect1">
-<h2 id="glossary-do-along-the-way"><a class="link" href="#glossary-do-along-the-way">Appendix E: Glossary (do along the way)</a></h2>
+<h2 id="glossary"><a class="link" href="#glossary">Appendix E: Glossary</a></h2>
 <div class="sectionbody">
 <div class="dlist">
 <dl>
@@ -2600,5 +2738,80 @@ Expected: No visit is finished. An error message will appear in the status messa
 </ol>
 </div>
 </div>
+<div class="sect2">
+<h3 id="changing-of-autocomplete-suggestion-list"><a class="link" href="#changing-of-autocomplete-suggestion-list">F.8. Changing of autocomplete suggestion list:</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Changing list from object list to command list.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: Type "pat-" into empty command box<br>
+Expected: The suggestion list is changed from object list to command list</p>
+</li>
+</ol>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 14:50:29 UTC</div></div></div></body></html>
+</li>
+<li>
+<p>Changing list from command list to prefix list.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: Type "pat-add" into empty command box<br>
+Expected: The suggestion list is changed from command list to prefix list</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Changing list from command list to index list.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisite: At least 1 patient registered in application</p>
+</li>
+<li>
+<p>Test case: Type "pat-edit" into empty command box<br>
+Expected: The suggestion list is changed from command list to index list</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Changing list from index list to prefix list.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisite: At least 1 patient registered in application</p>
+</li>
+<li>
+<p>Test case: Type "pat-edit 1" into empty command box<br>
+Expected: The suggestion list is changed from index list to prefix list</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="updating-of-current-autocomplete-suggestion-list"><a class="link" href="#updating-of-current-autocomplete-suggestion-list">F.9. Updating of current autocomplete suggestion list:</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Updating the object list.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: Type "ap" into empty command box<br>
+Expected: The suggestion list should only contain "appt-" and "app-" now</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:05:30 UTC</div></div></div></body></html>
