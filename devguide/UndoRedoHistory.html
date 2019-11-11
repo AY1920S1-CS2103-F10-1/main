@@ -134,6 +134,69 @@ making them permanent and updating the UI data. The committing <code>MutatorComm
 <div class="sect3">
 <h4 id="model-design-considerations"><a class="link" href="#model-design-considerations">Model Design Considerations</a></h4>
 <div class="sect4">
+<h5 id="aspect-how-to-undo-and-redo-between-states"><a class="link" href="#aspect-how-to-undo-and-redo-between-states">Aspect: How to undo and redo between states</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Save the entire <code>PatientBook</code> and <code>AppointmentBook</code> objects to
+record each model state.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easier to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Consumes more memory.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2: Only save the <code>MutatorCommand</code> objects but implement an <code>undo()</code>
+method for each <code>MutatorCommand</code> which does exactly the reverse of its <code>execute()</code> method.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Consumes much less memory.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Difficult to implement - doubles the amount of work needed for each command.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
 <h5 id="aspect-how-to-record-the-patientbook-and-appointmentbook-states-in-the-history"><a class="link" href="#aspect-how-to-record-the-patientbook-and-appointmentbook-states-in-the-history">Aspect: How to record the PatientBook and AppointmentBook states in the history</a></h5>
 <div class="ulist">
 <ul>
@@ -156,9 +219,9 @@ making them permanent and updating the UI data. The committing <code>MutatorComm
 <div class="ulist">
 <ul>
 <li>
-<p>Relies on the assumption that the objects in <code>PatientBook</code> and <code>AddressBook</code>
+<p>Relies on the assumption that the objects in <code>PatientBook</code> and <code>AppointmentBook</code>
 are immutable; if they are not truly immutable, changes to the current model&#8217;s
-<code>PatientBook</code> and <code>AddressBook</code> state may leak and affect the states stored in
+<code>PatientBook</code> and <code>AppointmentBook</code> state may leak and affect the states stored in
 the history.</p>
 </li>
 </ul>
@@ -402,4 +465,4 @@ such as <code>Patient</code>, <code>Visit</code>, and <code>Appointment</code> i
 <img src="UndoSequenceDiagram.png" alt="UndoSequenceDiagram">
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 06:21:07 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 06:29:58 UTC</div></div></div></body></html>
