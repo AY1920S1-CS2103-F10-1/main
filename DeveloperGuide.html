@@ -60,6 +60,8 @@
 <li><a href="#deleting-an-appointment-permanently">F.12. Deleting an appointment permanently</a></li>
 <li><a href="#changing-of-autocomplete-suggestion-list">F.13. Changing of autocomplete suggestion list:</a></li>
 <li><a href="#updating-of-current-autocomplete-suggestion-list">F.14. Updating of current autocomplete suggestion list:</a></li>
+<li><a href="#exporting-data">F.15. Exporting data</a></li>
+<li><a href="#importing-data">F.16. Importing data</a></li>
 </ul>
 </li>
 </ul>
@@ -1545,22 +1547,68 @@ a reader or a writer object.</p>
 <ol class="arabic">
 <li>
 <p><code>CsvUtil#writePatientsToCsv(List&lt;Patient&gt;, String)</code>&#8201;&#8212;&#8201;Write
-a list of <code>Patient</code> objects into a .csv file with specified <code>exportFileName</code>.
-If successful, return the path of the written file.</p>
+a list of <code>Patient</code> objects into a .csv file to the path at the specified <code>pathString</code>.</p>
 </li>
 <li>
-<p><code>CstUtil#readPatientsFromCsv(String)</code>&#8201;&#8212;&#8201;Read a .csv file with specified
-<code>importFileName</code> and return a corresponding list of <code>Patient</code> objects.</p>
+<p><code>CstUtil#readPatientsFromCsv(String)</code>&#8201;&#8212;&#8201;Read a .csv file at the specified path indicated by
+<code>pathString</code> and return a corresponding list of <code>Patient</code> objects.</p>
 </li>
 <li>
-<p><code>importsAreUnique(List&lt;Patient&gt;)</code>&#8201;&#8212;&#8201;Check if the patients in a given list are unique, i.e. the list
-contains no duplicate patients.</p>
+<p><code>importsContainDupes(List&lt;Patient&gt;)</code>&#8201;&#8212;&#8201;Check if the given list contains duplicate patients, i.e. the list
+is not unique.</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect3">
-<h4 id="command-implementation"><a class="link" href="#command-implementation">3.5.3. Command Implementation</a></h4>
+<h4 id="csv-processing-design-considerations"><a class="link" href="#csv-processing-design-considerations">3.5.3. Csv Processing Design Considerations</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Use <code>Jackson</code> 's <code>dataformat.csv</code> library.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Well integrated with the existing <code>Jackson</code> JSON parsing libraries. Tons of functions for CSV parsing.</p>
+</li>
+<li>
+<p>Cons: Does not support Excel formats. Comprehensive library, recently updated but not well-documented. Hard to understand.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2: Use other libraries, like Apache Commons CSV.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More features like Excel format parsing. Well documented.</p>
+</li>
+<li>
+<p>Cons: Does not integrate well with the existing <code>Jackson</code> libraries used.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 3: Build your own parser!</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Lightweight, implement only what is needed. Can be white box tested.</p>
+</li>
+<li>
+<p>Cons: Lots of developer work to reinvent the wheel.
+Likely to be buggy as there are tons of edge cases to consider, due to many special characters.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="command-implementation"><a class="link" href="#command-implementation">3.5.4. Command Implementation</a></h4>
 <div class="sect4">
 <h5 id="command-code-app-export-code"><a class="link" href="#command-code-app-export-code">Command: <code>app-export</code></a></h5>
 <div class="paragraph">
@@ -1589,7 +1637,7 @@ objects will be retrieved with <code>Model#getStagedPatientList()</code>.</p>
 </div>
 <div class="paragraph">
 <p>The <code>app-export</code> command MUST be provided with a desired file name for the .csv file. The .csv
-file will be written to <code>/exports/filename.csv</code>. Existing files will NOT be overridden and
+file will be written to <code>/exports/[FILENAME].csv</code>. Existing files will NOT be overridden and
 thus the provided file name cannot already exist in <code>/exports</code>.</p>
 </div>
 <div class="paragraph">
@@ -1694,7 +1742,7 @@ on which variant of import is called.</p>
 </div>
 <div class="paragraph">
 <p>For both variants of the command, the imported list of patients CANNOT have any duplicates.
-This is ensured with <code>CsvUtil#importsAreUnique(List&lt;Patient&gt;)</code>.</p>
+This is ensured with <code>CsvUtil#importsContainDupes(List&lt;Patient&gt;)</code>.</p>
 </div>
 <div class="sect5">
 <h6 id="command-code-app-import-replace-code"><a class="link" href="#command-code-app-import-replace-code">Command: <code>app-import-replace</code></a></h6>
@@ -1749,7 +1797,7 @@ it will not be executed. This is checked by the function stated above,
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Existing <code>Patient</code>  will not be accidentally overridden.
+<p>Pros: Existing <code>Patient</code> data will not be accidentally overridden.
 No need to deal with potential merge conflicts.</p>
 </li>
 <li>
@@ -3022,5 +3070,61 @@ Expected: The suggestion list should only contain "appt-" and "app-" now</p>
 </ol>
 </div>
 </div>
+<div class="sect2">
+<h3 id="exporting-data"><a class="link" href="#exporting-data">F.15. Exporting data</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Export patient data into a CSV file</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisite: There are existing patients.</p>
+</li>
+<li>
+<p>Test case: <code>app-export n/testcase1</code><br>
+Expected: All patient data written to <code>./exports/testcase1.csv</code>.</p>
+</li>
+<li>
+<p>Prerequisite: There are existing patients at indexes 1 and 3.</p>
+</li>
+<li>
+<p>Test case: <code>app-export n/testcase2 i/1 i/3</code><br>
+Expected: Data of patients at index 1 and 3 written to <code>./exports/testcase2.csv</code>.</p>
+</li>
+</ol>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:23:00 UTC</div></div></div></body></html>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="importing-data"><a class="link" href="#importing-data">F.16. Importing data</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Import patient data from a CSV file</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisite: <code>./imports/testcase3.csv</code> exists and contains some patient data in the correct format.</p>
+</li>
+<li>
+<p>Test case: <code>app-import-replace n/testcase3</code><br>
+Expected: All patient data is <strong>replaced</strong> with patients from <code>testcase3.csv</code>.</p>
+</li>
+<li>
+<p>Prerequisite: <code>./imports/testcase4.csv</code> exists and contains <strong>only new</strong> patient data in the correct format.</p>
+</li>
+<li>
+<p>Test case: <code>app-import-merge n/testcase3</code><br>
+Expected: All patients in <code>testcase4.csv</code> added into the app.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:31:42 UTC</div></div></div></body></html>

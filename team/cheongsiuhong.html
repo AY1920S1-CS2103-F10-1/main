@@ -10,7 +10,9 @@
 <h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>NurseTraverse is a desktop application meant for community nurse to help manage all the data that a community nurse might need. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.</p>
+<p>NurseTraverse is a desktop application designed to help community nurses manage all the data they may need, including visit management, appointment scheduling, and importing and exporting of patient data.
+The user interacts with the app using a CLI (Command Line Interface) enhanced with an autocomplete functionality and ability to undo and redo commands. The app has a GUI created with JavaFX and is written in Java.
+NurseTraverse is built by me and 4 other students.</p>
 </div>
 </div>
 </div>
@@ -164,8 +166,32 @@ and another severe bug reported offline fixed in <a href="https://github.com/AY1
 </div>
 </div>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>CSV Compatibility</strong></p>
+</div>
+<div class="paragraph">
+<p>You may encounter issues when trying to import a CSV file written by another machine with a different operating system.
+As of v1.4, CSV files written by Windows and Unix machines <strong>are not cross-compatible</strong>.
+This means that the app, running on Windows, can only import CSV files written by a Windows machine.
+The same goes for Unix systems.</p>
+</div>
+<div class="paragraph">
+<p>This issue can be circumvented by using text file format converters to convert a Windows written CSV to a Unix one, and vice versa.
+The recommended converters are <code>Dos2Unix</code> and <code>Unix2Dos</code>, both available <a href="http://dos2unix.sourceforge.net/">here</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
-<h3 id="importing-patient-data-from-a-csv-file-code-app-import-replace-code-code-app-import-merge-code"><a class="link" href="#importing-patient-data-from-a-csv-file-code-app-import-replace-code-code-app-import-merge-code">Importing patient data from a CSV file: <code>app-import-replace</code>, <code>app-import-merge</code></a></h3>
+<h3 id="importing-patients-from-a-csv-file-code-app-import-replace-code-code-app-import-merge-code"><a class="link" href="#importing-patients-from-a-csv-file-code-app-import-replace-code-code-app-import-merge-code">Importing Patients from a CSV file: <code>app-import-replace</code>, <code>app-import-merge</code></a></h3>
 <div class="paragraph">
 <p>You can import patient data from a .csv file into the application using
 <code>app-import-replace</code> or <code>app-import-merge</code>.</p>
@@ -187,6 +213,70 @@ and another severe bug reported offline fixed in <a href="https://github.com/AY1
 </div>
 </div>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>CSV files used for importing must adhere to the following format requirements.</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Provided file name should not be blank, and can contain only alphanumerics, hyphens and underscores.</p>
+</li>
+<li>
+<p>The top row of the file must be exactly the following headers in the order:</p>
+<div class="literalblock">
+<div class="content">
+<pre>name, phone, email, address, tagged, visitTodos</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Each row in the .csv corresponds to one patient.</p>
+</li>
+<li>
+<p>There may not be duplicate patients in the .csv file.</p>
+</li>
+<li>
+<p>The data in each cell must adhere to the format of the field it belongs in.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Cells under <code>phone</code> must contain 3 to 8 digit numbers, cells under <code>name</code> must contain only alphanumerics and spaces, etc.</p>
+</li>
+<li>
+<p>For the fields <code>tagged</code> and <code>visitTodos</code> with multiple elements per cell,
+each element is to be separated with a newline.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The data row for any patient cannot have empty cells in the following fields:</p>
+<div class="literalblock">
+<div class="content">
+<pre>`name`, `phone`, `address`, `email`</pre>
+</div>
+</div>
+</li>
+<li>
+<p>The .csv file should adhere to the <a href="https://tools.ietf.org/html/rfc4180">RFC 2048</a> standard.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples of valid CSV files can be seen
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/tree/master/docs/samplecsvs">here</a></p>
+</div>
 <div class="sect3">
 <h4 id="import-and-replace-code-app-import-replace-code"><a class="link" href="#import-and-replace-code-app-import-replace-code">Import and Replace: <code>app-import-replace</code></a></h4>
 <div class="paragraph">
@@ -204,10 +294,10 @@ and another severe bug reported offline fixed in <a href="https://github.com/AY1
 </td>
 <td class="content">
 <div class="paragraph">
-<p>All existing patient data will be deleted and replaced with this new data.</p>
+<p><strong>All existing patient data will be deleted and replaced with this new data.</strong></p>
 </div>
 <div class="paragraph">
-<p>All existing appointment data will be deleted.</p>
+<p><strong>All existing appointment data will be deleted.</strong></p>
 </div>
 </td>
 </tr>
@@ -252,7 +342,7 @@ and another severe bug reported offline fixed in <a href="https://github.com/AY1
 <h4 id="import-and-merge-code-app-import-merge-code"><a class="link" href="#import-and-merge-code-app-import-merge-code">Import and Merge: <code>app-import-merge</code></a></h4>
 <div class="paragraph">
 <p>Patient data will be read from a specified .csv file and merged without
-affecting existing data. Provided file should not be empty.</p>
+affecting existing data.</p>
 </div>
 <div class="paragraph">
 <p><code>".csv"</code> will be auto-appended to the specified <code>FILENAME</code>,
@@ -262,6 +352,9 @@ affecting existing data. Provided file should not be empty.</p>
 <div class="content">
 <div class="ulist">
 <ul>
+<li>
+<p>Provided file should not be empty.</p>
+</li>
 <li>
 <p>The .csv file cannot contain a patient that already exists in the app.</p>
 </li>
@@ -292,75 +385,18 @@ affecting existing data. Provided file should not be empty.</p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>CSV files used for importing must adhere to the following format requirements.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Provided file name should not be blank, and can contain only alphanumerics, hyphens and underscores.</p>
-</li>
-<li>
-<p>The top row of the file must be exactly the following headers in the order:</p>
-<div class="literalblock">
-<div class="content">
-<pre>name, phone, email, address, tagged, visitTodos</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Each row in the .csv corresponds to one patient.</p>
-</li>
-<li>
-<p>The data in each cell must adhere to the format of the field it belongs in.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Cells under <code>phone</code> must contain 3 to 8 digit numbers, cells under <code>name</code> must contain only alphanumerics and spaces, etc.</p>
-</li>
-<li>
-<p>For the fields <code>tagged</code> and <code>visitTodos</code> with multiple elements per cell,
-each element is to be separated with a newline.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>The data row for any patient cannot have empty cells in the following fields:</p>
-<div class="literalblock">
-<div class="content">
-<pre>`name`, `phone`, `address`, `email`</pre>
-</div>
-</div>
-</li>
-<li>
-<p>The .csv file should adhere to the <a href="https://tools.ietf.org/html/rfc4180">RFC 2048</a> standard.</p>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>An example of a valid .csv can be seen
-<a href="https://raw.githubusercontent.com/AY1920S1-CS2103-F10-1/main/master/docs/samplecsvs/importsample.csv">here</a></p>
-</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-data-into-a-csv-file-code-app-export-code"><a class="link" href="#exporting-data-into-a-csv-file-code-app-export-code">Exporting data into a CSV file: <code>app-export</code></a></h3>
+<h3 id="exporting-patients-into-a-csv-file-code-app-export-code"><a class="link" href="#exporting-patients-into-a-csv-file-code-app-export-code">Exporting patients into a CSV file: <code>app-export</code></a></h3>
 <div class="paragraph">
-<p>You can export patient data from the application into a .csv file using <code>app-export</code>.
-A new .csv file will be created and data will be written into it.
-Indexes can be provided to selectively export data of specific persons.</p>
+<p>You can export patient data from the application into a .csv file using <code>app-export</code>.</p>
+</div>
+<div class="paragraph">
+<p>A new .csv file will be created and data will be written into it.</p>
+</div>
+<div class="paragraph">
+<p>Indexes can be provided to selectively export data of specific persons.</p>
 </div>
 <div class="paragraph">
 <p><code>".csv"</code> will be auto-appended to the specified <code>FILENAME</code>,
@@ -553,18 +589,64 @@ a reader or a writer object.</p>
 <ol class="arabic">
 <li>
 <p><code>CsvUtil#writePatientsToCsv(List&lt;Patient&gt;, String)</code>&#8201;&#8212;&#8201;Write
-a list of <code>Patient</code> objects into a .csv file with specified <code>exportFileName</code>.
-If successful, return the path of the written file.</p>
+a list of <code>Patient</code> objects into a .csv file to the path at the specified <code>pathString</code>.</p>
 </li>
 <li>
-<p><code>CstUtil#readPatientsFromCsv(String)</code>&#8201;&#8212;&#8201;Read a .csv file with specified
-<code>importFileName</code> and return a corresponding list of <code>Patient</code> objects.</p>
+<p><code>CstUtil#readPatientsFromCsv(String)</code>&#8201;&#8212;&#8201;Read a .csv file at the specified path indicated by
+<code>pathString</code> and return a corresponding list of <code>Patient</code> objects.</p>
 </li>
 <li>
-<p><code>importsAreUnique(List&lt;Patient&gt;)</code>&#8201;&#8212;&#8201;Check if the patients in a given list are unique, i.e. the list
-contains no duplicate patients.</p>
+<p><code>importsContainDupes(List&lt;Patient&gt;)</code>&#8201;&#8212;&#8201;Check if the given list contains duplicate patients, i.e. the list
+is not unique.</p>
 </li>
 </ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="csv-processing-design-considerations"><a class="link" href="#csv-processing-design-considerations">Csv Processing Design Considerations</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Use <code>Jackson</code> 's <code>dataformat.csv</code> library.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Well integrated with the existing <code>Jackson</code> JSON parsing libraries. Tons of functions for CSV parsing.</p>
+</li>
+<li>
+<p>Cons: Does not support Excel formats. Comprehensive library, recently updated but not well-documented. Hard to understand.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2: Use other libraries, like Apache Commons CSV.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: More features like Excel format parsing. Well documented.</p>
+</li>
+<li>
+<p>Cons: Does not integrate well with the existing <code>Jackson</code> libraries used.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 3: Build your own parser!</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Lightweight, implement only what is needed. Can be white box tested.</p>
+</li>
+<li>
+<p>Cons: Lots of developer work to reinvent the wheel.
+Likely to be buggy as there are tons of edge cases to consider, due to many special characters.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
@@ -597,7 +679,7 @@ objects will be retrieved with <code>Model#getStagedPatientList()</code>.</p>
 </div>
 <div class="paragraph">
 <p>The <code>app-export</code> command MUST be provided with a desired file name for the .csv file. The .csv
-file will be written to <code>/exports/filename.csv</code>. Existing files will NOT be overridden and
+file will be written to <code>/exports/[FILENAME].csv</code>. Existing files will NOT be overridden and
 thus the provided file name cannot already exist in <code>/exports</code>.</p>
 </div>
 <div class="paragraph">
@@ -702,7 +784,7 @@ on which variant of import is called.</p>
 </div>
 <div class="paragraph">
 <p>For both variants of the command, the imported list of patients CANNOT have any duplicates.
-This is ensured with <code>CsvUtil#importsAreUnique(List&lt;Patient&gt;)</code>.</p>
+This is ensured with <code>CsvUtil#importsContainDupes(List&lt;Patient&gt;)</code>.</p>
 </div>
 <div class="sect5">
 <h6 id="command-code-app-import-replace-code"><a class="link" href="#command-code-app-import-replace-code">Command: <code>app-import-replace</code></a></h6>
@@ -757,7 +839,7 @@ it will not be executed. This is checked by the function stated above,
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Existing <code>Patient</code>  will not be accidentally overridden.
+<p>Pros: Existing <code>Patient</code> data will not be accidentally overridden.
 No need to deal with potential merge conflicts.</p>
 </li>
 <li>
@@ -800,4 +882,4 @@ with <code>app-undo</code>.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:23:00 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:31:42 UTC</div></div></div></body></html>

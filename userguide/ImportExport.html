@@ -13,8 +13,32 @@
 </div>
 </div>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>CSV Compatibility</strong></p>
+</div>
+<div class="paragraph">
+<p>You may encounter issues when trying to import a CSV file written by another machine with a different operating system.
+As of v1.4, CSV files written by Windows and Unix machines <strong>are not cross-compatible</strong>.
+This means that the app, running on Windows, can only import CSV files written by a Windows machine.
+The same goes for Unix systems.</p>
+</div>
+<div class="paragraph">
+<p>This issue can be circumvented by using text file format converters to convert a Windows written CSV to a Unix one, and vice versa.
+The recommended converters are <code>Dos2Unix</code> and <code>Unix2Dos</code>, both available <a href="http://dos2unix.sourceforge.net/">here</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="sect2">
-<h3 id="importing-patient-data-from-a-csv-file-code-app-import-replace-code-code-app-import-merge-code"><a class="link" href="#importing-patient-data-from-a-csv-file-code-app-import-replace-code-code-app-import-merge-code">Importing patient data from a CSV file: <code>app-import-replace</code>, <code>app-import-merge</code></a></h3>
+<h3 id="importing-patients-from-a-csv-file-code-app-import-replace-code-code-app-import-merge-code"><a class="link" href="#importing-patients-from-a-csv-file-code-app-import-replace-code-code-app-import-merge-code">Importing Patients from a CSV file: <code>app-import-replace</code>, <code>app-import-merge</code></a></h3>
 <div class="paragraph">
 <p>You can import patient data from a .csv file into the application using
 <code>app-import-replace</code> or <code>app-import-merge</code>.</p>
@@ -36,6 +60,70 @@
 </div>
 </div>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>CSV files used for importing must adhere to the following format requirements.</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Provided file name should not be blank, and can contain only alphanumerics, hyphens and underscores.</p>
+</li>
+<li>
+<p>The top row of the file must be exactly the following headers in the order:</p>
+<div class="literalblock">
+<div class="content">
+<pre>name, phone, email, address, tagged, visitTodos</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Each row in the .csv corresponds to one patient.</p>
+</li>
+<li>
+<p>There may not be duplicate patients in the .csv file.</p>
+</li>
+<li>
+<p>The data in each cell must adhere to the format of the field it belongs in.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Cells under <code>phone</code> must contain 3 to 8 digit numbers, cells under <code>name</code> must contain only alphanumerics and spaces, etc.</p>
+</li>
+<li>
+<p>For the fields <code>tagged</code> and <code>visitTodos</code> with multiple elements per cell,
+each element is to be separated with a newline.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>The data row for any patient cannot have empty cells in the following fields:</p>
+<div class="literalblock">
+<div class="content">
+<pre>`name`, `phone`, `address`, `email`</pre>
+</div>
+</div>
+</li>
+<li>
+<p>The .csv file should adhere to the <a href="https://tools.ietf.org/html/rfc4180">RFC 2048</a> standard.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Examples of valid CSV files can be seen
+<a href="https://github.com/AY1920S1-CS2103-F10-1/main/tree/master/docs/samplecsvs">here</a></p>
+</div>
 <div class="sect3">
 <h4 id="import-and-replace-code-app-import-replace-code"><a class="link" href="#import-and-replace-code-app-import-replace-code">Import and Replace: <code>app-import-replace</code></a></h4>
 <div class="paragraph">
@@ -53,10 +141,10 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>All existing patient data will be deleted and replaced with this new data.</p>
+<p><strong>All existing patient data will be deleted and replaced with this new data.</strong></p>
 </div>
 <div class="paragraph">
-<p>All existing appointment data will be deleted.</p>
+<p><strong>All existing appointment data will be deleted.</strong></p>
 </div>
 </td>
 </tr>
@@ -101,7 +189,7 @@
 <h4 id="import-and-merge-code-app-import-merge-code"><a class="link" href="#import-and-merge-code-app-import-merge-code">Import and Merge: <code>app-import-merge</code></a></h4>
 <div class="paragraph">
 <p>Patient data will be read from a specified .csv file and merged without
-affecting existing data. Provided file should not be empty.</p>
+affecting existing data.</p>
 </div>
 <div class="paragraph">
 <p><code>".csv"</code> will be auto-appended to the specified <code>FILENAME</code>,
@@ -111,6 +199,9 @@ affecting existing data. Provided file should not be empty.</p>
 <div class="content">
 <div class="ulist">
 <ul>
+<li>
+<p>Provided file should not be empty.</p>
+</li>
 <li>
 <p>The .csv file cannot contain a patient that already exists in the app.</p>
 </li>
@@ -141,75 +232,18 @@ affecting existing data. Provided file should not be empty.</p>
 </li>
 </ul>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>CSV files used for importing must adhere to the following format requirements.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Provided file name should not be blank, and can contain only alphanumerics, hyphens and underscores.</p>
-</li>
-<li>
-<p>The top row of the file must be exactly the following headers in the order:</p>
-<div class="literalblock">
-<div class="content">
-<pre>name, phone, email, address, tagged, visitTodos</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Each row in the .csv corresponds to one patient.</p>
-</li>
-<li>
-<p>The data in each cell must adhere to the format of the field it belongs in.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Cells under <code>phone</code> must contain 3 to 8 digit numbers, cells under <code>name</code> must contain only alphanumerics and spaces, etc.</p>
-</li>
-<li>
-<p>For the fields <code>tagged</code> and <code>visitTodos</code> with multiple elements per cell,
-each element is to be separated with a newline.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>The data row for any patient cannot have empty cells in the following fields:</p>
-<div class="literalblock">
-<div class="content">
-<pre>`name`, `phone`, `address`, `email`</pre>
-</div>
-</div>
-</li>
-<li>
-<p>The .csv file should adhere to the <a href="https://tools.ietf.org/html/rfc4180">RFC 2048</a> standard.</p>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>An example of a valid .csv can be seen
-<a href="https://raw.githubusercontent.com/AY1920S1-CS2103-F10-1/main/master/docs/samplecsvs/importsample.csv">here</a></p>
-</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="exporting-data-into-a-csv-file-code-app-export-code"><a class="link" href="#exporting-data-into-a-csv-file-code-app-export-code">Exporting data into a CSV file: <code>app-export</code></a></h3>
+<h3 id="exporting-patients-into-a-csv-file-code-app-export-code"><a class="link" href="#exporting-patients-into-a-csv-file-code-app-export-code">Exporting patients into a CSV file: <code>app-export</code></a></h3>
 <div class="paragraph">
-<p>You can export patient data from the application into a .csv file using <code>app-export</code>.
-A new .csv file will be created and data will be written into it.
-Indexes can be provided to selectively export data of specific persons.</p>
+<p>You can export patient data from the application into a .csv file using <code>app-export</code>.</p>
+</div>
+<div class="paragraph">
+<p>A new .csv file will be created and data will be written into it.</p>
+</div>
+<div class="paragraph">
+<p>Indexes can be provided to selectively export data of specific persons.</p>
 </div>
 <div class="paragraph">
 <p><code>".csv"</code> will be auto-appended to the specified <code>FILENAME</code>,
@@ -325,4 +359,4 @@ A new .csv file will be created and data will be written into it.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:23:00 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:31:42 UTC</div></div></div></body></html>
