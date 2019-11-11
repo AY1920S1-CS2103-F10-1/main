@@ -43,6 +43,11 @@
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
 <li><a href="#deleting-a-person">F.2. Deleting a person</a></li>
+<li><a href="#updating-a-patient-s-visit-todos">F.3. Updating a patient&#8217;s Visit Todos:</a></li>
+<li><a href="#starting-a-visit-for-a-patient">F.4. Starting a Visit for a patient:</a></li>
+<li><a href="#updating-an-ongoing-visit">F.5. Updating an ongoing visit:</a></li>
+<li><a href="#cancelling-a-visit-for-a-patient">F.6. Cancelling a Visit for a patient:</a></li>
+<li><a href="#finishing-a-visit-for-a-patient">F.7. Finishing a Visit for a patient:</a></li>
 </ul>
 </li>
 </ul>
@@ -2084,5 +2089,142 @@ Expected: Similar to previous.</p>
 </ol>
 </div>
 </div>
+<div class="sect2">
+<h3 id="updating-a-patient-s-visit-todos"><a class="link" href="#updating-a-patient-s-visit-todos">F.3. Updating a patient&#8217;s Visit Todos:</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Updating a patient&#8217;s Visit Todos. Note that this will not update the patient&#8217;s visit tasks in an ongoing visit. For more information of the distinction between visit todos and visit tasks, refer to <a href="https://ay1920s1-cs2103-f10-1.github.io/main/UserGuide.html#VisitHowTo">Visit Tutorials</a> in the User Guide.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>pat-edit 1 vt/Check Blood Pressure</code><br>
+Expected: Patient is updated with the new Visit Todo and this is reflected in the status message.</p>
+</li>
+<li>
+<p>Test case: <code>pat-edit 1 vt/</code><br>
+Expected: Patient is updated with no Visit Todos.</p>
+</li>
+</ol>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 06:29:58 UTC</div></div></div></body></html>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="starting-a-visit-for-a-patient"><a class="link" href="#starting-a-visit-for-a-patient">F.4. Starting a Visit for a patient:</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Starting a visit for a patient.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisite: There is no ongoing visit.</p>
+</li>
+<li>
+<p>Test case: <code>visit-start 1</code><br>
+Expected: An ongoing visit is begun.</p>
+</li>
+<li>
+<p>Prerequisite: There is an ongoing visit.</p>
+</li>
+<li>
+<p>Test case: <code>visit-start 1</code><br>
+Expected: No visit is begun. An error message will appear in the status message informing user that there is already an ongoing visit.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="updating-an-ongoing-visit"><a class="link" href="#updating-an-ongoing-visit">F.5. Updating an ongoing visit:</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Updating an ongoing visit.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisite: There is an ongoing visit, and this visit has at least one visit task.</p>
+</li>
+<li>
+<p>Test case: <code>visit-now-update f/1 r/Patient is healthy. d/1 140/90mmHg</code><br>
+Expected: Visit is updated. The first visit task is marked as finished with a detail of ""140/90mmHg" and the visit has the remark "Patient is healthy.". This is reflected on the Current Visit tab and in the status message.</p>
+</li>
+<li>
+<p>Prerequisite: There is no ongoing visit.</p>
+</li>
+<li>
+<p>Test case: <code>visit-now-update [any argument]</code><br>
+Expected: No visit is updated. An error message will appear in the status message.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Note: If the format of <code>visit-now-update</code> arguments are wrong, the error message will prompt about the format first, before it prompts on whether or not there is an ongoing visit.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cancelling-a-visit-for-a-patient"><a class="link" href="#cancelling-a-visit-for-a-patient">F.6. Cancelling a Visit for a patient:</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Cancelling a visit for a patient.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisite: There is an ongoing visit.</p>
+</li>
+<li>
+<p>Test case: <code>visit-cancel</code><br>
+Expected: The ongoing visit is cancelled.</p>
+</li>
+<li>
+<p>Prerequisite: There is no ongoing visit.</p>
+</li>
+<li>
+<p>Test case: <code>visit-cancel</code><br>
+Expected: No visit is cancelled. An error message will appear in the status message.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="finishing-a-visit-for-a-patient"><a class="link" href="#finishing-a-visit-for-a-patient">F.7. Finishing a Visit for a patient:</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Finishing a visit for a patient.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisite: There is an ongoing visit.</p>
+</li>
+<li>
+<p>Test case: <code>visit-end</code><br>
+Expected: The ongoing visit is finished. The end date time should be indicated in the visit if you check it in the patient&#8217;s list of Visits.</p>
+</li>
+<li>
+<p>Prerequisite: There is no ongoing visit.</p>
+</li>
+<li>
+<p>Test case: <code>visit-end</code><br>
+Expected: No visit is finished. An error message will appear in the status message.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 08:04:37 UTC</div></div></div></body></html>
