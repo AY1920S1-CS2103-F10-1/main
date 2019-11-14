@@ -5,7 +5,7 @@
 <div class="sectionbody">
 <hr>
 <div class="paragraph">
-<p>I am Year 2 Computer Science student at the National University of Singapore. I enjoy learning new technologies and software tools as well as helping out in any project that is interesting, challenging, and can have a positive impact in any community. Here you can find my contributions to one of my projects.</p>
+<p>I am a Year 2 Computer Science student at the National University of Singapore. I enjoy learning new technologies and software tools as well as helping out in any project that is interesting, challenging, and can have a positive impact in any community. Here you can find my contributions to one of my projects.</p>
 </div>
 </div>
 </div>
@@ -157,7 +157,7 @@ v1.4 <a href="https://github.com/AY1920S1-CS2103-F10-1/main/issues/64">#64</a>)<
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are some of the sections I contributed to the User Guide for V1.4 of the product. They showcase my ability to write documentation targeting end-users.</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -271,7 +271,7 @@ Lists all appointments of that particular patient James</p>
 <div class="ulist">
 <ul>
 <li>
-<p>`appt-add p/1 sdt/24-12-2019 1200 edt/24-12-2019 1400 desc/Medical checkup</p>
+<p><code>appt-add p/1 sdt/24-12-2019 1200 edt/24-12-2019 1400 desc/Medical checkup</code></p>
 </li>
 <li>
 <p><code>appt-add p/2 sdt/09-12-2019 1300 edt/09-12-2019 1330 ryr/1 rmon/3</code></p>
@@ -435,227 +435,6 @@ Deletes the 1st appointment in the displayed appointment list permanently.</p>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="deleting-multiple-appointments-code-appt-delete-code-code-coming-in-v2-0-code"><a class="link" href="#deleting-multiple-appointments-code-appt-delete-code-code-coming-in-v2-0-code">Deleting Multiple Appointments: <code>appt-delete</code> <code>[coming in V2.0]</code></a></h3>
-<div class="paragraph">
-<p>You can delete multiple appointments by <strong>indexes</strong> using <code>appt-delete</code>.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>appt-delete INDEX_1 [INDEX_2] [INDEX_3]&#8230;&#8203;</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Deletes appointments at the specified <code>INDEX</code> es. You can put in as many indices to delete as many appointments as you wish.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the list of appointments displayed by <code>appt-list</code> or <code>appt-find</code>.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-<li>
-<p>If any of the appointments referred to by the <code>INDEX</code> es is a recurring appointment, deleting this appointment will automatically recur the appointment (i.e. get the next start and end date time) and add it to the appointment list. If you wish to remove one or more recurring appointments permanently from the appointment list, refer to <a href="#Deleting Multiple Appointments Permanently">[Deleting Multiple Appointments Permanently]</a>.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Assuming the first appointment in the list is a recurring appointment, and the second is a non-recurring one.</p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>appt-delete 2</code><br>
-Deletes the 2nd appointment in the appointment list.</p>
-</li>
-<li>
-<p><code>appt-delete 1 2</code><br>
-Deletes the 1st and 2nd appointment in the appointment list.
-Recurs the 1st appointment and adds the new appointment with the next start and end date time to the appointment list.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="deleting-multiple-appointments-permanently-code-appt-delete-permanent-code-code-coming-in-v2-0-code"><a class="link" href="#deleting-multiple-appointments-permanently-code-appt-delete-permanent-code-code-coming-in-v2-0-code">Deleting Multiple Appointments Permanently: <code>appt-delete-permanent</code> <code>[coming in V2.0]</code></a></h3>
-<div class="paragraph">
-<p>You can delete an appointment by <strong>indexes</strong> using <code>appt-delete-permanent</code>.</p>
-</div>
-<div class="paragraph">
-<p>You can use this command on both recurring and non-recurring appointments, but its use is more suited for recurring appointments since <code>appt-delete</code> and <code>appt-delete-permanent</code> work in the same way for non-recurring appointments.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>appt-delete-permanent INDEX_1 [INDEX_2] [INDEX_3]&#8230;&#8203;</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Deletes the appointments permanently at the specified <code>INDEX</code> es. You can put in as many indices to delete as many appointments as you wish.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the list of appointments displayed by <code>appt-list</code> or <code>appt-find</code>.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-<li>
-<p>For recurring appointments, unlike in the case of <code>appt-delete</code>, now any recurring appointment specified by any of the <code>INDEX</code> es is removed from the appointment list permanently and not recurred.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="paragraph">
-<p>Assuming the first appointment in the list is a recurring appointment, and the second is a non-recurring one.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>appt-list</code><br>
-<code>appt-delete-permanent 2</code><br>
-Deletes the 2nd appointment in the appointment list permanently.</p>
-</li>
-<li>
-<p><code>appt-delete-permanent 1 2</code><br>
-Deletes the 1st and 2nd appointments in the appointment list permanently.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="displaying-finished-appointments-code-coming-in-v2-0-code"><a class="link" href="#displaying-finished-appointments-code-coming-in-v2-0-code">Displaying Finished Appointments <code>[coming in V2.0]</code></a></h3>
-<div class="paragraph">
-<p>This is an intended additional <code>UI</code> and <code>Storage</code> feature.</p>
-</div>
-<div class="paragraph">
-<p>Along with all the appointments that currently are in the appointment list, appointments that finished (were in the appointment list the previous time the app was run but are now before the system date and time and so removed from the appointment list) are displayed in a separate tab and also saved to another <code>json</code> file time the app is closed.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="listing-all-finished-appointments-code-appt-finished-list-code-code-coming-in-v2-0-code"><a class="link" href="#listing-all-finished-appointments-code-appt-finished-list-code-code-coming-in-v2-0-code">Listing All Finished Appointments <code>appt-finished-list</code> <code>[coming in V2.0]</code></a></h3>
-<div class="paragraph">
-<p>You can see a list of all finished appointments in the app by typing <code>appt-finished-list</code>.</p>
-</div>
-<div class="paragraph">
-<p>In the list displayed, each finished appointment will have an <strong>index</strong> number which can then be used for other features that require you to select a finished appointment by <strong>index</strong> e.g. <code>appt-finished-delete</code>. Take note that a finished appointment will be given the same <strong>index</strong> regardless of other display commands such as <code>appt-finished-find</code>.</p>
-</div>
-<div class="paragraph">
-<p>The finished appointment list is sorted in increasing order of start date time of the appointments, i.e it shows the earlier appointments followed by the later ones.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>appt-finished-list</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="finding-finished-appointment-s-code-appt-finished-find-code"><a class="link" href="#finding-finished-appointment-s-code-appt-finished-find-code">Finding Finished Appointment(s): <code>appt-finished-find</code></a></h3>
-<div class="paragraph">
-<p>You can find finished appointments by patient name by typing any keyword of your choice following <code>appt-finished-find</code>.</p>
-</div>
-<div class="paragraph">
-<p>In the list displayed, each finished appointment will have an <strong>index</strong> number which can then be used for other features that require you to select a finished appointment by <strong>index</strong> e.g. <code>appt-finished-delete</code>. Take note that an appointment will be given the same <strong>index</strong> regardless of other display commands such as <code>appt-finished-list</code> or if different parameters are used.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>appt-finished-find [PATIENT_NAME]</code></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="finishing-appointment-code-appt-finish-code-code-coming-in-v2-0-code"><a class="link" href="#finishing-appointment-code-appt-finish-code-code-coming-in-v2-0-code">Finishing Appointment <code>appt-finish</code> <code>[coming in V2.0]</code></a></h3>
-<div class="paragraph">
-<p>Instead of deleting an appointment using <code>appt-delete</code> or <code>appt-delete-permanent</code>, you can use this command to simply mark an appointment as finished.</p>
-</div>
-<div class="paragraph">
-<p>The appointment is removed from the appointment list and added to the list of finished appointments.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="deleting-finished-appointment-code-appt-finished-delete-code-code-coming-in-v2-0-code"><a class="link" href="#deleting-finished-appointment-code-appt-finished-delete-code-code-coming-in-v2-0-code">Deleting Finished Appointment <code>appt-finished-delete</code> <code>[coming in V2.0]</code></a></h3>
-<div class="paragraph">
-<p>You can delete (permanently) a finished appointment by <strong>index</strong> using <code>appt-finished-delete</code>.</p>
-</div>
-<div class="paragraph">
-<p>There is no distinction in behaviour of this command between recurring and non-recurring appointments as deletion is from the finished appointment list.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>appt-finished-delete INDEX</code></p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Deletes the finished appointment at the specified <code>INDEX</code>.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the list of finished appointments displayed by <code>appt-finished-list</code> or <code>appt-finished-find</code>.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>appt-finished-delete 2</code><br>
-Deletes the 2nd appointment in the finished appointment list.</p>
-</li>
-<li>
-<p><code>appt-finished-delete 1</code><br>
-Deletes the 1st appointment in the finished appointment list.</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>As of version 1.4, the appointments feature <strong>does not allow for user&#8217;s discretion on managing clashing appointments. Instead, it simply prevents a user from adding a clashing appointment.</strong></p>
-</li>
-<li>
-<p>When an appointment is added or edited, while there is a check to ensure the appointment does not clash with any other existing appointment in the list, there is <strong>no check done on whether this new appointment could potentially clash with any future appointments</strong> that could result from an appointment recurring.<br>
-In such cases, if an appointment that is a added or edited clashes with a future date time of a recurring appointment, the app allows adding such an appointment.<br>
-But when the recurring appointment that our new appointment clashes with is recurred (due to <code>appt-delete</code> of the recurring appointment or the recurring appointment passing the system date time), then the <strong>recurring appointment is recurred (keep getting the next start and end date time) until it doesn&#8217;t clash with any of the existing appointments in the appointment list.</strong><br>
-Allowing user discretion for clashing appointments (i.e. simply flagging the clashing appointments) is a feature coming in <code>V2.0</code>.</p>
-</li>
-<li>
-<p>If changes are made to the <code>appointmentBook.json</code> file directly (i.e. not through the app) such that there are clashing appointments, the app won&#8217;t detect these clashes and will <strong>load the appointment book as it is with these clashing appointments. This can result in unexpected behaviour of the app as it is not thoroughly designed to work with clashing appointments in the appointment list.</strong><br>
-So, please refrain from making direct edits such that there result clashing appointments in the <code>appointmentBook.json</code> file.<br>
-Detecting these clashes from storage and if detected, loading an empty appointment list instead is a feature coming in <code>V2.0</code>.</p>
-</li>
-<li>
-<p>While the system doesn&#8217;t allow appointments with end date and times before the system&#8217;s date and time, and recurs appointments (that are recurring) until they are past the system date and time, this happens only when the app is opened.<br>
-<strong>While the app is running, there is no constant checking of whether the appointments in the list have already finished (i.e. if their end date time is before the system date time).</strong></p>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -667,7 +446,7 @@ Detecting these clashes from storage and if detected, loading an empty appointme
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are some of the sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
 </tr>
 </tbody>
 </table>
@@ -678,115 +457,55 @@ Detecting these clashes from storage and if detected, loading an empty appointme
 This is a new book (different from the <code>PatientBook</code>) that is now required by the <code>ModelManager</code> class for instantiation along with <code>UserPrefs</code> and <code>PatientBook</code>. The <code>AppointmentBook</code> is, therefore, a field in the <code>ModelManager</code> class.
 The <code>AppointmentBook</code> has <code>appointments</code>, which is a <code>UniqueAppointmentList</code>, as a private field that holds all appointments currently in the <code>AppointmentBook</code> as a unique list. This list is modified from certain method calls in the <code>ModelManager</code> class.</p>
 </div>
-<div class="paragraph">
-<p>The operations of the <code>ReadOnlyAppointmentBook</code> interface that the <code>AppointmentBook</code> implements:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>AppointmentBook#getAppointmentList()</code> - Returns an unmodifiable view of the appointments list in the <code>AppointmentBook</code>.</p>
-</li>
-<li>
-<p><code>AppointmentBook#deepCopy()</code> - Returns a deep copy of the <code>AppointmentBook</code>.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Apart from the above, the other main operations (both public and private methods) that the <code>AppointmentBook</code> implements include:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>AppointmentBook#setAppointments(List&lt;Appointment&gt; appointments)</code>&#8201;&#8212;&#8201;Replaces the contents of the private <code>appointments</code> field with <code>appointments</code> passed in as argument.</p>
-</li>
-<li>
-<p><code>AppointmentBook#setFinishedAppointments(List&lt;Appointment&gt; appointments)</code>&#8201;&#8212;&#8201;Replaces the contents of the private <code>finishedAppointments</code> field with <code>appointments</code> passed in as argument (layout for a possible feature <a href="#Displaying Finished Appointments">[Displaying Finished Appointments]</a> in V2.0).</p>
-</li>
-<li>
-<p><code>AppointmentBook#resetData(ReadOnlyAppointmentBook newData)</code>&#8201;&#8212;&#8201;Resets the existing data of the <code>AppointmentBook</code> with <code>newData</code>.</p>
-</li>
-<li>
-<p><code>AppointmentBook#hasAppointment(Appointment appointment)</code>&#8201;&#8212;&#8201;Returns true if an appointment with the same identity as the <code>appointment</code> argument exists in the <code>AppointmentBook</code>.</p>
-</li>
-<li>
-<p><code>AppointmentBook#hasClashingAppointment(Appointment appointment)</code>&#8201;&#8212;&#8201;Returns true if an appointment with clashing time as the <code>appointment</code> argument exists in the <code>AppointmentBook</code>.</p>
-</li>
-<li>
-<p><code>AppointmentBook#addAppointment(Appointment a)</code>&#8201;&#8212;&#8201;Adds an appointment <code>a</code> to the <code>AppointmentBook</code>.</p>
-</li>
-<li>
-<p><code>AppointmentBook#setAppointment(Appointment target, Appointment editedAppointment)</code>&#8201;&#8212;&#8201;Replaces the given appointment <code>target</code> in the list of the <code>AppointmentBook</code> with the <code>editedAppointment</code>.</p>
-</li>
-<li>
-<p><code>AppointmentBook#editAppointments(Patient patientToEdit, Patient editedPatient)</code>&#8201;&#8212;&#8201;Replaces all appointments with the <code>patientToEdit</code> in the list with <code>editedPatient</code>.</p>
-</li>
-<li>
-<p><code>AppointmentBook#removeAppointment(Appointment key)</code>&#8201;&#8212;&#8201;Removes <code>key</code> from the <code>AppointmentBook</code>.<br>
-<strong>Note: If appointment <code>key</code> is recurring, the appointment is recurred to get the next start and end date times of this appointment, and this next appointment is added to the the <code>AppointmentBook</code>.</strong></p>
-</li>
-<li>
-<p><code>AppointmentBook#removeRecurringAppointment(Appointment key)</code>&#8201;&#8212;&#8201;Removes <code>key</code> from the <code>AppointmentBook</code> permanently. <strong>Does not</strong> recur the appointment <code>key</code>.</p>
-</li>
-<li>
-<p><code>AppointmentBook#removeAppointments(Patient patient, Index patientIndex)</code>&#8201;&#8212;&#8201;Removes all appointments with this <code>patient</code> from the <code>AppointmentBook</code>.</p>
-</li>
-<li>
-<p><code>AppointmentBook#getRecurredAppointment(Appointment key)</code>&#8201;&#8212;&#8201;Returns the next (recurred) appointment for <code>key</code> based on the recurring frequencies of years, months, etc. of the appointment <code>key</code> and its current start and end date and time.</p>
-</li>
-<li>
-<p><code>AppointmentBook#addRecurringAppointment(Appointment key)</code>&#8201;&#8212;&#8201;Adds same appointment <code>key</code> with the next date time if previous one was deleted and was recurring.</p>
-</li>
-</ul>
-</div>
 </div>
 <div class="sect3">
 <h4 id="model"><a class="link" href="#model">Model</a></h4>
 <div class="paragraph">
-<p>The operations in the <code>AppointmentBook</code> are exposed to in the <code>Model</code> interface. <code>Model</code> implements the methods following operations to accommodate for the inclusion of the <code>AppointmentBook</code> and its related methods:</p>
+<p>The main operations in the <code>AppointmentBook</code> are exposed to in the <code>Model</code> interface. <code>Model</code> implements the following operations to accommodate for the inclusion of the <code>AppointmentBook</code> and its related methods:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Model#setStagedAppointmentBook(ReadOnlyAppointmentBook appointmentBook)</code></p>
+<p><code>Model#setStagedAppointmentBook(ReadOnlyAppointmentBook appointmentBook)</code>&#8201;&#8212;&#8201;Replaces appointment book in the Model with data from the <code>ReadOnlyAppointmentBook appointmentBook</code> passed in as argument.</p>
 </li>
 <li>
-<p><code>Model#replaceStagedAppointmentBook(List&lt;Appointment&gt; appointments)</code></p>
+<p><code>Model#replaceStagedAppointmentBook(List&lt;Appointment&gt; appointments)</code>&#8201;&#8212;&#8201;Replaces all appointments in appointment book with new appointments from the list.</p>
 </li>
 <li>
-<p><code>Model#getStagedAppointmentBook()</code></p>
+<p><code>Model#getStagedAppointmentBook()</code>&#8201;&#8212;&#8201;Returns the current AppointmentBook.</p>
 </li>
 <li>
-<p><code>Model#hasAppointment(Appointment appointment)</code></p>
+<p><code>Model#hasAppointment(Appointment appointment)</code>&#8201;&#8212;&#8201;Returns true if an appointment with the same identity as the appointment passed in as argument exists in the appointment list.</p>
 </li>
 <li>
-<p><code>Model#hasClashingAppointment(Appointment appointment)</code></p>
+<p><code>Model#hasClashingAppointment(Appointment appointment)</code>&#8201;&#8212;&#8201;Returns true if any appointment in the appointment list has clashing time with the <code>appointment</code> passed in as argument.</p>
 </li>
 <li>
-<p><code>Model#deleteAppointment(Appointment target)</code></p>
+<p><code>Model#deleteAppointment(Appointment target)</code>&#8201;&#8212;&#8201;Deletes the given appointment. If the the <code>target</code> appointment is recurring, then the appointment is recurred and the next one is added to the appointment list.</p>
 </li>
 <li>
-<p><code>Model#deleteRecurringAppointment(Appointment target)</code></p>
+<p><code>Model#deleteRecurringAppointment(Appointment target)</code>&#8201;&#8212;&#8201;Deletes the given recurring or non-recurring appointment permanently.</p>
 </li>
 <li>
-<p><code>Model#deleteAppointments(Patient target, Index targetIndex)</code></p>
+<p><code>Model#deleteAppointments(Patient target, Index targetIndex)</code>&#8201;&#8212;&#8201;Deletes all appointments associated with the <code>target</code> patient.</p>
 </li>
 <li>
-<p><code>Model#addAppointment(Appointment appointment)</code></p>
+<p><code>Model#addAppointment(Appointment appointment)</code>&#8201;&#8212;&#8201;Adds the given appointment. The appointment passed in as argument must not already exist in the appointment list.</p>
 </li>
 <li>
-<p><code>Model#setAppointment(Appointment target, Appointment editedAppointment)</code></p>
+<p><code>Model#setAppointment(Appointment target, Appointment editedAppointment)</code>&#8201;&#8212;&#8201;Replaces the given appointment <code>target</code> with <code>editedAppointment</code>. <code>target</code> must exist in the appointment list. The appointment identity of <code>editedAppointment</code> must not be the same as another existing appointment in the appointment list.</p>
 </li>
 <li>
-<p><code>Model#setAppointments(Patient patientToEdit, Patient editedPatient)</code></p>
+<p><code>Model#setAppointments(Patient patientToEdit, Patient editedPatient)</code>&#8201;&#8212;&#8201;Replaces all appointments' patients that equal <code>patientToEdit</code> with <code>editedPatient</code>.</p>
 </li>
 <li>
-<p><code>Model#ObservableList&lt;Appointment&gt; getStagedAppointmentList()</code></p>
+<p><code>Model#ObservableList&lt;Appointment&gt; getStagedAppointmentList()</code>&#8201;&#8212;&#8201;Returns an unmodifiable view of the entire appointment list.</p>
 </li>
 <li>
-<p><code>Model#FilteredList&lt;Appointment&gt; getFilteredAppointmentList()</code></p>
+<p><code>Model#FilteredList&lt;Appointment&gt; getFilteredAppointmentList()</code>&#8201;&#8212;&#8201;Returns an unmodifiable view of the filtered appointment list.</p>
 </li>
 <li>
-<p><code>Model#void updateFilteredAppointmentList(Predicate&lt;Appointment&gt; predicate)</code></p>
+<p><code>Model#void updateFilteredAppointmentList(Predicate&lt;Appointment&gt; predicate)</code>&#8201;&#8212;&#8201;Updates the filter of the filtered appointment list to filter by the given <code>predicate</code>.</p>
 </li>
 </ul>
 </div>
@@ -864,249 +583,6 @@ The <code>AppointmentBook</code> has <code>appointments</code>, which is a <code
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="logic"><a class="link" href="#logic">Logic</a></h4>
-<div class="paragraph">
-<p>The following logical <code>Parser</code> classes to parse user commands' arguments, and the corresponding <code>Command</code> classes they returned were implemented:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><code>FindAppointmentParser</code> returns <code>FindAppointmentCommand</code> - Finds and lists all appointments in appointment book whose name contains any of the argument keywords.<br>
-The <code>COMMAND_WORD</code> for this command is <code>appt-find</code>.</p>
-</li>
-<li>
-<p><code>AddAppointmentParser</code> returns <code>AddAppointmentCommand</code> - Adds an appointment to the appointment list.<br>
-The <code>COMMAND_WORD</code> is <code>appt-add</code>.</p>
-</li>
-<li>
-<p><code>EditAppointmentParser</code> returns <code>EditAppointmentCommand</code> - Edits the details of an existing appointment in the appointment book.<br>
-The <code>COMMAND_WORD</code> is <code>appt-edit</code>.</p>
-</li>
-<li>
-<p><code>DeleteAppointmentParser</code> returns <code>DeleteAppointmentCommand</code> - Deletes an appointment identified using it&#8217;s displayed index from the appointment book.
-For recurring appointments, the recurring appointment is deleted and the next recurred one is added to the appointment list.<br>
-The <code>COMMAND_WORD</code> is <code>appt-delete</code>.</p>
-</li>
-<li>
-<p><code>DeleteAppointmentPermanentlyParser</code> returns <code>DeleteAppointmentPermanentlyCommand</code> - Deletes permanently a recurring appointment identified using it&#8217;s displayed index from the appointment book.<br>
-The <code>COMMAND_WORD</code> is <code>appt-delete-permanent</code>.</p>
-</li>
-<li>
-<p><code>ListAppointmentCommand</code> - Lists all appointments in the appointment book.
-Note: The <code>ListAppointmentCommand</code> does not have a parser as it does not have any arguments to parse.<br>
-The <code>COMMAND_WORD</code> is <code>appt-list</code>.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="logic-design-considerations"><a class="link" href="#logic-design-considerations">Logic Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-deleting-recurring-appointments-permanently"><a class="link" href="#aspect-deleting-recurring-appointments-permanently">Aspect: Deleting recurring appointments permanently</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> Create <code>DeleteAppointmentPermanentlyParser</code> and <code>DeleteAppointmentPermanentlyCommand</code> as new classes independent of the <code>DeleteAppointmentParser</code> and <code>DeleteAppointmentCommand</code> classes.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>A simple solution that clearly separates cases of when an appointment is deleted permanently from the list versus when the appointment is deleted and the recurred next appointment is added to the list.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Cons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Does not really separate the cases of recurring appointments from non-recurring ones since <code>appt-delete-permanent</code> can be applied on both recurring and non-recurring appointments.</p>
-</li>
-<li>
-<p>There might be fragments of code in both classes that are common and could be extracted out and reused instead.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> Create <code>DeleteAppointmentPermanentlyParser</code> and <code>DeleteAppointmentPermanentlyCommand</code> as new classes that now extend from the <code>DeleteAppointmentParser</code> and <code>DeleteAppointmentCommand</code> classes.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>By extending, code reusability is increased.</p>
-</li>
-<li>
-<p>It also makes sense in terms of class structure for such an extension, since deleting an appointment permanently is a more specific case of deleting an appointment and also allowing to recur it and then add it back (if it was a recurring appointment).</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Cons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>This still does not resolve the issue of separation deletion of recurring appointments from non-recurring ones.</p>
-</li>
-<li>
-<p>Despite extending, there may not be too much code overlap. Also, considering that new methods will have to be added to the <code>Model</code> for each case of permanent and non-permanent deletion, the extension might well prove to be unecessary.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 3:</strong> Create <code>DeleteRecurringAppointmentParser</code> and <code>DeleteRecurringAppointmentCommand</code> as new classes independent from the <code>DeleteAppointmentParser</code> and <code>DeleteAppointmentCommand</code> classes.<br>
-But <code>DeleteRecurringAppointmentCommand</code> can only be applied to appointments that are recurring.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Demarcates recurring and non-recurring appointments deletion better since the user will now have only one way to delete non-recurring appointments, i.e. through <code>appt-delete</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Cons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Can be a bit restrictive since one command is reserved for only recurring appointments.</p>
-</li>
-<li>
-<p>The names of these classes can be a bit misleading since <code>appt-delete</code> can still be applied on both recurring and non-recurring appointments.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="storage"><a class="link" href="#storage">Storage</a></h4>
-<div class="paragraph">
-<p>The <code>AppointmentBook</code> and <code>Appointment</code> class have the <code>JsonSerializableAppointmentBook</code> and <code>JsonAdaptedAppointment</code> classes respectively to allow saving of appointments data to <code>appointmentBook.json</code> and reading data from it.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The reading of appointments data from storage currently does not check if there are clashing appointments.
-Hence, any modifications to the <code>appointmentBook.json</code> directly (i.e. not through tha app) that result in clashing appointments will be just loaded as normal onto the app, but lead to undesirable results.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="storage-design-considerations"><a class="link" href="#storage-design-considerations">Storage Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-how-to-handle-appointments-that-have-finished-i-e-are-before-the-system-date-and-time"><a class="link" href="#aspect-how-to-handle-appointments-that-have-finished-i-e-are-before-the-system-date-and-time">Aspect: How to handle appointments that have finished (i.e. are before the system date and time)</a></h5>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Alternative 1 (current choice):</strong> <code>AppointmentBook</code> has two fields of <code>UniqueAppointmentList</code>: <code>appointments</code> and <code>finishedAppointments</code>.<br>
-When data is read from the storage, all appointments that are past the system date and time are stored in the <code>appointments</code> list, while those that are finished are stored in the <code>finishedAppointments</code> list.<br>
-After the app is closed, all appointments in the <code>finishedAppointments</code> list are not saved.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Ensures a clear distinction between appointments that have finished and those that are still only scheduled and yet to happen.
-<strong>*</strong></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Cons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Throws away the finished appointments every time app is closed.</p>
-</li>
-<li>
-<p>No indication to the user that certain appointments finished and so are no longer displayed in the list of appointments.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Alternative 2:</strong> As before, but once the app is closed, appointments both in <code>appointments</code> and <code>finishedAppointments</code> list are saved.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Still ensures a clear distinction between appointments that have finished and those that are still only scheduled and yet to happen.</p>
-</li>
-<li>
-<p>Keeps the finished appointments.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Cons:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Might need to handle the reading and saving of the finished appointments differently from the main appointment list.</p>
-</li>
-<li>
-<p>Need to consider whether user deleting an appointment implies the user wants it marked as finished or wants to remove it completely. If the former is the case,  the delete appointment command would need to modify the <code>finishedAppointments</code> list, and that is an overhead.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="ui"><a class="link" href="#ui">UI</a></h4>
-<div class="paragraph">
-<p>The list of <code>Appointment</code> s are displayed on a separate tab in the app.</p>
-</div>
-</div>
 <div class="sect2">
 <h3 id="use-case"><a class="link" href="#use-case">Use Case</a></h3>
 <div class="paragraph">
@@ -1141,4 +617,4 @@ Assuming the first appointment in the appointment list is recurring. The followi
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-13 05:13:32 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-14 20:42:54 UTC</div></div></div></body></html>

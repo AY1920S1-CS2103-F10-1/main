@@ -7,115 +7,55 @@
 This is a new book (different from the <code>PatientBook</code>) that is now required by the <code>ModelManager</code> class for instantiation along with <code>UserPrefs</code> and <code>PatientBook</code>. The <code>AppointmentBook</code> is, therefore, a field in the <code>ModelManager</code> class.
 The <code>AppointmentBook</code> has <code>appointments</code>, which is a <code>UniqueAppointmentList</code>, as a private field that holds all appointments currently in the <code>AppointmentBook</code> as a unique list. This list is modified from certain method calls in the <code>ModelManager</code> class.</p>
 </div>
-<div class="paragraph">
-<p>The operations of the <code>ReadOnlyAppointmentBook</code> interface that the <code>AppointmentBook</code> implements:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>AppointmentBook#getAppointmentList()</code> - Returns an unmodifiable view of the appointments list in the <code>AppointmentBook</code>.</p>
-</li>
-<li>
-<p><code>AppointmentBook#deepCopy()</code> - Returns a deep copy of the <code>AppointmentBook</code>.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Apart from the above, the other main operations (both public and private methods) that the <code>AppointmentBook</code> implements include:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>AppointmentBook#setAppointments(List&lt;Appointment&gt; appointments)</code>&#8201;&#8212;&#8201;Replaces the contents of the private <code>appointments</code> field with <code>appointments</code> passed in as argument.</p>
-</li>
-<li>
-<p><code>AppointmentBook#setFinishedAppointments(List&lt;Appointment&gt; appointments)</code>&#8201;&#8212;&#8201;Replaces the contents of the private <code>finishedAppointments</code> field with <code>appointments</code> passed in as argument (layout for a possible feature <a href="#Displaying Finished Appointments">[Displaying Finished Appointments]</a> in V2.0).</p>
-</li>
-<li>
-<p><code>AppointmentBook#resetData(ReadOnlyAppointmentBook newData)</code>&#8201;&#8212;&#8201;Resets the existing data of the <code>AppointmentBook</code> with <code>newData</code>.</p>
-</li>
-<li>
-<p><code>AppointmentBook#hasAppointment(Appointment appointment)</code>&#8201;&#8212;&#8201;Returns true if an appointment with the same identity as the <code>appointment</code> argument exists in the <code>AppointmentBook</code>.</p>
-</li>
-<li>
-<p><code>AppointmentBook#hasClashingAppointment(Appointment appointment)</code>&#8201;&#8212;&#8201;Returns true if an appointment with clashing time as the <code>appointment</code> argument exists in the <code>AppointmentBook</code>.</p>
-</li>
-<li>
-<p><code>AppointmentBook#addAppointment(Appointment a)</code>&#8201;&#8212;&#8201;Adds an appointment <code>a</code> to the <code>AppointmentBook</code>.</p>
-</li>
-<li>
-<p><code>AppointmentBook#setAppointment(Appointment target, Appointment editedAppointment)</code>&#8201;&#8212;&#8201;Replaces the given appointment <code>target</code> in the list of the <code>AppointmentBook</code> with the <code>editedAppointment</code>.</p>
-</li>
-<li>
-<p><code>AppointmentBook#editAppointments(Patient patientToEdit, Patient editedPatient)</code>&#8201;&#8212;&#8201;Replaces all appointments with the <code>patientToEdit</code> in the list with <code>editedPatient</code>.</p>
-</li>
-<li>
-<p><code>AppointmentBook#removeAppointment(Appointment key)</code>&#8201;&#8212;&#8201;Removes <code>key</code> from the <code>AppointmentBook</code>.<br>
-<strong>Note: If appointment <code>key</code> is recurring, the appointment is recurred to get the next start and end date times of this appointment, and this next appointment is added to the the <code>AppointmentBook</code>.</strong></p>
-</li>
-<li>
-<p><code>AppointmentBook#removeRecurringAppointment(Appointment key)</code>&#8201;&#8212;&#8201;Removes <code>key</code> from the <code>AppointmentBook</code> permanently. <strong>Does not</strong> recur the appointment <code>key</code>.</p>
-</li>
-<li>
-<p><code>AppointmentBook#removeAppointments(Patient patient, Index patientIndex)</code>&#8201;&#8212;&#8201;Removes all appointments with this <code>patient</code> from the <code>AppointmentBook</code>.</p>
-</li>
-<li>
-<p><code>AppointmentBook#getRecurredAppointment(Appointment key)</code>&#8201;&#8212;&#8201;Returns the next (recurred) appointment for <code>key</code> based on the recurring frequencies of years, months, etc. of the appointment <code>key</code> and its current start and end date and time.</p>
-</li>
-<li>
-<p><code>AppointmentBook#addRecurringAppointment(Appointment key)</code>&#8201;&#8212;&#8201;Adds same appointment <code>key</code> with the next date time if previous one was deleted and was recurring.</p>
-</li>
-</ul>
-</div>
 </div>
 <div class="sect3">
 <h4 id="model"><a class="link" href="#model">Model</a></h4>
 <div class="paragraph">
-<p>The operations in the <code>AppointmentBook</code> are exposed to in the <code>Model</code> interface. <code>Model</code> implements the methods following operations to accommodate for the inclusion of the <code>AppointmentBook</code> and its related methods:</p>
+<p>The main operations in the <code>AppointmentBook</code> are exposed to in the <code>Model</code> interface. <code>Model</code> implements the following operations to accommodate for the inclusion of the <code>AppointmentBook</code> and its related methods:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>Model#setStagedAppointmentBook(ReadOnlyAppointmentBook appointmentBook)</code></p>
+<p><code>Model#setStagedAppointmentBook(ReadOnlyAppointmentBook appointmentBook)</code>&#8201;&#8212;&#8201;Replaces appointment book in the Model with data from the <code>ReadOnlyAppointmentBook appointmentBook</code> passed in as argument.</p>
 </li>
 <li>
-<p><code>Model#replaceStagedAppointmentBook(List&lt;Appointment&gt; appointments)</code></p>
+<p><code>Model#replaceStagedAppointmentBook(List&lt;Appointment&gt; appointments)</code>&#8201;&#8212;&#8201;Replaces all appointments in appointment book with new appointments from the list.</p>
 </li>
 <li>
-<p><code>Model#getStagedAppointmentBook()</code></p>
+<p><code>Model#getStagedAppointmentBook()</code>&#8201;&#8212;&#8201;Returns the current AppointmentBook.</p>
 </li>
 <li>
-<p><code>Model#hasAppointment(Appointment appointment)</code></p>
+<p><code>Model#hasAppointment(Appointment appointment)</code>&#8201;&#8212;&#8201;Returns true if an appointment with the same identity as the appointment passed in as argument exists in the appointment list.</p>
 </li>
 <li>
-<p><code>Model#hasClashingAppointment(Appointment appointment)</code></p>
+<p><code>Model#hasClashingAppointment(Appointment appointment)</code>&#8201;&#8212;&#8201;Returns true if any appointment in the appointment list has clashing time with the <code>appointment</code> passed in as argument.</p>
 </li>
 <li>
-<p><code>Model#deleteAppointment(Appointment target)</code></p>
+<p><code>Model#deleteAppointment(Appointment target)</code>&#8201;&#8212;&#8201;Deletes the given appointment. If the the <code>target</code> appointment is recurring, then the appointment is recurred and the next one is added to the appointment list.</p>
 </li>
 <li>
-<p><code>Model#deleteRecurringAppointment(Appointment target)</code></p>
+<p><code>Model#deleteRecurringAppointment(Appointment target)</code>&#8201;&#8212;&#8201;Deletes the given recurring or non-recurring appointment permanently.</p>
 </li>
 <li>
-<p><code>Model#deleteAppointments(Patient target, Index targetIndex)</code></p>
+<p><code>Model#deleteAppointments(Patient target, Index targetIndex)</code>&#8201;&#8212;&#8201;Deletes all appointments associated with the <code>target</code> patient.</p>
 </li>
 <li>
-<p><code>Model#addAppointment(Appointment appointment)</code></p>
+<p><code>Model#addAppointment(Appointment appointment)</code>&#8201;&#8212;&#8201;Adds the given appointment. The appointment passed in as argument must not already exist in the appointment list.</p>
 </li>
 <li>
-<p><code>Model#setAppointment(Appointment target, Appointment editedAppointment)</code></p>
+<p><code>Model#setAppointment(Appointment target, Appointment editedAppointment)</code>&#8201;&#8212;&#8201;Replaces the given appointment <code>target</code> with <code>editedAppointment</code>. <code>target</code> must exist in the appointment list. The appointment identity of <code>editedAppointment</code> must not be the same as another existing appointment in the appointment list.</p>
 </li>
 <li>
-<p><code>Model#setAppointments(Patient patientToEdit, Patient editedPatient)</code></p>
+<p><code>Model#setAppointments(Patient patientToEdit, Patient editedPatient)</code>&#8201;&#8212;&#8201;Replaces all appointments' patients that equal <code>patientToEdit</code> with <code>editedPatient</code>.</p>
 </li>
 <li>
-<p><code>Model#ObservableList&lt;Appointment&gt; getStagedAppointmentList()</code></p>
+<p><code>Model#ObservableList&lt;Appointment&gt; getStagedAppointmentList()</code>&#8201;&#8212;&#8201;Returns an unmodifiable view of the entire appointment list.</p>
 </li>
 <li>
-<p><code>Model#FilteredList&lt;Appointment&gt; getFilteredAppointmentList()</code></p>
+<p><code>Model#FilteredList&lt;Appointment&gt; getFilteredAppointmentList()</code>&#8201;&#8212;&#8201;Returns an unmodifiable view of the filtered appointment list.</p>
 </li>
 <li>
-<p><code>Model#void updateFilteredAppointmentList(Predicate&lt;Appointment&gt; predicate)</code></p>
+<p><code>Model#void updateFilteredAppointmentList(Predicate&lt;Appointment&gt; predicate)</code>&#8201;&#8212;&#8201;Updates the filter of the filtered appointment list to filter by the given <code>predicate</code>.</p>
 </li>
 </ul>
 </div>
@@ -468,4 +408,4 @@ Assuming the first appointment in the appointment list is recurring. The followi
 <div class="paragraph">
 <p><em>Figure: Reference - delete appointment, recur, and add the recurred appointment</em></p>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-13 05:13:32 UTC</div></div></div></body></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-14 20:42:54 UTC</div></div></div></body></html>
